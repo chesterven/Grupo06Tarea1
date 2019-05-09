@@ -20,13 +20,15 @@
     <string name="Solicitud_RepetidoDiferido_Titulo_Consultar">Consultar Solicitud</string>
     <string name="Solicitud_RepetidoDiferido_Titulo_Actualizar">Consultar Solicitud</string>
 
-
     <!--Uso general para mandar a llamar en todas las activities-->
     <string name="Insertar">Insertar</string>
     <string name="Eliminar">Eliminar</string>
     <string name="Actualizar">Actualizar</string>
     <string name="Consultar">Consultar</string>
     <string name="Limpiar">Limpiar</string>
+    <string name="Carne">Carnet</string>
+    <string name="Evaluacion">Evaluación:</string>
+    <string name="Motivo">Motivo:</string>
 
     <!--Activity insertar tipo solicitud-->
     <string name="Tipo_Solicitud_Titulo_Insertar"> Insertar Tipo Solicitud </string>
