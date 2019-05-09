@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Grupo06Tarea1</string>
-    <string name="title_activity_detalle_segunda_revision__actualizar">
-        DetalleSegundaRevision_Actualizar
-    </string>
+    <string name="title_activity_detalle_segunda_revision__actualizar">DetalleSegundaRevision_Actualizar</string>
+    //Actitity insertar dia no habil
+    <string name="Dias_No_Habiles_Titulo">Días no Habiles</string>
+    <string name="Dias_No_Habiles_Fecha">Fecha:</string>
+    <string name="Dias_No_Habiles_Ciclo">Ciclo:</string>
+    <string name="Dias_No_Habiles_Insertar">Insertar</string>
+    <string name="Dias_No_Habiles_Limpiar">Limpiar</string>
 </resources>
