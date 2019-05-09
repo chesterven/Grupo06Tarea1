@@ -9,6 +9,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".DetalleSegundaRevision_Eliminar"></activity>
+        <activity android:name=".DetalleSegundaRevision_Consultar" />
+        <activity
+            android:name=".DetalleSegundaRevision_Actualizar"
+            android:label="@string/title_activity_detalle_segunda_revision__actualizar"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".DetalleSegundaRevision_Insertar" />
+        <activity android:name=".DiasNoHabiles_Eliminar" />
+        <activity android:name=".DiasNoHabiles_Actualizar" />
+        <activity android:name=".DiasNoHabiles_Consultar" />
+        <activity android:name=".DiasNoHabiles_Insertar" />
+        <activity android:name=".SegundaRevision_Eliminar" />
+        <activity android:name=".SegundaRevision_Actualizar" />
+        <activity android:name=".SegundaRevision_Consultar" />
+        <activity android:name=".SegundaRevision_Insertar" />
+        <activity android:name=".SolicitudEvaluacion_Eliminar" />
+        <activity android:name=".SolicitudEvaluacion_Consultar" />
+        <activity android:name=".SolicitudEvaluacion_Actualizar" />
+        <activity android:name=".SolicitudEvaluacion_Insertar" />
+        <activity android:name=".TipoSolicitud_Eliminar" />
+        <activity android:name=".TipoSolicitud_Actualizar" />
+        <activity android:name=".TipoSolicitud_Consultar" />
+        <activity android:name=".TipoSolicitud_Insertar" />
+        <activity android:name=".Solicitud_DiferidoRepetido_Actualizar" />
+        <activity android:name=".Solicitud_DiferidoRepetido_Eliminar" />
+        <activity android:name=".Solicitud_DiferidoRepetido_Consultar" />
+        <activity android:name=".Solicitud_Repetido_Insertar" />
+        <activity android:name=".Solicitud_Diferido_Insertar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
