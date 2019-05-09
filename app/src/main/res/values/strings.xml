@@ -30,5 +30,6 @@
 
     <!--Activity insertar tipo solicitud-->
     <string name="Tipo_Solicitud_Titulo_Insertar"> Insertar Tipo Solicitud </string>
+    <string name="Tipo_Solicitud_Titulo_Eliminar"> Eliminar Tipo Solicitud </string>
     <string name="Tipo_Solicitud_nombre">Nombre Solicitud:</string>
 </resources>

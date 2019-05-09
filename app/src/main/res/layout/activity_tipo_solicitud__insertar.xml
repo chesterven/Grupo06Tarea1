@@ -59,14 +59,14 @@
 
 
         <Button
-            android:id="@+id/button"
+            android:onClick="insertarTipoSolicitud"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/Insertar"
             android:layout_weight="2"/>
 
         <Button
-            android:id="@+id/button2"
+            android:onClick="limpiarTexto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/Limpiar"
