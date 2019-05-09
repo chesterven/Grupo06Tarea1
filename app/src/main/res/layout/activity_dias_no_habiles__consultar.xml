@@ -76,17 +76,20 @@
     </TableRow>
     <TableRow
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+        android:weightSum="4">
 
     <TextView
-        android:layout_width="50sp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1.5"
         android:text="@string/Dias_No_Habiles_Fecha" />
 
     <EditText
         android:id="@+id/fechaMostrar"
-        android:layout_width="100sp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="2.5"
         android:cursorVisible="false"
         android:enabled="false"
         android:focusable="false"
@@ -97,17 +100,20 @@
 </TableRow>
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:weightSum="4">
 
         <TextView
-            android:layout_width="50sp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/Dias_No_Habiles_Ciclo" />
+            android:layout_weight="1.5"
+            android:text="@string/Ciclo" />
 
         <EditText
             android:id="@+id/CicloMostrar"
-            android:layout_width="100sp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="2.5"
             android:cursorVisible="false"
             android:enabled="false"
             android:focusable="false"
