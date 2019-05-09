@@ -3,19 +3,22 @@ package sv.edu.ues.fia.eisi.grupo06tarea1;
 public class Solicitud_RepetidoDiferido {
     private int idSolicitud;
     private String carnet;
+    private int idEvaluacion;
     private int idTipoSolicitud;
     private String motivoSolicitud;
 
-    public Solicitud_RepetidoDiferido(int idSolicitud, String carnet, int idTipoSolicitud, String motivoSolicitud) {
+    public Solicitud_RepetidoDiferido(int idSolicitud, String carnet, int idEvaluacion, int idTipoSolicitud, String motivoSolicitud) {
         this.idSolicitud = idSolicitud;
         this.carnet = carnet;
+        this.idEvaluacion = idEvaluacion;
         this.idTipoSolicitud = idTipoSolicitud;
         this.motivoSolicitud = motivoSolicitud;
     }
 
-    public Solicitud_RepetidoDiferido(int idSolicitud, String carnet, int idTipoSolicitud) {
+    public Solicitud_RepetidoDiferido(int idSolicitud, String carnet, int idEvaluacion, int idTipoSolicitud) {
         this.idSolicitud = idSolicitud;
         this.carnet = carnet;
+        this.idEvaluacion = idEvaluacion;
         this.idTipoSolicitud = idTipoSolicitud;
     }
 
@@ -33,6 +36,14 @@ public class Solicitud_RepetidoDiferido {
 
     public void setCarnet(String carnet) {
         this.carnet = carnet;
+    }
+
+    public int getIdEvaluacion() {
+        return idEvaluacion;
+    }
+
+    public void setIdEvaluacion(int idEvaluacion) {
+        this.idEvaluacion = idEvaluacion;
     }
 
     public int getIdTipoSolicitud() {
