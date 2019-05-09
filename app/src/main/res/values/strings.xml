@@ -20,4 +20,8 @@
     <string name="Actualizar">Actualizar</string>
     <string name="Consultar">Consultar</string>
     <string name="Limpiar">Limpiar</string>
+
+    //Activity insertar tipo solicitud
+    <string name="Tipo_Solicitud_Titulo_Insertar"> Insertar Tipo Solicitud </string>
+    <string name="Tipo_Solicitud_nombre">Nombre Solicitud:</string>
 </resources>
