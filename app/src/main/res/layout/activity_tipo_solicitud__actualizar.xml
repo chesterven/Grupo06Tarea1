@@ -1,9 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    tools:context=".TipoSolicitud_Actualizar">
+    android:stretchColumns="1"
+    android:paddingTop="4dip">
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/textTitulo"
+            android:layout_width="202dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/Tipo_Solicitud_Titulo_Actualizar"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="103dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/tipoSolicitud" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/Tipo_Solicitud_nombre"
+            android:layout_weight="1.5"/>
+        <EditText
+            android:id="@+id/nombreAnterior"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:layout_weight="2.5"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/Tipo_Solicitud_nombre_nuevo"
+            android:layout_weight="2"/>
+        <EditText
+            android:id="@+id/nombreActualizar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:layout_weight="2"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4">
+
+
+        <Button
+            android:onClick="actualizarTipoSolicitud"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/Actualizar"
+            android:layout_weight="2"/>
+
+        <Button
+            android:onClick="limpiarTexto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/Limpiar"
+            android:layout_weight="2"/>
+    </TableRow>
+</TableLayout>
