@@ -2,9 +2,18 @@
     <string name="app_name">Grupo06Tarea1</string>
     <string name="title_activity_detalle_segunda_revision__actualizar">DetalleSegundaRevision_Actualizar</string>
     //Actitity insertar dia no habil
-    <string name="Dias_No_Habiles_Titulo">Días no Habiles</string>
+    <string name="Dias_No_Habiles_Titulo_Insertar">Insertar Días no Habiles</string>
+    <string name="Dias_No_Habiles_Titulo_Consultar">Consultar Días no Habiles</string>
+    <string name="Dias_No_Habiles_Titulo_Eliminar">Eliminar Días no Habiles</string>
+    <string name="Dias_No_Habiles_Titulo_Actualizar">Actualizar Días no Habiles</string>
     <string name="Dias_No_Habiles_Fecha">Fecha:</string>
     <string name="Dias_No_Habiles_Ciclo">Ciclo:</string>
-    <string name="Dias_No_Habiles_Insertar">Insertar</string>
-    <string name="Dias_No_Habiles_Limpiar">Limpiar</string>
+
+
+    <!--Uso general para mandar a llamar en todas las activities-->
+    <string name="Insertar">Insertar</string>
+    <string name="Eliminar">Eliminar</string>
+    <string name="Actualizar">Actualizar</string>
+    <string name="Consultar">Consultar</string>
+    <string name="Limpiar">Limpiar</string>
 </resources>

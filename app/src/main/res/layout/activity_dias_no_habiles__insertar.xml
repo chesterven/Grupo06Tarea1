@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/Dias_No_Habiles_Titulo"
+            android:text="@string/Dias_No_Habiles_Titulo_Insertar"
             android:textSize="18sp"
             android:textStyle="bold" />
     </TableRow>
@@ -55,7 +55,7 @@
         android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/fecha"
+            android:id="@+id/fechaInsertar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -98,8 +98,8 @@
         <Button
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:onClick="insertarDiaNoHabil"
-            android:text="@string/Dias_No_Habiles_Insertar" />
+            android:onClick="insertarDia"
+            android:text="@string/Insertar" />
     </TableRow>
 
     <TableRow
@@ -109,6 +109,6 @@
 
         <Button
             android:onClick="limpiarTexto"
-            android:text="@string/Dias_No_Habiles_Limpiar" />
+            android:text="@string/Limpiar" />
     </TableRow>
 </TableLayout>
