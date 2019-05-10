@@ -62,14 +62,12 @@
     <string name="SegundaRevisionId">Id Segunda Revisión:</string>
 
 
-<!--Activities de la Solicitud_Evaluacion-->
+    <!--Activities de la Solicitud_Evaluacion-->
     <string name="SolictudEvaluacion_Insertar">Insertar el resultado del diferido o repetido</string>
     <string name="SolictudEvaluacion_Eliminar">Eliminar la nota del diferido o repetido</string>
     <string name="SolictudEvaluacion_Consultar">Consultar la nota del diferido o repetido</string>
     <string name="SolictudEvaluacion_Actualizar">Eliminar la nota del diferido o repetido</string>
     <string name="IdSolicitud">Id de Solicitud:</string>
-
-
 
 
     <!--Activity insertar tipo solicitud-->
@@ -106,6 +104,12 @@
     <string name="Menu_Tablas_Vd16006_Solicitud_DiferidoRepetido">Tabla Solicitud Diferido y Repetido</string>
     <string name="Menu_Tablas_Vd16006_TipoSolicitud">Tabla Tipo Solicitud</string>
     <string name="Menu_Tablas_Vd16006_SolicitudEvaluacion">Tabla Solicitud Evaluacion(notas)</string>
+
+    <!--Activity MenuCS16008-->
+    <string name="Menu_Tablas_CS16008">Menu de Tablas CS16008</string>
+    <string name="Menu_Tablas_CS16008_Notas_Estudiante_Evaluacion">Tabla Notas Estudiante Evaluacion</string>
+    <string name="Menu_Tablas_CS16008_Solicitudes_Primera_Revision">Tabla Solicitudes Primera Revision</string>
+    <string name="Menu_Tablas_CS16008_Solicitud_Impresion">Tabla Solicitud Impresion</string>
 
 
 </resources>
