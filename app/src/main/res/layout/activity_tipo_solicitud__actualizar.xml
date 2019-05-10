@@ -43,14 +43,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/Tipo_Solicitud_nombre"
-            android:layout_weight="1.5"/>
+            android:layout_weight="2"/>
         <EditText
             android:id="@+id/nombreAnterior"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:layout_weight="2.5"/>
+            android:layout_weight="2"/>
     </TableRow>
 
     <TableRow
