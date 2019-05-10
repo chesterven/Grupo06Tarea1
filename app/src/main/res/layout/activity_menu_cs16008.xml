@@ -17,7 +17,7 @@
             android:layout_width="202dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/Menu_Tablas_Vd16006"
+            android:text="@string/Menu_Tablas_CS16008"
             android:textSize="18sp"
             android:textStyle="bold" />
     </TableRow>
@@ -41,10 +41,10 @@
         android:gravity="center">
 
         <Button
-            android:onClick="solicitudDiferidoRepetido"
+            android:onClick="solicitudesPrimeraRevision"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Menu_Tablas_Vd16006_Solicitud_DiferidoRepetido" />
+            android:text="@string/Menu_Tablas_CS16008_Solicitudes_Primera_Revision" />
     </TableRow>
 
     <TableRow
@@ -53,10 +53,10 @@
         android:gravity="center">
 
         <Button
-            android:onClick="solicitudEvaluacion"
+            android:onClick="notasEstudianteEvaluacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Menu_Tablas_Vd16006_SolicitudEvaluacion" />
+            android:text="@string/Menu_Tablas_CS16008_Notas_Estudiante_Evaluacion" />
     </TableRow>
 
     <TableRow
@@ -65,9 +65,9 @@
         android:gravity="center">
 
         <Button
-            android:onClick="tipoSolicitud"
+            android:onClick="solicitudImpresion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Menu_Tablas_Vd16006_TipoSolicitud" />
+            android:text="@string/Menu_Tablas_CS16008_Solicitud_Impresion" />
     </TableRow>
 </TableLayout>
