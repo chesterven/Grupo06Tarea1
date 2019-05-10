@@ -24,6 +24,8 @@ public class MenuCarnet extends AppCompatActivity {
     }
 
     public void vd16006(View v){
-
+        Intent ven=new Intent(this,MenuVd16006.class);
+        ven.putExtra("idusuario",idusuario);
+        startActivity(ven);
     }
 }
