@@ -133,10 +133,48 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/consultarEvaluacionParaSolicitud"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Consultar" />
     </TableRow>
-<!--Aqui ira el insert-->
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:weightSum="4">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="@string/Evaluacion"/>
+
+        <Spinner
+            android:id="@+id/spinnerResultados"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.5" />
+    </TableRow>
+<TableRow
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="20dp">
+
+    <Button
+        android:onClick="insertarSolicitudRepetido"
+        android:text="@string/Insertar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"/>
+
+    <Button
+        android:onClick="limpiarTexto"
+        android:text="@string/Limpiar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"/>
+</TableRow>
 </TableLayout>

@@ -110,5 +110,5 @@
         <Button
             android:onClick="limpiarTexto"
             android:text="@string/Limpiar" />
-    </TableRow>
+</TableRow>
 </TableLayout>
