@@ -33,9 +33,10 @@
     <!--Activities de Solicitud Repetido y Diferido-->
     <string name="Solicitud_RepetidoDiferido_Titulo_Insertar1">Insertar Solicitud de Diferido</string>
     <string name="Solicitud_RepetidoDiferido_Titulo_Insertar2">Insertar Solicitud de Repetido</string>
-    <string name="Solicitud_RepetidoDiferido_Titulo_Eliminar">Eliminar Solicitud</string>
-    <string name="Solicitud_RepetidoDiferido_Titulo_Consultar">Consultar Solicitud</string>
-    <string name="Solicitud_RepetidoDiferido_Titulo_Actualizar">Actualizar Solicitud</string>
+    <string name="Solicitud_RepetidoDiferido_Titulo_Eliminar">Eliminar Solicitud Diferido y Repetido</string>
+    <string name="Solicitud_RepetidoDiferido_Titulo_Consultar">Consultar Solicitud Diferido y Repetido</string>
+    <string name="Solicitud_RepetidoDiferido_Titulo_Actualizar">Actualizar Solicitud Diferido y Repetido</string>
+    <string name="TipoSoli">Tipo Solicitud:</string>
     <string name="Solicitud_Aprobada">Aprobada:</string>
     <string name="tiposGrupos">Seleccione el tipo de grupo</string>
     <string-array name="tiposGrupos_array">
