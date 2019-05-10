@@ -64,7 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="4"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="7dp">
 
         <TextView
             android:id="@+id/textView12"
@@ -82,6 +82,7 @@
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="7dp"
         android:weightSum="">
 
         <TextView
