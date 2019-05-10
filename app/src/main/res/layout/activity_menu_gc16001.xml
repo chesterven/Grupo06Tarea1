@@ -17,7 +17,7 @@
             android:layout_width="202dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/Menu_Carnet_Titulo"
+            android:text="@string/Menu_Tablas_Gc16001"
             android:textSize="18sp"
             android:textStyle="bold" />
     </TableRow>
@@ -32,19 +32,42 @@
             android:layout_width="103dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/menucarnet" />
+            app:srcCompat="@drawable/menutablas" />
     </TableRow>
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:gravity="center">
 
-        <EditText
-            android:id="@+id/editText"
+        <Button
+            android:onClick="segundaRevision"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="" />
+            android:text="@string/Menu_Tablas_Gc16001_SegundaRevision" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:onClick="diasNoHabiles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Menu_Tablas_Gc16001_Dias_no_Habiles" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:onClick="detalleSegundaRevision"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Menu_Tablas_Gc16001_Detalle_SegundaRevision" />
     </TableRow>
 </TableLayout>

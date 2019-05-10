@@ -67,6 +67,18 @@
     <string name="Menu_Carnet_Opcion5">ZT12002</string>
     <string name="Menu_Carnet_Opcion6">Llenar Base de Datos</string>
 
+    <!--Activity MenuGc16001-->
+    <string name="Menu_Tablas_Gc16001">Menu de Tablas GC16001</string>
+    <string name="Menu_Tablas_Gc16001_SegundaRevision">Tabla Segunda Revision</string>
+    <string name="Menu_Tablas_Gc16001_Dias_no_Habiles">Tabla Días no habiles</string>
+    <string name="Menu_Tablas_Gc16001_Detalle_SegundaRevision">Tabla Detalle Segunda Revision</string>
+
+    <!--Activity MenuVd16006-->
+    <string name="Menu_Tablas_Vd16006">Menu de Tablas VD16006 </string>
+    <string name="Menu_Tablas_Vd16006_Solicitud_DiferidoRepetido">Tabla Solicitud Diferido y Repetido</string>
+    <string name="Menu_Tablas_Vd16006_TipoSolicitud">Tabla Tipo Solicitud</string>
+    <string name="Menu_Tablas_Vd16006_SolicitudEvaluacion">Tabla Solicitud Evaluacion(notas)</string>
+
 
 </resources>
 

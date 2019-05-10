@@ -13,8 +13,6 @@ public class MenuVd16006 extends AppCompatActivity {
         setContentView(R.layout.activity_menu_vd16006);
         Intent recibir = getIntent();
         idusuario = recibir.getStringExtra("idusuario");
-        EditText iduser;
-        iduser = (EditText) findViewById(R.id.editText);
-        iduser.setText(idusuario);
+
     }
 }

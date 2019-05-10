@@ -17,7 +17,7 @@
             android:layout_width="202dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/Menu_Carnet_Titulo"
+            android:text="@string/Menu_Tablas_Vd16006"
             android:textSize="18sp"
             android:textStyle="bold" />
     </TableRow>
@@ -32,19 +32,42 @@
             android:layout_width="103dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/menucarnet" />
+            app:srcCompat="@drawable/menutablas" />
     </TableRow>
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:gravity="center">
 
-        <EditText
-            android:id="@+id/editText"
+        <Button
+            android:onClick="solicitudDiferidoRepetido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="" />
+            android:text="@string/Menu_Tablas_Vd16006_Solicitud_DiferidoRepetido" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:onClick="solicitudEvaluacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Menu_Tablas_Vd16006_SolicitudEvaluacion" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:onClick="tipoSolicitud"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Menu_Tablas_Vd16006_TipoSolicitud" />
     </TableRow>
 </TableLayout>
