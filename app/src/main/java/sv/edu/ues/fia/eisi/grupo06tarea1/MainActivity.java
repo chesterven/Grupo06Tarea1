@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         if(consulta==true){
 
 
-            Intent ven=new Intent(this,Solicitud_Repetido_Insertar.class);
+            Intent ven=new Intent(this,MenuCarnet.class);
             String id = DBHelper.consultarUsuarioAcceso(usuario,contrasena);
             ven.putExtra("idusuario",id);
             startActivity(ven);

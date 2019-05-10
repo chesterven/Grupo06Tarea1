@@ -28,8 +28,6 @@
     <string name="Dias_No_Habiles_FechaNueva">Fecha nueva:</string>
 
 
-
-
     <!--Activities de Solicitud Repetido y Diferido-->
     <string name="Solicitud_RepetidoDiferido_Titulo_Insertar1">Insertar Solicitud de Diferido</string>
     <string name="Solicitud_RepetidoDiferido_Titulo_Insertar2">Insertar Solicitud de Repetido</string>
@@ -46,7 +44,6 @@
     </string-array>
 
 
-
     <!--Activity insertar tipo solicitud-->
     <string name="Tipo_Solicitud_Titulo_Insertar"> Insertar Tipo Solicitud </string>
     <string name="Tipo_Solicitud_Titulo_Eliminar"> Eliminar Tipo Solicitud </string>
@@ -60,6 +57,17 @@
     <string name="usuario">Usuario</string>
     <string name="contra"> Contraseña</string>
     <string name="entrar">Iniciar Sesión</string>
+
+    <!--Activity menu carnet-->
+    <string name="Menu_Carnet_Titulo">Menu Principal</string>
+    <string name="Menu_Carnet_Opcion1">CH15013</string>
+    <string name="Menu_Carnet_Opcion2">CS16008</string>
+    <string name="Menu_Carnet_Opcion3">GC16001</string>
+    <string name="Menu_Carnet_Opcion4">VD16006</string>
+    <string name="Menu_Carnet_Opcion5">ZT12002</string>
+    <string name="Menu_Carnet_Opcion6">Llenar Base de Datos</string>
+
+
 </resources>
 
 

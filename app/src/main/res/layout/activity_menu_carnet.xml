@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1"
+    android:paddingTop="4dip">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/textTitulo"
+            android:layout_width="202dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/Menu_Carnet_Titulo"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="103dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/menucarnet" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:gravity="center">
+
+        <Button
+            android:onClick="ch15013"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Menu_Carnet_Opcion1" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:onClick="cs16008"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Menu_Carnet_Opcion2" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:onClick="gc16001"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Menu_Carnet_Opcion3" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:onClick="vd16006"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Menu_Carnet_Opcion4" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:onClick="zt12002"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Menu_Carnet_Opcion5" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:onClick="llenarBD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Menu_Carnet_Opcion6" />
+    </TableRow>
+</TableLayout>
