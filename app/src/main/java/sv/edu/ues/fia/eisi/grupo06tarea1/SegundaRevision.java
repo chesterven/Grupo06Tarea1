@@ -7,6 +7,7 @@ public class SegundaRevision {
     private int idEvaluacion;
     private int idLocal;
     private Date fechaSegundaRevision;
+    private String descripcion;
 
     public SegundaRevision(int id_Segunda_Revision, int idEvaluacion, int idLocal, Date fechaSegundaRevision) {
         this.id_Segunda_Revision = id_Segunda_Revision;

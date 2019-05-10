@@ -6,8 +6,9 @@
     <string name="Actualizar">Actualizar</string>
     <string name="Consultar">Consultar</string>
     <string name="Limpiar">Limpiar</string>
-    <string name="Carnee">Carnet</string>
+    <string name="Carnee">Carnet:</string>
     <string name="Evaluacion">Evaluación:</string>
+    <string name="EvaluacionId">Ide Evaluación:</string>
     <string name="Motivo">Motivo:</string>
     <string name="Ciclo">Ciclo:</string>
     <string name="Materia">Código materia:</string>
