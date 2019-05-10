@@ -34,41 +34,4 @@
             android:layout_gravity="center"
             app:srcCompat="@drawable/menutablas" />
     </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
-
-        <Button
-            android:onClick="segundaRevision"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Menu_Tablas_Gc16001_SegundaRevision" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
-
-        <Button
-            android:onClick="diasnohabiles"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Menu_Tablas_Gc16001_Dias_no_Habiles" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
-
-        <Button
-            android:onClick="detallesegundarevision"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Menu_Tablas_Gc16001_Detalle_SegundaRevision" />
-    </TableRow>
-
 </TableLayout>
