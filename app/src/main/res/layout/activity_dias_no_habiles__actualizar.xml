@@ -112,7 +112,7 @@
             android:onClick="actualizarDia"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/Insertar"
+            android:text="@string/Actualizar"
             android:layout_weight="2"/>
 
         <Button
