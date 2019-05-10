@@ -126,6 +126,7 @@
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:weightSum="2"
         android:gravity="center">
 
         <Button
@@ -179,7 +180,7 @@
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:weightSum="4">
 
         <Button
             android:onClick="insertarSolicitudDiferido"
