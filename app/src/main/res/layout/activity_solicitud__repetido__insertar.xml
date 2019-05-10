@@ -138,5 +138,5 @@
             android:layout_height="wrap_content"
             android:text="@string/Consultar" />
     </TableRow>
-
+<!--Aqui ira el insert-->
 </TableLayout>
