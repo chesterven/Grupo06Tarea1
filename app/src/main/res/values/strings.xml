@@ -15,6 +15,9 @@
     <string name="Grupo">Número de grupo:</string>
     <string name="TipoGrupo">Tipo de grupo:</string>
     <string name="si">Si</string>
+    <string name="Local">Local:</string>
+    <string name="Fecha">Fecha:</string>
+    <string name="Descripcion">Descripción:</string>
     <string name="title_activity_detalle_segunda_revision__actualizar">DetalleSegundaRevision_Actualizar</string>
 
 
@@ -42,6 +45,20 @@
         <item>Laboratorio</item>
         <item>Discusión</item>
     </string-array>
+
+    <!--Primera y segunda revision-->
+    <string name="Primera_Revision_Titulo_Insertar">Insertar Primera Revisión</string>
+    <string name="Primera_Revision_Titulo_Consultar">Consultar Primera Revisión</string>
+    <string name="Primera_Revision_Titulo_Eliminar">Eliminar Primera Revisión</string>
+    <string name="Primera_Revision_Titulo_Actualizar">Actualizar Primera Revisión</string>
+
+    <string name="Segunda_Revision_Titulo_Insertar">Insertar Segunda Revisión</string>
+    <string name="Segunda_Revision_Titulo_Consultar">Consultar Segunda Revisión</string>
+    <string name="Segunda_Revision_Titulo_Eliminar">Eliminar Segunda Revisión</string>
+    <string name="Segunda_Revision_Titulo_Actualizar">Actualizar Segunda Revisión</string>
+    <string name="SegundaRevisionId">Id Segunda Revisión:</string>
+
+
 
 
     <!--Activity insertar tipo solicitud-->
