@@ -19,7 +19,7 @@
             android:gravity="center"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="@string/Titulo_Eliminar_NotasEstuadianteEvaluacion" />
+            android:text="@string/Titulo_Eliminar_SolicitudPrimerRevision" />
     </TableRow>
 
     <!--<TableRow
@@ -42,65 +42,6 @@
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="4"
-        android:layout_marginTop="7dp">
-
-        <TextView
-            android:id="@+id/textViewMateriasNotasEstudianteEvaluacionEliminar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:text="@string/Materia" />
-        <Spinner
-            android:id="@+id/spinnerMateriasNotasEstudianteEvaluacionEliminar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2.5" />
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="4"
-        android:layout_marginTop="7dp">
-
-        <TextView
-            android:id="@+id/textViewGruposMateriaNotasEstudianteEvaluacionEliminar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:text="@string/Grupo" />
-        <Spinner
-            android:id="@+id/spinnerGruposMateriaNotasEstudianteEvaluacionEliminar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2.5" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="4"
-        android:layout_marginTop="7dp">
-
-        <TextView
-            android:id="@+id/textViewEvaluacionesGrupoMateriaNotasEstudianteEvaluacionEliminar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:text="@string/Evaluacion" />
-        <Spinner
-            android:id="@+id/spinnerEvaluacionesGrupoMateriaNotasEstudianteEvaluacionEliminar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2.5" />
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:weightSum="4">
 
         <TextView
@@ -108,10 +49,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
-            android:text="@string/Carnee" />
+            android:text="@string/IdSolicitud" />
 
         <EditText
-            android:id="@+id/carnetEliminarNotaEstudianteEvaluacion"
+            android:id="@+id/idSolicitudPrimerRevisionEliminar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
@@ -127,7 +68,7 @@
         android:layout_marginTop="5dp">
 
         <Button
-            android:onClick="eliminarNotaEstudianteEvaluacion"
+            android:onClick="eliminarSolicitudPrimerRevision"
             android:text="@string/Eliminar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

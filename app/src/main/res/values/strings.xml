@@ -116,23 +116,33 @@
     <string name="Menu_Tablas_Vd16006_SolicitudEvaluacion">Tabla Solicitud Evaluacion(notas)</string>
 
     <!--CS16008-->
-    <!--Activity MenuCS16008-->
-    <string name="Menu_Tablas_CS16008">Menu de Tablas CS16008</string>
-    <string name="Menu_Tablas_CS16008_Notas_Estudiante_Evaluacion">Tabla Notas Estudiante Evaluacion</string>
-    <string name="Menu_Tablas_CS16008_Solicitudes_Primera_Revision">Tabla Solicitudes Primera Revision</string>
-    <string name="Menu_Tablas_CS16008_Solicitud_Impresion">Tabla Solicitud Impresion</string>
+        <!--Activity MenuCS16008-->
+        <string name="Menu_Tablas_CS16008">Menu de Tablas CS16008</string>
+        <string name="Menu_Tablas_CS16008_Notas_Estudiante_Evaluacion">Tabla Notas Estudiante Evaluacion</string>
+        <string name="Menu_Tablas_CS16008_Solicitudes_Primera_Revision">Tabla Solicitudes Primera Revision</string>
+        <string name="Menu_Tablas_CS16008_Solicitud_Impresion">Tabla Solicitud Impresion</string>
 
-    <!--Activity MenuNotasEstudianteEvaluacion-->
-    <string name="Menu_NotasEstuadianteEvaluacion">Notas Estudiante Evaluacion</string>
-    <!--Activity Insertar_NotasEstudianteEvaluacion-->
-    <string name="Titulo_NotasEstuadianteEvaluacion">Insertar Nota Estudiante Evaluacion</string>
-    <!--Activity Consultar_NotasEstudianteEvaluacion-->
-    <string name="Titulo_Consultar_NotasEstuadianteEvaluacion">Consultar Nota Estudiante Evaluacion</string>
-    <!--Activity Actualizar_NotasEstudianteEvaluacion-->
-    <string name="Titulo_Actualizar_NotasEstuadianteEvaluacion">Actualizar Nota Estudiante Evaluacion</string>
-    <!--Activity Eliminar_NotasEstudianteEvaluacion-->
-    <string name="Titulo_Eliminar_NotasEstuadianteEvaluacion">Eliminar Nota Estudiante Evaluacion</string>
+        <!--Activity MenuNotasEstudianteEvaluacion-->
+        <string name="Menu_NotasEstuadianteEvaluacion">Notas Estudiante Evaluacion</string>
+        <!--Activity Insertar_NotasEstudianteEvaluacion-->
+        <string name="Titulo_NotasEstuadianteEvaluacion">Insertar Nota Estudiante Evaluacion</string>
+        <!--Activity Consultar_NotasEstudianteEvaluacion-->
+        <string name="Titulo_Consultar_NotasEstuadianteEvaluacion">Consultar Nota Estudiante Evaluacion</string>
+        <!--Activity Actualizar_NotasEstudianteEvaluacion-->
+        <string name="Titulo_Actualizar_NotasEstuadianteEvaluacion">Actualizar Nota Estudiante Evaluacion</string>
+        <!--Activity Eliminar_NotasEstudianteEvaluacion-->
+        <string name="Titulo_Eliminar_NotasEstuadianteEvaluacion">Eliminar Nota Estudiante Evaluacion</string>
 
+        <!--Activity MenuSolicitudPrimerRevision-->
+        <string name="Menu_SolicitudPrimerRevision">Solicitud Primer Revision</string>
+        <!--Activity Insertar_SolicitudPrimerRevision-->
+        <string name="Titulo_Insertar_SolicitudPrimerRevision">Insertar Solicitud Primer Revision</string>
+        <!--Activity Consultar_SolicitudPrimerRevision-->
+        <string name="Titulo_Consultar_SolicitudPrimerRevision">Consultar Solicitud Primer Revision</string>
+        <!--Activity Actualizar_SolicitudPrimerRevision-->
+        <string name="Titulo_Actualizar_SolicitudPrimerRevision">Actualizar Solicitud Primer Revision</string>
+        <!--Activity Eliminar_SolicitudPrimerRevision-->
+        <string name="Titulo_Eliminar_SolicitudPrimerRevision">Eliminar Solicitud Primer Revision</string>
 
     <!--Activity Menu Segunda Revision-->
     <string name="Menu_Segunda_Revision_Titulo">Tabla Segunda Revisión</string>
