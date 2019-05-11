@@ -116,7 +116,8 @@
     <string name="Menu_NotasEstuadianteEvaluacion">Notas Estudiante Evaluacion</string>
     <!--Activity Insertar_NotasEstudianteEvaluacion-->
     <string name="Titulo_NotasEstuadianteEvaluacion">Insertar Nota Estudiante Evaluacion</string>
-
+    <!--Activity Consultar_NotasEstudianteEvaluacion-->
+    <string name="Titulo_Consultar_NotasEstuadianteEvaluacion">Consultar Nota Estudiante Evaluacion</string>
 </resources>
 
 
