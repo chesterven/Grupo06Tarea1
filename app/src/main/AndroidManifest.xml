@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NotasEstudianteEvaluacion_Eliminar"></activity>
+        <activity android:name=".MenuDetalleSegundaRevision"></activity>
+        <activity android:name=".MenuDiasNoHabiles" />
+        <activity android:name=".NotasEstudianteEvaluacion_Eliminar" />
         <activity android:name=".NotasEstudianteEvaluacion_Actualizar" />
         <activity android:name=".NotasEstudianteEvaluacion_Consultar" />
         <activity android:name=".NotasEstudianteEvaluacion_Insertar" />
@@ -21,10 +23,6 @@
         <activity android:name=".MenuCarnet" />
         <activity android:name=".DetalleSegundaRevision_Eliminar" />
         <activity android:name=".DetalleSegundaRevision_Consultar" />
-        <activity
-            android:name=".DetalleSegundaRevision_Actualizar"
-            android:label="@string/title_activity_detalle_segunda_revision__actualizar"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".DetalleSegundaRevision_Insertar" />
         <activity android:name=".DiasNoHabiles_Eliminar" />
         <activity android:name=".DiasNoHabiles_Actualizar" />

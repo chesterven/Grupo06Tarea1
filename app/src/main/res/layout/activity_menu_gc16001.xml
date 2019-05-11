@@ -53,7 +53,7 @@
         android:gravity="center">
 
         <Button
-            android:onClick="diasnohabiles"
+            android:onClick="diasNoHabiles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Menu_Tablas_Gc16001_Dias_no_Habiles" />
@@ -65,7 +65,7 @@
         android:gravity="center">
 
         <Button
-            android:onClick="detallesegundarevision"
+            android:onClick="detalleSegundaRevision"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Menu_Tablas_Gc16001_Detalle_SegundaRevision" />

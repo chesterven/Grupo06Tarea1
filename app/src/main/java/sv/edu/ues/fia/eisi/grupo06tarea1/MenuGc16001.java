@@ -48,4 +48,37 @@ public class MenuGc16001 extends AppCompatActivity {
         }
 
     }
+    public void diasNoHabiles(View v){
+        String codOpcion = "010";
+        boolean permitido = false;
+        for(int i=0; i<arrayAccesos.size();i++){
+            if(codOpcion.equals(arrayAccesos.get(i))){
+                permitido = true;
+            }
+        }
+        if(permitido || idusuario.equals("01")){
+            Toast.makeText(this,"Tiene Acceso", Toast.LENGTH_SHORT).show();
+            Intent ven=new Intent(this,MenuDiasNoHabiles.class);
+            startActivity(ven);
+        }
+        else{
+            Toast.makeText(this,"No Tiene Acceso", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void detalleSegundaRevision(View v) {
+        String codOpcion = "012";
+        boolean permitido = false;
+        for (int i = 0; i < arrayAccesos.size(); i++) {
+            if (codOpcion.equals(arrayAccesos.get(i))) {
+                permitido = true;
+            }
+        }
+        if (permitido || idusuario.equals("01")) {
+            Toast.makeText(this, "Tiene Acceso", Toast.LENGTH_SHORT).show();
+            Intent ven = new Intent(this, MenuDetalleSegundaRevision.class);
+            startActivity(ven);
+        } else {
+            Toast.makeText(this, "No Tiene Acceso", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
