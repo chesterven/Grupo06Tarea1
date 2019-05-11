@@ -66,7 +66,7 @@
     <string name="SolictudEvaluacion_Insertar">Insertar el resultado del diferido o repetido</string>
     <string name="SolictudEvaluacion_Eliminar">Eliminar la nota del diferido o repetido</string>
     <string name="SolictudEvaluacion_Consultar">Consultar la nota del diferido o repetido</string>
-    <string name="SolictudEvaluacion_Actualizar">Eliminar la nota del diferido o repetido</string>
+    <string name="SolictudEvaluacion_Actualizar">Actualizar la nota del diferido o repetido</string>
     <string name="IdSolicitud">Id de Solicitud:</string>
 
 
