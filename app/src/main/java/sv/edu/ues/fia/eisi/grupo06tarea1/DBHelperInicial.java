@@ -34,6 +34,7 @@ public class DBHelperInicial {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
+            //TABLAS PARA ROLES DE USUARIOS AUTOR: ROBERTO ELIEZER VENTURA DOMINGUEZ
             try {
                 db.execSQL("create table USUARIO  (\n" +
                         "   IDUSUARIO            CHAR(2)                         not null,\n" +
@@ -74,7 +75,7 @@ public class DBHelperInicial {
         DBHelper.close();
     }
 
-    public boolean consultarUsuario(String user, String clave) {
+    public boolean consultarUsuario(String user, String clave) { //AUTOR:ROBERTO ELIEZER VENTURA
 
         String usua="", pass="", idUsuario="";
         Cursor fila;
@@ -93,7 +94,7 @@ public class DBHelperInicial {
             return false;
     }
 
-    public String consultarUsuarioAcceso(String user, String clave){
+    public String consultarUsuarioAcceso(String user, String clave){ //AUTOR:ROBERTO ELIEZER VENTURA
         String usua="", pass="", idUsuario="";
         Cursor fila;
         String[] columna = {"IDUSUARIO", "NOMUSUARIO", "CLAVE"};
@@ -109,6 +110,7 @@ public class DBHelperInicial {
 
     public String llenarUsuarios(){
         abrir();
+        //AUTOR:ROBERTO ELIEZER VENTURA DOMINGUEZ
         db.execSQL("DELETE FROM USUARIO");
         db.execSQL("DELETE FROM OPCIONCRUD");
         db.execSQL("DELETE FROM ACCESOUSUARIO");
@@ -162,7 +164,7 @@ public class DBHelperInicial {
         return "Usuarios Guardados";
     }
 
-    public ArrayList<String> consultarAccesos(String user){
+    public ArrayList<String> consultarAccesos(String user){ //AUTOR: ROBERTO ELIEZER VENTURA DOMINGUEZ
         ArrayList<String> accesos = new ArrayList<String>();
         Cursor fila;
         String[] columna = {"IDOPCION"};
