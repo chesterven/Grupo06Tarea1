@@ -34,8 +34,8 @@
 
     <!--Activity para iniciar sesion-->
     <string name="Iniciar_Sesion"> Iniciar Sesión </string>
-    <string name="usuario">Usuario</string>
-    <string name="contra"> Contraseña</string>
+    <string name="usuario">Ingrese usuario</string>
+    <string name="contra">Ingrese contraseña</string>
     <string name="entrar">Iniciar Sesión</string>
 
     <!--Activity menu carnet-->

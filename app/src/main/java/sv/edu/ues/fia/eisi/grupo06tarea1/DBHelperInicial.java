@@ -1,6 +1,7 @@
 package sv.edu.ues.fia.eisi.grupo06tarea1;
 
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -17,6 +18,7 @@ public class DBHelperInicial {
     private static final String DROP_TABLE1 = "DROP TABLE IF EXISTS USUARIO; ";
     private static final String DROP_TABLE2 = "DROP TABLE IF EXISTS OPCIONCRUD; ";
     private static final String DROP_TABLE3 = "DROP TABLE IF EXISTS ACCESOUSUARIO; ";
+    private static final String DROP_TABLE4 = "DROP TABLE IF EXISTS TIPOSOLICITUD";
 
 
     public DBHelperInicial(Context ctx) {
@@ -47,6 +49,9 @@ public class DBHelperInicial {
                 db.execSQL("create table ACCESOUSUARIO  (\n" +
                         "   IDUSUARIO            CHAR(2)                         not null,\n" +
                         "   IDOPCION             CHAR(3)                         not null);");
+                db.execSQL(" create table TIPOSOLICITUD (\n" +
+                        " iDTIPOSOLICITUD INTEGER NOT NULL PRIMARY KEY,\n" +
+                        " NOMBRETIPOSOLICITUD VARCHAR2(30) not null)");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -59,6 +64,7 @@ public class DBHelperInicial {
                 db.execSQL(DROP_TABLE1);
                 db.execSQL(DROP_TABLE2);
                 db.execSQL(DROP_TABLE3);
+                db.execSQL(DROP_TABLE4);
                 onCreate(db);
             } catch (Exception e) {
                 //Message.message(context,""+e);
@@ -114,6 +120,11 @@ public class DBHelperInicial {
         db.execSQL("DELETE FROM USUARIO");
         db.execSQL("DELETE FROM OPCIONCRUD");
         db.execSQL("DELETE FROM ACCESOUSUARIO");
+        db.execSQL("DELETE FROM TIPOSOLICITUD");
+
+
+        db.execSQL("INSERT INTO TipoSolicitud(nombreTipoSolicitud) VALUES ('Repetido');");
+
 
         db.execSQL("INSERT INTO USUARIO(IDUSUARIO,NOMUSUARIO,CLAVE) VALUES ('01','ADMIN','01234');");
         db.execSQL("INSERT INTO USUARIO(IDUSUARIO,NOMUSUARIO,CLAVE) VALUES ('02','PROFESOR','56789');");
@@ -164,6 +175,7 @@ public class DBHelperInicial {
         return "Usuarios Guardados";
     }
 
+
     public ArrayList<String> consultarAccesos(String user){ //AUTOR: ROBERTO ELIEZER VENTURA DOMINGUEZ
         ArrayList<String> accesos = new ArrayList<String>();
         Cursor fila;
@@ -176,6 +188,24 @@ public class DBHelperInicial {
             }while(fila.moveToNext());
         }
         return accesos;
+    }
+
+    //Metodo Ingresar Tipo Solicitud
+    public String insertarTipoSolicitud(String nombre){
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues tipoSoli = new ContentValues();
+        tipoSoli.put("nombreTipoSolicitud", nombre);
+        contador=db.insert("TipoSolicitud", null, tipoSoli);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+
     }
 }
 
