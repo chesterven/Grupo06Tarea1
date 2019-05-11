@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetalleSegundaRevision_Actualizar"></activity>
+        <activity android:name=".MenuTipoSolicitud"></activity>
+        <activity android:name=".MenuSolicitudEvaluacion" />
+        <activity android:name=".MenuSolicitudDiferidoRepetido" />
         <activity android:name=".MenuDetalleSegundaRevision" />
         <activity android:name=".MenuDiasNoHabiles" />
         <activity android:name=".NotasEstudianteEvaluacion_Eliminar" />
