@@ -19,7 +19,7 @@
             android:gravity="center"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="@string/Titulo_Actualizar_NotasEstuadianteEvaluacion" />
+            android:text="@string/Titulo_Eliminar_NotasEstuadianteEvaluacion" />
     </TableRow>
 
     <!--<TableRow
@@ -46,13 +46,13 @@
         android:layout_marginTop="7dp">
 
         <TextView
-            android:id="@+id/textViewMateriasNotasEstudianteEvaluacionActualizar"
+            android:id="@+id/textViewMateriasNotasEstudianteEvaluacionEliminar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
             android:text="@string/Materia" />
         <Spinner
-            android:id="@+id/spinnerMateriasNotasEstudianteEvaluacionActualizar"
+            android:id="@+id/spinnerMateriasNotasEstudianteEvaluacionEliminar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5" />
@@ -66,13 +66,13 @@
         android:layout_marginTop="7dp">
 
         <TextView
-            android:id="@+id/textViewGruposMateriaNotasEstudianteEvaluacionActualizar"
+            android:id="@+id/textViewGruposMateriaNotasEstudianteEvaluacionEliminar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
             android:text="@string/Grupo" />
         <Spinner
-            android:id="@+id/spinnerGruposMateriaNotasEstudianteEvaluacionActualizar"
+            android:id="@+id/spinnerGruposMateriaNotasEstudianteEvaluacionEliminar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5" />
@@ -85,13 +85,13 @@
         android:layout_marginTop="7dp">
 
         <TextView
-            android:id="@+id/textViewEvaluacionesGrupoMateriaNotasEstudianteEvaluacionActualizar"
+            android:id="@+id/textViewEvaluacionesGrupoMateriaNotasEstudianteEvaluacionEliminar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
             android:text="@string/Evaluacion" />
         <Spinner
-            android:id="@+id/spinnerEvaluacionesGrupoMateriaNotasEstudianteEvaluacionActualizar"
+            android:id="@+id/spinnerEvaluacionesGrupoMateriaNotasEstudianteEvaluacionEliminar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5" />
@@ -104,36 +104,14 @@
         android:weightSum="4">
 
         <TextView
-            android:id="@+id/textViewCarnetNotaNotasEstudianteEvaluacionActualizar"
+            android:id="@+id/textViewCarnetNotaNotasEstudianteEvaluacionEliminar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
             android:text="@string/Carnee" />
 
         <EditText
-            android:id="@+id/carnetActualizarNotaEstudianteEvaluacion"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2.5"
-            android:ems="10"
-            android:inputType="text"
-            />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="4">
-
-        <TextView
-            android:id="@+id/textViewNotaNotaNotasEstudianteEvaluacionActualizar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:text="@string/Nota" />
-
-        <EditText
-            android:id="@+id/notActualizarNotaEstudianteEvaluacion"
+            android:id="@+id/carnetEliminarNotaEstudianteEvaluacion"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
@@ -149,8 +127,8 @@
         android:layout_marginTop="5dp">
 
         <Button
-            android:onClick="actualizarNotaEstudianteEvaluacion"
-            android:text="@string/Actualizar"
+            android:onClick="eliminarrNotaEstudianteEvaluacion"
+            android:text="@string/Eliminar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"/>

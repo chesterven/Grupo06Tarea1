@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NotasEstudianteEvaluacion_Actualizar"></activity>
+        <activity android:name=".NotasEstudianteEvaluacion_Eliminar"></activity>
+        <activity android:name=".NotasEstudianteEvaluacion_Actualizar" />
         <activity android:name=".NotasEstudianteEvaluacion_Consultar" />
         <activity android:name=".NotasEstudianteEvaluacion_Insertar" />
         <activity android:name=".MenuNotasEstudianteEvaluacion" />

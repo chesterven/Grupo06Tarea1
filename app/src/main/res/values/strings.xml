@@ -118,6 +118,10 @@
     <string name="Titulo_NotasEstuadianteEvaluacion">Insertar Nota Estudiante Evaluacion</string>
     <!--Activity Consultar_NotasEstudianteEvaluacion-->
     <string name="Titulo_Consultar_NotasEstuadianteEvaluacion">Consultar Nota Estudiante Evaluacion</string>
+    <!--Activity Actualizar_NotasEstudianteEvaluacion-->
+    <string name="Titulo_Actualizar_NotasEstuadianteEvaluacion">Actualizar Nota Estudiante Evaluacion</string>
+    <!--Activity Eliminar_NotasEstudianteEvaluacion-->
+    <string name="Titulo_Eliminar_NotasEstuadianteEvaluacion">Eliminar Nota Estudiante Evaluacion</string>
 </resources>
 
 
