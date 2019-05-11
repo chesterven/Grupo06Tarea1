@@ -6,7 +6,6 @@
     android:stretchColumns="1"
     android:paddingTop="4dip">
 
-
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,7 +18,7 @@
             android:gravity="center"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="@string/Titulo_Actualizar_SolicitudPrimerRevision" />
+            android:text="@string/Titulo_Eliminar_SolicitudImpresion" />
     </TableRow>
 
     <TableRow
@@ -31,68 +30,24 @@
             android:id="@+id/imageView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/actualizarSolicitud" />
+            app:srcCompat="@drawable/eliminarSolicitud" />
     </TableRow>
+
 
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="4"
-        android:layout_marginTop="7dp">
+        android:weightSum="4">
 
         <TextView
-            android:id="@+id/textViewIDSolicitudPrimerRevision"
+            android:id="@+id/textViewIdSolicitudImpresionEliminar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
             android:text="@string/IdSolicitud" />
+
         <EditText
-            android:id="@+id/editTextIDSolicitudPrimerRevision"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2.5"
-            android:ems="10"
-            android:inputType="text"
-            />
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="4"
-        android:layout_marginTop="7dp">
-
-        <TextView
-            android:id="@+id/textViewEvaluacionSolicitudPrimerRevision"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:text="@string/EvaluacionId" />
-        <EditText
-            android:id="@+id/editTextIdEvaluacionSolicitudPrimerRevision"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2.5"
-            android:ems="10"
-            android:inputType="text"
-            />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="4"
-        android:layout_marginTop="7dp">
-
-        <TextView
-            android:id="@+id/textViewCarnetSolicitudPrimerRevision"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:text="@string/Carnee" />
-        <EditText
-            android:id="@+id/editTextCarnetSolicitudPrimerRevision"
+            android:id="@+id/idSolicitudImpresionEliminar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
@@ -108,8 +63,8 @@
         android:layout_marginTop="5dp">
 
         <Button
-            android:onClick="actualizarSolicitudPrimerRevision"
-            android:text="@string/Actualizar"
+            android:onClick="eliminarSolicitudImpresion"
+            android:text="@string/Eliminar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"/>

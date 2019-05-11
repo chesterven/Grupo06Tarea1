@@ -22,21 +22,17 @@
             android:text="@string/Titulo_Eliminar_SolicitudPrimerRevision" />
     </TableRow>
 
-    <!--<TableRow
+    <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
         android:gravity="center">
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/insertarprimeraysegundarevision" />
-    </TableRow>-->
-
-    <!--<TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"/>-->
+            app:srcCompat="@drawable/eliminarSolicitud" />
+    </TableRow>
 
 
     <TableRow

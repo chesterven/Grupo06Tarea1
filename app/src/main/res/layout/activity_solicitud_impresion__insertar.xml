@@ -19,7 +19,7 @@
             android:gravity="center"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="@string/Titulo_Eliminar_NotasEstuadianteEvaluacion" />
+            android:text="@string/Titulo_Insertar_SolicitudImpresion" />
     </TableRow>
 
     <TableRow
@@ -31,28 +31,7 @@
             android:id="@+id/imageView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/eliminarSolicitud" />
-    </TableRow>
-
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="4"
-        android:layout_marginTop="7dp">
-
-        <TextView
-            android:id="@+id/textViewMateriasNotasEstudianteEvaluacionEliminar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:text="@string/Materia" />
-        <Spinner
-            android:id="@+id/spinnerMateriasNotasEstudianteEvaluacionEliminar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2.5" />
-
+            app:srcCompat="@drawable/insertarSolicitud" />
     </TableRow>
 
     <TableRow
@@ -62,16 +41,20 @@
         android:layout_marginTop="7dp">
 
         <TextView
-            android:id="@+id/textViewGruposMateriaNotasEstudianteEvaluacionEliminar"
+            android:id="@+id/textViewIDSolicitudImpresion"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
-            android:text="@string/Grupo" />
-        <Spinner
-            android:id="@+id/spinnerGruposMateriaNotasEstudianteEvaluacionEliminar"
+            android:text="@string/IdSolicitud" />
+        <EditText
+            android:id="@+id/editTextIDSolicitudImpresion"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2.5" />
+            android:layout_weight="2.5"
+            android:ems="10"
+            android:inputType="text"
+            />
+
     </TableRow>
 
     <TableRow
@@ -81,33 +64,35 @@
         android:layout_marginTop="7dp">
 
         <TextView
-            android:id="@+id/textViewEvaluacionesGrupoMateriaNotasEstudianteEvaluacionEliminar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:text="@string/Evaluacion" />
-        <Spinner
-            android:id="@+id/spinnerEvaluacionesGrupoMateriaNotasEstudianteEvaluacionEliminar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2.5" />
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="4">
-
-        <TextView
-            android:id="@+id/textViewCarnetNotaNotasEstudianteEvaluacionEliminar"
+            android:id="@+id/textViewCarnetSolicitudImpresion"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
             android:text="@string/Carnee" />
-
         <EditText
-            android:id="@+id/carnetEliminarNotaEstudianteEvaluacion"
+            android:id="@+id/editTextCarnetSolicitudImpresion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.5"
+            android:ems="10"
+            android:inputType="text"
+            />
+    </TableRow>
+
+       <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4"
+        android:layout_marginTop="7dp">
+
+        <TextView
+            android:id="@+id/textViewCodDocenteSolicitudImpresion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="@string/CodDocente" />
+        <EditText
+            android:id="@+id/editTextCodDocenteSolicitudImpresion"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
@@ -120,11 +105,61 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="4"
+        android:layout_marginTop="7dp">
+
+        <TextView
+            android:id="@+id/textViewCantidadExamenesSolicitudImpresion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="@string/CantidadExamenes" />
+        <EditText
+            android:id="@+id/editTextCantidadExamenesSolicitudImpresion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.5"
+            android:ems="10"
+            android:inputType="text"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4"
+        android:layout_marginTop="7dp">
+
+        <TextView
+            android:id="@+id/textViewHojasAnexasSolicitudImpresion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="@string/HojasAnexas" />
+        <EditText
+            android:id="@+id/editTextHojsAnexasSolicitudImpresion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.5"
+            android:ems="10"
+            android:inputType="text"
+            />
+    </TableRow>
+
+
+
+
+
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4"
         android:layout_marginTop="5dp">
 
         <Button
-            android:onClick="eliminarNotaEstudianteEvaluacion"
-            android:text="@string/Eliminar"
+            android:onClick="insertarSolicitudImpresion"
+            android:text="@string/Insertar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"/>

@@ -20,18 +20,19 @@
             android:text="@string/Titulo_Consultar_SolicitudPrimerRevision" />
     </TableRow>
 
-    <!--<TableRow
+    <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:gravity="center">
 
         <ImageView
             android:id="@+id/imageView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/consultarprimeraysegundarevision" />
-    </TableRow>-->
+            app:srcCompat="@drawable/consultarSolicitud" />
+    </TableRow>
+
 
 
 

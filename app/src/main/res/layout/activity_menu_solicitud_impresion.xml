@@ -13,28 +13,27 @@
         android:gravity="center">
 
         <TextView
-            android:id="@+id/textTitulo"
+            android:id="@+id/textTituloSolicitudImpresion"
             android:layout_width="202dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/Menu_Tablas_CS16008"
+            android:text="@string/Menu_SolicitudImpresion"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold">
+        </TextView>
     </TableRow>
 
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:gravity="center"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp">
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="103dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/menutablas" />
+            app:srcCompat="@drawable/crud" />
     </TableRow>
 
     <TableRow
@@ -43,10 +42,10 @@
         android:gravity="center">
 
         <Button
-            android:onClick="solicitudesPrimeraRevision"
+            android:onClick="insertarSolicitudImpresion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Menu_Tablas_CS16008_Solicitudes_Primera_Revision" />
+            android:text="@string/Insertar" />
     </TableRow>
 
     <TableRow
@@ -55,10 +54,10 @@
         android:gravity="center">
 
         <Button
-            android:onClick="notasEstudianteEvaluacion"
+            android:onClick="actualizarSolicitudImpresion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Menu_Tablas_CS16008_Notas_Estudiante_Evaluacion" />
+            android:text="@string/Actualizar" />
     </TableRow>
 
     <TableRow
@@ -67,9 +66,22 @@
         android:gravity="center">
 
         <Button
-            android:onClick="solicitudImpresion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Menu_Tablas_CS16008_Solicitud_Impresion" />
+            android:onClick="consultarSolicitudImpresion"
+            android:text="@string/Consultar" />
     </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="eliminarSolicitudImpresion"
+            android:text="@string/Eliminar" />
+    </TableRow>
+
 </TableLayout>
