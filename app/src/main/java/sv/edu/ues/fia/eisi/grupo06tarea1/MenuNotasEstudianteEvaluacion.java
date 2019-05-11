@@ -1,5 +1,4 @@
 //CS16008 Castro Sánchez José Andrés
-
 package sv.edu.ues.fia.eisi.grupo06tarea1;
 
 import android.content.Intent;
@@ -9,23 +8,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
-public class MenuCs16008 extends AppCompatActivity {
+public class MenuNotasEstudianteEvaluacion extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_cs16008);
+        setContentView(R.layout.activity_menu_notas_estudiante_evaluacion);
     }
-
-    public void solicitudesPrimeraRevision(View v){
-
-    }
-    public void notasEstudianteEvaluacion(View v){
-
-    }
-    public void solicitudImpresion(View v){
-
-    }
-
 }

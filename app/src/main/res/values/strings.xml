@@ -105,11 +105,16 @@
     <string name="Menu_Tablas_Vd16006_TipoSolicitud">Tabla Tipo Solicitud</string>
     <string name="Menu_Tablas_Vd16006_SolicitudEvaluacion">Tabla Solicitud Evaluacion(notas)</string>
 
+    <!--CS16008-->
     <!--Activity MenuCS16008-->
     <string name="Menu_Tablas_CS16008">Menu de Tablas CS16008</string>
     <string name="Menu_Tablas_CS16008_Notas_Estudiante_Evaluacion">Tabla Notas Estudiante Evaluacion</string>
     <string name="Menu_Tablas_CS16008_Solicitudes_Primera_Revision">Tabla Solicitudes Primera Revision</string>
     <string name="Menu_Tablas_CS16008_Solicitud_Impresion">Tabla Solicitud Impresion</string>
+
+    <!--Activity MenuNotasEstudianteEvaluacion-->
+    <string name="Menu_NotasEstuadianteEvaluacion">Notas Estudiante Evaluacion</string>
+
 
 
 </resources>
