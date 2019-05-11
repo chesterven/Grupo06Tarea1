@@ -136,6 +136,17 @@
 
     <!--Activity Menu Detalle Segunda Revision-->
     <string name="Menu_Detalle_Segunda_Revision_Titulo">Tabla Detalle Segunda Revisión</string>
+
+    <!--Activity Menu Solicitud Diferido Titulo-->
+    <string name="Menu_Solicitud_Diferido_Repetido_Titulo">Tabla Solicitud Diferido Repetido</string>
+    <string name="Insertar_Registro_Diferido">Insertar Registro Diferido</string>
+    <string name="Insertar_Registro_Repetido">Insertar Registro Repetido</string>
+
+    <!--Activity Menu Solicitud Evaluacion-->
+    <string name="Menu_Solicitud_Evaluacion_Titulo">Tabla Solicitud_Evaluacion (Notas)</string>
+
+    <!--ACtivity Menu Tipo Solicitud-->
+    <string name="Menu_Tipo_Solicitud_Titulo">Tabla Tipo Solicitud</string>
 </resources>
 
 
