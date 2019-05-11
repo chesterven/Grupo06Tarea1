@@ -11,7 +11,6 @@
     <string name="Consultar_Registro">Consultar Registro</string>
     <string name="Limpiar">Limpiar</string>
     <string name="Carnee">Carnet:</string>
-    <string name="CodDocente">Código Docente:</string>
     <string name="Evaluacion">Evaluación:</string>
     <string name="EvaluacionId">Ide Evaluación:</string>
     <string name="Motivo">Motivo:</string>
@@ -24,10 +23,11 @@
     <string name="Fecha">Fecha:</string>
     <string name="Descripcion">Descripción:</string>
     <string name="Nota">Nota:</string>
-    <string name="CantidadExamenes">Cantidad de Exámenes:</string>
-    <string name="HojasAnexas">Hojas Anexas:</string>
-    <string name="Realizada">Realizada:</string>
-
+    <string name="CodigoDocente">Código Docente Director:</string>
+    <string name="CodigoDocenteTestigo">Código Docente Testigo:</string>
+    <string name="Testigo1">Carnet Alumno Testigo 1:</string>
+    <string name="Testigo2">Carnet Alumno Testigo 2:</string>
+    <string name="Menu">Volver Menu</string>
 
 
     <string name="title_activity_detalle_segunda_revision__actualizar">DetalleSegundaRevision_Actualizar</string>
@@ -64,11 +64,15 @@
     <string name="Primera_Revision_Titulo_Eliminar">Eliminar Primera Revisión</string>
     <string name="Primera_Revision_Titulo_Actualizar">Actualizar Primera Revisión</string>
 
+
     <string name="Segunda_Revision_Titulo_Insertar">Insertar Segunda Revisión</string>
     <string name="Segunda_Revision_Titulo_Consultar">Consultar Segunda Revisión</string>
     <string name="Segunda_Revision_Titulo_Eliminar">Eliminar Segunda Revisión</string>
     <string name="Segunda_Revision_Titulo_Actualizar">Actualizar Segunda Revisión</string>
     <string name="SegundaRevisionId">Id Segunda Revisión:</string>
+    <string name="Segunda_Revision_Titulo_InsertarTestigos">Insertar Testigos Segunda Revisión</string>
+
+
 
     <!--Detalle segunda revision-->
     <string name="DetalleSegundaRevision_Titulo_Insertar">Insertar Detalle Segunda Revisión</string>
@@ -148,18 +152,6 @@
     <string name="Titulo_Actualizar_SolicitudPrimerRevision">Actualizar Solicitud Primer Revision</string>
     <!--Activity Eliminar_SolicitudPrimerRevision-->
     <string name="Titulo_Eliminar_SolicitudPrimerRevision">Eliminar Solicitud Primer Revision</string>
-
-    <!--Activity MenuSolicitudImpresion-->
-    <string name="Menu_SolicitudImpresion">Solicitud Impresion</string>
-    <!--Activity Insertar_SolicitudImpresion-->
-    <string name="Titulo_Insertar_SolicitudImpresion">Insertar Solicitud Impresion</string>
-    <!--Activity Consultar_SolicitudImpresion-->
-    <string name="Titulo_Consultar_SolicitudImpresion">Consultar Solicitud Impresion</string>
-    <!--Activity Actualizar_SolicitudImpresion-->
-    <string name="Titulo_Actualizar_SolicitudImpresion">Actualizar Solicitud Impresion</string>
-    <!--Activity Eliminar_SolicitudImpresion-->
-    <string name="Titulo_Eliminar_SolicitudImpresion">Eliminar Solicitud Impresion</string>
-
 
     <!--Activity Menu Segunda Revision-->
     <string name="Menu_Segunda_Revision_Titulo">Tabla Segunda Revisión</string>
