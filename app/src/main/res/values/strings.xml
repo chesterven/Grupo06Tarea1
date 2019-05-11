@@ -130,6 +130,8 @@
     <string name="CodDocente">Código Docente:</string>
     <string name="CantidadExamenes">Cantidad Exámenes:</string>
     <string name="HojasAnexas">Hojas Anexas:</string>
+    <string name="Realizada">Realizada:</string>
+
     <!--Activity MenuCS16008-->
     <string name="Menu_Tablas_CS16008">Menu de Tablas CS16008</string>
     <string name="Menu_Tablas_CS16008_Notas_Estudiante_Evaluacion">Tabla Notas Estudiante Evaluacion</string>
@@ -157,6 +159,17 @@
     <string name="Titulo_Actualizar_SolicitudPrimerRevision">Actualizar Solicitud Primer Revision</string>
     <!--Activity Eliminar_SolicitudPrimerRevision-->
     <string name="Titulo_Eliminar_SolicitudPrimerRevision">Eliminar Solicitud Primer Revision</string>
+
+    <!--Activity MenuSolicitudImpresion-->
+    <string name="Menu_SolicitudImpresion">Solicitud Impresion</string>
+    <!--Activity Insertar_SolicitudPrimerRevision-->
+    <string name="Titulo_Insertar_SolicitudImpresion">Insertar Solicitud Impresion</string>
+    <!--Activity Consultar_SolicitudPrimerRevision-->
+    <string name="Titulo_Consultar_SolicitudImpresion">Consultar Solicitud Impresion</string>
+    <!--Activity Actualizar_SolicitudPrimerRevision-->
+    <string name="Titulo_Actualizar_SolicitudImpresion">Actualizar Solicitud Impresion</string>
+    <!--Activity Eliminar_SolicitudPrimerRevision-->
+    <string name="Titulo_Eliminar_SolicitudImpresion">Eliminar Solicitud Impresion</string>
 
     <!--Activity Menu Segunda Revision-->
     <string name="Menu_Segunda_Revision_Titulo">Tabla Segunda Revisión</string>
