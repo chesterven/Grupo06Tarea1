@@ -27,6 +27,7 @@
         <activity android:name=".DetalleSegundaRevision_Eliminar" />
         <activity android:name=".DetalleSegundaRevision_Consultar" />
         <activity android:name=".DetalleSegundaRevision_Insertar" />
+        <activity android:name=".DetalleSegundaRevision_Actualizar" />
         <activity android:name=".DiasNoHabiles_Eliminar" />
         <activity android:name=".DiasNoHabiles_Actualizar" />
         <activity android:name=".DiasNoHabiles_Consultar" />

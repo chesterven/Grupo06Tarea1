@@ -9,7 +9,7 @@
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:gravity="center">
 
         <TextView
@@ -17,7 +17,7 @@
             android:layout_width="202dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/Menu_Tablas_Gc16001"
+            android:text="@string/Menu_Segunda_Revision_Titulo"
             android:textSize="18sp"
             android:textStyle="bold" />
     </TableRow>
@@ -32,6 +32,54 @@
             android:layout_width="103dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/menutablas" />
+            app:srcCompat="@drawable/crud" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:onClick="segundaRevisionInsertar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Insertar_Registro" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:onClick="segundaRevisionEliminar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Eliminar_Registro" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:onClick="segundaRevisionActualizar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Actualizar_Registro" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:onClick="segundaRevisionConsultar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Consultar_Registro" />
     </TableRow>
 </TableLayout>

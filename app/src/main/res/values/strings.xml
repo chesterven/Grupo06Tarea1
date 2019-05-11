@@ -5,6 +5,10 @@
     <string name="Eliminar">Eliminar</string>
     <string name="Actualizar">Actualizar</string>
     <string name="Consultar">Consultar</string>
+    <string name="Insertar_Registro">Insertar Registro</string>
+    <string name="Eliminar_Registro">Eliminar Registro</string>
+    <string name="Actualizar_Registro">Actualizar Registro</string>
+    <string name="Consultar_Registro">Consultar Registro</string>
     <string name="Limpiar">Limpiar</string>
     <string name="Carnee">Carnet:</string>
     <string name="Evaluacion">Evaluación:</string>
@@ -122,6 +126,16 @@
     <string name="Titulo_Actualizar_NotasEstuadianteEvaluacion">Actualizar Nota Estudiante Evaluacion</string>
     <!--Activity Eliminar_NotasEstudianteEvaluacion-->
     <string name="Titulo_Eliminar_NotasEstuadianteEvaluacion">Eliminar Nota Estudiante Evaluacion</string>
+
+
+    <!--Activity Menu Segunda Revision-->
+    <string name="Menu_Segunda_Revision_Titulo">Tabla Segunda Revisión</string>
+
+    <!--Activity Menu Dias no Habiles-->
+    <string name="Menu_Dias_No_Habiles_Titulo">Tabla Días no habiles</string>
+
+    <!--Activity Menu Detalle Segunda Revision-->
+    <string name="Menu_Detalle_Segunda_Revision_Titulo">Tabla Detalle Segunda Revisión</string>
 </resources>
 
 
