@@ -65,6 +65,12 @@
     <string name="Segunda_Revision_Titulo_Actualizar">Actualizar Segunda Revisión</string>
     <string name="SegundaRevisionId">Id Segunda Revisión:</string>
 
+    <!--Detalle segunda revision-->
+    <string name="DetalleSegundaRevision_Titulo_Insertar">Insertar Detalle Segunda Revisión</string>
+    <string name="DetalleSegundaRevision_Titulo_Eliminar">Eliminar Detalle Segunda Revisión</string>
+    <string name="DetalleSegundaRevision_Titulo_Consultar">Consultar Detalle Segunda Revisión</string>
+    <string name="DetalleSegundaRevision_Titulo_Actualizar">Actualizar Detalle Segunda Revisión</string>
+
 
     <!--Activities de la Solicitud_Evaluacion-->
     <string name="SolictudEvaluacion_Insertar">Insertar el resultado del diferido o repetido</string>
