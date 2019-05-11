@@ -32,6 +32,27 @@
 
     <string name="title_activity_detalle_segunda_revision__actualizar">DetalleSegundaRevision_Actualizar</string>
 
+    <!--Activity para iniciar sesion-->
+    <string name="Iniciar_Sesion"> Iniciar Sesión </string>
+    <string name="usuario">Usuario</string>
+    <string name="contra"> Contraseña</string>
+    <string name="entrar">Iniciar Sesión</string>
+
+    <!--Activity menu carnet-->
+    <string name="Menu_Carnet_Titulo">Menu Principal</string>
+    <string name="Menu_Carnet_Opcion1">CH15013</string>
+    <string name="Menu_Carnet_Opcion2">CS16008</string>
+    <string name="Menu_Carnet_Opcion3">GC16001</string>
+    <string name="Menu_Carnet_Opcion4">VD16006</string>
+    <string name="Menu_Carnet_Opcion5">ZT12002</string>
+    <string name="Menu_Carnet_Opcion6">Llenar Base de Datos</string>
+
+    <!--GC16001-->
+    <!--Activity MenuGc16001-->
+    <string name="Menu_Tablas_Gc16001">Menu de Tablas GC16001</string>
+    <string name="Menu_Tablas_Gc16001_SegundaRevision">Tabla Segunda Revision</string>
+    <string name="Menu_Tablas_Gc16001_Dias_no_Habiles">Tabla Días no habiles</string>
+    <string name="Menu_Tablas_Gc16001_Detalle_SegundaRevision">Tabla Detalle Segunda Revision</string>
 
     <!--Activities de dia no habil-->
     <string name="Dias_No_Habiles_Titulo_Insertar">Insertar Días no Habiles</string>
@@ -41,6 +62,34 @@
     <string name="Dias_No_Habiles_Fecha">Fecha:</string>
     <string name="Dias_No_Habiles_FechaAnte">Fecha anterior:</string>
     <string name="Dias_No_Habiles_FechaNueva">Fecha nueva:</string>
+
+    <!--Primera y segunda revision-->
+    <string name="Primera_Revision_Titulo_Insertar">Insertar Primera Revisión</string>
+    <string name="Primera_Revision_Titulo_Consultar">Consultar Primera Revisión</string>
+    <string name="Primera_Revision_Titulo_Eliminar">Eliminar Primera Revisión</string>
+    <string name="Primera_Revision_Titulo_Actualizar">Actualizar Primera Revisión</string>
+
+
+    <string name="Segunda_Revision_Titulo_Insertar">Insertar Segunda Revisión</string>
+    <string name="Segunda_Revision_Titulo_Consultar">Consultar Segunda Revisión</string>
+    <string name="Segunda_Revision_Titulo_Eliminar">Eliminar Segunda Revisión</string>
+    <string name="Segunda_Revision_Titulo_Actualizar">Actualizar Segunda Revisión</string>
+    <string name="SegundaRevisionId">Id Segunda Revisión:</string>
+    <string name="Segunda_Revision_Titulo_InsertarTestigos">Insertar Testigos Segunda Revisión</string>
+
+    <!--Detalle segunda revision-->
+    <string name="DetalleSegundaRevision_Titulo_Insertar">Insertar Detalle Segunda Revisión</string>
+    <string name="DetalleSegundaRevision_Titulo_Eliminar">Eliminar Detalle Segunda Revisión</string>
+    <string name="DetalleSegundaRevision_Titulo_Consultar">Consultar Detalle Segunda Revisión</string>
+    <string name="DetalleSegundaRevision_Titulo_Actualizar">Actualizar Detalle Segunda Revisión</string>
+
+
+    <!--VD16006-->
+    <!--Activity MenuVd16006-->
+    <string name="Menu_Tablas_Vd16006">Menu de Tablas VD16006 </string>
+    <string name="Menu_Tablas_Vd16006_Solicitud_DiferidoRepetido">Tabla Solicitud Diferido y Repetido</string>
+    <string name="Menu_Tablas_Vd16006_TipoSolicitud">Tabla Tipo Solicitud</string>
+    <string name="Menu_Tablas_Vd16006_SolicitudEvaluacion">Tabla Solicitud Evaluacion(notas)</string>
 
 
     <!--Activities de Solicitud Repetido y Diferido-->
@@ -58,27 +107,6 @@
         <item>Discusión</item>
     </string-array>
 
-    <!--Primera y segunda revision-->
-    <string name="Primera_Revision_Titulo_Insertar">Insertar Primera Revisión</string>
-    <string name="Primera_Revision_Titulo_Consultar">Consultar Primera Revisión</string>
-    <string name="Primera_Revision_Titulo_Eliminar">Eliminar Primera Revisión</string>
-    <string name="Primera_Revision_Titulo_Actualizar">Actualizar Primera Revisión</string>
-
-
-    <string name="Segunda_Revision_Titulo_Insertar">Insertar Segunda Revisión</string>
-    <string name="Segunda_Revision_Titulo_Consultar">Consultar Segunda Revisión</string>
-    <string name="Segunda_Revision_Titulo_Eliminar">Eliminar Segunda Revisión</string>
-    <string name="Segunda_Revision_Titulo_Actualizar">Actualizar Segunda Revisión</string>
-    <string name="SegundaRevisionId">Id Segunda Revisión:</string>
-    <string name="Segunda_Revision_Titulo_InsertarTestigos">Insertar Testigos Segunda Revisión</string>
-
-
-
-    <!--Detalle segunda revision-->
-    <string name="DetalleSegundaRevision_Titulo_Insertar">Insertar Detalle Segunda Revisión</string>
-    <string name="DetalleSegundaRevision_Titulo_Eliminar">Eliminar Detalle Segunda Revisión</string>
-    <string name="DetalleSegundaRevision_Titulo_Consultar">Consultar Detalle Segunda Revisión</string>
-    <string name="DetalleSegundaRevision_Titulo_Actualizar">Actualizar Detalle Segunda Revisión</string>
 
 
     <!--Activities de la Solicitud_Evaluacion-->
@@ -97,32 +125,6 @@
     <string name="Tipo_Solicitud_nombre">Nombre Solicitud:</string>
     <string name="Tipo_Solicitud_nombre_nuevo">Nuevo nombre Solicitud:</string>
 
-    <!--Activity para iniciar sesion-->
-    <string name="Iniciar_Sesion"> Iniciar Sesión </string>
-    <string name="usuario">Usuario</string>
-    <string name="contra"> Contraseña</string>
-    <string name="entrar">Iniciar Sesión</string>
-
-    <!--Activity menu carnet-->
-    <string name="Menu_Carnet_Titulo">Menu Principal</string>
-    <string name="Menu_Carnet_Opcion1">CH15013</string>
-    <string name="Menu_Carnet_Opcion2">CS16008</string>
-    <string name="Menu_Carnet_Opcion3">GC16001</string>
-    <string name="Menu_Carnet_Opcion4">VD16006</string>
-    <string name="Menu_Carnet_Opcion5">ZT12002</string>
-    <string name="Menu_Carnet_Opcion6">Llenar Base de Datos</string>
-
-    <!--Activity MenuGc16001-->
-    <string name="Menu_Tablas_Gc16001">Menu de Tablas GC16001</string>
-    <string name="Menu_Tablas_Gc16001_SegundaRevision">Tabla Segunda Revision</string>
-    <string name="Menu_Tablas_Gc16001_Dias_no_Habiles">Tabla Días no habiles</string>
-    <string name="Menu_Tablas_Gc16001_Detalle_SegundaRevision">Tabla Detalle Segunda Revision</string>
-
-    <!--Activity MenuVd16006-->
-    <string name="Menu_Tablas_Vd16006">Menu de Tablas VD16006 </string>
-    <string name="Menu_Tablas_Vd16006_Solicitud_DiferidoRepetido">Tabla Solicitud Diferido y Repetido</string>
-    <string name="Menu_Tablas_Vd16006_TipoSolicitud">Tabla Tipo Solicitud</string>
-    <string name="Menu_Tablas_Vd16006_SolicitudEvaluacion">Tabla Solicitud Evaluacion(notas)</string>
 
     <!--CS16008-->
     <!--Activity MenuCS16008-->
