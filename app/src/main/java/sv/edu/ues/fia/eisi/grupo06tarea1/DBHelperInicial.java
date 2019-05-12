@@ -316,6 +316,7 @@ public String actualizarDia(String fechaAnterior, String fechaNueva, int cicloNu
 Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
     if(existe == true)
     {
+
         String[] id = {fechaAnterior};
         ContentValues cv = new ContentValues();
         cv.put("fecha",fechaNueva);
