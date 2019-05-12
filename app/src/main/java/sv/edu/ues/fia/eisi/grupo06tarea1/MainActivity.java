@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         DBHelper = new DBHelperInicial(this);
         DBHelper.abrir();
         boolean consulta = DBHelper.consultarUsuario(usuario,contrasena);
-
         if(consulta==true){
 
 

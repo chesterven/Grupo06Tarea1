@@ -120,9 +120,8 @@ public class DBHelperInicial {
         db.execSQL("DELETE FROM USUARIO");
         db.execSQL("DELETE FROM OPCIONCRUD");
         db.execSQL("DELETE FROM ACCESOUSUARIO");
+
         db.execSQL("DELETE FROM TIPOSOLICITUD");
-
-
         db.execSQL("INSERT INTO TipoSolicitud(nombreTipoSolicitud) VALUES ('Repetido');");
 
 
@@ -206,6 +205,49 @@ public class DBHelperInicial {
         }
         return regInsertados;
 
+    }
+
+    //Metodo de consultar tipo Solicitud
+    public boolean consultarTipoSolicitud(String nombre){
+        String[] parametro = {nombre};
+        String[] columna = {"nombreTipoSolicitud"};
+        Cursor c = db.query("TipoSolicitud",columna,"nombreTipoSolicitud=?",parametro,null,null,null);
+        if(c.moveToFirst()){
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
+    public String actualizarTipoSolicitud(String anterior, String nuevo){
+        boolean existe = consultarTipoSolicitud(anterior); //Verificar Integrida
+        if(existe==true){
+            String[] nombreActual = {anterior};
+            ContentValues cv = new ContentValues();
+            cv.put("nombreTipoSolicitud",nuevo);
+            db.update("TipoSolicitud",cv,"nombreTipoSolicitud=?",nombreActual);
+            return "Registro actualizado";
+        }
+        else{
+            return "No existe ese Tipo Solicitud";
+        }
+    }
+
+    public String eliminarTipoSolicitud(String nombre){
+        String regAfectados="filas afectadas=";
+        int contador = 0;
+        String[] parametro = {nombre};
+        boolean existe = consultarTipoSolicitud(nombre);
+        if(existe == true){
+            contador+=db.delete("TipoSolicitud","nombreTipoSolicitud=?",parametro);
+            regAfectados+=contador;
+            return regAfectados;
+        }
+        else{
+            return "No existe ese tipo de solicitud";
+        }
     }
 }
 
