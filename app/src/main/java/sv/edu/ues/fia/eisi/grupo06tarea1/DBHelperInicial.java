@@ -115,6 +115,14 @@ public class DBHelperInicial {
                         "   CONSTRAINT f_k_ciclo FOREIGN KEY (idCiclo) REFERENCES Ciclo(idCiclo) ON DELETE RESTRICT\n" +
                         ");");
 
+                //Autor: Christian Ariel Zelaya Tejada
+                //Carnet: ZT12002
+                db.execSQL("CREATE TABLE TipoEvaluacion (\n" +
+                        "   idTipoEvaluacion NUMBER(6) NOT NULL PRIMARY KEY,\n" +
+                        "   nombreTipoEvaluacion VARCHAR(25) NOT NULL"  +
+                        ");");
+
+
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -285,6 +293,12 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Ciclo (ciclo) VALUES ('II2019');");
         db.execSQL("INSERT INTO Ciclo (ciclo) VALUES ('I2020');");
         db.execSQL("INSERT INTO Ciclo (ciclo) VALUES ('II2020');");
+
+        //Autor" Christian Ariel Zelaya Tejada
+        db.execSQL("INSERT INTO TipoEvaluacion (idTipoEvaluacion,nombreTipoEvaluacion) VALUES ('01','Ordinaria');");
+        db.execSQL("INSERT INTO TipoEvaluacion (idTipoEvaluacion,nombreTipoEvaluacion) VALUES ('02','Repetida');");
+        db.execSQL("INSERT INTO TipoEvaluacion (idTipoEvaluacion,nombreTipoEvaluacion) VALUES ('03','Diferida');");
+        db.execSQL("INSERT INTO TipoEvaluacion (idTipoEvaluacion,nombreTipoEvaluacion) VALUES ('04','Suficiencia');");
 
         return "Usuarios Guardados";
     }
