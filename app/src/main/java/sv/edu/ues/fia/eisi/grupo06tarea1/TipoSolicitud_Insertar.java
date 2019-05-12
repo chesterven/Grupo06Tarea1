@@ -26,6 +26,7 @@ public class TipoSolicitud_Insertar extends AppCompatActivity {
             Toast.makeText(this,"Ingrese un nombre en el campo", Toast.LENGTH_SHORT).show();
         }
         else{
+
             DBHelper = new DBHelperInicial(this);
             DBHelper.abrir();
             String mensaje =DBHelper.insertarTipoSolicitud(nombre.getText().toString());

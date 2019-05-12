@@ -12,14 +12,14 @@ public class DiasNoHabiles
 {
     private int idDia;
     private int ciclo;
-    private Date fecha;
+    private String fecha;
 
 
     public DiasNoHabiles(){
 
     }
 
-    public DiasNoHabiles(int idDia, int ciclo, Date fecha) {
+    public DiasNoHabiles(int idDia, int ciclo, String fecha) {
         this.idDia = idDia;
         this.ciclo = ciclo;
         this.fecha = fecha;
@@ -42,11 +42,11 @@ public class DiasNoHabiles
         this.ciclo = ciclo;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

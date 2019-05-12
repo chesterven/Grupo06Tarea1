@@ -8,6 +8,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 
@@ -19,7 +20,8 @@ public class DBHelperInicial {
     private static final String DROP_TABLE2 = "DROP TABLE IF EXISTS OPCIONCRUD; ";
     private static final String DROP_TABLE3 = "DROP TABLE IF EXISTS ACCESOUSUARIO; ";
     private static final String DROP_TABLE4 = "DROP TABLE IF EXISTS TipoSolicitud";
-
+    private static final String DROP_TABLE5 = "DROP TABLE IF EXISTS DiasNoHabiles";
+    private static final String DROP_TABLE6 = "DROP TABLE IF EXISTS Ciclo";
 
     public DBHelperInicial(Context ctx) {
         this.context = ctx;
@@ -52,6 +54,17 @@ public class DBHelperInicial {
                 db.execSQL("CREATE TABLE TipoSolicitud (\n" +
                         " idTipoSolicitud INTEGER NOT NULL PRIMARY KEY,\n" +
                         " nombreTipoSolicitud VARCHAR2(30) not null)");
+                db.execSQL("CREATE TABLE Ciclo (\n" +
+                        "   idCiclo            INTEGER NOT NULL PRIMARY KEY,\n" +
+                        "   ciclo             VARCHAR(6) NOT NULL\n" +
+                        ");");
+                db.execSQL("CREATE TABLE DiasNoHabiles  (\n" +
+                        "   idDia              INTEGER NOT NULL PRIMARY KEY,\n" +
+                        "   idCiclo             INTEGER NOT NULL ,\n" +
+                        "   fecha               VARCHAR2(15)NOT NULL,\n" +
+                        "   CONSTRAINT f_k_ciclo FOREIGN KEY (idCiclo) REFERENCES Ciclo(idCiclo) ON DELETE RESTRICT\n" +
+                        ");");
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -65,6 +78,8 @@ public class DBHelperInicial {
                 db.execSQL(DROP_TABLE2);
                 db.execSQL(DROP_TABLE3);
                 db.execSQL(DROP_TABLE4);
+                db.execSQL(DROP_TABLE5);
+                db.execSQL(DROP_TABLE6);
                 onCreate(db);
             } catch (Exception e) {
                 //Message.message(context,""+e);
@@ -171,12 +186,78 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO ACCESOUSUARIO(IDUSUARIO,IDOPCION) VALUES ('04','005');");
         db.execSQL("INSERT INTO ACCESOUSUARIO(IDUSUARIO,IDOPCION) VALUES ('04','006');");
 
+        //Autor: Maria Abigail Gil Cordova
+        db.execSQL("DELETE FROM Ciclo");
+        db.execSQL("DELETE FROM DiasNoHabiles");
+        db.execSQL("INSERT INTO Ciclo (ciclo) VALUES ('I2019');");
+        db.execSQL("INSERT INTO Ciclo (ciclo) VALUES ('II2019');");
+        db.execSQL("INSERT INTO Ciclo (ciclo) VALUES ('I2020');");
+        db.execSQL("INSERT INTO Ciclo (ciclo) VALUES ('II2020');");
+
         return "Usuarios Guardados";
     }
 
+//Autor: Maria Abigail Gil Cordova
+// Carnet: GC16001
+public boolean consultarDiaNoHabilIntegridad(String fecha){
+    String[] parametro = {fecha};
+    String[] columna = {"fecha"};
+    Cursor c = db.query("DiasNoHabiles",columna,"fecha=?",parametro,null,null,null);
+    if(c.moveToFirst()){
+        return true;
+    }
+    else {
+        return false;
+    }
 
-    public ArrayList<String> consultarAccesos(String user){ //AUTOR: ROBERTO ELIEZER VENTURA DOMINGUEZ
-        ArrayList<String> accesos = new ArrayList<String>();
+}
+    public int  consultarCiclo(String ciclo){
+        String[] parametro = {ciclo};
+        String[] columna = {"idCiclo"};
+        Cursor c = db.query("Ciclo",columna,"ciclo=?",parametro,null,null,null);
+
+        if(c.moveToFirst()){
+            do{
+                int idCiclo=c.getInt(0);
+                return idCiclo;
+            }while(c.moveToNext());
+
+        }
+        else {
+            return 0;
+        }
+
+    }
+
+    public String insertarDia(DiasNoHabiles dia){
+        String mensaje="La fecha ya existe, inserte otra";
+        boolean existe=consultarDiaNoHabilIntegridad(dia.getFecha());
+       if(existe==false){
+            String regInsertados="Registro Insertado Nº= ";
+            long contador=0;
+            ContentValues dias = new ContentValues();
+            dias.put("idCiclo", dia.getCiclo());
+            dias.put("fecha", dia.getFecha());
+
+
+            contador=db.insert("DiasNoHabiles", null, dias);
+            if(contador==-1 || contador==0)
+            {
+                regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+            }
+            else {
+                regInsertados=regInsertados+contador;
+            }
+            return regInsertados;
+        }
+       else
+           return mensaje;
+        }
+
+
+
+    public ArrayList<String> consultarAccesos(String user){ //AUTOR: ROBERTO ELIEZER VENTURA DOMINGUEZ  VD16006
+            ArrayList<String> accesos = new ArrayList<String>();
         Cursor fila;
         String[] columna = {"IDOPCION"};
         String[] parametro = {user};

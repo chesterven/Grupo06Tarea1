@@ -62,7 +62,7 @@ Grupo de trabajo: 06-->
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="date" />
+            android:inputType="text" />
     </TableRow>
 
     <TableRow
