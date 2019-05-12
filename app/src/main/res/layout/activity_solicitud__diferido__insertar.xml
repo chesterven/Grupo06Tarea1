@@ -53,7 +53,7 @@ Grupo de trabajo: 06-->
             android:text="@string/Carnee" />
 
         <EditText
-            android:id="@+id/carnee"
+            android:id="@+id/carnetSoliDiferidoIn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
@@ -74,7 +74,7 @@ Grupo de trabajo: 06-->
             android:text="@string/Materia" />
 
         <EditText
-            android:id="@+id/codMateria"
+            android:id="@+id/codMateriaSoliDiferidoIn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
@@ -116,7 +116,7 @@ Grupo de trabajo: 06-->
             android:layout_weight="1.5"
             android:text="@string/Grupo" />
         <EditText
-            android:id="@+id/numGrupo"
+            android:id="@+id/numGrupoSoliDiferidoIn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
@@ -171,7 +171,7 @@ Grupo de trabajo: 06-->
             android:layout_weight="1.5"
             android:text="@string/Motivo"/>
         <EditText
-            android:id="@+id/motivoSolicitud"
+            android:id="@+id/motivoSoliDiferidoIn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"

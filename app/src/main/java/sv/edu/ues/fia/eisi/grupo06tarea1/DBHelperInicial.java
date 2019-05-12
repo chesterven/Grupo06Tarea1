@@ -54,6 +54,9 @@ public class DBHelperInicial {
                 db.execSQL("CREATE TABLE TipoSolicitud (\n" +
                         " idTipoSolicitud INTEGER NOT NULL PRIMARY KEY,\n" +
                         " nombreTipoSolicitud VARCHAR2(30) not null)");
+
+                //Autor: Maria Abigail Gil Cordov
+                //Carnet: GC16001
                 db.execSQL("CREATE TABLE Ciclo (\n" +
                         "   idCiclo            INTEGER NOT NULL PRIMARY KEY,\n" +
                         "   ciclo             VARCHAR(6) NOT NULL\n" +
@@ -197,8 +200,10 @@ public class DBHelperInicial {
         return "Usuarios Guardados";
     }
 
-//Autor: Maria Abigail Gil Cordova
-// Carnet: GC16001
+//********************Autor: Maria Abigail Gil Cordova********************
+//*******************Carnet: GC16001********************
+
+    //Metodo para consulta la integridad de la tabla de dia no habil
 public boolean consultarDiaNoHabilIntegridad(String fecha){
     String[] parametro = {fecha};
     String[] columna = {"fecha"};
@@ -211,6 +216,7 @@ public boolean consultarDiaNoHabilIntegridad(String fecha){
     }
 
 }
+//Metodo que recibe el ciclo en estring ejemplo I2019 y regresa su respectivo id al consultar en su tabla Ciclo
     public int  consultarCiclo(String ciclo){
         String[] parametro = {ciclo};
         String[] columna = {"idCiclo"};
@@ -228,7 +234,7 @@ public boolean consultarDiaNoHabilIntegridad(String fecha){
         }
 
     }
-
+//Metodo para insertar un dia no habil
     public String insertarDia(DiasNoHabiles dia){
         String mensaje="La fecha ya existe, inserte otra";
         boolean existe=consultarDiaNoHabilIntegridad(dia.getFecha());
@@ -238,8 +244,6 @@ public boolean consultarDiaNoHabilIntegridad(String fecha){
             ContentValues dias = new ContentValues();
             dias.put("idCiclo", dia.getCiclo());
             dias.put("fecha", dia.getFecha());
-
-
             contador=db.insert("DiasNoHabiles", null, dias);
             if(contador==-1 || contador==0)
             {
@@ -253,10 +257,28 @@ public boolean consultarDiaNoHabilIntegridad(String fecha){
        else
            return mensaje;
         }
+//Metodo para eliminar el dia no habil
+
+public String eliminarDia(String fecha){
+    String regAfectados="filas afectadas=";
+    int contador = 0;
+    String[] parametro = {fecha};
+    boolean existe = consultarDiaNoHabilIntegridad(fecha);
+    if(existe == true){
+        contador+=db.delete("DiasNoHabiles","fecha=?",parametro);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+    else{
+        return "No existe ese día no hábil";
+    }
+}
 
 
 
-    public ArrayList<String> consultarAccesos(String user){ //AUTOR: ROBERTO ELIEZER VENTURA DOMINGUEZ  VD16006
+    //********************Autor: Roberto Eliezer Ventura Dominguez********************
+//*******************Carnet: VD16006********************
+    public ArrayList<String> consultarAccesos(String user){
             ArrayList<String> accesos = new ArrayList<String>();
         Cursor fila;
         String[] columna = {"IDOPCION"};
@@ -330,4 +352,11 @@ public boolean consultarDiaNoHabilIntegridad(String fecha){
             return "No existe ese tipo de solicitud";
         }
     }
+    //********************Autor: ********************
+//*******************Carnet: ********************
+
+
+
+
+
 }

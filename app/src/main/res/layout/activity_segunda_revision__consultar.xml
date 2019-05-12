@@ -51,7 +51,7 @@ Grupo de trabajo: 06-->
             android:text="@string/EvaluacionId" />
 
         <EditText
-            android:id="@+id/idEvaluacionSegundaRevision"
+            android:id="@+id/idEvaluacionSegundaRevisionCon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
@@ -90,7 +90,7 @@ Grupo de trabajo: 06-->
             android:layout_weight="1.5"
             android:text="@string/Local" />
         <EditText
-            android:id="@+id/localMostrar"
+            android:id="@+id/localMostrarSegundaRevision"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
@@ -113,7 +113,7 @@ Grupo de trabajo: 06-->
         android:layout_weight="1.5"
         android:text="@string/Fecha" />
     <EditText
-        android:id="@+id/fechaMostrar"
+        android:id="@+id/fechaMostrarSegundaRevision"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2.5"
@@ -136,7 +136,7 @@ Grupo de trabajo: 06-->
             android:layout_weight="1.5"
             android:text="@string/Descripcion" />
         <EditText
-            android:id="@+id/descripcionMostrar"
+            android:id="@+id/descripcionMostrarSegundaRevision"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"

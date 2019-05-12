@@ -50,7 +50,7 @@ Grupo de trabajo: 06-->
             android:text="@string/Carnee" />
 
         <EditText
-            android:id="@+id/carnetConsultarSoli"
+            android:id="@+id/carnetSoliDyRCon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
@@ -72,7 +72,7 @@ Grupo de trabajo: 06-->
             android:text="@string/EvaluacionId" />
 
         <EditText
-            android:id="@+id/evaluConsultarSoli"
+            android:id="@+id/evaluSoliDyRCon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
@@ -112,7 +112,7 @@ Grupo de trabajo: 06-->
             android:layout_weight="1.5"
             android:text="@string/TipoSoli" />
         <EditText
-            android:id="@+id/tipoSoliMostrar"
+            android:id="@+id/tipoSoliDyRMostrar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
@@ -134,7 +134,7 @@ Grupo de trabajo: 06-->
             android:layout_weight="1.5"
             android:text="@string/Solicitud_Aprobada" />
         <EditText
-            android:id="@+id/AceptadaSoliMostrar"
+            android:id="@+id/AceptadaSoliDyRMostrar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
