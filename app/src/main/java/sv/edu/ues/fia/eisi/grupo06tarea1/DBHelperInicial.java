@@ -18,7 +18,7 @@ public class DBHelperInicial {
     private static final String DROP_TABLE1 = "DROP TABLE IF EXISTS USUARIO; ";
     private static final String DROP_TABLE2 = "DROP TABLE IF EXISTS OPCIONCRUD; ";
     private static final String DROP_TABLE3 = "DROP TABLE IF EXISTS ACCESOUSUARIO; ";
-    private static final String DROP_TABLE4 = "DROP TABLE IF EXISTS TIPOSOLICITUD";
+    private static final String DROP_TABLE4 = "DROP TABLE IF EXISTS TipoSolicitud";
 
 
     public DBHelperInicial(Context ctx) {
@@ -49,9 +49,9 @@ public class DBHelperInicial {
                 db.execSQL("create table ACCESOUSUARIO  (\n" +
                         "   IDUSUARIO            CHAR(2)                         not null,\n" +
                         "   IDOPCION             CHAR(3)                         not null);");
-                db.execSQL(" create table TIPOSOLICITUD (\n" +
-                        " iDTIPOSOLICITUD INTEGER NOT NULL PRIMARY KEY,\n" +
-                        " NOMBRETIPOSOLICITUD VARCHAR2(30) not null)");
+                db.execSQL(" create table TipoSolicitud (\n" +
+                        " idTipoSolicitud INTEGER NOT NULL PRIMARY KEY,\n" +
+                        " nombreTipoSolicitud VARCHAR2(30) not null)");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -114,14 +114,14 @@ public class DBHelperInicial {
         return idUsuario;
     }
 
-    public String llenarUsuarios(){
+    public String llenarBD(){
         abrir();
         //AUTOR:ROBERTO ELIEZER VENTURA DOMINGUEZ
         db.execSQL("DELETE FROM USUARIO");
         db.execSQL("DELETE FROM OPCIONCRUD");
         db.execSQL("DELETE FROM ACCESOUSUARIO");
 
-        db.execSQL("DELETE FROM TIPOSOLICITUD");
+        db.execSQL("DELETE FROM TipoSolicitud");
         db.execSQL("INSERT INTO TipoSolicitud(nombreTipoSolicitud) VALUES ('Repetido');");
 
 

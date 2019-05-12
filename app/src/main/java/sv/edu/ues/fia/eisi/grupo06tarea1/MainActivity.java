@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         et2= (EditText) findViewById(R.id.password);
         DBHelper = new DBHelperInicial(this);
         DBHelper.abrir();
-        String mensaje = DBHelper.llenarUsuarios();
+        String mensaje = DBHelper.llenarBD();
         DBHelper.cerrar();
         Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
     }
