@@ -108,7 +108,6 @@
     </string-array>
 
 
-
     <!--Activities de la Solicitud_Evaluacion-->
     <string name="SolictudEvaluacion_Insertar">Insertar el resultado del diferido o repetido</string>
     <string name="SolictudEvaluacion_Eliminar">Eliminar la nota del diferido o repetido</string>
@@ -190,6 +189,16 @@
 
     <!--ACtivity Menu Tipo Solicitud-->
     <string name="Menu_Tipo_Solicitud_Titulo">Tabla Tipo Solicitud</string>
+
+
+    <!--CH15013-->
+    <!--MENUCH15013-->
+
+    <string name="MenuCH15013">Menu de tablas CH!5013</string>
+    <string name="Tabla_segunda_soli">Tabla solicitud segunda revisión</string>
+    <string name="Tabla_Detalle_Primera_Revision">Tabla detalle primera revisión</string>
+    <string name="Tabla_Primera_Revision">Tabla primera revisión</string>
+
 </resources>
 
 

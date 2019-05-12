@@ -42,9 +42,9 @@
         android:gravity="center">
 
         <Button
-            android:onClick="ch15013"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="ch15013"
             android:text="@string/Menu_Carnet_Opcion1" />
     </TableRow>
 
