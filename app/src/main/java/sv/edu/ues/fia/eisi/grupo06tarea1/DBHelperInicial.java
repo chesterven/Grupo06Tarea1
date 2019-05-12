@@ -26,6 +26,12 @@ public class DBHelperInicial {
     private static final String DROP_TABLE4 = "DROP TABLE IF EXISTS TipoSolicitud";
     private static final String DROP_TABLE5 = "DROP TABLE IF EXISTS DiasNoHabiles";
     private static final String DROP_TABLE6 = "DROP TABLE IF EXISTS Ciclo";
+    private static final String DROP_TABLE7 = "DROP TABLE IF EXISTS Estudiante";
+    private static final String DROP_TABLE8 = "DROP TABLE IF EXISTS Docente";
+    private static final String DROP_TABLE9 = "DROP TABLE IF EXISTS Local";
+    private static final String DROP_TABLE10 = "DROP TABLE IF EXISTS Materia";
+    private static final String DROP_TABLE11 = "DROP TABLE IF EXISTS TipoGrupo";
+    private static final String DROP_TABLE12 = "DROP TABLE IF EXISTS MateriaCiclo";
 
     public DBHelperInicial(Context ctx) {
         this.context = ctx;
@@ -44,6 +50,8 @@ public class DBHelperInicial {
         public void onCreate(SQLiteDatabase db) {
             //TABLAS PARA ROLES DE USUARIOS AUTOR: ROBERTO ELIEZER VENTURA DOMINGUEZ
             try {
+                //Autor: Roberto Eliezer Ventura Dominguez
+                //Carnet: VD16006
                 db.execSQL("CREATE TABLE USUARIO  (\n" +
                         "   IDUSUARIO            CHAR(2)                         not null,\n" +
                         "   NOMUSUARIO           VARCHAR2(30)                    not null,\n" +
@@ -58,6 +66,41 @@ public class DBHelperInicial {
                 db.execSQL("CREATE TABLE TipoSolicitud (\n" +
                         " idTipoSolicitud INTEGER NOT NULL PRIMARY KEY,\n" +
                         " nombreTipoSolicitud VARCHAR2(30) not null)");
+                db.execSQL("CREATE TABLE Estudiante (\n" +
+                        "    carnet VARCHAR2(7) NOT NULL PRIMARY KEY,\n" +
+                        "    nombreEstudiante VARCHAR2(30) NOT NULL,\n" +
+                        "    apellidoEstudiante VARCHAR2(30) NOT NULL,\n" +
+                        "    instructor BOOLEAN\n" +
+                        ");");
+                db.execSQL("CREATE TABLE Docente (\n" +
+                        "    codDocente VARCHAR2(7) NOT NULL PRIMARY KEY,\n" +
+                        "    nombreDocente VARCHAR2(30) NOT NULL,\n" +
+                        "    apellidoDocente VARCHAR2(30)NOT NULL,\n" +
+                        "    director BOOLEAN\n" +
+                        ");");
+                db.execSQL("CREATE TABLE Local(\n" +
+                        "    idLocal INTEGER NOT NULL PRIMARY KEY,\n" +
+                        "    nombreLocal VARCHAR2(20) NOT NULL\n" +
+                        ");");
+                db.execSQL("CREATE TABLE Materia (\n" +
+                        "    codMateria VARCHAR2(5) NOT NULL PRIMARY KEY,\n" +
+                        "    nombreMateria VARCHAR2(20) NOT NULL\n" +
+                        ");");
+                db.execSQL("CREATE TABLE TipoGrupo (\n" +
+                        "    idTipoGrupo INTEGER NOT NULL PRIMARY KEY,\n" +
+                        "    nombreGrupo VARCHAR2(25) NOT NULL\n" +
+                        ");");
+                db.execSQL("CREATE TABLE  MateriaCiclo(\n" +
+                        "    numGrupo INTEGER NOT NULL,\n" +
+                        "     codMateria VARCHAR2(5) NOT NULL,\n" +
+                        "    idCiclo INTEGER NOT NULL,\n" +
+                        "    codDocente VARCHAR2(7) NOT NULL,\n" +
+                        "    idTipoGrupo INTEGER NOT NULL,\n" +
+                        "    PRIMARY KEY(numGrupo, codMateria, idCiclo),\n" +
+                        "    CONSTRAINT FKcodMateria FOREIGN KEY(codMateria) REFERENCES Materia(codMateria) ON DELETE RESTRICT,\n" +
+                        "    CONSTRAINT FKTipoGrupo FOREIGN KEY(idTipoGrupo) REFERENCES TipoGrupo(idTipoGrupo) ON DELETE RESTRICT\n" +
+                        ");");
+
 
                 //Autor: Maria Abigail Gil Cordov
                 //Carnet: GC16001
@@ -71,6 +114,7 @@ public class DBHelperInicial {
                         "   fecha               VARCHAR2(15)NOT NULL,\n" +
                         "   CONSTRAINT f_k_ciclo FOREIGN KEY (idCiclo) REFERENCES Ciclo(idCiclo) ON DELETE RESTRICT\n" +
                         ");");
+
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -87,6 +131,13 @@ public class DBHelperInicial {
                 db.execSQL(DROP_TABLE4);
                 db.execSQL(DROP_TABLE5);
                 db.execSQL(DROP_TABLE6);
+                db.execSQL(DROP_TABLE7);
+                db.execSQL(DROP_TABLE8);
+                db.execSQL(DROP_TABLE9);
+                db.execSQL(DROP_TABLE10);
+                db.execSQL(DROP_TABLE11);
+                db.execSQL(DROP_TABLE12);
+
                 onCreate(db);
             } catch (Exception e) {
                 //Message.message(context,""+e);
@@ -143,14 +194,10 @@ public class DBHelperInicial {
         db.execSQL("DELETE FROM OPCIONCRUD");
         db.execSQL("DELETE FROM ACCESOUSUARIO");
 
-        db.execSQL("DELETE FROM TipoSolicitud");
-        db.execSQL("INSERT INTO TipoSolicitud(nombreTipoSolicitud) VALUES ('Repetido');");
-
-
         db.execSQL("INSERT INTO USUARIO(IDUSUARIO,NOMUSUARIO,CLAVE) VALUES ('01','ADMIN','01234');");
         db.execSQL("INSERT INTO USUARIO(IDUSUARIO,NOMUSUARIO,CLAVE) VALUES ('02','PROFESOR','56789');");
-        db.execSQL("INSERT INTO USUARIO(IDUSUARIO,NOMUSUARIO,CLAVE) VALUES ('03','ALUMNO','ABCDE');");
-        db.execSQL("INSERT INTO USUARIO(IDUSUARIO,NOMUSUARIO,CLAVE) VALUES ('04','ALUMNO_INSTRUCTOR','00000');");
+        db.execSQL("INSERT INTO USUARIO(IDUSUARIO,NOMUSUARIO,CLAVE) VALUES ('03','ESTUDIANTE','ABCDE');");
+        db.execSQL("INSERT INTO USUARIO(IDUSUARIO,NOMUSUARIO,CLAVE) VALUES ('04','ESTUDIANTE_INSTRUCTOR','00000');");
 
         db.execSQL("INSERT INTO OPCIONCRUD (IDOPCION,DESOPCION,NUMCRUD) VALUES ('001','TABLA PARAMETROS','1');");
         db.execSQL("INSERT INTO OPCIONCRUD (IDOPCION,DESOPCION,NUMCRUD) VALUES ('002','TABLA EVALUACIONES','2');");
@@ -192,6 +239,44 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO ACCESOUSUARIO(IDUSUARIO,IDOPCION) VALUES ('04','004');");
         db.execSQL("INSERT INTO ACCESOUSUARIO(IDUSUARIO,IDOPCION) VALUES ('04','005');");
         db.execSQL("INSERT INTO ACCESOUSUARIO(IDUSUARIO,IDOPCION) VALUES ('04','006');");
+
+        db.execSQL("DELETE FROM TipoSolicitud");
+        db.execSQL("INSERT INTO TipoSolicitud(nombreTipoSolicitud) VALUES ('Repetido');");
+
+        db.execSQL("DELETE FROM Estudiante");
+        db.execSQL("INSERT INTO Estudiante VALUES('VD16006','Roberto','Ventura',0);");
+        db.execSQL("INSERT INTO Estudiante VALUES('GC16001','Abigail','Gil',1);");
+
+        db.execSQL("DELETE FROM Docente");
+        db.execSQL("INSERT INTO Docente VALUES('GR00001','Cesar Augusto','Gonzalez Rodriguez',1)");
+        db.execSQL("INSERT INTO Docente VALUES('MM00001','Boris Alexander','Montano',0)");
+
+
+        db.execSQL("DELETE FROM Local");
+        db.execSQL("INSERT INTO Local(nombreLocal) VALUES ('D11');");
+        db.execSQL("INSERT INTO Local(nombreLocal) VALUES ('C11');");
+        db.execSQL("INSERT INTO Local(nombreLocal) VALUES ('B21');");
+        db.execSQL("INSERT INTO Local(nombreLocal) VALUES ('LCOMP1');");
+
+        db.execSQL("DELETE FROM Materia");
+        db.execSQL("INSERT INTO Materia VALUES ('MAT115','Matematica 1');");
+        db.execSQL("INSERT INTO Materia VALUES ('PDM115','Programacion Dispositivos Moviles');");
+        db.execSQL("INSERT INTO Materia VALUES ('SYP115','Sistemas y Procedimientos');");
+        db.execSQL("INSERT INTO Materia VALUES ('MIP115','Microprogramacion');");
+
+        db.execSQL("DELETE FROM Tipogrupo");
+        db.execSQL("INSERT INTO TipoGrupo(nombreGrupo) VALUES ('Teorico');");
+        db.execSQL("INSERT INTO TipoGrupo(nombreGrupo) VALUES ('Laboratorio');");
+        db.execSQL("INSERT INTO TipoGrupo(nombreGrupo) VALUES ('Discusion');");
+
+        db.execSQL("DELETE FROM MateriaCiclo");
+        db.execSQL("INSERT INTO MateriaCiclo VALUES (1,'MAT115',1,'MM00001',1);");
+        db.execSQL("INSERT INTO MateriaCiclo VALUES (1,'PDM115',1,'GR00001',2);");
+
+
+
+
+
 
         //Autor: Maria Abigail Gil Cordova
         db.execSQL("DELETE FROM Ciclo");
