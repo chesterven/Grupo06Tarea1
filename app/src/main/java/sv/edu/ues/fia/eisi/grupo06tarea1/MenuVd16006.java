@@ -1,5 +1,9 @@
-package sv.edu.ues.fia.eisi.grupo06tarea1;
 //Autor: Roberto Eliezer Ventura Dominguez
+//Carnet:VD16006
+//Grupo de trabajo: 06
+
+package sv.edu.ues.fia.eisi.grupo06tarea1;
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
