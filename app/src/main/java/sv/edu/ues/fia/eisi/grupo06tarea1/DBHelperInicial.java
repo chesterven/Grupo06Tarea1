@@ -38,18 +38,18 @@ public class DBHelperInicial {
         public void onCreate(SQLiteDatabase db) {
             //TABLAS PARA ROLES DE USUARIOS AUTOR: ROBERTO ELIEZER VENTURA DOMINGUEZ
             try {
-                db.execSQL("create table USUARIO  (\n" +
+                db.execSQL("CREATE TABLE USUARIO  (\n" +
                         "   IDUSUARIO            CHAR(2)                         not null,\n" +
                         "   NOMUSUARIO           VARCHAR2(30)                    not null,\n" +
                         "   CLAVE                CHAR(5)                         not null);");
-                db.execSQL("create table OPCIONCRUD  (\n" +
+                db.execSQL("CREATE TABLE OPCIONCRUD  (\n" +
                         "   IDOPCION             CHAR(3)                         not null,\n" +
                         "   DESOPCION            VARCHAR2(30)                    not null,\n" +
                         "   NUMCRUD              INTEGER                         not null);");
-                db.execSQL("create table ACCESOUSUARIO  (\n" +
+                db.execSQL("CREATE TABLE ACCESOUSUARIO  (\n" +
                         "   IDUSUARIO            CHAR(2)                         not null,\n" +
                         "   IDOPCION             CHAR(3)                         not null);");
-                db.execSQL(" create table TipoSolicitud (\n" +
+                db.execSQL("CREATE TABLE TipoSolicitud (\n" +
                         " idTipoSolicitud INTEGER NOT NULL PRIMARY KEY,\n" +
                         " nombreTipoSolicitud VARCHAR2(30) not null)");
             } catch (SQLException e) {
