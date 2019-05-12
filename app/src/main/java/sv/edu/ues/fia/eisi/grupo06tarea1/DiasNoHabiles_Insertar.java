@@ -27,19 +27,28 @@ public class DiasNoHabiles_Insertar extends AppCompatActivity {
         cicloIn = (EditText) findViewById(R.id.cicloInsertar);
     }
     public void insertarDia(View v){
+        DBHelper = new DBHelperInicial(this);
+        DBHelper.abrir();
+
         if(fechaIn.getText().toString().equals("") | cicloIn.getText().toString().equals("") ){
             Toast.makeText(this,"Ingrese datos en los campos", Toast.LENGTH_SHORT).show();
         }
         else{
-            DBHelper = new DBHelperInicial(this);
-            DBHelper.abrir();
-            DiasNoHabiles dias = new DiasNoHabiles();
-            dias.setFecha(fechaIn.getText().toString());
-           int cicloRescatado = DBHelper.consultarCiclo(cicloIn.getText().toString());
-            dias.setCiclo(cicloRescatado);
-            String mensaje =DBHelper.insertarDia(dias);
-            DBHelper.cerrar();
-            Toast.makeText(this,mensaje, Toast.LENGTH_SHORT).show();
+            int result= DBHelper.consultarCiclo(cicloIn.getText().toString());
+            if(result==0)
+            {
+                Toast.makeText(this,"El ciclo que ingreso no existe", Toast.LENGTH_SHORT).show();
+            }
+            else {
+
+                DiasNoHabiles dias = new DiasNoHabiles();
+                dias.setFecha(fechaIn.getText().toString());
+                int cicloRescatado = DBHelper.consultarCiclo(cicloIn.getText().toString());
+                dias.setCiclo(cicloRescatado);
+                String mensaje = DBHelper.insertarDia(dias);
+                DBHelper.cerrar();
+                Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+            }
         }
 
     }
