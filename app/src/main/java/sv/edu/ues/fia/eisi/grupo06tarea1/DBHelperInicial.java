@@ -117,6 +117,7 @@ public class DBHelperInicial {
 
                 //Autor: Christian Ariel Zelaya Tejada
                 //Carnet: ZT12002
+
                 db.execSQL("CREATE TABLE TipoEvaluacion (\n" +
                         "   idTipoEvaluacion NUMBER(6) NOT NULL PRIMARY KEY,\n" +
                         "   nombreTipoEvaluacion VARCHAR(25) NOT NULL"  +
