@@ -28,8 +28,6 @@ public class MenuCs16008 extends AppCompatActivity {
         DBHelper.abrir();
         arrayAccesos = DBHelper.consultarAccesos(idusuario);
         DBHelper.cerrar();
-
-
     }
 
 

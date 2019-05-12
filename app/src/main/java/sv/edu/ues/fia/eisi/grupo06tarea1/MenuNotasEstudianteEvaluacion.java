@@ -15,4 +15,25 @@ public class MenuNotasEstudianteEvaluacion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_notas_estudiante_evaluacion);
     }
+
+    public void insertarNotaEstudianteEvaluacion(View v){
+        Intent ven=new Intent(this,NotasEstudianteEvaluacion_Insertar.class);
+        startActivity(ven);
+    }
+
+    public void eliminarNotaEstudianteEvaluacion(View v){
+        Intent ven=new Intent(this,NotasEstudianteEvaluacion_Eliminar.class);
+        startActivity(ven);
+    }
+
+    public void consultarNotaEstudianteEvaluacion(View v){
+        Intent ven=new Intent(this,NotasEstudianteEvaluacion_Consultar.class);
+        startActivity(ven);
+    }
+
+    public void actualizarNotaEstudianteEvaluacion(View v){
+        Intent ven=new Intent(this,NotasEstudianteEvaluacion_Actualizar.class);
+        startActivity(ven);
+    }
+
 }
