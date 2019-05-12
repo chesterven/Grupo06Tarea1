@@ -3,6 +3,7 @@ package sv.edu.ues.fia.eisi.grupo06tarea1;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +14,9 @@ import java.util.ArrayList;
 
 
 public class DBHelperInicial {
+
+    //ARREGLOS PARA CONSULTAR
+    private static final String [] camposDia = new String [] {"fecha","ciclo"};
     private final Context context;
     private DatabaseHelper DBHelper;
     private SQLiteDatabase db;
@@ -216,7 +220,7 @@ public boolean consultarDiaNoHabilIntegridad(String fecha){
     }
 
 }
-//Metodo que recibe el ciclo en estring ejemplo I2019 y regresa su respectivo id al consultar en su tabla Ciclo
+//Metodo que recibe el ciclo en string ejemplo I2019 y regresa su respectivo id al consultar en su tabla Ciclo
     public int  consultarCiclo(String ciclo){
         String[] parametro = {ciclo};
         String[] columna = {"idCiclo"};
@@ -231,6 +235,25 @@ public boolean consultarDiaNoHabilIntegridad(String fecha){
         }
         else {
             return 0;
+        }
+
+    }
+    public String  consultarCicloString(int cicloCon){
+        String cicloConvert= Integer.toString(cicloCon);
+        String [] parametro = {cicloConvert};
+        String[] columna = {"ciclo"};
+        Cursor c = db.query("Ciclo",columna,"idCiclo=?",parametro,null,null,null);
+
+        if(c.moveToFirst()){
+            do{
+                String cicloResul=c.getString(0);
+                return cicloResul;
+            }while(c.moveToNext());
+
+        }
+        else {
+            String mensaje="No existe ese ciclo";
+            return mensaje;
         }
 
     }
@@ -273,7 +296,38 @@ public String eliminarDia(String fecha){
         return "No existe ese día no hábil";
     }
 }
+//Metodo para consultar dia no habil
+public DiasNoHabiles consultarDia(String fechaCon){
 
+    String[] parametro = {fechaCon};
+    String[] columna = {"idCiclo","fecha"};
+    Cursor cursor = db.query("DiasNoHabiles", columna, "fecha = ?", parametro, null, null, null);
+    if(cursor.moveToFirst()){
+        DiasNoHabiles dias = new DiasNoHabiles();
+        dias.setCiclo(cursor.getInt(0));
+        dias.setFecha(cursor.getString(1));
+        return dias;
+    }else{ return null;
+    }
+}
+//Metodo para actualizar el dia no habil
+public String actualizarDia(String fechaAnterior, String fechaNueva, int cicloNuevo)
+{
+Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
+    if(existe == true)
+    {
+        String[] id = {fechaAnterior};
+        ContentValues cv = new ContentValues();
+        cv.put("fecha",fechaNueva);
+        cv.put("idCiclo",cicloNuevo);
+        db.update("DiasNoHabiles", cv, "fecha = ?", id);
+        return "Registro Actualizado Correctamente";
+    }
+    else
+   {
+        return "El registro que ingreso no existe";
+    }
+}
 
 
     //********************Autor: Roberto Eliezer Ventura Dominguez********************
