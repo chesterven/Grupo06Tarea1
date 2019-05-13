@@ -1,4 +1,6 @@
+//CS16008 Castro Sánchez José Andrés
 package sv.edu.ues.fia.eisi.grupo06tarea1;
+
 
 public class SolicitudImpresion {
     private int idSoliImpresion;
@@ -7,14 +9,18 @@ public class SolicitudImpresion {
     private int cantidadExamenes;
     private int hojasAnexas;
     private boolean realizada;
+    private boolean aprobado;
 
-    public SolicitudImpresion(int idSoliImpresion,String carnet,String codDocente,int cantidadExamenes,int hojasAnexas, boolean realizada){
+
+
+    public SolicitudImpresion(int idSoliImpresion,String carnet,String codDocente,int cantidadExamenes,int hojasAnexas, boolean realizada,boolean aprobado){
         this.idSoliImpresion=idSoliImpresion;
         this.carnet=carnet;
         this.codDocente=codDocente;
         this.cantidadExamenes=cantidadExamenes;
         this.hojasAnexas=hojasAnexas;
         this.realizada=realizada;
+        this.aprobado=aprobado;
     }
 
     public int getIdSoliImpresion() {
@@ -65,7 +71,13 @@ public class SolicitudImpresion {
         this.realizada = realizada;
     }
 
+    public boolean isAprobado() {
+        return aprobado;
+    }
 
+    public void setAprobado(boolean aprobado) {
+        this.aprobado = aprobado;
+    }
 
 
 }

@@ -35,6 +35,9 @@ public class DBHelperInicial {
     private static final String DROP_TABLE13 = "DROP TABLE IF EXISTS TipoEvaluacion";
     private static final String DROP_TABLE14 = "DROP TABLE IF EXISTS Evaluaciones";
     private static final String DROP_TABLE15 = "DROP TABLE IF EXISTS EstudianteInscrito";
+    private static final String DROP_TABLE16= "DROP TABLE IF EXISTS SolicitudImpresion ";
+    private static final String DROP_TABLE17= "DROP TABLE IF EXISTS NotasEstudianteEvaluacion";
+    private static final String DROP_TABLE18= "DROP TABLE IF EXISTS SolicitudPrimerRevision ";
 
     public DBHelperInicial(Context ctx) {
         this.context = ctx;
@@ -161,7 +164,38 @@ public class DBHelperInicial {
                         "   CONSTRAINT fk_idCiclo FOREIGN KEY (idCiclo) REFERENCES MateriaCiclo(idCiclo) ON DELETE RESTRICT\n" +
                         ");");
 
+                //Autor: José Andrés Castro Sánchez
+                //Carnet: CS16008
 
+                db.execSQL("CREATE TABLE SolicitudImpresion (\n" +
+                        " idSoliImpresion INTEGER NOT NULL PRIMARY KEY,\n"+
+                        " carnet VARCHAR2(7) NOT NULL, \n"+
+                        " codDocente VARCHAR2(7) NOT NULL, \n"+
+                        " cantidadExamenes INTEGER NOT NULL, \n"+
+                        " hojasAnexas INTEGER NOT NULL, \n"+
+                        " realizada BOOLEAN NOT NULL, \n"+
+                        " aprobado BOOLEAN NOT NULL, \n"+
+                        " CONSTRAINT FKcarnet FOREIGN KEY (carnet) REFERENCES Estudiante(carnet) ON DELETE RESTRICT, \n"+
+                        " CONSTRAINT FKcodDocente FOREIGN KEY (codDocente) REFERENCES Docente(codDOcente) ON DELETE RESTRICT\n"+
+                        ");");
+
+                db.execSQL("CREATE TABLE NotasEstudianteEvaluacion (\n" +
+                        " carnet VARCHAR2(7) NOT NULL, \n"+
+                        " idEvaluacion INTEGER NOT NULL, \n"+
+                        " notaEvaluacion FLOAT NOT NULL, \n"+
+                        "PRIMARY KEY (carnet, idEvaluacion),\n"+
+                        " CONSTRAINT FKcarnet FOREIGN KEY (carnet) REFERENCES Estudiante(carnet) ON DELETE RESTRICT, \n"+
+                        " CONSTRAINT FKidEvaluacion FOREIGN KEY (idEvaluacion) REFERENCES Evaluaciones(idEvaluacion) ON DELETE RESTRICT\n"+
+                        ");");
+
+                db.execSQL("CREATE TABLE SolicitudPrimerRevision (\n" +
+                        " idSolicitudPrimerRevision INTEGER NOT NULL PRIMARY KEY, \n"+
+                        " idEvaluacion INTEGER NOT NULL, \n"+
+                        " carnet VARCHAR2(7) NOT NULL, \n"+
+                        " aprobado BOOLEAN NOT NULL, \n"+
+                        " CONSTRAINT FKcarnet FOREIGN KEY (carnet) REFERENCES Estudiante(carnet) ON DELETE RESTRICT, \n"+
+                        " CONSTRAINT FKidEvaluacion FOREIGN KEY (idEvaluacion) REFERENCES Evaluaciones(idEvaluacion) ON DELETE RESTRICT\n"+
+                        ");");
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -187,11 +221,15 @@ public class DBHelperInicial {
                 db.execSQL(DROP_TABLE13);
                 db.execSQL(DROP_TABLE14);
                 db.execSQL(DROP_TABLE15);
+                db.execSQL(DROP_TABLE16);
+                db.execSQL(DROP_TABLE17);
+                db.execSQL(DROP_TABLE18);
                 onCreate(db);
             } catch (Exception e) {
                 //Message.message(context,""+e);
             }
         }
+
     }
 
     public void abrir() throws SQLException {
@@ -349,6 +387,20 @@ public class DBHelperInicial {
         db.execSQL("DELETE FROM Evaluaciones");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES('01',1,'MAT115',1,'2019-03-13','Primer Examen Parcial','Evaluacion de las unidades I y II')");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES('01',1,'PDM115',1,'2019-03-23','Primer Examen Teorico','Evaluacion de las unidades I, II y III')");
+
+        //Autor: José Andrés Castro Sánchez
+        db.execSQL("DELETE FROM SolicitudImpresion");
+        db.execSQL("INSERT INTO SolicitudImpresion (carnet,codDocente,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('VD16006','GR00001',4,8,0,0); ");
+        db.execSQL("INSERT INTO SolicitudImpresion (carnet,codDocente,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('GC16001','MM00001',8,16,1,1); ");
+
+        db.execSQL("DELETE FROM NotasEstudianteEvaluacion");
+        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('VD16006',1,8.3); ");
+        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('GC16001',1,8.3); ");
+
+        db.execSQL("DELETE FROM SolicitudPrimerRevision");
+        db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (1,'VD16006',0); ");
+        db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (1,'GC16001',1); ");
+
 
         return "Usuarios Guardados";
     }

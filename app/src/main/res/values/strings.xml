@@ -130,6 +130,7 @@
     <string name="CantidadExamenes">Cantidad Exámenes:</string>
     <string name="HojasAnexas">Hojas Anexas:</string>
     <string name="Realizada">Realizada:</string>
+    <string name="Aprobado">Aprobado:</string>
 
     <!--Activity MenuCS16008-->
     <string name="Menu_Tablas_CS16008">Menu de Tablas CS16008</string>
