@@ -425,6 +425,8 @@ public boolean consultarDiaNoHabilIntegridad(String fecha){
     }
 
 }
+//Metodo para consultar los locales, regresa el nombre de todos los locales que se encuentran en la BD
+//en un ArrayList
     public ArrayList<String> consultarLocales()
     {
         ArrayList<String> locales=new ArrayList<String>();
