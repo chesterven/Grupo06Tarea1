@@ -36,41 +36,48 @@ public class Solicitud_Diferido_Insertar extends AppCompatActivity {
     }
 
     public void consultarParaDiferido(View v){
-        evaluaciones.add("Seleccione evaluacion");
-        DBHelper = new DBHelperInicial(this);
-        DBHelper.abrir();
-        datos = DBHelper.consultarEstudianteInscrito(carnetSoliIn.getText().toString());
-        if(datos.moveToFirst()) {
-            do {
-                evaluaciones.add(DBHelper.consultarEvaluaciones(datos.getInt(0), datos.getString(1), datos.getInt(2)));
-
-            } while (datos.moveToNext());
+        if(carnetSoliIn.getText().toString().equals(""))
+        {
+            Toast.makeText(this,"Ingrese su carnet",Toast.LENGTH_SHORT).show();
         }
-        else{
-            Toast.makeText(this,"No tiene Evaluaciones",Toast.LENGTH_SHORT).show();
+        else {
+            evaluaciones.add("Seleccione evaluacion");
+            DBHelper = new DBHelperInicial(this);
+            DBHelper.abrir();
+            datos = DBHelper.consultarEstudianteInscrito(carnetSoliIn.getText().toString());
+            if(datos.moveToFirst()) {
+                do {
+                    evaluaciones.add(DBHelper.consultarEvaluaciones(datos.getInt(0), datos.getString(1), datos.getInt(2)));
+
+                } while (datos.moveToNext());
             }
-        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,android.R.layout.simple_spinner_item,evaluaciones);
-        spinnerResultado.setAdapter(adaptador);
+            else{
+                Toast.makeText(this,"No tiene Evaluaciones",Toast.LENGTH_SHORT).show();
+            }
+            ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,android.R.layout.simple_spinner_item,evaluaciones);
+            spinnerResultado.setAdapter(adaptador);
+        }
+
         }
 
         public void insertarSolicitudDiferido(View v){
-        String mensaje = "";
-        String evaluacion;
-        Solicitud_RepetidoDiferido solicitud = new Solicitud_RepetidoDiferido();
-        evaluacion = spinnerResultado.getSelectedItem().toString();
-        String [] evaluacionPartes = evaluacion.split(" ");
-        solicitud.setCarnet(carnetSoliIn.getText().toString());
-        solicitud.setIdEvaluacion(Integer.valueOf(evaluacionPartes[0]));
-        solicitud.setMotivoSolicitud(motivoSoliIn.getText().toString());
-        solicitud.setIdTipoSolicitud(2);
-        DBHelper.abrir();
-        mensaje = DBHelper.insertarSolicitudDiferidoRepetido(solicitud);
+        if(motivoSoliIn.getText().toString().equals("") | spinnerResultado.getSelectedItem().toString().equals("Seleccione evaluacion")){
+            Toast.makeText(this,"Ingrese motivo o seleccione una evaluacion",Toast.LENGTH_SHORT).show();
+        }else{
+            String mensaje = "";
+            String evaluacion;
+            Solicitud_RepetidoDiferido solicitud = new Solicitud_RepetidoDiferido();
+            evaluacion = spinnerResultado.getSelectedItem().toString();
+            String [] evaluacionPartes = evaluacion.split(" ");
+            solicitud.setCarnet(carnetSoliIn.getText().toString());
+            solicitud.setIdEvaluacion(Integer.valueOf(evaluacionPartes[0]));
+            solicitud.setMotivoSolicitud(motivoSoliIn.getText().toString());
+            solicitud.setIdTipoSolicitud(2);
+            DBHelper.abrir();
+            mensaje = DBHelper.insertarSolicitudDiferidoRepetido(solicitud);
 
-        Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
-
-
-
-
+            Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
+        }
 
         }
 

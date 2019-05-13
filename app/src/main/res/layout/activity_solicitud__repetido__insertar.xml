@@ -68,6 +68,18 @@ Grupo de trabajo: 06-->
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:onClick="consultarEvaluacuonesRepetido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Consultar" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:weightSum="4">
 
         <TextView
@@ -75,39 +87,17 @@ Grupo de trabajo: 06-->
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
-            android:text="@string/EvaluacionId" />
+            android:text="@string/Evaluacion" />
 
-        <EditText
-            android:id="@+id/idEvaluacionRepetidoIn"
+        <Spinner
+            android:id="@+id/spinnerResultadosRepetido"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2.5"
-            android:ems="10"
-            android:inputType="text" />
+            android:layout_weight="2.5" />
+
     </TableRow>
 
     <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:weightSum="4">
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:text="@string/Motivo"/>
-        <EditText
-            android:id="@+id/motivoSoliRepetidoIn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2.5"
-            android:ems="10"
-            android:inputType="text" />
-
-    </TableRow>
-<TableRow
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="4">
