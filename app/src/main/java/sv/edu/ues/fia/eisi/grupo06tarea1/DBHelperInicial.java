@@ -34,6 +34,7 @@ public class DBHelperInicial {
     private static final String DROP_TABLE12 = "DROP TABLE IF EXISTS MateriaCiclo";
     private static final String DROP_TABLE13 = "DROP TABLE IF EXISTS TipoEvaluacion";
     private static final String DROP_TABLE14 = "DROP TABLE IF EXISTS Evaluaciones";
+    private static final String DROP_TABLE15 = "DROP TABLE IF EXISTS EstudianteInscrito";
 
     public DBHelperInicial(Context ctx) {
         this.context = ctx;
@@ -64,7 +65,9 @@ public class DBHelperInicial {
                 db.execSQL("CREATE TABLE ACCESOUSUARIO  (\n" +
                         "   IDUSUARIO            CHAR(2)                         not null,\n" +
                         "   IDOPCION             CHAR(3)                         not null);");
-                //Autor: Roberto Eliezer Ventura Dominguez Y Maria Abigail Gil
+
+
+                //Autor: Roberto Eliezer Ventura Dominguez
                 //Carnet: VD16006
                 db.execSQL("CREATE TABLE TipoSolicitud (\n" +
                         " idTipoSolicitud INTEGER NOT NULL PRIMARY KEY,\n" +
@@ -86,7 +89,7 @@ public class DBHelperInicial {
                         "    nombreLocal VARCHAR2(20) NOT NULL\n" +
                         ");");
                 db.execSQL("CREATE TABLE Materia (\n" +
-                        "    codMateria VARCHAR2(5) NOT NULL PRIMARY KEY,\n" +
+                        "    codMateria VARCHAR2(6) NOT NULL PRIMARY KEY,\n" +
                         "    nombreMateria VARCHAR2(20) NOT NULL\n" +
                         ");");
                 db.execSQL("CREATE TABLE TipoGrupo (\n" +
@@ -95,13 +98,21 @@ public class DBHelperInicial {
                         ");");
                 db.execSQL("CREATE TABLE  MateriaCiclo(\n" +
                         "    numGrupo INTEGER NOT NULL,\n" +
-                        "     codMateria VARCHAR2(5) NOT NULL,\n" +
+                        "     codMateria VARCHAR2(6) NOT NULL,\n" +
                         "    idCiclo INTEGER NOT NULL,\n" +
                         "    codDocente VARCHAR2(7) NOT NULL,\n" +
                         "    idTipoGrupo INTEGER NOT NULL,\n" +
                         "    PRIMARY KEY(numGrupo, codMateria, idCiclo),\n" +
                         "    CONSTRAINT FKcodMateria FOREIGN KEY(codMateria) REFERENCES Materia(codMateria) ON DELETE RESTRICT,\n" +
                         "    CONSTRAINT FKTipoGrupo FOREIGN KEY(idTipoGrupo) REFERENCES TipoGrupo(idTipoGrupo) ON DELETE RESTRICT\n" +
+                        ");");
+
+                db.execSQL("CREATE TABLE EstudianteInscrito(\n" +
+                        "    carnet VARCHAR2(7) NOT NULL,\n" +
+                        "    numGrupo INTEGER NOT NULL,\n" +
+                        "    codMateria VARCHAR2(6) NOT NULL,\n" +
+                        "    idCiclo INTEGER NOT NULL,\n" +
+                        "    PRIMARY KEY(carnet, numGrupo, codMateria,idCiclo)\n" +
                         ");");
 
 
@@ -129,7 +140,7 @@ public class DBHelperInicial {
                         "   idEvaluacion INTEGER NOT NULL PRIMARY KEY,\n"    +
                         "   idTipoEvaluacion INTEGER NOT NULL,\n"  +
                         "   numGrupo INTEGER NOT NULL   ,\n"  +
-                        "   codMateria CHAR(5) NOT NULL,\n"  +
+                        "   codMateria CHAR(6) NOT NULL,\n"  +
                         "   idCiclo INTEGER NOT NULL,\n"  +
                         "   fechaEvaluacion DATE NOT NULL,\n"   +
                         "   nombreEvaluacion VARCHAR(25) NOT NULL,\n"    +
@@ -165,6 +176,7 @@ public class DBHelperInicial {
                 db.execSQL(DROP_TABLE12);
                 db.execSQL(DROP_TABLE13);
                 db.execSQL(DROP_TABLE14);
+                db.execSQL(DROP_TABLE15);
                 onCreate(db);
             } catch (Exception e) {
                 //Message.message(context,""+e);
@@ -298,11 +310,14 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO TipoGrupo(nombreGrupo) VALUES ('Discusion');");
 
         db.execSQL("DELETE FROM MateriaCiclo");
-        db.execSQL("INSERT INTO MateriaCiclo VALUES (1,'MAT115',1,'MM00001',1);");
+        db.execSQL("INSERT INTO MateriaCiclo VALUES (1,'MIP115',1,'MM00001',1);");
         db.execSQL("INSERT INTO MateriaCiclo VALUES (1,'PDM115',1,'GR00001',2);");
 
-
-
+        db.execSQL("DELETE FROM EstudianteInscrito");
+        db.execSQL("INSERT INTO EstudianteInscrito VALUES('VD16006',1,'MIP115',1)");
+        db.execSQL("INSERT INTO EstudianteInscrito VALUES('VD16006',1,'PDM115',1)");
+        db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'PDM115',1)");
+        db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'MIP115',1)");
 
 
 
@@ -531,6 +546,8 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
             return "No existe ese tipo de solicitud";
         }
     }
+
+
     //********************Autor: ********************
 //*******************Carnet: ********************
 
