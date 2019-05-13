@@ -120,12 +120,12 @@ public class DBHelperInicial {
                 //Autor: Christian Ariel Zelaya Tejada
                 //Carnet: ZT12002
                 db.execSQL("CREATE TABLE TipoEvaluacion (\n" +
-                        "   idTipoEvaluacion NUMBER(6) NOT NULL PRIMARY KEY,\n" +
+                        "   idTipoEvaluacion INTEGER NOT NULL PRIMARY KEY,\n" +
                         "   nombreTipoEvaluacion VARCHAR(25) NOT NULL"  +
                         ");");
 
                 db.execSQL("CREATE TABLE Evaluaciones (\n"  +
-                        "   idEvaluacion NUMBER(6) NOT NULL PRIMARY KEY,\n"    +
+                        "   idEvaluacion INTEGER NOT NULL PRIMARY KEY,\n"    +
                         "   idTipoEvaluacion NUMBER(6) NOT NULL,\n"  +
                         "   numGrupo INTEGER NOT NULL   ,\n"  +
                         "   codMateria CHAR(5) NOT NULL,\n"  +
@@ -314,14 +314,14 @@ public class DBHelperInicial {
 
         //Autor" Christian Ariel Zelaya Tejada
         db.execSQL("DELETE FROM TipoEvaluacion");
-        db.execSQL("INSERT INTO TipoEvaluacion (idTipoEvaluacion,nombreTipoEvaluacion) VALUES ('01','Ordinaria');");
-        db.execSQL("INSERT INTO TipoEvaluacion (idTipoEvaluacion,nombreTipoEvaluacion) VALUES ('02','Repetida');");
-        db.execSQL("INSERT INTO TipoEvaluacion (idTipoEvaluacion,nombreTipoEvaluacion) VALUES ('03','Diferida');");
-        db.execSQL("INSERT INTO TipoEvaluacion (idTipoEvaluacion,nombreTipoEvaluacion) VALUES ('04','Suficiencia');");
+        db.execSQL("INSERT INTO TipoEvaluacion (nombreTipoEvaluacion) VALUES ('Ordinaria');");
+        db.execSQL("INSERT INTO TipoEvaluacion (nombreTipoEvaluacion) VALUES ('Repetida');");
+        db.execSQL("INSERT INTO TipoEvaluacion (nombreTipoEvaluacion) VALUES ('Diferida');");
+        db.execSQL("INSERT INTO TipoEvaluacion (nombreTipoEvaluacion) VALUES ('Suficiencia');");
 
         db.execSQL("DELETE FROM Evaluaciones");
-        db.execSQL("INSERT INTO Evaluaciones (idEvaluacion,idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES('01','01',1,'MAT115',1,'2019-03-13','Primer Examen Parcial','Evaluacion de las unidades I y II')");
-        db.execSQL("INSERT INTO Evaluaciones (idEvaluacion,idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES('02','01',1,'PDM115',1,'2019-03-23','Primer Examen Teorico','Evaluacion de las unidades I, II y III')");
+        db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES('01',1,'MAT115',1,'2019-03-13','Primer Examen Parcial','Evaluacion de las unidades I y II')");
+        db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES('01',1,'PDM115',1,'2019-03-23','Primer Examen Teorico','Evaluacion de las unidades I, II y III')");
 
         return "Usuarios Guardados";
     }
