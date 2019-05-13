@@ -42,6 +42,7 @@ public class DBHelperInicial {
     private static final String DROP_TABLE17= "DROP TABLE IF EXISTS NotasEstudianteEvaluacion";
     private static final String DROP_TABLE18= "DROP TABLE IF EXISTS SolicitudPrimerRevision ";
     private static final String DROP_TABLE19= "DROP TABLE IF EXISTS SolicitudDiferidoRepetido";
+    private static final String DROP_TABLE20= "DROP TABLE IF EXISTS SolicitudDSegundaRevision";
 
     public DBHelperInicial(Context ctx) {
         this.context = ctx;
@@ -208,6 +209,21 @@ public class DBHelperInicial {
                         " CONSTRAINT FKidEvaluacion FOREIGN KEY (idEvaluacion) REFERENCES Evaluaciones(idEvaluacion) ON DELETE RESTRICT\n"+
                         ");");
 
+
+                //Autor: Cordero Hernández, Oscar Emmanuel
+                //Carnet: CH15013
+
+
+                db.execSQL("CREATE TABLE SolicitudSegundaRevision (\n" +
+                        " idSolicitudSegundaRevision INTEGER NOT NULL PRIMARY KEY, \n"+
+                        " idEvaluacion INTEGER NOT NULL, \n"+
+                        " carnet VARCHAR2(7) NOT NULL, \n"+
+                        " aprobado BOOLEAN NOT NULL, \n"+
+                        " CONSTRAINT FKcarnet FOREIGN KEY (carnet) REFERENCES Estudiante(carnet) ON DELETE RESTRICT, \n"+
+                        " CONSTRAINT FKidEvaluacion FOREIGN KEY (idEvaluacion) REFERENCES Evaluaciones(idEvaluacion) ON DELETE RESTRICT\n"+
+                        ");");
+
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -236,6 +252,7 @@ public class DBHelperInicial {
                 db.execSQL(DROP_TABLE17);
                 db.execSQL(DROP_TABLE18);
                 db.execSQL(DROP_TABLE19);
+                db.execSQL(DROP_TABLE20);
                 onCreate(db);
             } catch (Exception e) {
                 //Message.message(context,""+e);
