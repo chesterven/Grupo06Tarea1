@@ -105,7 +105,7 @@ public class DBHelperInicial {
                         ");");
 
 
-                //Autor: Maria Abigail Gil Cordov
+                //Autor: Maria Abigail Gil Cordova
                 //Carnet: GC16001
                 db.execSQL("CREATE TABLE Ciclo (\n" +
                         "   idCiclo            INTEGER NOT NULL PRIMARY KEY,\n" +
