@@ -50,10 +50,9 @@ public class DBHelperInicial {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            //TABLAS PARA ROLES DE USUARIOS AUTOR: ROBERTO ELIEZER VENTURA DOMINGUEZ
+            //TABLAS PARA ROLES DE USUARIOS AUTOR: ROBERTO ELIEZER VENTURA DOMINGUEZ y MARIA ABIGAIL GIL CORDOVA
             try {
-                //Autor: Roberto Eliezer Ventura Dominguez
-                //Carnet: VD16006
+
                 db.execSQL("CREATE TABLE USUARIO  (\n" +
                         "   IDUSUARIO            CHAR(2)                         not null,\n" +
                         "   NOMUSUARIO           VARCHAR2(30)                    not null,\n" +
@@ -65,6 +64,8 @@ public class DBHelperInicial {
                 db.execSQL("CREATE TABLE ACCESOUSUARIO  (\n" +
                         "   IDUSUARIO            CHAR(2)                         not null,\n" +
                         "   IDOPCION             CHAR(3)                         not null);");
+                //Autor: Roberto Eliezer Ventura Dominguez Y Maria Abigail Gil
+                //Carnet: VD16006
                 db.execSQL("CREATE TABLE TipoSolicitud (\n" +
                         " idTipoSolicitud INTEGER NOT NULL PRIMARY KEY,\n" +
                         " nombreTipoSolicitud VARCHAR2(30) not null)");
@@ -126,10 +127,10 @@ public class DBHelperInicial {
 
                 db.execSQL("CREATE TABLE Evaluaciones (\n"  +
                         "   idEvaluacion INTEGER NOT NULL PRIMARY KEY,\n"    +
-                        "   idTipoEvaluacion NUMBER(6) NOT NULL,\n"  +
+                        "   idTipoEvaluacion INTEGER NOT NULL,\n"  +
                         "   numGrupo INTEGER NOT NULL   ,\n"  +
                         "   codMateria CHAR(5) NOT NULL,\n"  +
-                        "   idCiclo NUMBER(6) NOT NULL,\n"  +
+                        "   idCiclo INTEGER NOT NULL,\n"  +
                         "   fechaEvaluacion DATE NOT NULL,\n"   +
                         "   nombreEvaluacion VARCHAR(25) NOT NULL,\n"    +
                         "   descripcion VARCHAR(50) NOT NULL,\n"    +
@@ -215,7 +216,7 @@ public class DBHelperInicial {
 
     public String llenarBD(){
         abrir();
-        //AUTOR:ROBERTO ELIEZER VENTURA DOMINGUEZ
+        //AUTOR:ROBERTO ELIEZER VENTURA DOMINGUEZ Y MARIA ABIGAIL GIL CORDOVA
         db.execSQL("DELETE FROM USUARIO");
         db.execSQL("DELETE FROM OPCIONCRUD");
         db.execSQL("DELETE FROM ACCESOUSUARIO");
@@ -266,6 +267,7 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO ACCESOUSUARIO(IDUSUARIO,IDOPCION) VALUES ('04','005');");
         db.execSQL("INSERT INTO ACCESOUSUARIO(IDUSUARIO,IDOPCION) VALUES ('04','006');");
 
+        //AUTOR: ROBERTO ELIEZER VENTURA DOMINGUEZ
         db.execSQL("DELETE FROM TipoSolicitud");
         db.execSQL("INSERT INTO TipoSolicitud(nombreTipoSolicitud) VALUES ('Repetido');");
 

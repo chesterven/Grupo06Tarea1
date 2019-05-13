@@ -26,4 +26,8 @@ public class TipoSolicitud_Eliminar extends AppCompatActivity {
         String mensaje = DBHelper.eliminarTipoSolicitud(nombreEliminar.getText().toString());
         Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
     }
+
+    public void limpiarTexto(View v){
+        nombreEliminar.setText("");
+    }
 }

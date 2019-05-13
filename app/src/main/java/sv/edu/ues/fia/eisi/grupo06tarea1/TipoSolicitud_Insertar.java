@@ -35,4 +35,11 @@ public class TipoSolicitud_Insertar extends AppCompatActivity {
         }
 
     }
+
+    public void limpiarTexto(View v){
+        nombre.setText("");
+
+    }
+
+
 }

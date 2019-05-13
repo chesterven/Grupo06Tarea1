@@ -32,4 +32,8 @@ public class TipoSolicitud_Consultar extends AppCompatActivity {
             Toast.makeText(this,"No se encontro en la base de datos", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void limpiarTexto(View v){
+        consulta.setText("");
+    }
 }

@@ -27,4 +27,9 @@ public class TipoSolicitud_Actualizar extends AppCompatActivity {
         String mensaje =DBHelper.actualizarTipoSolicitud(anterior.getText().toString(),nuevo.getText().toString());
         Toast.makeText(this,mensaje, Toast.LENGTH_SHORT).show();
     }
+
+    public void limpiarTexto(View v){
+        anterior.setText("");
+        nuevo.setText("");
+    }
 }
