@@ -32,6 +32,8 @@ public class DBHelperInicial {
     private static final String DROP_TABLE10 = "DROP TABLE IF EXISTS Materia";
     private static final String DROP_TABLE11 = "DROP TABLE IF EXISTS TipoGrupo";
     private static final String DROP_TABLE12 = "DROP TABLE IF EXISTS MateriaCiclo";
+    private static final String DROP_TABLE13 = "DROP TABLE IF EXISTS TipoEvaluacion";
+    private static final String DROP_TABLE14 = "DROP TABLE IF EXISTS Evaluaciones";
 
     public DBHelperInicial(Context ctx) {
         this.context = ctx;
@@ -122,6 +124,21 @@ public class DBHelperInicial {
                         "   nombreTipoEvaluacion VARCHAR(25) NOT NULL"  +
                         ");");
 
+                db.execSQL("CREATE TABLE Evaluaciones (\n"  +
+                        "   idEvaluacion NUMBER(6) NOT NULL PRIMARY KEY,\n"    +
+                        "   idTipoEvaluacion NUMBER(6) NOT NULL,\n"  +
+                        "   numGrupo INTEGER NOT NULL   ,\n"  +
+                        "   codMateria CHAR(5) NOT NULL,\n"  +
+                        "   idCiclo NUMBER(6) NOT NULL,\n"  +
+                        "   fechaEvaluacion DATE NOT NULL,\n"   +
+                        "   nombreEvaluacion VARCHAR(25) NOT NULL,\n"    +
+                        "   descripcion VARCHAR(50) NOT NULL,\n"    +
+                        "   CONSTRAINT fk_idTipoEvaluacion FOREIGN KEY (idTipoEvaluacion) REFERENCES TipoEvaluacion(idTipoEvaluacion) ON DELETE RESTRICT,\n" +
+                        "   CONSTRAINT fk_numGrupo FOREIGN KEY (numGrupo) REFERENCES MateriaCiclo(numGrupo) ON DELETE RESTRICT,\n"  +
+                        "   CONSTRAINT fk_codMateria FOREIGN KEY (codMateria) REFERENCES MateriaCiclo(codMateria) ON DELETE RESTRICT,\n" +
+                        "   CONSTRAINT fk_idCiclo FOREIGN KEY (idCiclo) REFERENCES MateriaCiclo(idCiclo) ON DELETE RESTRICT\n" +
+                        ");");
+
 
 
             } catch (SQLException e) {
@@ -145,7 +162,8 @@ public class DBHelperInicial {
                 db.execSQL(DROP_TABLE10);
                 db.execSQL(DROP_TABLE11);
                 db.execSQL(DROP_TABLE12);
-
+                db.execSQL(DROP_TABLE13);
+                db.execSQL(DROP_TABLE14);
                 onCreate(db);
             } catch (Exception e) {
                 //Message.message(context,""+e);
@@ -295,10 +313,15 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Ciclo (ciclo) VALUES ('II2020');");
 
         //Autor" Christian Ariel Zelaya Tejada
+        db.execSQL("DELETE FROM TipoEvaluacion");
         db.execSQL("INSERT INTO TipoEvaluacion (idTipoEvaluacion,nombreTipoEvaluacion) VALUES ('01','Ordinaria');");
         db.execSQL("INSERT INTO TipoEvaluacion (idTipoEvaluacion,nombreTipoEvaluacion) VALUES ('02','Repetida');");
         db.execSQL("INSERT INTO TipoEvaluacion (idTipoEvaluacion,nombreTipoEvaluacion) VALUES ('03','Diferida');");
         db.execSQL("INSERT INTO TipoEvaluacion (idTipoEvaluacion,nombreTipoEvaluacion) VALUES ('04','Suficiencia');");
+
+        db.execSQL("DELETE FROM Evaluaciones");
+        db.execSQL("INSERT INTO Evaluaciones (idEvaluacion,idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES('01','01',1,'MAT115',1,'2019-03-13','Primer Examen Parcial','Evaluacion de las unidades I y II')");
+        db.execSQL("INSERT INTO Evaluaciones (idEvaluacion,idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES('02','01',1,'PDM115',1,'2019-03-23','Primer Examen Teorico','Evaluacion de las unidades I, II y III')");
 
         return "Usuarios Guardados";
     }
