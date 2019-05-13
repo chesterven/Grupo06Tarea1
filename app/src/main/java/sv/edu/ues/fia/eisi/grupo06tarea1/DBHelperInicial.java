@@ -41,6 +41,7 @@ public class DBHelperInicial {
     private static final String DROP_TABLE16= "DROP TABLE IF EXISTS SolicitudImpresion ";
     private static final String DROP_TABLE17= "DROP TABLE IF EXISTS NotasEstudianteEvaluacion";
     private static final String DROP_TABLE18= "DROP TABLE IF EXISTS SolicitudPrimerRevision ";
+    private static final String DROP_TABLE19= "DROP TABLE IF EXISTS SolicitudDiferidoRepetido";
 
     public DBHelperInicial(Context ctx) {
         this.context = ctx;
@@ -121,6 +122,13 @@ public class DBHelperInicial {
                         "    PRIMARY KEY(carnet, numGrupo, codMateria,idCiclo)\n" +
                         ");");
 
+                db.execSQL("CREATE TABLE SolicitudDiferidoRepetido(\n" +
+                        "    idSolicitudDiferidoRepetido INTEGER NOT NULL PRIMARY KEY,\n" +
+                        "    idEvaluacion INTEGER NOT NULL,\n" +
+                        "    carnet VARCHAR2(7) NOT NULL,\n" +
+                        "    motivo VARCHAR(20),\n" +
+                        "    idTipoSolicitud INTEGER NOT NULL\n" +
+                        ");");
 
                 //Autor: Maria Abigail Gil Cordova
                 //Carnet: GC16001
@@ -227,6 +235,7 @@ public class DBHelperInicial {
                 db.execSQL(DROP_TABLE16);
                 db.execSQL(DROP_TABLE17);
                 db.execSQL(DROP_TABLE18);
+                db.execSQL(DROP_TABLE19);
                 onCreate(db);
             } catch (Exception e) {
                 //Message.message(context,""+e);
@@ -333,6 +342,7 @@ public class DBHelperInicial {
         //AUTOR: ROBERTO ELIEZER VENTURA DOMINGUEZ
         db.execSQL("DELETE FROM TipoSolicitud");
         db.execSQL("INSERT INTO TipoSolicitud(nombreTipoSolicitud) VALUES ('Repetido');");
+        db.execSQL("INSERT INTO TipoSolicitud(nombreTipoSolicitud) VALUES ('Diferido');");
 
         db.execSQL("DELETE FROM Estudiante");
         db.execSQL("INSERT INTO Estudiante VALUES('VD16006','Roberto','Ventura',0);");
@@ -628,6 +638,48 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
             return "No existe ese tipo de solicitud";
         }
     }
+    public Cursor consultarEstudianteInscrito(String carnet){
+        ArrayList<String> inscrito = new ArrayList<String>();
+        String[] carnetEstudiante = {carnet};
+        String[] columnas = {"numGrupo","codMateria","idCiclo"};
+        Cursor c = db.query("EstudianteInscrito",columnas,"carnet=?",carnetEstudiante,null,null,null);
+        return c;
+        }
+
+        public String consultarEvaluaciones(int nGrupo, String mat, int ciclo){
+        String resultado = "";
+        String[] parametro = {String.valueOf(nGrupo),mat,String.valueOf(ciclo)};
+        String[] columnas = {"idEvaluacion","codMateria","nombreEvaluacion"};
+        Cursor c = db.query("Evaluaciones",columnas,"numGrupo=? AND codMateria=? AND idCiclo=?",parametro,null,null,null);
+        if(c.moveToFirst()){
+            resultado =c.getInt(0) +" "+ c.getString(1) +" "+c.getString(2);
+            return resultado;
+        }
+        else{
+            return resultado;
+        }
+        }
+
+        public String insertarSolicitudDiferidoRepetido(Solicitud_RepetidoDiferido solicitud){
+            String regInsertados="Registro Insertado Nº= ";
+            long contador=0;
+            ContentValues soli = new ContentValues();
+            soli.put("idEvaluacion",solicitud.getIdEvaluacion());
+            soli.put("carnet", solicitud.getCarnet());
+            soli.put("motivo", solicitud.getMotivoSolicitud());
+            soli.put("idTipoSolicitud", solicitud.getIdTipoSolicitud());
+            contador= db.insert("SolicitudDiferidoRepetido",null,soli);
+            if(contador==-1 || contador==0)
+            {
+                regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+            }
+            else {
+                regInsertados=regInsertados+contador;
+            }
+            return regInsertados;
+
+        }
+
 
 
     //********************Autor: ********************

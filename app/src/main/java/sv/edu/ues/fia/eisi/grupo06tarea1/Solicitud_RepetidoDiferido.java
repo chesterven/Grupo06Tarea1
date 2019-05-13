@@ -10,7 +10,9 @@ public class Solicitud_RepetidoDiferido {
     private int idTipoSolicitud;
     private String motivoSolicitud;
 
+    public Solicitud_RepetidoDiferido(){
 
+    }
     public Solicitud_RepetidoDiferido(int idSolicitud, String carnet, int idEvaluacion, int idTipoSolicitud, String motivoSolicitud) {
         this.idSolicitud = idSolicitud;
         this.carnet = carnet;
