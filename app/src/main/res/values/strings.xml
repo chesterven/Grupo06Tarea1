@@ -29,7 +29,7 @@
     <string name="Testigo2">Carnet Alumno Testigo 2:</string>
     <string name="Menu">Volver Menu</string>
     <string name="Asistencia">Asistencia:</string>
-
+    <string name="Evaluaciones">Evaluaciones:</string>
     <string name="title_activity_detalle_segunda_revision__actualizar">DetalleSegundaRevision_Actualizar</string>
 
     <!--Activity para iniciar sesion-->

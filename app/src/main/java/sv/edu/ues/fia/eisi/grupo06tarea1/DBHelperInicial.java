@@ -147,8 +147,8 @@ public class DBHelperInicial {
                         "   idSegundaRevision INTEGER NOT NULL PRIMARY KEY,\n" +
                         "   idEvaluacion         INTEGER NOT NULL,\n" +
                         "   idLocal             INTEGER NOT NULL,\n" +
-                        "   FECHASEGUNDAREVISION VARCHAR2(15),\n" +
-                        "   DESCRIPCION          VARCHAR2(50),\n" +
+                        "   fechaSegundaRevision VARCHAR2(15),\n" +
+                        "   descripcionSegundaRevision         VARCHAR2(50),\n" +
                         "   CONSTRAINT f_k_idEvaluacion FOREIGN KEY (idEvaluacion) REFERENCES Evaluaciones(idEvaluacion) ON DELETE RESTRICT,\n" +
                         "   CONSTRAINT f_k_idlocal FOREIGN KEY (idLocal) REFERENCES Local(idLocal) ON DELETE RESTRICT\n" +
                         "   \n" +
@@ -368,7 +368,8 @@ public class DBHelperInicial {
         db.execSQL("DELETE FROM Docente");
         db.execSQL("INSERT INTO Docente VALUES('GR00001','Cesar Augusto','Gonzalez Rodriguez',1)");
         db.execSQL("INSERT INTO Docente VALUES('MM00001','Boris Alexander','Montano',0)");
-
+        db.execSQL("INSERT INTO Docente VALUES('CG00001','Carlos','García',0)");
+        db.execSQL("INSERT INTO Docente VALUES('JI00001','Jorge','Iraheta',0)");
 
         db.execSQL("DELETE FROM Local");
         db.execSQL("INSERT INTO Local(nombreLocal) VALUES ('D11');");
@@ -390,12 +391,18 @@ public class DBHelperInicial {
         db.execSQL("DELETE FROM MateriaCiclo");
         db.execSQL("INSERT INTO MateriaCiclo VALUES (1,'MIP115',1,'MM00001',1);");
         db.execSQL("INSERT INTO MateriaCiclo VALUES (1,'PDM115',1,'GR00001',2);");
+        db.execSQL("INSERT INTO MateriaCiclo VALUES (1,'SYP115',1,'CG00001',1);");
+        db.execSQL("INSERT INTO MateriaCiclo VALUES (2,'MIP115',1,'JI00001',2);");
 
         db.execSQL("DELETE FROM EstudianteInscrito");
         db.execSQL("INSERT INTO EstudianteInscrito VALUES('VD16006',1,'MIP115',1)");
         db.execSQL("INSERT INTO EstudianteInscrito VALUES('VD16006',1,'PDM115',1)");
         db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'PDM115',1)");
         db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'MIP115',1)");
+       db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'SYP115',1)");
+       db.execSQL("INSERT INTO EstudianteInscrito VALUES('VD16006',1,'SYP115',1)");
+
+
 
 
 
@@ -415,8 +422,10 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO TipoEvaluacion (nombreTipoEvaluacion) VALUES ('Suficiencia');");
 
         db.execSQL("DELETE FROM Evaluaciones");
-        db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES('01',1,'MAT115',1,'2019-03-13','Primer Examen Parcial','Evaluacion de las unidades I y II')");
-        db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES('01',1,'PDM115',1,'2019-03-23','Primer Examen Teorico','Evaluacion de las unidades I, II y III')");
+        db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'MAT115',1,'2019-03-13','Primer Examen Parcial','Evaluacion de las unidades I y II')");
+        db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'PDM115',1,'2019-03-23','Primer Examen Teorico','Evaluacion de las unidades I, II y III')");
+        db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'MIP115',1,'2019-04-12','Examen escrito 1','Evaluacion de la unidad I')");
+        db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'SYP115',1,'2019-04-15','Parcial I','Folletos 1 y 2')");
 
         //Autor: José Andrés Castro Sánchez
         db.execSQL("DELETE FROM SolicitudImpresion");
@@ -438,6 +447,34 @@ public class DBHelperInicial {
 //********************Autor: Maria Abigail Gil Cordova********************
 //*******************Carnet: GC16001********************
 
+    //consulta las materias que le corresponden a un docente
+public Cursor consultarMateriasDocente(String codDocente){
+        String [] parametro = {codDocente};
+        String []columna = {"numGrupo","CodMateria","idCiclo"};
+        Cursor c = db.query("MateriaCiclo",columna,"codDocente=?",parametro,null,null,null);
+
+        return c;
+}
+//Metodo para insertar una segunda revision
+    public String insertarSegundaRevision(SegundaRevision revision)
+    {
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues rev = new ContentValues();
+        rev.put("idEvaluacion",revision.getIdEvaluacion());
+        rev.put("idLocal",revision.getIdLocal());
+        rev.put("fechaSegundaRevision",revision.getFechaSegundaRevision());
+        rev.put("descripcionSegundaRevision",revision.getDescripcion());
+        contador=db.insert("SegundaRevision",null,rev);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
 
     //Metodo para consulta la integridad de la tabla de dia no habil
 public boolean consultarDiaNoHabilIntegridad(String fecha){
@@ -454,18 +491,11 @@ public boolean consultarDiaNoHabilIntegridad(String fecha){
 }
 //Metodo para consultar los locales, regresa el nombre de todos los locales que se encuentran en la BD
 //en un ArrayList
-    public ArrayList<String> consultarLocales()
+    public Cursor consultarLocales()
     {
-        ArrayList<String> locales=new ArrayList<String>();
-        String[] columna={"nombreLocal"};
+        String[] columna={"idLocal","nombreLocal"};
         Cursor c=db.query("Local",columna,null,null,null,null,null);
-        if(c.moveToFirst())
-        {
-            do{
-                locales.add(c.getString(0));
-            }while(c.moveToNext());
-        }
-        return locales;
+        return c;
     }
 
 //Metodo que recibe el ciclo en string ejemplo I2019 y regresa su respectivo id al consultar en su tabla Ciclo

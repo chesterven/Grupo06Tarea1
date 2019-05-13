@@ -10,14 +10,19 @@ public class SegundaRevision {
     private int id_Segunda_Revision;
     private int idEvaluacion;
     private int idLocal;
-    private Date fechaSegundaRevision;
+    private String fechaSegundaRevision;
     private String descripcion;
 
-    public SegundaRevision(int id_Segunda_Revision, int idEvaluacion, int idLocal, Date fechaSegundaRevision) {
+    public SegundaRevision() {
+
+    }
+
+    public SegundaRevision(int id_Segunda_Revision, int idEvaluacion, int idLocal, String fechaSegundaRevision, String descripcion) {
         this.id_Segunda_Revision = id_Segunda_Revision;
         this.idEvaluacion = idEvaluacion;
         this.idLocal = idLocal;
         this.fechaSegundaRevision = fechaSegundaRevision;
+        this.descripcion = descripcion;
     }
 
     public int getId_Segunda_Revision() {
@@ -44,11 +49,19 @@ public class SegundaRevision {
         this.idLocal = idLocal;
     }
 
-    public Date getFechaSegundaRevision() {
+    public String getFechaSegundaRevision() {
         return fechaSegundaRevision;
     }
 
-    public void setFechaSegundaRevision(Date fechaSegundaRevision) {
+    public void setFechaSegundaRevision(String fechaSegundaRevision) {
         this.fechaSegundaRevision = fechaSegundaRevision;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }
