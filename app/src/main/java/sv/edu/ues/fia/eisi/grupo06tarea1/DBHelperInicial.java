@@ -128,6 +128,16 @@ public class DBHelperInicial {
                         "   fecha               VARCHAR2(15)NOT NULL,\n" +
                         "   CONSTRAINT f_k_ciclo FOREIGN KEY (idCiclo) REFERENCES Ciclo(idCiclo) ON DELETE RESTRICT\n" +
                         ");");
+                db.execSQL("CREATE TABLE SegundaRevision  (\n" +
+                        "   idSegundaRevision INTEGER NOT NULL PRIMARY KEY,\n" +
+                        "   idEvaluacion         INTEGER NOT NULL,\n" +
+                        "   idLocal             INTEGER NOT NULL,\n" +
+                        "   FECHASEGUNDAREVISION VARCHAR2(15),\n" +
+                        "   DESCRIPCION          VARCHAR2(50),\n" +
+                        "   CONSTRAINT f_k_idEvaluacion FOREIGN KEY (idEvaluacion) REFERENCES Evaluaciones(idEvaluacion) ON DELETE RESTRICT,\n" +
+                        "   CONSTRAINT f_k_idlocal FOREIGN KEY (idLocal) REFERENCES Local(idLocal) ON DELETE RESTRICT\n" +
+                        "   \n" +
+                        ");");
 
                 //Autor: Christian Ariel Zelaya Tejada
                 //Carnet: ZT12002
