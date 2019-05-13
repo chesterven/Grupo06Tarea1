@@ -142,7 +142,7 @@ public class DBHelperInicial {
                         "   numGrupo INTEGER NOT NULL   ,\n"  +
                         "   codMateria CHAR(6) NOT NULL,\n"  +
                         "   idCiclo INTEGER NOT NULL,\n"  +
-                        "   fechaEvaluacion DATE NOT NULL,\n"   +
+                        "   fechaEvaluacion VARCHAR(15) NOT NULL,\n"   +
                         "   nombreEvaluacion VARCHAR(25) NOT NULL,\n"    +
                         "   descripcion VARCHAR(50) NOT NULL,\n"    +
                         "   CONSTRAINT fk_idTipoEvaluacion FOREIGN KEY (idTipoEvaluacion) REFERENCES TipoEvaluacion(idTipoEvaluacion) ON DELETE RESTRICT,\n" +
