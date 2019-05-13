@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MenuPrimeraRevision"></activity>
+        <activity android:name=".SolicitudSegundaRevision_Actualizar"></activity>
+        <activity android:name=".SolicitudSegundaRevision_Eliminar" />
+        <activity android:name=".SolicitudSegundaRevision_Consultar" />
+        <activity android:name=".SolicitudSegundaRevision_Insertar" />
+        <activity android:name=".MenuPrimeraRevision" />
         <activity android:name=".MenuDetallePrimeraRevision" />
         <activity android:name=".MenuSolicitudSegundaRevision" />
         <activity android:name=".MenuCh15013" />
