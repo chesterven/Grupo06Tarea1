@@ -201,6 +201,32 @@
     <string name="Tabla_Primera_Revision">Tabla primera revisión</string>
     <string name="solicitud_segunda_revisión">Solicitud Segunda revisión</string>
 
+    <!-- MENU ZT12002-->
+    <string name="Menu_Tablas_ZT12002">Menu de tablas ZT12002</string>
+    <!-- MENU -->
+    <string name="Menu_Tablas_ZT12002_Parametros">Tabla Parametros</string>
+    <string name="Menu_Tablas_ZT12002_Evaluaciones">Tabla Evaluaciones</string>
+    <string name="Menu_Tablas_ZT12002_MateriaCiclo">Tabla Materias Ciclo</string>
+    <!-- MENU PARAMETROS-->
+    <string name="Menu_ZT12002_Parametros">Parametros</string>
+    <string name="Menu_ZT12002_Parametros_Insertar">INSERTAR</string>
+    <string name="Menu_ZT12002_Parametros_Actualizar">ACTUALIZAR</string>
+    <string name="Menu_ZT12002_Parametros_Consultar">CONSULTAR</string>
+    <string name="Menu_ZT12002_Parametros_Eliminar">ELIMINAR</string>
+    <!-- MENU EVALUACIONES-->
+    <string name="Menu_ZT12002_Evaluaciones">Evaluaciones</string>
+    <string name="Menu_ZT12002_Evaluaciones_Insertar">INSERTAR</string>
+    <string name="Menu_ZT12002_Evaluaciones_Actualizar">ACTUALIZAR</string>
+    <string name="Menu_ZT12002_Evaluaciones_Consultar">CONSULTAR</string>
+    <string name="Menu_ZT12002_Evaluaciones_Eliminar">ELIMINAR</string>
+    <!-- MENU MATERIAS CICLO-->
+    <string name="Menu_ZT12002_MateriaCiclo">Materias Ciclo</string>
+    <string name="Menu_ZT12002_MateriaCiclo_Insertar">INSERTAR</string>
+    <string name="Menu_ZT12002_MateriaCiclo_Actualizar">ACTUALIZAR</string>
+    <string name="Menu_ZT12002_MateriaCiclo_Consultar">CONSULTAR</string>
+    <string name="Menu_ZT12002_MateriaCiclo_Eliminar">ELIMINAR</string>
+
+
 </resources>
 
 
