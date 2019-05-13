@@ -12,11 +12,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import static android.icu.text.MessagePattern.ArgType.SELECT;
+
 
 public class DBHelperInicial {
 
     //ARREGLOS PARA CONSULTAR
-    private static final String [] camposDia = new String [] {"fecha","ciclo"};
+
+
     private final Context context;
     private DatabaseHelper DBHelper;
     private SQLiteDatabase db;
@@ -408,6 +411,7 @@ public class DBHelperInicial {
 //********************Autor: Maria Abigail Gil Cordova********************
 //*******************Carnet: GC16001********************
 
+
     //Metodo para consulta la integridad de la tabla de dia no habil
 public boolean consultarDiaNoHabilIntegridad(String fecha){
     String[] parametro = {fecha};
@@ -421,6 +425,20 @@ public boolean consultarDiaNoHabilIntegridad(String fecha){
     }
 
 }
+    public ArrayList<String> consultarLocales()
+    {
+        ArrayList<String> locales=new ArrayList<String>();
+        String[] columna={"nombreLocal"};
+        Cursor c=db.query("Local",columna,null,null,null,null,null);
+        if(c.moveToFirst())
+        {
+            do{
+                locales.add(c.getString(0));
+            }while(c.moveToNext());
+        }
+        return locales;
+    }
+
 //Metodo que recibe el ciclo en string ejemplo I2019 y regresa su respectivo id al consultar en su tabla Ciclo
     public int  consultarCiclo(String ciclo){
         String[] parametro = {ciclo};
