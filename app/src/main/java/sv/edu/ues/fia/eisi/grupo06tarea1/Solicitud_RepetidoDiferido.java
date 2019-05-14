@@ -9,23 +9,19 @@ public class Solicitud_RepetidoDiferido {
     private int idEvaluacion;
     private int idTipoSolicitud;
     private String motivoSolicitud;
+    private boolean aprobado;
 
     public Solicitud_RepetidoDiferido(){
 
     }
-    public Solicitud_RepetidoDiferido(int idSolicitud, String carnet, int idEvaluacion, int idTipoSolicitud, String motivoSolicitud) {
+
+    public Solicitud_RepetidoDiferido(int idSolicitud, String carnet, int idEvaluacion, int idTipoSolicitud, String motivoSolicitud, boolean aprobado) {
         this.idSolicitud = idSolicitud;
         this.carnet = carnet;
         this.idEvaluacion = idEvaluacion;
         this.idTipoSolicitud = idTipoSolicitud;
         this.motivoSolicitud = motivoSolicitud;
-    }
-
-    public Solicitud_RepetidoDiferido(int idSolicitud, String carnet, int idEvaluacion, int idTipoSolicitud) {
-        this.idSolicitud = idSolicitud;
-        this.carnet = carnet;
-        this.idEvaluacion = idEvaluacion;
-        this.idTipoSolicitud = idTipoSolicitud;
+        this.aprobado = aprobado;
     }
 
     public int getIdSolicitud() {
@@ -66,5 +62,13 @@ public class Solicitud_RepetidoDiferido {
 
     public void setMotivoSolicitud(String motivoSolicitud) {
         this.motivoSolicitud = motivoSolicitud;
+    }
+
+    public boolean isAprobado() {
+        return aprobado;
+    }
+
+    public void setAprobado(boolean aprobado) {
+        this.aprobado = aprobado;
     }
 }

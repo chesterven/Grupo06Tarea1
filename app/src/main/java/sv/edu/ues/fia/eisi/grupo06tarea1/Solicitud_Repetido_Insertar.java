@@ -47,6 +47,7 @@ public class Solicitud_Repetido_Insertar extends AppCompatActivity {
                     evaluaciones.add(DBHelper.consultarEvaluaciones(datos.getInt(0), datos.getString(1), datos.getInt(2)));
 
                 } while (datos.moveToNext());
+                Toast.makeText(this, "Puede seleccionar una evaluacion", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "No tiene Evaluaciones", Toast.LENGTH_SHORT).show();
             }
@@ -66,6 +67,7 @@ public class Solicitud_Repetido_Insertar extends AppCompatActivity {
                 String [] evaluacionPartes = evaluacion.split(" ");
                 solicitud.setCarnet(carnet.getText().toString());
                 solicitud.setIdEvaluacion(Integer.valueOf(evaluacionPartes[0]));
+                solicitud.setAprobado(false);
                 solicitud.setIdTipoSolicitud(1);
                 DBHelper.abrir();
                 mensaje = DBHelper.insertarSolicitudDiferidoRepetido(solicitud);

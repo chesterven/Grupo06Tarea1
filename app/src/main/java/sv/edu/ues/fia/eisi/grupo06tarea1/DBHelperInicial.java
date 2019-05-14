@@ -129,6 +129,7 @@ public class DBHelperInicial {
                         "    idEvaluacion INTEGER NOT NULL,\n" +
                         "    carnet VARCHAR2(7) NOT NULL,\n" +
                         "    motivo VARCHAR(20),\n" +
+                        "    aprobado BOOLEAN,   \n"+
                         "    idTipoSolicitud INTEGER NOT NULL\n" +
                         ");");
 
@@ -415,6 +416,8 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'MIP115',1)");
        db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'SYP115',1)");
        db.execSQL("INSERT INTO EstudianteInscrito VALUES('VD16006',1,'SYP115',1)");
+
+       db.execSQL("DELETE FROM SolicitudDiferidoRepetido");
 
 
         //Autor: Maria Abigail Gil Cordova
@@ -730,6 +733,8 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
             return "No existe ese tipo de solicitud";
         }
     }
+
+    //METODO PARA CONSULTAR EN LA TABLA ESTUDIANTEINSCRITO PARA SABER QUE MATERIA Y EN QUE GRUPO Y CICLO EL ESTUDIANTE ESTA
     public Cursor consultarEstudianteInscrito(String carnet){
         ArrayList<String> inscrito = new ArrayList<String>();
         String[] carnetEstudiante = {carnet};
@@ -737,7 +742,7 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
         Cursor c = db.query("EstudianteInscrito",columnas,"carnet=?",carnetEstudiante,null,null,null);
         return c;
         }
-
+        //METODO PARA CONSULTAR LAS EVALUACIONES LOS PARAMETRO VIENEN DEL CURSOR DE LA CONSULTA ESTUDIANTE INSCRITO
         public String consultarEvaluaciones(int nGrupo, String mat, int ciclo){
         String resultado = "";
         String[] parametro = {String.valueOf(nGrupo),mat,String.valueOf(ciclo)};
@@ -751,7 +756,7 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
             return resultado;
         }
         }
-
+        //METODO INSERTAR SIRVE PARA REPETIDO Y DIFERIDO
         public String insertarSolicitudDiferidoRepetido(Solicitud_RepetidoDiferido solicitud){
             String regInsertados="Registro Insertado Nº= ";
             long contador=0;
@@ -759,6 +764,7 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
             soli.put("idEvaluacion",solicitud.getIdEvaluacion());
             soli.put("carnet", solicitud.getCarnet());
             soli.put("motivo", solicitud.getMotivoSolicitud());
+            soli.put("aprobado", solicitud.isAprobado());
             soli.put("idTipoSolicitud", solicitud.getIdTipoSolicitud());
             contador= db.insert("SolicitudDiferidoRepetido",null,soli);
             if(contador==-1 || contador==0)
@@ -771,6 +777,37 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
             return regInsertados;
 
         }
+
+        //METODO PARA CONSULTAR EN LA TABLA DE SOLICITUDES LAS EVALUACIONES QUE UN ESTUDIANTE A SOLICITADO
+        public Cursor consultarSolicitudesDiferidoRepetido(String carnet){
+            String[] parametros = {carnet};
+            String[] columnas = {"idEvaluacion","motivo","aprobado","idTipoSolicitud"};
+            Cursor c = db.query("SolicitudDiferidoRepetido",columnas,"carnet=?",parametros,null,null,null);
+            return c;
+        }
+
+    public Cursor consultarSolicitudesDifRep(int idEvaluacion, String carnet){
+        String[] parametros = {String.valueOf(idEvaluacion),carnet};
+        String[] columnas = {"motivo","aprobado","idTipoSolicitud"};
+        Cursor c = db.query("SolicitudDiferidoRepetido",columnas,"idEvaluacion=? AND carnet=?",parametros,null,null,null);
+        return c;
+    }
+
+        //METODO PARA CONSULTAR EVALUACIONES POR SU ID
+        public String consultarEvaluacionesSolicitud(int idSolicitud){
+            String resultado="";
+            String[] parametros = {String.valueOf(idSolicitud)};
+            String[] columnas = {"idEvaluacion","codMateria", "nombreEvaluacion"};
+            Cursor c = db.query("Evaluaciones",columnas,"idEvaluacion=?",parametros,null,null,null);
+            if(c.moveToFirst()){
+                resultado =c.getInt(0) +" "+ c.getString(1) +" "+c.getString(2);
+                return resultado;
+            }
+            else{
+                return resultado;
+            }
+        }
+
 
 
 

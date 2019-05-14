@@ -185,6 +185,7 @@
     <string name="Menu_Solicitud_Diferido_Repetido_Titulo">Tabla Solicitud Diferido Repetido</string>
     <string name="Insertar_Registro_Diferido">Insertar Registro Diferido</string>
     <string name="Insertar_Registro_Repetido">Insertar Registro Repetido</string>
+    <string name="Consultar_Evaluaciones">Consultar evaluaciones</string>
 
     <!--Activity Menu Solicitud Evaluacion-->
     <string name="Menu_Solicitud_Evaluacion_Titulo">Tabla Solicitud_Evaluacion (Notas)</string>
