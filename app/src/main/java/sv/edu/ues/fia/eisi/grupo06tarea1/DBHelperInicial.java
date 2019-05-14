@@ -418,6 +418,7 @@ public class DBHelperInicial {
        db.execSQL("INSERT INTO EstudianteInscrito VALUES('VD16006',1,'SYP115',1)");
 
        db.execSQL("DELETE FROM SolicitudDiferidoRepetido");
+       db.execSQL("INSERT INTO SolicitudDiferidoRepetido(idEvaluacion,carnet,motivo,aprobado,idTipoSolicitud) VALUES(3,'VD16006','Enfermedad grave',1,1)");
 
 
         //Autor: Maria Abigail Gil Cordova
@@ -806,6 +807,16 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
             else{
                 return resultado;
             }
+        }
+
+        public String eliminarSolicitudDiferidoRepetido(int idEvalacuion, String carnet){
+            String regAfectados="filas afectadas=";
+            int contador = 0;
+            String[] parametro = {String.valueOf(idEvalacuion),carnet};
+
+                contador+=db.delete("SolicitudDiferidoRepetido","idEvaluacion=? AND carnet=?",parametro);
+                regAfectados+=contador;
+                return regAfectados;
         }
 
 
