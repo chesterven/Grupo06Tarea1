@@ -492,8 +492,45 @@ public Cursor consultarMateriasDocente(String codDocente){
         }
         return regInsertados;
     }
+
+//Metodo para consultar el nombre del local
+
+    public String obtenerLocal(int idLocal)
+    {
+        String [] parametro ={String.valueOf(idLocal)};
+        String [] columna ={"nombreLocal"};
+        String nombre="";
+        Cursor c=db.query("Local",columna,"idLocal=?",parametro,null,null,null,null);
+        if(c.moveToFirst())
+        {
+            do{
+                nombre=c.getString(0);
+                return nombre;
+            }while(c.moveToNext());
+        }
+        return "No se encontro";
+
+    }
+    //Metodo para consultar la segunda revision
+    public SegundaRevision consultarSegundaRevision(int idRevision)
+    {
+        String [] id ={String.valueOf(idRevision)};
+        String []columnas = {"idLocal","fechaSegundaRevision","descripcionSegundaRevision"};
+        Cursor c = db.query("SegundaRevision",columnas,"idSegundaRevision=?",id,null,null,null,null);
+        if(c.moveToFirst())
+        {
+            SegundaRevision segunda = new SegundaRevision();
+            segunda.setIdLocal(c.getInt(0));
+            segunda.setFechaSegundaRevision(c.getString(1));
+            segunda.setDescripcion(c.getString(2));
+            return segunda;
+
+        }
+        return null;
+    }
+
     //Metodo que sirve para consulta si a una evaluacion le pertenece una segunda revision recibiendo asi el id de la evaluacion
-    //retorna true si la evaluacion existe y false si no  existe
+    //retorna un string con los datos d ela evaluacion
 
 public String consultarSegundaRevisionExiste (String idEvaluacion)
 {
