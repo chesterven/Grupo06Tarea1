@@ -43,6 +43,7 @@ public class DBHelperInicial {
     private static final String DROP_TABLE18= "DROP TABLE IF EXISTS SolicitudPrimerRevision ";
     private static final String DROP_TABLE19= "DROP TABLE IF EXISTS SolicitudDiferidoRepetido";
     private static final String DROP_TABLE20= "DROP TABLE IF EXISTS SolicitudDSegundaRevision";
+    private static final String DROP_TABLE21= "DROP TABLE IF EXISTS SegundaRevision";
 
     public DBHelperInicial(Context ctx) {
         this.context = ctx;
@@ -253,6 +254,7 @@ public class DBHelperInicial {
                 db.execSQL(DROP_TABLE18);
                 db.execSQL(DROP_TABLE19);
                 db.execSQL(DROP_TABLE20);
+                db.execSQL(DROP_TABLE21);
                 onCreate(db);
             } catch (Exception e) {
                 //Message.message(context,""+e);
@@ -310,6 +312,7 @@ public class DBHelperInicial {
         db.execSQL("DELETE FROM OPCIONCRUD");
         db.execSQL("DELETE FROM ACCESOUSUARIO");
 
+
         db.execSQL("INSERT INTO USUARIO(IDUSUARIO,NOMUSUARIO,CLAVE) VALUES ('01','ADMIN','01234');");
         db.execSQL("INSERT INTO USUARIO(IDUSUARIO,NOMUSUARIO,CLAVE) VALUES ('02','PROFESOR','56789');");
         db.execSQL("INSERT INTO USUARIO(IDUSUARIO,NOMUSUARIO,CLAVE) VALUES ('03','ESTUDIANTE','ABCDE');");
@@ -365,11 +368,15 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Estudiante VALUES('VD16006','Roberto','Ventura',0);");
         db.execSQL("INSERT INTO Estudiante VALUES('GC16001','Abigail','Gil',1);");
 
+
         db.execSQL("DELETE FROM Docente");
         db.execSQL("INSERT INTO Docente VALUES('GR00001','Cesar Augusto','Gonzalez Rodriguez',1)");
         db.execSQL("INSERT INTO Docente VALUES('MM00001','Boris Alexander','Montano',0)");
         db.execSQL("INSERT INTO Docente VALUES('CG00001','Carlos','García',0)");
         db.execSQL("INSERT INTO Docente VALUES('JI00001','Jorge','Iraheta',0)");
+        db.execSQL("INSERT INTO Docente VALUES('GM00001','Guillermo','Mejia',0)");
+        db.execSQL("INSERT INTO Docente VALUES('RC00001','Rudy','Chicas',0)");
+
 
         db.execSQL("DELETE FROM Local");
         db.execSQL("INSERT INTO Local(nombreLocal) VALUES ('D11');");
@@ -382,6 +389,10 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Materia VALUES ('PDM115','Programacion Dispositivos Moviles');");
         db.execSQL("INSERT INTO Materia VALUES ('SYP115','Sistemas y Procedimientos');");
         db.execSQL("INSERT INTO Materia VALUES ('MIP115','Microprogramacion');");
+        db.execSQL("INSERT INTO Materia VALUES ('IAI115','Introducción a la informatica');");
+        db.execSQL("INSERT INTO Materia VALUES ('HDP115','Herramientas de productividad');");
+        db.execSQL("INSERT INTO Materia VALUES ('MEP115','Metodos probabilisticos');");
+
 
         db.execSQL("DELETE FROM Tipogrupo");
         db.execSQL("INSERT INTO TipoGrupo(nombreGrupo) VALUES ('Teorico');");
@@ -393,6 +404,9 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO MateriaCiclo VALUES (1,'PDM115',1,'GR00001',2);");
         db.execSQL("INSERT INTO MateriaCiclo VALUES (1,'SYP115',1,'CG00001',1);");
         db.execSQL("INSERT INTO MateriaCiclo VALUES (2,'MIP115',1,'JI00001',2);");
+        db.execSQL("INSERT INTO MateriaCiclo VALUES (2,'HDP115',1,'RC00001',1);");
+        db.execSQL("INSERT INTO MateriaCiclo VALUES (1,'MEP115',1,'GM00001',2);");
+
 
         db.execSQL("DELETE FROM EstudianteInscrito");
         db.execSQL("INSERT INTO EstudianteInscrito VALUES('VD16006',1,'MIP115',1)");
@@ -403,9 +417,6 @@ public class DBHelperInicial {
        db.execSQL("INSERT INTO EstudianteInscrito VALUES('VD16006',1,'SYP115',1)");
 
 
-
-
-
         //Autor: Maria Abigail Gil Cordova
         db.execSQL("DELETE FROM Ciclo");
         db.execSQL("DELETE FROM DiasNoHabiles");
@@ -413,6 +424,8 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Ciclo (ciclo) VALUES ('II2019');");
         db.execSQL("INSERT INTO Ciclo (ciclo) VALUES ('I2020');");
         db.execSQL("INSERT INTO Ciclo (ciclo) VALUES ('II2020');");
+        db.execSQL("DELETE FROM SegundaRevision");
+        db.execSQL("INSERT INTO SegundaRevision (idEvaluacion,idLocal, fechaSegundaRevision,descripcionSegundaRevision)VALUES(2,1,'12/05/2019','PDM parcial 1')");
 
         //Autor" Christian Ariel Zelaya Tejada
         db.execSQL("DELETE FROM TipoEvaluacion");
@@ -474,6 +487,38 @@ public Cursor consultarMateriasDocente(String codDocente){
             regInsertados=regInsertados+contador;
         }
         return regInsertados;
+    }
+    //Metodo que sirve para consulta si a una evaluacion le pertenece una segunda revision recibiendo asi el id de la evaluacion
+    //retorna true si la evaluacion existe y false si no  existe
+
+public String consultarSegundaRevisionExiste (String idEvaluacion)
+{
+    String mensaje="";
+    String [] parametro = {idEvaluacion};
+    String []columna = {"IdSegundaRevision","descripcionSegundaRevision"};
+    Cursor c = db.query("SegundaRevision",columna,"idEvaluacion=?",parametro,null,null,null);
+        if(c.moveToFirst())
+        {
+            mensaje=String.valueOf(c.getInt(0))+" "+c.getString(1);
+            return mensaje;
+        }
+        else{
+            return "No existe";
+        }
+
+}
+//Metodo para eliminar la segunda revision
+    public String eliminarSegundaRevision(int idSegunda)
+    {
+        String regAfectados="filas afectadas=";
+        int contador = 0;
+        String[] parametro = {String.valueOf(idSegunda)};
+
+            contador+=db.delete("SegundaRevision","idSegundaRevision=?",parametro);
+
+
+            return "Registro borrado con éxito";
+
     }
 
     //Metodo para consulta la integridad de la tabla de dia no habil

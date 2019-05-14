@@ -44,7 +44,6 @@ Grupo de trabajo: 06-->
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
         android:weightSum="4">
 
         <TextView
@@ -52,16 +51,50 @@ Grupo de trabajo: 06-->
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
-            android:text="@string/SegundaRevisionId" />
+            android:text="@string/CodDocente" />
 
         <EditText
-            android:id="@+id/idEvaluacionSegundaRevisionEli"
+            android:id="@+id/idCodigoDocenteConsultarSegundaCon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
             android:ems="10"
             android:inputType="text"
             />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4"
+        android:gravity="center"
+        android:layout_marginTop="5dp">
+
+        <Button
+            android:onClick="consultarEvaSegundaReviCon"
+            android:text="@string/Consultar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"/>
+
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="@string/SegundasRevisiones" />
+        <Spinner
+            android:id="@+id/spinnerRevisionesDocenteSegundaCon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.5" />
+
     </TableRow>
     <TableRow
         android:layout_width="match_parent"

@@ -36,6 +36,7 @@ public class SegundaRevision_Insertar extends AppCompatActivity {
         evalua= (Spinner) findViewById(R.id.spinnerEvaluacionesDocenteSegunda);
         fecha = (EditText) findViewById(R.id.fechaSegundaRevisionIn);
         descripcion = (EditText) findViewById(R.id.descripcionSegundaRevisionIn);
+        localess.add("Seleccione el local");
         DBHelper = new DBHelperInicial(this);
         DBHelper.abrir();
         Cursor resultado=DBHelper.consultarLocales();
@@ -49,6 +50,9 @@ public class SegundaRevision_Insertar extends AppCompatActivity {
 
        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,android.R.layout.simple_spinner_item,localess);
        locales.setAdapter(adaptador);
+        evaluaciones.add("Seleccione su evaluación");
+        ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, evaluaciones);
+        evalua.setAdapter(adaptadorr);
 
     }
 
@@ -57,44 +61,54 @@ public class SegundaRevision_Insertar extends AppCompatActivity {
         if(!(codDocente.getText().toString().equals(""))) {
             DBHelper = new DBHelperInicial(this);
             DBHelper.abrir();
-            evaluaciones.add("Seleccione su evaluación");
+
             Cursor materiaCiclo = DBHelper.consultarMateriasDocente(codDocente.getText().toString());
 
             if (materiaCiclo.moveToFirst()) {
                 do {
                     evaluaciones.add(DBHelper.consultarEvaluaciones(materiaCiclo.getInt(0), materiaCiclo.getString(1), materiaCiclo.getInt(2)));
                 } while (materiaCiclo.moveToNext());
+
+                Toast.makeText(this,"Evaluaciones encontradas", Toast.LENGTH_SHORT).show();
             }
             ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, evaluaciones);
             evalua.setAdapter(adaptador);
         }
         else
         {
-            Toast.makeText(this,"Ingrese datos en los campos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Ingrese datos en el campo", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void insertarSegundaRevision(View v)
-    {
-        DBHelper = new DBHelperInicial(this);
-        DBHelper.abrir();
-        String mensaje="";
-        String evaluacion="";
-        SegundaRevision segunda=new SegundaRevision();
-        evaluacion=evalua.getSelectedItem().toString();
-        String [] evaluacionParte=evaluacion.split(" ");
-        String local="";
+    public void insertarSegundaRevision(View v) {
 
-        local=locales.getSelectedItem().toString();
-        String [] localParte=local.split(" ");
+        if ((evalua.getSelectedItem().toString().equals("Seleccione su evaluación"))
+                | (locales.getSelectedItem().toString().equals("Seleccione el local"))
+                | (fecha.getText().toString().equals("") | descripcion.getText().toString().equals("")))
+        {
+            Toast.makeText(this,"Ingrese todos los campos", Toast.LENGTH_SHORT).show();
+        } else {
 
-        segunda.setIdEvaluacion(Integer.valueOf(evaluacionParte[0]));
-        segunda.setIdLocal(Integer.valueOf(localParte[0]));
-        segunda.setFechaSegundaRevision(fecha.getText().toString());
-        segunda.setDescripcion(descripcion.getText().toString());
+            DBHelper = new DBHelperInicial(this);
+            DBHelper.abrir();
+            String mensaje = "";
+            String evaluacion = "";
+            SegundaRevision segunda = new SegundaRevision();
+            evaluacion = evalua.getSelectedItem().toString();
+            String[] evaluacionParte = evaluacion.split(" ");
+            String local = "";
 
-        mensaje=DBHelper.insertarSegundaRevision(segunda);
-        Toast.makeText(this,mensaje, Toast.LENGTH_SHORT).show();
+            local = locales.getSelectedItem().toString();
+            String[] localParte = local.split(" ");
+
+            segunda.setIdEvaluacion(Integer.valueOf(evaluacionParte[0]));
+            segunda.setIdLocal(Integer.valueOf(localParte[0]));
+            segunda.setFechaSegundaRevision(fecha.getText().toString());
+            segunda.setDescripcion(descripcion.getText().toString());
+
+            mensaje = DBHelper.insertarSegundaRevision(segunda);
+            Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+        }
     }
     public void activityTestigos()
     {
@@ -107,7 +121,6 @@ public class SegundaRevision_Insertar extends AppCompatActivity {
          codDocente.setText("");
          fecha.setText("");
         descripcion.setText("");
-
 
     }
 }
