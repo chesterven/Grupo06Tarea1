@@ -27,9 +27,6 @@ public class Solicitud_DiferidoRepetido_Eliminar extends AppCompatActivity {
         setContentView(R.layout.activity_solicitud__diferido_repetido__eliminar);
         carnet = (EditText) findViewById(R.id.carnetEliminarSoliDyR);
         evaluaciones = (Spinner) findViewById(R.id.spinnerResultadosDiferidoRepEliminar);
-        arrayEvaluaciones.add("Seleccione evaluacion");
-        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayEvaluaciones);
-        evaluaciones.setAdapter(adaptador);
     }
 
     public void consultarEvaluacionesRepDif(View v){
@@ -45,43 +42,47 @@ public class Solicitud_DiferidoRepetido_Eliminar extends AppCompatActivity {
                 do{
                     if(idEvaluacion.getInt(2)==0) {
                         arrayEvaluaciones.add(DBHelper.consultarEvaluacionesSolicitud(idEvaluacion.getInt(0)));
-                    }else{
-                        Toast.makeText(this, "La evaluacion ya se aprobo", Toast.LENGTH_SHORT).show();
                     }
                 }while(idEvaluacion.moveToNext());
                 }
-            else{
-                Toast.makeText(this,"No hay evaluaciones",Toast.LENGTH_SHORT).show();
+            if(arrayEvaluaciones.size()==0){
+                Toast.makeText(this, "No tiene evaluaciones disponibles o su carnet esta mal escrito", Toast.LENGTH_LONG).show();
+            }else {
+                Toast.makeText(this, "Puede seleccionar una evaluacion", Toast.LENGTH_SHORT).show();
+                arrayEvaluaciones.add(0,"Seleccione una evaluacion");
+                ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayEvaluaciones);
+                evaluaciones.setAdapter(adaptador);
             }
+        }
 
-        }
-        if(arrayEvaluaciones.size()==1){
-            Toast.makeText(this, "Todas las evaluaciones han sido aprobadas", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(this, "Puede seleccionar una evaluacion", Toast.LENGTH_SHORT).show();
-        }
-        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayEvaluaciones);
-        evaluaciones.setAdapter(adaptador);
+
     }
 
     public void eliminarSolicitud(View v){
         String eval;
-        if(!(carnet.getText().toString().equals("") | evaluaciones.getSelectedItem().toString().equals("Seleccione evaluacion"))){
-            DBHelper = new DBHelperInicial(this);
-            DBHelper.abrir();
+        if(!(arrayEvaluaciones.size()==0)){
+            if(!(carnet.getText().toString().equals("") | evaluaciones.getSelectedItem().toString().equals("Seleccione evaluacion"))){
+                DBHelper = new DBHelperInicial(this);
+                DBHelper.abrir();
+                eval = evaluaciones.getSelectedItem().toString();
+                String[] evalPart = eval.split(" ");
 
-            eval = evaluaciones.getSelectedItem().toString();
-            String[] evalPart = eval.split(" ");
-
-            String mensaje = DBHelper.eliminarSolicitudDiferidoRepetido(Integer.valueOf(evalPart[0]),carnet.getText().toString());
-            Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(this, "Seleccione una evaluacion o ingrese un carnet para consultar", Toast.LENGTH_SHORT).show();
+                String mensaje = DBHelper.eliminarSolicitudDiferidoRepetido(Integer.valueOf(evalPart[0]),carnet.getText().toString());
+                Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this, "Seleccione una evaluacion o ingrese un carnet para consultar", Toast.LENGTH_SHORT).show();
+            }
         }
+        else {
+            Toast.makeText(this, "Consulte evaluaciones o no tiene evaluaciones", Toast.LENGTH_SHORT).show();
+        }
+
 
     }
 
     public void limpiarTexto(View v){
         carnet.setText("");
+        evaluaciones.setAdapter(null);
+        arrayEvaluaciones.clear();
     }
 }

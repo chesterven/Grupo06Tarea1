@@ -33,30 +33,45 @@ public class Solicitud_Repetido_Insertar extends AppCompatActivity {
     }
 
     public void consultarEvaluacuonesRepetido(View v){
+        String eval="";
         if(carnet.getText().toString().equals(""))
         {
             Toast.makeText(this,"Ingrese su carnet",Toast.LENGTH_SHORT).show();
         }
         else {
-            evaluaciones.add("Seleccione evaluacion");
+
             DBHelper = new DBHelperInicial(this);
             DBHelper.abrir();
             datos = DBHelper.consultarEstudianteInscrito(carnet.getText().toString());
-            if (datos.moveToFirst()) {
+            if(datos.moveToFirst()) {
                 do {
-                    evaluaciones.add(DBHelper.consultarEvaluaciones(datos.getInt(0), datos.getString(1), datos.getInt(2)));
+                    eval = DBHelper.consultarEvaluaciones(datos.getInt(0), datos.getString(1), datos.getInt(2));
+                    if(!(eval.equals(""))){
+                        evaluaciones.add(eval);
+                    }
 
                 } while (datos.moveToNext());
-                Toast.makeText(this, "Puede seleccionar una evaluacion", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "No tiene Evaluaciones", Toast.LENGTH_SHORT).show();
+                if(evaluaciones.size()==0){
+                    Toast.makeText(this,"No hay evaluaciones disponibles",Toast.LENGTH_LONG).show();
+                }
+                else{
+                    evaluaciones.add(0,"Seleccione evaluacion");
+                    ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,android.R.layout.simple_spinner_item,evaluaciones);
+                    spinnerResultado.setAdapter(adaptador);
+                    Toast.makeText(this, "Puede seleccionar una evaluacion", Toast.LENGTH_SHORT).show();
+                }
             }
-            ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, evaluaciones);
-            spinnerResultado.setAdapter(adaptador);
+            else{
+                Toast.makeText(this,"No esta inscrito en ninguna materia o no existe ese carnet",Toast.LENGTH_LONG).show();
+            }
+
+
         }
         }
 
         public void insertarSolicitudRepetido(View v){
+
+        if(!(evaluaciones.size()==0)){
             if(spinnerResultado.getSelectedItem().toString().equals("Seleccione evaluacion")){
                 Toast.makeText(this,"Seleccione una evaluacion",Toast.LENGTH_SHORT).show();
             }else{
@@ -74,10 +89,16 @@ public class Solicitud_Repetido_Insertar extends AppCompatActivity {
 
                 Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
             }
+        }else{
+            Toast.makeText(this,"Tiene que consultar evaluaciones",Toast.LENGTH_SHORT).show();
+        }
+
         }
 
     public void limpiarTexto(View v){
         carnet.setText("");
+        spinnerResultado.setAdapter(null);
+        evaluaciones.clear();
 
     }
 }

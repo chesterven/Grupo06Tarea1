@@ -30,9 +30,6 @@ public class Solicitud_DiferidoRepetido_Consultar extends AppCompatActivity {
         motivo = (EditText) findViewById(R.id.MotivoSoliDyRMostrar) ;
         aceptado = (EditText) findViewById(R.id.AceptadaSoliDyRMostrar); //Para agregar un text dependiendo del estado.
         evaluaciones = (Spinner) findViewById(R.id.spinnerResultadosDiferidoRepConsultar);
-        arrayEvaluaciones.add("Seleccione evaluacion");
-        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayEvaluaciones);
-        evaluaciones.setAdapter(adaptador);
     }
 
     public void consultarEvaluacionesRepDif(View v){
@@ -48,49 +45,61 @@ public class Solicitud_DiferidoRepetido_Consultar extends AppCompatActivity {
                 do{
                     arrayEvaluaciones.add(DBHelper.consultarEvaluacionesSolicitud(idEvaluacion.getInt(0)));
                 }while(idEvaluacion.moveToNext());
-                Toast.makeText(this, "Puede seleccionar una evaluacion", Toast.LENGTH_SHORT).show();
+                if(!(arrayEvaluaciones.size()==0)){
+                    arrayEvaluaciones.add(0,"Seleccione evaluacion");
+                    ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayEvaluaciones);
+                    evaluaciones.setAdapter(adaptador);
+                }
             }else{
-                Toast.makeText(this,"No hay evaluaciones",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"No hay revisiones",Toast.LENGTH_SHORT).show();
             }
 
         }
-        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayEvaluaciones);
-        evaluaciones.setAdapter(adaptador);
     }
 
     public void consultarTipoSolicitud(View v){
-        if(carnetSoli.getText().toString().equals("") | evaluaciones.getSelectedItem().toString().equals("Seleccione evaluacion")){
-            Toast.makeText(this,"Llene los campos o seleccione evaluacion",Toast.LENGTH_SHORT).show();
-        }
-        else{
-            String eval = evaluaciones.getSelectedItem().toString();
-            String[] evalPart = eval.split(" ");
-            int idEval = Integer.valueOf(evalPart[0]);
-           Solicitud = DBHelper.consultarSolicitudesDifRep(idEval, carnetSoli.getText().toString());
-           if(Solicitud.moveToFirst()) {
-               motivo.setText(Solicitud.getString(0));
-               if (Solicitud.getInt(1) == 0) {
-                   aceptado.setText("No aprobada");
-               } else {
-                   aceptado.setText("Aprobada");
-               }
-               if(Solicitud.getInt(2)==1){
-                   tipoSoli.setText("Repetido");
-               }else{
-                   tipoSoli.setText("Diferido");
-               }
+        if(!(arrayEvaluaciones.size()==0)){
 
-           }else{
-               Toast.makeText(this,"No encontrado",Toast.LENGTH_SHORT).show();
-           }
+            if(carnetSoli.getText().toString().equals("") | evaluaciones.getSelectedItem().toString().equals("Seleccione evaluacion")){
+                Toast.makeText(this,"Seleccione una evaluacion",Toast.LENGTH_SHORT).show();
+            }
+            else{
+                String eval = evaluaciones.getSelectedItem().toString();
+                String[] evalPart = eval.split(" ");
+                int idEval = Integer.valueOf(evalPart[0]);
+                Solicitud = DBHelper.consultarSolicitudesDifRep(idEval, carnetSoli.getText().toString());
+                if(Solicitud.moveToFirst()) {
+                    motivo.setText(Solicitud.getString(0));
+                    if (Solicitud.getInt(1) == 0) {
+                        aceptado.setText("No aprobada");
+                    } else {
+                        aceptado.setText("Aprobada");
+                    }
+                    if(Solicitud.getInt(2)==1){
+                        tipoSoli.setText("Repetido");
+                    }else{
+                        tipoSoli.setText("Diferido");
+                    }
+
+                }else{
+                    Toast.makeText(this,"No encontrado",Toast.LENGTH_SHORT).show();
+                }
+            }
+        }else{
+            Toast.makeText(this,"Tiene que consultar evaluaciones",Toast.LENGTH_SHORT).show();
         }
+
+
     }
 
 
     public void limpiarTexto(View v){
         carnetSoli.setText("");
-        evaluacionSoli.setText("");
         tipoSoli.setText("");
         aceptado.setText("");
+        motivo.setText("");
+        arrayEvaluaciones.clear();
+        evaluaciones.setAdapter(null);
+
     }
 }

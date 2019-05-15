@@ -368,6 +368,8 @@ public class DBHelperInicial {
         db.execSQL("DELETE FROM Estudiante");
         db.execSQL("INSERT INTO Estudiante VALUES('VD16006','Roberto','Ventura',0);");
         db.execSQL("INSERT INTO Estudiante VALUES('GC16001','Abigail','Gil',1);");
+        db.execSQL("INSERT INTO Estudiante VALUES('XX16001','Fernando','Xerox',0);");
+
 
 
         db.execSQL("DELETE FROM Docente");
@@ -418,7 +420,7 @@ public class DBHelperInicial {
        db.execSQL("INSERT INTO EstudianteInscrito VALUES('VD16006',1,'SYP115',1)");
 
        db.execSQL("DELETE FROM SolicitudDiferidoRepetido");
-       db.execSQL("INSERT INTO SolicitudDiferidoRepetido(idEvaluacion,carnet,motivo,aprobado,idTipoSolicitud) VALUES(3,'VD16006','Enfermedad grave',1,1)");
+       db.execSQL("INSERT INTO SolicitudDiferidoRepetido(idEvaluacion,carnet,motivo,aprobado,idTipoSolicitud) VALUES(3,'VD16006','Enfermedad grave',1,2)");
 
 
         //Autor: Maria Abigail Gil Cordova

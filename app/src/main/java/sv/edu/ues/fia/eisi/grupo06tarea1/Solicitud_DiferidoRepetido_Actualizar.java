@@ -32,9 +32,6 @@ public class Solicitud_DiferidoRepetido_Actualizar extends AppCompatActivity {
         evaluaciones = (Spinner) findViewById(R.id.spinnerResultadosDiferidoRepActualizar);
         motivoSoli = (EditText) findViewById(R.id.motivoSoliDyFIn);
         aprobado = (CheckBox) findViewById(R.id.checkBoxAprobadoSoliDyRIn);
-        arrayEvaluaciones.add("Seleccione evaluacion");
-        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayEvaluaciones);
-        evaluaciones.setAdapter(adaptador);
     }
 
     public void consultarTipoSolicitud(View v){
@@ -49,41 +46,53 @@ public class Solicitud_DiferidoRepetido_Actualizar extends AppCompatActivity {
                 do{
                     arrayEvaluaciones.add(DBHelper.consultarEvaluacionesSolicitud(idEvaluacion.getInt(0)));
                 }while(idEvaluacion.moveToNext());
-                Toast.makeText(this, "Puede seleccionar una evaluacion", Toast.LENGTH_SHORT).show();
+                if(!(arrayEvaluaciones.size()==0)){
+                    arrayEvaluaciones.add(0,"Seleccione evaluacion");
+                    ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayEvaluaciones);
+                    evaluaciones.setAdapter(adaptador);
+                }
             }else{
-                Toast.makeText(this,"No hay evaluaciones",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"No hay revisiones",Toast.LENGTH_SHORT).show();
             }
 
         }
-        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayEvaluaciones);
-        evaluaciones.setAdapter(adaptador);
+
     }
 
     public void actualizarSolicitud(View v){
         String mensaje="";
-        if(!(carnetSoli.getText().toString().equals("") | evaluaciones.getSelectedItem().toString().equals("Seleccione evaluacion") |
-                motivoSoli.getText().toString().equals(""))){
-            DBHelper = new DBHelperInicial(this);
-            DBHelper.abrir();
-            solicitud.setCarnet(carnetSoli.getText().toString());
-            String eval = evaluaciones.getSelectedItem().toString();
-            String[]evalPart = eval.split(" ");
-            solicitud.setIdEvaluacion(Integer.valueOf(evalPart[0]));
-            solicitud.setMotivoSolicitud(motivoSoli.getText().toString());
-            if(aprobado.isChecked()){
-                solicitud.setAprobado(true);
+        if(!(arrayEvaluaciones.size()==0)){
+            if(!(carnetSoli.getText().toString().equals("") | evaluaciones.getSelectedItem().toString().equals("Seleccione evaluacion"))){
+                DBHelper = new DBHelperInicial(this);
+                DBHelper.abrir();
+                solicitud.setCarnet(carnetSoli.getText().toString());
+                String eval = evaluaciones.getSelectedItem().toString();
+                String[]evalPart = eval.split(" ");
+                solicitud.setIdEvaluacion(Integer.valueOf(evalPart[0]));
+                solicitud.setMotivoSolicitud(motivoSoli.getText().toString());
+                if(aprobado.isChecked()){
+                    solicitud.setAprobado(true);
+                }
+                else{
+                    solicitud.setAprobado(false);
+                }
+                mensaje = DBHelper.actualizarSolicitudDiferidoRepetido(solicitud);
+                Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
             }
             else{
-                solicitud.setAprobado(false);
+                Toast.makeText(this,"Llene los campos necesarios",Toast.LENGTH_SHORT).show();
             }
-            mensaje = DBHelper.actualizarSolicitudDiferidoRepetido(solicitud);
-            Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this,"Consulte evaluciones",Toast.LENGTH_SHORT).show();
         }
+
     }
 
     public void limpiarTexto(View v){
         carnetSoli.setText("");
         motivoSoli.setText("");
-        aprobado.setSelected(false);
+        aprobado.setChecked(false);
+        arrayEvaluaciones.clear();
+        evaluaciones.setAdapter(null);
     }
 }
