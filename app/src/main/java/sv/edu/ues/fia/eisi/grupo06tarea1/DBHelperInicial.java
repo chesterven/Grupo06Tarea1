@@ -544,7 +544,7 @@ public String consultarSegundaRevisionExiste (String idEvaluacion)
             return mensaje;
         }
         else{
-            return "No existe";
+            return "";
         }
 
 }
@@ -792,6 +792,7 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
         Cursor c = db.query("EstudianteInscrito",columnas,"carnet=?",carnetEstudiante,null,null,null);
         return c;
         }
+
         //METODO PARA CONSULTAR LAS EVALUACIONES LOS PARAMETRO VIENEN DEL CURSOR DE LA CONSULTA ESTUDIANTE INSCRITO
         public String consultarEvaluaciones(int nGrupo, String mat, int ciclo){
         String resultado = "";
@@ -803,7 +804,7 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
             return resultado;
         }
         else{
-            return resultado;
+            return resultado="";
         }
         }
         //METODO INSERTAR SIRVE PARA REPETIDO Y DIFERIDO

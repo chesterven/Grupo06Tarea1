@@ -100,7 +100,7 @@ Grupo de trabajo: 06-->
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="4"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="10dp">
 
         <TextView
             android:id="@+id/textView12"

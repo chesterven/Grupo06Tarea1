@@ -25,6 +25,7 @@ public class SegundaRevision_Consultar extends AppCompatActivity {
     EditText descripcion;
     String evaluaciones="";
     ArrayList<String> listaRevisiones = new ArrayList<>();
+    String resultRevisiones="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class SegundaRevision_Consultar extends AppCompatActivity {
     {
         String [] parteEvaluacion;
         String idEvaluacion="";
-        if(!(codDocente.getText().toString().equals(""))) {
+        if(!(codDocente.getText().toString().equals(""))  ) {
             DBHelper = new DBHelperInicial(this);
             DBHelper.abrir();
             Cursor resul = DBHelper.consultarMateriasDocente(codDocente.getText().toString());
@@ -53,13 +54,28 @@ public class SegundaRevision_Consultar extends AppCompatActivity {
             {
                 do {
                     evaluaciones = DBHelper.consultarEvaluaciones(resul.getInt(0), resul.getString(1), resul.getInt(2));
-                    parteEvaluacion = evaluaciones.split(" ");
-                    idEvaluacion=parteEvaluacion[0];
-                    listaRevisiones.add(DBHelper.consultarSegundaRevisionExiste(idEvaluacion));
+
+                        parteEvaluacion = evaluaciones.split(" ");
+                        idEvaluacion = parteEvaluacion[0];
+
+                        resultRevisiones=(DBHelper.consultarSegundaRevisionExiste(idEvaluacion));
+                        if(resultRevisiones.equals(""))
+                        {
+                            Toast.makeText(this,"No hay segundas revisiones para el docente", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            listaRevisiones.add(resultRevisiones);
+
+                            Toast.makeText(this, "Revisiones encontrados", Toast.LENGTH_SHORT).show();
+                        }
 
                 }while(resul.moveToNext());
-                Toast.makeText(this,"Revisiones encontrados", Toast.LENGTH_SHORT).show();
+
             }
+            else{
+                Toast.makeText(this,"No existe el código de ese docente", Toast.LENGTH_SHORT).show();
+            }
+
 
             ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaRevisiones);
             revisiones.setAdapter(adaptadorr);
@@ -100,6 +116,15 @@ public class SegundaRevision_Consultar extends AppCompatActivity {
             }
             DBHelper.cerrar();
         }
+    }
+    public void limpiarTexto(View v)
+    {
+
+        codDocente.setText("");
+        fecha.setText("");
+        descripcion.setText("");
+        local.setText("");
+
     }
 
 
