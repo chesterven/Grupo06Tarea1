@@ -22,6 +22,7 @@ public class SegundaRevision_Eliminar extends AppCompatActivity {
     Spinner revisiones;
     String evaluaciones="";
     ArrayList<String> revisionesLista=new ArrayList<>();
+    String resultRevisiones="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,17 +30,15 @@ public class SegundaRevision_Eliminar extends AppCompatActivity {
         setContentView(R.layout.activity_segunda_revision__eliminar);
         revisiones = (Spinner) findViewById(R.id.spinnerRevisionesDocenteSegundaCon);
         codDocente = (EditText) findViewById(R.id.idCodigoDocenteConsultarSegundaCon);
-        revisionesLista.add("Seleccione su revision");
-        ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, revisionesLista);
-        revisiones.setAdapter(adaptadorr);
+
 
     }
-    public  void consultarEvaSegundaReviCon (View v)
+    public  void consultarEvaSegundaReviEli (View v)
     {
 
         String [] parteEvaluacion;
         String idEvaluacion="";
-        if(!(codDocente.getText().toString().equals(""))) {
+        if(!(codDocente.getText().toString().equals(""))  ) {
             DBHelper = new DBHelperInicial(this);
             DBHelper.abrir();
             Cursor resul = DBHelper.consultarMateriasDocente(codDocente.getText().toString());
@@ -47,45 +46,68 @@ public class SegundaRevision_Eliminar extends AppCompatActivity {
             {
                 do {
                     evaluaciones = DBHelper.consultarEvaluaciones(resul.getInt(0), resul.getString(1), resul.getInt(2));
+
                     parteEvaluacion = evaluaciones.split(" ");
-                    idEvaluacion=parteEvaluacion[0];
-                    revisionesLista.add(DBHelper.consultarSegundaRevisionExiste(idEvaluacion));
+                    idEvaluacion = parteEvaluacion[0];
+
+                    resultRevisiones=(DBHelper.consultarSegundaRevisionExiste(idEvaluacion));
+                    if(resultRevisiones.equals(""))
+                    {
+                        Toast.makeText(this,"No hay segundas revisiones para el docente", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        revisionesLista.add("Seleccione su revision");
+                        ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, revisionesLista);
+                        revisiones.setAdapter(adaptadorr);
+                       revisionesLista.add(resultRevisiones);
+
+                        Toast.makeText(this, "Revisiones encontrados", Toast.LENGTH_SHORT).show();
+                    }
 
                 }while(resul.moveToNext());
-                Toast.makeText(this,"Revisiones encontrados", Toast.LENGTH_SHORT).show();
+
             }
 
-           ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, revisionesLista);
-            revisiones.setAdapter(adaptadorr);
+            else{
+                Toast.makeText(this,"No existe el código de ese docente", Toast.LENGTH_SHORT).show();
+            }
 
         }
         else
         {
             Toast.makeText(this,"Ingrese datos en los campos", Toast.LENGTH_SHORT).show();
         }
+
     }
     public void eliminarSegundaRevision(View v)
     {
-        if(revisiones.getSelectedItem().toString().equals("Seleccione su revision"))
-        {
-            Toast.makeText(this,"Debe seleccionar la revision", Toast.LENGTH_SHORT).show();
+        if(!(revisionesLista.size()==0)) {
+
+
+            if (revisiones.getSelectedItem().toString().equals("Seleccione su revision") )
+            {
+                Toast.makeText(this, "Debe seleccionar la revision", Toast.LENGTH_SHORT).show();
+            } else {
+                String revision = "";
+                DBHelper = new DBHelperInicial(this);
+                DBHelper.abrir();
+                String mensaje = "";
+                revision = revisiones.getSelectedItem().toString();
+                String[] revisionParte = revision.split(" ");
+
+                mensaje = DBHelper.eliminarSegundaRevision(Integer.valueOf(revisionParte[0]));
+                Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+                DBHelper.cerrar();
+            }
         }
         else {
-            DBHelper = new DBHelperInicial(this);
-            DBHelper.abrir();
-            String revision = "";
-            String mensaje = "";
-            revision = revisiones.getSelectedItem().toString();
-            String[] revisionParte = revision.split(" ");
-
-            mensaje = DBHelper.eliminarSegundaRevision(Integer.valueOf(revisionParte[0]));
-            Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
-            DBHelper.cerrar();
+            Toast.makeText(this, "No ha consultado las revisiones", Toast.LENGTH_SHORT).show();
         }
     }
     public void limpiarTexto(View v) {
         codDocente.setText("");
-
+        revisiones.setAdapter(null);
+        revisionesLista.clear();
 
     }
 }

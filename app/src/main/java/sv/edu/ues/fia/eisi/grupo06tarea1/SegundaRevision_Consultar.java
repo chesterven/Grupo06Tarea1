@@ -36,11 +36,7 @@ public class SegundaRevision_Consultar extends AppCompatActivity {
         fecha=(EditText)findViewById(R.id.fechaMostrarSegundaRevision);
         descripcion=(EditText)findViewById(R.id.descripcionMostrarSegundaRevision);
         revisiones = (Spinner)findViewById(R.id.spinnerRevisionesDocenteSegundaCon);
-        DBHelper = new DBHelperInicial(this);
-        DBHelper.abrir();
-        listaRevisiones.add("Seleccione su evaluación");
-        ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaRevisiones);
-        revisiones.setAdapter(adaptadorr);
+
     }
     public void consultarEvaSegundaReviCon(View v)
     {
@@ -55,30 +51,30 @@ public class SegundaRevision_Consultar extends AppCompatActivity {
                 do {
                     evaluaciones = DBHelper.consultarEvaluaciones(resul.getInt(0), resul.getString(1), resul.getInt(2));
 
-                        parteEvaluacion = evaluaciones.split(" ");
-                        idEvaluacion = parteEvaluacion[0];
+                    parteEvaluacion = evaluaciones.split(" ");
+                    idEvaluacion = parteEvaluacion[0];
 
-                        resultRevisiones=(DBHelper.consultarSegundaRevisionExiste(idEvaluacion));
-                        if(resultRevisiones.equals(""))
-                        {
-                            Toast.makeText(this,"No hay segundas revisiones para el docente", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            listaRevisiones.add(resultRevisiones);
+                    resultRevisiones=(DBHelper.consultarSegundaRevisionExiste(idEvaluacion));
+                    if(resultRevisiones.equals(""))
+                    {
+                        Toast.makeText(this,"No hay segundas revisiones para el docente", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        listaRevisiones.add("Seleccione su revision");
+                        ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaRevisiones);
+                        revisiones.setAdapter(adaptadorr);
+                        listaRevisiones.add(resultRevisiones);
 
-                            Toast.makeText(this, "Revisiones encontrados", Toast.LENGTH_SHORT).show();
-                        }
+                        Toast.makeText(this, "Revisiones encontrados", Toast.LENGTH_SHORT).show();
+                    }
 
                 }while(resul.moveToNext());
 
             }
+
             else{
                 Toast.makeText(this,"No existe el código de ese docente", Toast.LENGTH_SHORT).show();
             }
-
-
-            ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaRevisiones);
-            revisiones.setAdapter(adaptadorr);
 
         }
         else
@@ -86,10 +82,11 @@ public class SegundaRevision_Consultar extends AppCompatActivity {
             Toast.makeText(this,"Ingrese datos en los campos", Toast.LENGTH_SHORT).show();
         }
 
+
     }
     public void consultarSegundaRevision(View view)
     {
-        if(revisiones.getSelectedItem().toString().equals("Seleccione su evaluación"))
+        if(revisiones.getSelectedItem().toString().equals("Seleccione su revisión"))
         {
             Toast.makeText(this,"Debe seleccionar una evaluacion", Toast.LENGTH_SHORT).show();
         }
@@ -124,6 +121,8 @@ public class SegundaRevision_Consultar extends AppCompatActivity {
         fecha.setText("");
         descripcion.setText("");
         local.setText("");
+        listaRevisiones.clear();
+        revisiones.setAdapter(null);
 
     }
 
