@@ -4,6 +4,7 @@ Carnet: GC16001
 Grupo de trabajo: 06-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -50,10 +51,10 @@ Grupo de trabajo: 06-->
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
-            android:text="@string/EvaluacionId" />
+            android:text="@string/CodDocente" />
 
         <EditText
-            android:id="@+id/idEvaluacionSegundaRevision"
+            android:id="@+id/idCodigoDocenteActualizarSegunda"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
@@ -61,21 +62,35 @@ Grupo de trabajo: 06-->
             android:inputType="text"
             />
     </TableRow>
-
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="4"
+        android:gravity="center"
         android:layout_marginTop="5dp">
 
+        <Button
+            android:onClick="consultarEvaSegundaReviAct"
+            android:text="@string/Consultar_Evaluaciones"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"/>
+
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4"
+        android:layout_marginTop="8dp">
+
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/textView16"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
-            android:text="@string/Local" />
+            android:text="@string/Evaluaciones" />
         <Spinner
-            android:id="@+id/spinnerLocales"
+            android:id="@+id/spinnerEvaluacionesDocenteSegundaAct"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5" />
@@ -84,6 +99,26 @@ Grupo de trabajo: 06-->
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:weightSum="4"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="@string/Local" />
+        <Spinner
+            android:id="@+id/spinnerLocalesAct"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.5" />
+
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="7dp"
         android:weightSum="4">
 
         <TextView
@@ -144,6 +179,7 @@ Grupo de trabajo: 06-->
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"/>
+
     </TableRow>
 
 </TableLayout>

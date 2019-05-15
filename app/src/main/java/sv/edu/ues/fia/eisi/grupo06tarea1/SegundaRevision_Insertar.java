@@ -73,6 +73,7 @@ public class SegundaRevision_Insertar extends AppCompatActivity {
             }
             ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, evaluaciones);
             evalua.setAdapter(adaptador);
+
         }
         else
         {
