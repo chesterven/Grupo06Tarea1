@@ -27,6 +27,7 @@ public class SegundaRevision_Insertar extends AppCompatActivity {
     EditText descripcion;
     ArrayList<String> localess=new ArrayList<>();
     ArrayList<String> evaluaciones=new ArrayList<>();
+    String resultadosEvaluaciones="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,9 +51,6 @@ public class SegundaRevision_Insertar extends AppCompatActivity {
 
        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,android.R.layout.simple_spinner_item,localess);
        locales.setAdapter(adaptador);
-        evaluaciones.add("Seleccione su evaluación");
-        ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, evaluaciones);
-        evalua.setAdapter(adaptadorr);
 
     }
 
@@ -66,18 +64,41 @@ public class SegundaRevision_Insertar extends AppCompatActivity {
 
             if (materiaCiclo.moveToFirst()) {
                 do {
-                    evaluaciones.add(DBHelper.consultarEvaluaciones(materiaCiclo.getInt(0), materiaCiclo.getString(1), materiaCiclo.getInt(2)));
+                    resultadosEvaluaciones=DBHelper.consultarEvaluaciones(materiaCiclo.getInt(0), materiaCiclo.getString(1), materiaCiclo.getInt(2));
+
+                    if(resultadosEvaluaciones.equals(""))
+                    {
+
+                    }
+                    else{
+
+                        evaluaciones.add(resultadosEvaluaciones);
+
+                    }
                 } while (materiaCiclo.moveToNext());
 
-                Toast.makeText(this,"Evaluaciones encontradas", Toast.LENGTH_SHORT).show();
+                if(evaluaciones.size()==0)
+                {
+                    Toast.makeText(this, "No hay evaluaciones para ese docente", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    evaluaciones.add(0,"Seleccione su evaluación");
+                    ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, evaluaciones);
+                    evalua.setAdapter(adaptadorr);
+                    Toast.makeText(this, "Evaluaciones encontradas", Toast.LENGTH_SHORT).show();
+                }
+                }
+                else{
+                Toast.makeText(this, "No existe el código del docente", Toast.LENGTH_SHORT).show();
             }
-            ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, evaluaciones);
-            evalua.setAdapter(adaptador);
 
-        }
+            }
+
+
         else
         {
-            Toast.makeText(this,"Ingrese datos en el campo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Ingrese el código del docente", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -122,6 +143,9 @@ public class SegundaRevision_Insertar extends AppCompatActivity {
          codDocente.setText("");
          fecha.setText("");
         descripcion.setText("");
+        evalua.setAdapter(null);
+        evaluaciones.clear();
+        locales.setSelection(0);
 
     }
 }

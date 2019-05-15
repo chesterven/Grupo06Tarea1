@@ -54,6 +54,7 @@ public class SegundaRevision_Actualizar extends AppCompatActivity {
     }
     public void consultarEvaSegundaReviAct(View v) {
 
+
         String [] parteEvaluacion;
         String idEvaluacion="";
         if(!(codDocente.getText().toString().equals(""))  ) {
@@ -71,19 +72,28 @@ public class SegundaRevision_Actualizar extends AppCompatActivity {
                     resultRevisiones=(DBHelper.consultarSegundaRevisionExiste(idEvaluacion));
                     if(resultRevisiones.equals(""))
                     {
-                        Toast.makeText(this,"No hay segundas revisiones para el docente", Toast.LENGTH_SHORT).show();
+
                     }
                     else {
-                        listaRevisiones.add("Seleccione su revision");
-                        ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaRevisiones);
-                        revisiones.setAdapter(adaptadorr);
+
                         listaRevisiones.add(resultRevisiones);
 
-                        Toast.makeText(this, "Revisiones encontrados", Toast.LENGTH_SHORT).show();
+
                     }
 
                 }while(resul.moveToNext());
 
+                if(listaRevisiones.size()==0){
+
+                    Toast.makeText(this,"No hay segundas revisiones para el docente", Toast.LENGTH_SHORT).show();
+
+                }
+                else {
+                    listaRevisiones.add(0, "Seleccione su revision");
+                    ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaRevisiones);
+                    revisiones.setAdapter(adaptadorr);
+                    Toast.makeText(this, "Revisiones encontrados", Toast.LENGTH_SHORT).show();
+                }
             }
 
             else{
@@ -93,43 +103,46 @@ public class SegundaRevision_Actualizar extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(this,"Ingrese datos en los campos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Ingrese el código del docente", Toast.LENGTH_SHORT).show();
         }
-
 
     }
     public void actualizarSegundaRevision(View v)
     {
-        if(revisiones.getSelectedItem().toString().equals("Seleccione su revisión")|
-                locales.getSelectedItem().toString().equals("Seleccione el local")|
-                fecha.getText().toString().equals("") |
-                descripcion.getText().toString().equals(""))
-        {
-            Toast.makeText(this,"Los campos son obligatorios", Toast.LENGTH_SHORT).show();
+        if(!(listaRevisiones.size()==0)) {
+            if (revisiones.getSelectedItem().toString().equals("Seleccione su revisión") |
+                    locales.getSelectedItem().toString().equals("Seleccione el local") |
+                    fecha.getText().toString().equals("") |
+                    descripcion.getText().toString().equals("")) {
+                Toast.makeText(this, "Los campos son obligatorios", Toast.LENGTH_SHORT).show();
+            } else {
+                DBHelper = new DBHelperInicial(this);
+                DBHelper.abrir();
+                SegundaRevision segunda = new SegundaRevision();
+                String mensaje = "";
+                String revision = "";
+                String local = "";
+
+                revision = revisiones.getSelectedItem().toString();
+                String[] revisionParte = revision.split(" ");
+
+                local = locales.getSelectedItem().toString();
+                String[] localParte = local.split(" ");
+
+                segunda.setIdLocal(Integer.valueOf(localParte[0]));
+
+                segunda.setId_Segunda_Revision(Integer.valueOf(revisionParte[0]));
+                segunda.setDescripcion(descripcion.getText().toString());
+                segunda.setFechaSegundaRevision(fecha.getText().toString());
+
+                mensaje = DBHelper.actualizarSegundaRevision(segunda);
+                Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+            }
         }
         else {
-            DBHelper = new DBHelperInicial(this);
-            DBHelper.abrir();
-            SegundaRevision segunda = new SegundaRevision();
-            String mensaje = "";
-            String revision = "";
-            String local = "";
-
-            revision = revisiones.getSelectedItem().toString();
-            String[] revisionParte = revision.split(" ");
-
-            local = locales.getSelectedItem().toString();
-            String[] localParte = local.split(" ");
-
-            segunda.setIdLocal(Integer.valueOf(localParte[0]));
-
-            segunda.setId_Segunda_Revision(Integer.valueOf(revisionParte[0]));
-            segunda.setDescripcion(descripcion.getText().toString());
-            segunda.setFechaSegundaRevision(fecha.getText().toString());
-
-            mensaje = DBHelper.actualizarSegundaRevision(segunda);
-            Toast.makeText(this,mensaje, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No ha consultado las revisiones", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     public void limpiarTexto(View v)
@@ -138,6 +151,9 @@ public class SegundaRevision_Actualizar extends AppCompatActivity {
         codDocente.setText("");
         fecha.setText("");
         descripcion.setText("");
+        revisiones.setAdapter(null);
+        locales.setSelection(0);
+
 
     }
 }

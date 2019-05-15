@@ -53,19 +53,25 @@ public class SegundaRevision_Eliminar extends AppCompatActivity {
                     resultRevisiones=(DBHelper.consultarSegundaRevisionExiste(idEvaluacion));
                     if(resultRevisiones.equals(""))
                     {
-                        Toast.makeText(this,"No hay segundas revisiones para el docente", Toast.LENGTH_SHORT).show();
+
                     }
                     else {
-                        revisionesLista.add("Seleccione su revision");
-                        ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, revisionesLista);
-                        revisiones.setAdapter(adaptadorr);
+
                        revisionesLista.add(resultRevisiones);
 
-                        Toast.makeText(this, "Revisiones encontrados", Toast.LENGTH_SHORT).show();
+
                     }
 
                 }while(resul.moveToNext());
+                if(revisionesLista.size()==0)
+                {
+                    Toast.makeText(this,"No hay segundas revisiones para el docente", Toast.LENGTH_SHORT).show();
+                }
 
+                revisionesLista.add(0,"Seleccione su revision");
+                ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, revisionesLista);
+                revisiones.setAdapter(adaptadorr);
+                Toast.makeText(this, "Revisiones encontrados", Toast.LENGTH_SHORT).show();
             }
 
             else{
@@ -75,7 +81,7 @@ public class SegundaRevision_Eliminar extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(this,"Ingrese datos en los campos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Ingrese el código del docente", Toast.LENGTH_SHORT).show();
         }
 
     }

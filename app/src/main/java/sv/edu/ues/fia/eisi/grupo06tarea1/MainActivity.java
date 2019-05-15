@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
     EditText et1,et2;
     DBHelperInicial DBHelper;
 
-    @Override    protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //emperejamos las variable con el xml

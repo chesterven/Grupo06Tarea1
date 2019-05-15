@@ -57,19 +57,29 @@ public class SegundaRevision_Consultar extends AppCompatActivity {
                     resultRevisiones=(DBHelper.consultarSegundaRevisionExiste(idEvaluacion));
                     if(resultRevisiones.equals(""))
                     {
-                        Toast.makeText(this,"No hay segundas revisiones para el docente", Toast.LENGTH_SHORT).show();
+
                     }
                     else {
-                        listaRevisiones.add("Seleccione su revision");
-                        ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaRevisiones);
-                        revisiones.setAdapter(adaptadorr);
+
                         listaRevisiones.add(resultRevisiones);
 
-                        Toast.makeText(this, "Revisiones encontrados", Toast.LENGTH_SHORT).show();
+
                     }
 
                 }while(resul.moveToNext());
 
+                if(listaRevisiones.size()==0)
+                {
+                    Toast.makeText(this, "No hay segundas revisiones para ese docente", Toast.LENGTH_SHORT).show();
+                }
+                else
+
+                    {
+                    listaRevisiones.add(0, "Seleccione su revisión");
+                    ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaRevisiones);
+                    revisiones.setAdapter(adaptadorr);
+                    Toast.makeText(this, "Revisiones encontrados", Toast.LENGTH_SHORT).show();
+                }
             }
 
             else{
@@ -79,40 +89,43 @@ public class SegundaRevision_Consultar extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(this,"Ingrese datos en los campos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Ingrese el codigo del docente", Toast.LENGTH_SHORT).show();
         }
-
 
     }
     public void consultarSegundaRevision(View view)
     {
-        if(revisiones.getSelectedItem().toString().equals("Seleccione su revisión"))
-        {
-            Toast.makeText(this,"Debe seleccionar una evaluacion", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            DBHelper = new DBHelperInicial(this);
-            DBHelper.abrir();
-            String revision = "";
-            String mensaje = "";
-            revision = revisiones.getSelectedItem().toString();
-            String[] revisionParte = revision.split(" ");
-            SegundaRevision segunda =DBHelper.consultarSegundaRevision(Integer.valueOf(revisionParte[0]));
+        if(!(listaRevisiones.size()==0)) {
 
-            String nombreLocal=DBHelper.obtenerLocal(segunda.getIdLocal());
+            if (revisiones.getSelectedItem().toString().equals("Seleccione su revisión")) {
+                Toast.makeText(this, "Debe seleccionar una revisión", Toast.LENGTH_SHORT).show();
 
-            fecha.setText(segunda.getFechaSegundaRevision());
-            local.setText(nombreLocal);
-            descripcion.setText(segunda.getDescripcion());
+            } else {
+                DBHelper = new DBHelperInicial(this);
+                DBHelper.abrir();
+                String revision = "";
+                String mensaje = "";
+                revision = revisiones.getSelectedItem().toString();
+                String[] revisionParte = revision.split(" ");
+                SegundaRevision segunda = DBHelper.consultarSegundaRevision(Integer.valueOf(revisionParte[0]));
+
+                String nombreLocal = DBHelper.obtenerLocal(segunda.getIdLocal());
+
+                fecha.setText(segunda.getFechaSegundaRevision());
+                local.setText(nombreLocal);
+                descripcion.setText(segunda.getDescripcion());
 
 
-            if(segunda ==null)
-            {
-                Toast.makeText(this,"No existe la segunda revision", Toast.LENGTH_SHORT).show();
+                if (segunda == null) {
+                    Toast.makeText(this, "No existe la segunda revision", Toast.LENGTH_SHORT).show();
+                }
+                DBHelper.cerrar();
             }
-            DBHelper.cerrar();
         }
+        else {
+            Toast.makeText(this, "No ha consultado las revisiones", Toast.LENGTH_SHORT).show();
+        }
+
     }
     public void limpiarTexto(View v)
     {
