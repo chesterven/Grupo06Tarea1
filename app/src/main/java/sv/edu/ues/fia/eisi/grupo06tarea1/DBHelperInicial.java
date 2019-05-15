@@ -477,22 +477,31 @@ public Cursor consultarMateriasDocente(String codDocente){
 //Metodo para insertar una segunda revision
     public String insertarSegundaRevision(SegundaRevision revision)
     {
-        String regInsertados="Registro Insertado Nº= ";
-        long contador=0;
-        ContentValues rev = new ContentValues();
-        rev.put("idEvaluacion",revision.getIdEvaluacion());
-        rev.put("idLocal",revision.getIdLocal());
-        rev.put("fechaSegundaRevision",revision.getFechaSegundaRevision());
-        rev.put("descripcionSegundaRevision",revision.getDescripcion());
-        contador=db.insert("SegundaRevision",null,rev);
-        if(contador==-1 || contador==0)
-        {
-            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        String mensaje = "";
+        mensaje = consultarSegundaRevisionExiste(String.valueOf(revision.getIdEvaluacion()));
+        if(mensaje.equals("")){
+            String regInsertados="Registro Insertado Nº= ";
+            long contador=0;
+            ContentValues rev = new ContentValues();
+            rev.put("idEvaluacion",revision.getIdEvaluacion());
+            rev.put("idLocal",revision.getIdLocal());
+            rev.put("fechaSegundaRevision",revision.getFechaSegundaRevision());
+            rev.put("descripcionSegundaRevision",revision.getDescripcion());
+            contador=db.insert("SegundaRevision",null,rev);
+            if(contador==-1 || contador==0)
+            {
+                regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+            }
+            else {
+                regInsertados=regInsertados+contador;
+            }
+            return regInsertados;
         }
         else {
-            regInsertados=regInsertados+contador;
+
+            return "Ya existe una revisión para esa evaluación";
         }
-        return regInsertados;
+
     }
 
 //Metodo para consultar el nombre del local
@@ -811,23 +820,30 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
         }
         //METODO INSERTAR SIRVE PARA REPETIDO Y DIFERIDO
         public String insertarSolicitudDiferidoRepetido(Solicitud_RepetidoDiferido solicitud){
+        Cursor solic;
             String regInsertados="Registro Insertado Nº= ";
             long contador=0;
-            ContentValues soli = new ContentValues();
-            soli.put("idEvaluacion",solicitud.getIdEvaluacion());
-            soli.put("carnet", solicitud.getCarnet());
-            soli.put("motivo", solicitud.getMotivoSolicitud());
-            soli.put("aprobado", solicitud.isAprobado());
-            soli.put("idTipoSolicitud", solicitud.getIdTipoSolicitud());
-            contador= db.insert("SolicitudDiferidoRepetido",null,soli);
-            if(contador==-1 || contador==0)
-            {
-                regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+            solic = consultarSolicitudesDifRep(solicitud.getIdEvaluacion(),solicitud.getCarnet());
+            if(solic.moveToFirst()){
+                return "Esa evaluacion ya tiene solicitud";
+            }else{
+                ContentValues soli = new ContentValues();
+                soli.put("idEvaluacion",solicitud.getIdEvaluacion());
+                soli.put("carnet", solicitud.getCarnet());
+                soli.put("motivo", solicitud.getMotivoSolicitud());
+                soli.put("aprobado", solicitud.isAprobado());
+                soli.put("idTipoSolicitud", solicitud.getIdTipoSolicitud());
+                contador= db.insert("SolicitudDiferidoRepetido",null,soli);
+                if(contador==-1 || contador==0)
+                {
+                    regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+                }
+                else {
+                    regInsertados=regInsertados+contador;
+                }
+                return regInsertados;
             }
-            else {
-                regInsertados=regInsertados+contador;
-            }
-            return regInsertados;
+
 
         }
 

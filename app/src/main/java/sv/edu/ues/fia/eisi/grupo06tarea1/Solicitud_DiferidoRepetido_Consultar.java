@@ -49,6 +49,7 @@ public class Solicitud_DiferidoRepetido_Consultar extends AppCompatActivity {
                     arrayEvaluaciones.add(0,"Seleccione evaluacion");
                     ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayEvaluaciones);
                     evaluaciones.setAdapter(adaptador);
+                    Toast.makeText(this,"Seleccione evaluacion",Toast.LENGTH_SHORT).show();
                 }
             }else{
                 Toast.makeText(this,"No hay revisiones",Toast.LENGTH_SHORT).show();
