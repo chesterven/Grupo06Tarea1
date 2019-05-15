@@ -22,9 +22,10 @@ public class SegundaRevision_Actualizar extends AppCompatActivity {
     EditText fecha;
     EditText descripcion;
     Spinner locales;
-    Spinner evaluaciones;
+    Spinner revisiones;
+    String evaluaciones="";
     ArrayList<String> listaLocales=new ArrayList<>();
-    ArrayList<String> listaEvaluaciones = new ArrayList<>();
+    ArrayList<String> listaRevisiones = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class SegundaRevision_Actualizar extends AppCompatActivity {
         fecha=(EditText) findViewById(R.id.fechaSegundaRevisionAct);
         descripcion= (EditText) findViewById(R.id.descripcionSegundaRevisionAct);
         locales=(Spinner) findViewById(R.id.spinnerLocalesAct);
-        evaluaciones = (Spinner) findViewById(R.id.spinnerEvaluacionesDocenteSegundaAct);
+        revisiones = (Spinner) findViewById(R.id.spinnerRevisionesDocenteSegundaAct);
         listaLocales.add("Seleccione el local");
         DBHelper = new DBHelperInicial(this);
         DBHelper.abrir();
@@ -47,34 +48,74 @@ public class SegundaRevision_Actualizar extends AppCompatActivity {
         }
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,android.R.layout.simple_spinner_item,listaLocales);
         locales.setAdapter(adaptador);
-        listaEvaluaciones.add("Seleccione su evaluación");
-        ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaEvaluaciones);
-        evaluaciones.setAdapter(adaptadorr);
+        listaRevisiones.add("Seleccione su revisión");
+        ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaRevisiones);
+        revisiones.setAdapter(adaptadorr);
 
     }
-    public void consultarEvaSegundaReviAct(View v)
-    {
+    public void consultarEvaSegundaReviAct(View v) {
+        String [] parteEvaluacion;
+        String idEvaluacion="";
         if(!(codDocente.getText().toString().equals(""))) {
             DBHelper = new DBHelperInicial(this);
             DBHelper.abrir();
-
-            Cursor materiaCiclo = DBHelper.consultarMateriasDocente(codDocente.getText().toString());
-
-            if (materiaCiclo.moveToFirst()) {
+            Cursor resul = DBHelper.consultarMateriasDocente(codDocente.getText().toString());
+            if(resul.moveToFirst())
+            {
                 do {
-                    listaEvaluaciones.add(DBHelper.consultarEvaluaciones(materiaCiclo.getInt(0), materiaCiclo.getString(1), materiaCiclo.getInt(2)));
-                } while (materiaCiclo.moveToNext());
+                    evaluaciones = DBHelper.consultarEvaluaciones(resul.getInt(0), resul.getString(1), resul.getInt(2));
+                    parteEvaluacion = evaluaciones.split(" ");
+                    idEvaluacion=parteEvaluacion[0];
+                    listaRevisiones.add(DBHelper.consultarSegundaRevisionExiste(idEvaluacion));
 
-                Toast.makeText(this,"Evaluaciones encontradas", Toast.LENGTH_SHORT).show();
+                }while(resul.moveToNext());
+                Toast.makeText(this,"Revisiones encontrados", Toast.LENGTH_SHORT).show();
             }
-            ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaEvaluaciones);
-            evaluaciones.setAdapter(adaptador);
+
+            ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaRevisiones);
+            revisiones.setAdapter(adaptadorr);
+
         }
         else
         {
-            Toast.makeText(this,"Ingrese datos en el campo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Ingrese datos en los campos", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+    public void actualizarSegundaRevision(View v)
+    {
+        if(revisiones.getSelectedItem().toString().equals("Seleccione su revisión")|
+                locales.getSelectedItem().toString().equals("Seleccione el local")|
+                fecha.getText().toString().equals("") |
+                descripcion.getText().toString().equals(""))
+        {
+            Toast.makeText(this,"Los campos son obligatorios", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            DBHelper = new DBHelperInicial(this);
+            DBHelper.abrir();
+            SegundaRevision segunda = new SegundaRevision();
+            String mensaje = "";
+            String revision = "";
+            String local = "";
+
+            revision = revisiones.getSelectedItem().toString();
+            String[] revisionParte = revision.split(" ");
+
+            local = locales.getSelectedItem().toString();
+            String[] localParte = local.split(" ");
+
+            segunda.setIdLocal(Integer.valueOf(localParte[0]));
+
+            segunda.setId_Segunda_Revision(Integer.valueOf(revisionParte[0]));
+            segunda.setDescripcion(descripcion.getText().toString());
+            segunda.setFechaSegundaRevision(fecha.getText().toString());
+
+            mensaje = DBHelper.actualizarSegundaRevision(segunda);
+            Toast.makeText(this,mensaje, Toast.LENGTH_SHORT).show();
         }
     }
+
     public void limpiarTexto(View v)
     {
 

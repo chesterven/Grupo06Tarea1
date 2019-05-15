@@ -548,6 +548,18 @@ public String consultarSegundaRevisionExiste (String idEvaluacion)
         }
 
 }
+
+//Metodo para actualizar segunda revision
+public String actualizarSegundaRevision(SegundaRevision segunda)
+{
+        String[] id ={String.valueOf(segunda.getId_Segunda_Revision())};
+        ContentValues cv = new ContentValues();
+        cv.put("idLocal",segunda.getIdLocal());
+        cv.put("fechaSegundaRevision",segunda.getFechaSegundaRevision());
+        cv.put("descripcionSegundaRevision",segunda.getDescripcion());
+        db.update("SegundaRevision",cv,"idSegundaRevision=?",id);
+        return "Registro actualizado correctamente";
+}
 //Metodo para eliminar la segunda revision
     public String eliminarSegundaRevision(int idSegunda)
     {
