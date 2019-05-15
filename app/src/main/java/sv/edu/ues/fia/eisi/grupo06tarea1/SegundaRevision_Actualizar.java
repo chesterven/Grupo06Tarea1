@@ -75,4 +75,12 @@ public class SegundaRevision_Actualizar extends AppCompatActivity {
             Toast.makeText(this,"Ingrese datos en el campo", Toast.LENGTH_SHORT).show();
         }
     }
+    public void limpiarTexto(View v)
+    {
+
+        codDocente.setText("");
+        fecha.setText("");
+        descripcion.setText("");
+
+    }
 }
