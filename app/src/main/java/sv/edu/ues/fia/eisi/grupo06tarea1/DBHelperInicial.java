@@ -856,6 +856,19 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
                 return regAfectados;
         }
 
+    public String actualizarSolicitudDiferidoRepetido(Solicitud_RepetidoDiferido solicitud){
+
+            String[] parametro = {String.valueOf(solicitud.getIdEvaluacion()),solicitud.getCarnet()};
+            ContentValues cv = new ContentValues();
+            cv.put("motivo",solicitud.getMotivoSolicitud());
+            cv.put("aprobado",solicitud.isAprobado());
+            db.update("SolicitudDiferidoRepetido",cv,"idEvaluacion=? AND carnet=?",parametro);
+            return "Registro actualizado";
+
+    }
+
+
+
 
 
 
