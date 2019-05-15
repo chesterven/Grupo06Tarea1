@@ -103,33 +103,36 @@ public class SegundaRevision_Insertar extends AppCompatActivity {
     }
 
     public void insertarSegundaRevision(View v) {
+        if(!(evaluaciones.size()==0)) {
+            if ((evalua.getSelectedItem().toString().equals("Seleccione su evaluación"))
+                    | (locales.getSelectedItem().toString().equals("Seleccione el local"))
+                    | (fecha.getText().toString().equals("") | descripcion.getText().toString().equals(""))) {
+                Toast.makeText(this, "Ingrese todos los campos", Toast.LENGTH_SHORT).show();
+            } else {
 
-        if ((evalua.getSelectedItem().toString().equals("Seleccione su evaluación"))
-                | (locales.getSelectedItem().toString().equals("Seleccione el local"))
-                | (fecha.getText().toString().equals("") | descripcion.getText().toString().equals("")))
-        {
-            Toast.makeText(this,"Ingrese todos los campos", Toast.LENGTH_SHORT).show();
-        } else {
+                DBHelper = new DBHelperInicial(this);
+                DBHelper.abrir();
+                String mensaje = "";
+                String evaluacion = "";
+                SegundaRevision segunda = new SegundaRevision();
+                evaluacion = evalua.getSelectedItem().toString();
+                String[] evaluacionParte = evaluacion.split(" ");
+                String local = "";
 
-            DBHelper = new DBHelperInicial(this);
-            DBHelper.abrir();
-            String mensaje = "";
-            String evaluacion = "";
-            SegundaRevision segunda = new SegundaRevision();
-            evaluacion = evalua.getSelectedItem().toString();
-            String[] evaluacionParte = evaluacion.split(" ");
-            String local = "";
+                local = locales.getSelectedItem().toString();
+                String[] localParte = local.split(" ");
 
-            local = locales.getSelectedItem().toString();
-            String[] localParte = local.split(" ");
+                segunda.setIdEvaluacion(Integer.valueOf(evaluacionParte[0]));
+                segunda.setIdLocal(Integer.valueOf(localParte[0]));
+                segunda.setFechaSegundaRevision(fecha.getText().toString());
+                segunda.setDescripcion(descripcion.getText().toString());
 
-            segunda.setIdEvaluacion(Integer.valueOf(evaluacionParte[0]));
-            segunda.setIdLocal(Integer.valueOf(localParte[0]));
-            segunda.setFechaSegundaRevision(fecha.getText().toString());
-            segunda.setDescripcion(descripcion.getText().toString());
-
-            mensaje = DBHelper.insertarSegundaRevision(segunda);
-            Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+                mensaje = DBHelper.insertarSegundaRevision(segunda);
+                Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+            }
+        }
+        else {
+            Toast.makeText(this, "No ha consultado las revisiones", Toast.LENGTH_SHORT).show();
         }
     }
     public void activityTestigos()
