@@ -479,6 +479,7 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'PDM115',1,'2019-03-23','Primer Examen Teorico','Evaluacion de las unidades I, II y III')");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'MIP115',1,'2019-04-12','Examen escrito 1','Evaluacion de la unidad I')");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'SYP115',1,'2019-04-15','Parcial I','Folletos 1 y 2')");
+        db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(2,2,'HDP115',1,'2019-04-15','Parcial I','Unidad 1, 2 y 3')");
 
         //Autor: José Andrés Castro Sánchez
         db.execSQL("DELETE FROM SolicitudImpresion");
@@ -866,6 +867,21 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
             return resultado="";
         }
         }
+
+    public String consultarEvaluacionDifRepEvaluacion(int nGrupo, String mat, int ciclo, String tipo){
+        String resultado = "";
+        String[] parametro = {String.valueOf(nGrupo),mat,String.valueOf(ciclo), tipo};
+        String[] columnas = {"idEvaluacion","codMateria","nombreEvaluacion"};
+        Cursor c = db.query("Evaluaciones",columnas,"numGrupo=? AND codMateria=? AND idCiclo=? AND idTipoEvaluacion=?",parametro,null,null,null);
+        if(c.moveToFirst()){
+            resultado =c.getInt(0) +" "+ c.getString(1) +" "+c.getString(2);
+            return resultado;
+        }
+        else{
+            return resultado="";
+        }
+    }
+
         //METODO INSERTAR SIRVE PARA REPETIDO Y DIFERIDO
         public String insertarSolicitudDiferidoRepetido(Solicitud_RepetidoDiferido solicitud){
         Cursor solic;

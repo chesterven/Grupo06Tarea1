@@ -51,37 +51,72 @@ Grupo de trabajo: 06-->
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
-            android:text="@string/IdSolicitud" />
+            android:text="@string/CodDocente" />
 
         <EditText
-            android:id="@+id/idSoliDyRIn"
+            android:id="@+id/SoliDifyRepEvaluacionDocente"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
             android:ems="10"
             android:inputType="text" />
     </TableRow>
+
     <TableRow
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="10dp"
-    android:weightSum="4">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4"
+        android:layout_marginTop="8dp">
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.5"
-        android:text="@string/EvaluacionId" />
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="@string/Tipo_Solicitud" />
 
-    <EditText
-        android:id="@+id/idEvaluacionDyRIn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="2.5"
-        android:ems="10"
-        android:inputType="text" />
-</TableRow>
+        <Spinner
+            android:id="@+id/spinnerTipoSolicitud"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.5" />
+
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:onClick="solicitudEvaluacionBuscar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Consultar_Evaluaciones" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="@string/Evaluaciones" />
+
+        <Spinner
+            android:id="@+id/spinnerSolicitudDifRepEvaluacion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.5" />
+
+    </TableRow>
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -101,7 +136,7 @@ Grupo de trabajo: 06-->
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="numberDecimal" />
     </TableRow>
     <TableRow
         android:layout_width="match_parent"
