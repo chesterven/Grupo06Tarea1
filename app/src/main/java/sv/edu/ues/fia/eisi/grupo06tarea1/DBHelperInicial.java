@@ -102,7 +102,7 @@ public class DBHelperInicial {
                         ");");
                 db.execSQL("CREATE TABLE Materia (\n" +
                         "    codMateria VARCHAR2(6) NOT NULL PRIMARY KEY,\n" +
-                        "    nombreMateria VARCHAR2(20) NOT NULL\n" +
+                        "    nombreMateria VARCHAR2(60) NOT NULL\n" +
                         ");");
                 db.execSQL("CREATE TABLE TipoGrupo (\n" +
                         "    idTipoGrupo INTEGER NOT NULL PRIMARY KEY,\n" +
@@ -402,8 +402,9 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Estudiante VALUES('VD16006','Roberto','Ventura',0);");
         db.execSQL("INSERT INTO Estudiante VALUES('GC16001','Abigail','Gil',1);");
         db.execSQL("INSERT INTO Estudiante VALUES('XX16001','Fernando','Xerox',0);");
-
-
+        db.execSQL("INSERT INTO Estudiante VALUES ('CH15013','Oscar','Hernández',1)");
+        db.execSQL("INSERT INTO Estudiante VALUES ('CS16008','José','Castro',0)");
+        db.execSQL("INSERT INTO Estudiante VALUES ('ZTE12002','Christian','Zelaya',0)");
 
         db.execSQL("DELETE FROM Docente");
         db.execSQL("INSERT INTO Docente VALUES('GR00001','Cesar Augusto','Gonzalez Rodriguez',1)");
@@ -412,6 +413,7 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Docente VALUES('JI00001','Jorge','Iraheta',0)");
         db.execSQL("INSERT INTO Docente VALUES('GM00001','Guillermo','Mejia',0)");
         db.execSQL("INSERT INTO Docente VALUES('RC00001','Rudy','Chicas',0)");
+        db.execSQL("INSERT INTO Docente VALUES('NH00001','Nelly','Henriquez',0)");
 
 
         db.execSQL("DELETE FROM Local");
@@ -425,7 +427,7 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Materia VALUES ('PDM115','Programacion Dispositivos Moviles');");
         db.execSQL("INSERT INTO Materia VALUES ('SYP115','Sistemas y Procedimientos');");
         db.execSQL("INSERT INTO Materia VALUES ('MIP115','Microprogramacion');");
-        db.execSQL("INSERT INTO Materia VALUES ('IAI115','Introducción a la informatica');");
+        db.execSQL("INSERT INTO Materia VALUES ('IAI115','Introduccion a la informatica');");
         db.execSQL("INSERT INTO Materia VALUES ('HDP115','Herramientas de productividad');");
         db.execSQL("INSERT INTO Materia VALUES ('MEP115','Metodos probabilisticos');");
 
@@ -442,6 +444,9 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO MateriaCiclo VALUES (2,'MIP115',1,'JI00001',2);");
         db.execSQL("INSERT INTO MateriaCiclo VALUES (2,'HDP115',1,'RC00001',1);");
         db.execSQL("INSERT INTO MateriaCiclo VALUES (1,'MEP115',1,'GM00001',2);");
+        db.execSQL("INSERT INTO MateriaCiclo VALUES (1,'HDP115',1,'MM00001',1)");
+        db.execSQL("INSERT INTO MateriaCiclo VALUES (1,'IAI115',1,'NH00001',2)");
+
 
 
         db.execSQL("DELETE FROM EstudianteInscrito");
@@ -451,6 +456,9 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'MIP115',1)");
        db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'SYP115',1)");
        db.execSQL("INSERT INTO EstudianteInscrito VALUES('VD16006',1,'SYP115',1)");
+        db.execSQL("INSERT INTO EstudianteInscrito VALUES('CH15013',1,'HDP115',1)");
+        db.execSQL("INSERT INTO EstudianteInscrito VALUES ('CS16008',2,'MIP',1)");
+        db.execSQL("INSERT INTO EstudianteInscrito VALUES ('CS16008',2,'HDP115',1)");
 
        db.execSQL("DELETE FROM SolicitudDiferidoRepetido");
        db.execSQL("INSERT INTO SolicitudDiferidoRepetido(idEvaluacion,carnet,motivo,aprobado,idTipoSolicitud) VALUES(3,'VD16006','Enfermedad grave',1,2)");
