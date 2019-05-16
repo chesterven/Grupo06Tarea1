@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import javax.microedition.khronos.egl.EGLDisplay;
 
 public class SegundaRevision_Insertar extends AppCompatActivity {
 

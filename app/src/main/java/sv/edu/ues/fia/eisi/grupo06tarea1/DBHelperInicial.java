@@ -44,6 +44,7 @@ public class DBHelperInicial {
     private static final String DROP_TABLE19= "DROP TABLE IF EXISTS SolicitudDiferidoRepetido";
     private static final String DROP_TABLE20= "DROP TABLE IF EXISTS SolicitudDSegundaRevision";
     private static final String DROP_TABLE21= "DROP TABLE IF EXISTS SegundaRevision";
+    private static final String DROP_TABLE22= "DROP TABLE IF EXISTS SolicitudEvaluacion";
 
     public DBHelperInicial(Context ctx) {
         this.context = ctx;
@@ -132,6 +133,15 @@ public class DBHelperInicial {
                         "    aprobado BOOLEAN,   \n"+
                         "    idTipoSolicitud INTEGER NOT NULL\n" +
                         ");");
+
+                db.execSQL("CREATE TABLE SolicitudEvaluacion(\n" +
+                        "    idEvaluacion INTEGER NOT NULL,\n" +
+                        "    idSolicitudDiferidoRepetido INTEGER NOT NULL,\n" +
+                        "    notaSoliEvaluacion INTEGER NOT NULL,\n" +
+                        "     CONSTRAINT fk_idEvaluacion FOREIGN KEY (idEvaluacion) REFERENCES Evaluaciones(idEvaluacion) ON DELETE RESTRICT,\n" +
+                        "     CONSTRAINT fk_idSolicitudDiferidoEvaluacion FOREIGN KEY (idSolicitudDiferidoRepetido) REFERENCES SolicitudDiferidoRepetido(idSolicitudDiferidoRepetido) ON DELETE RESTRICT,\n" +
+                        "    PRIMARY KEY (idEvaluacion, idSolicitudDiferidoRepetido)\n" +
+                        "    );");
 
                 //Autor: Maria Abigail Gil Cordova
                 //Carnet: GC16001
@@ -256,6 +266,7 @@ public class DBHelperInicial {
                 db.execSQL(DROP_TABLE19);
                 db.execSQL(DROP_TABLE20);
                 db.execSQL(DROP_TABLE21);
+                db.execSQL(DROP_TABLE22);
                 onCreate(db);
             } catch (Exception e) {
                 //Message.message(context,""+e);
@@ -422,6 +433,7 @@ public class DBHelperInicial {
        db.execSQL("DELETE FROM SolicitudDiferidoRepetido");
        db.execSQL("INSERT INTO SolicitudDiferidoRepetido(idEvaluacion,carnet,motivo,aprobado,idTipoSolicitud) VALUES(3,'VD16006','Enfermedad grave',1,2)");
 
+       db.execSQL("DELETE FROM SolicitudEvaluacion");
 
         //Autor: Maria Abigail Gil Cordova
         db.execSQL("DELETE FROM Ciclo");
@@ -460,7 +472,7 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (1,'GC16001',1); ");
 
 
-        return "Usuarios Guardados";
+        return "BD Llena";
     }
 
 //********************Autor: Maria Abigail Gil Cordova********************
