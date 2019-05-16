@@ -175,6 +175,7 @@ public class DBHelperInicial {
                         "   CONSTRAINT FKidSoliSegundaRevision FOREIGN KEY (idSoliSegundaRevision) REFERENCES SolicitudSegundaRevision(idSolicitudSegundaRevision) ON DELETE RESTRICT,\n" +
                         "   CONSTRAINT PKDetalleSegundaRevision PRIMARY KEY (idSegundaRevision,idSoliSegundaRevision)\n" +
                         ");");
+
                 db.execSQL("CREATE TABLE PrimeraRevision  (\n" +
                         "   idPrimeraRevision INTEGER NOT NULL PRIMARY KEY,\n" +
                         "   idEvaluacion        INTEGER NOT NULL,\n" +
