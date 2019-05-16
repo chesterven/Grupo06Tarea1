@@ -46,6 +46,7 @@ public class DBHelperInicial {
     private static final String DROP_TABLE21= "DROP TABLE IF EXISTS SegundaRevision";
     private static final String DROP_TABLE22= "DROP TABLE IF EXISTS SolicitudEvaluacion";
     private static final String DROP_TABLE23 = "DROP TABLE IF EXISTS DetalleSegundaRevision";
+    private static final String DROP_TABLE24 ="DROP TABLE IF EXISTS PrimeraRevision";
 
     public DBHelperInicial(Context ctx) {
         this.context = ctx;
@@ -174,6 +175,15 @@ public class DBHelperInicial {
                         "   CONSTRAINT FKidSoliSegundaRevision FOREIGN KEY (idSoliSegundaRevision) REFERENCES SolicitudSegundaRevision(idSolicitudSegundaRevision) ON DELETE RESTRICT,\n" +
                         "   CONSTRAINT PKDetalleSegundaRevision PRIMARY KEY (idSegundaRevision,idSoliSegundaRevision)\n" +
                         ");");
+                db.execSQL("CREATE TABLE PrimeraRevision  (\n" +
+                        "   idPrimeraRevision INTEGER NOT NULL PRIMARY KEY,\n" +
+                        "   idEvaluacion        INTEGER NOT NULL,\n" +
+                        "   idLocal             INTEGER NOT NULL,\n" +
+                        "   fechaPrimeraRevision  VARCHAR2(15),\n" +
+                        "   descripcionPrimeraRevision VARCHAR2(50),\n" +
+                        "   CONSTRAINT f_k_idEvaluacion FOREIGN KEY (idEvaluacion) REFERENCES Evaluaciones(idEvaluacion) ON DELETE RESTRICT,\n" +
+                        "   CONSTRAINT f_k_idlocal FOREIGN KEY (idLocal) REFERENCES Local(idLocal) ON DELETE RESTRICT\n" +
+                        ");");
 
                 //Autor: Christian Ariel Zelaya Tejada
                 //Carnet: ZT12002
@@ -276,6 +286,8 @@ public class DBHelperInicial {
                 db.execSQL(DROP_TABLE20);
                 db.execSQL(DROP_TABLE21);
                 db.execSQL(DROP_TABLE22);
+                db.execSQL(DROP_TABLE23);
+                db.execSQL(DROP_TABLE24);
                 onCreate(db);
             } catch (Exception e) {
                 //Message.message(context,""+e);
@@ -524,7 +536,15 @@ public Cursor consultarMateriasDocente(String codDocente){
         }
 
     }
+/*Metodo para verificar que al ingresar una segunda revision esta evaluacion cuente con
+   una primera revision llevada a cabo previamente si devuelve true dejara insertar
+   la segunda revision y si regresa false es que no ha habido primera revision para esa evaluacion*/
 
+public  Boolean consultarPrimeraRevisionAntesSegundaRevision(int idEvaluacion)
+{
+
+    return false;
+}
 //Metodo para consultar el nombre del local
 
     public String obtenerLocal(int idLocal)
