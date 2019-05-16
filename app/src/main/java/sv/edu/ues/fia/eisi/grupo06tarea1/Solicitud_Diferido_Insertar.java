@@ -35,8 +35,8 @@ public class Solicitud_Diferido_Insertar extends AppCompatActivity {
 
     }
 
-    /*public void consultarParaDiferido(View v){
-        String eval="";
+    public void consultarParaDiferido(View v){
+        Cursor eval;
         if(carnetSoliIn.getText().toString().equals(""))
         {
             Toast.makeText(this,"Ingrese su carnet",Toast.LENGTH_SHORT).show();
@@ -49,8 +49,11 @@ public class Solicitud_Diferido_Insertar extends AppCompatActivity {
             if(datos.moveToFirst()) {
                 do {
                     eval = DBHelper.consultarEvaluaciones(datos.getInt(0), datos.getString(1), datos.getInt(2));
-                    if(!(eval.equals(""))){
-                        evaluaciones.add(eval);
+                    if((eval.moveToFirst())){
+                        do{
+                            evaluaciones.add(eval.getInt(0)+" "+eval.getString(1)+" "+eval.getString(2));
+                        }while(eval.moveToNext());
+
                     }
 
                 } while (datos.moveToNext());
@@ -105,5 +108,5 @@ public class Solicitud_Diferido_Insertar extends AppCompatActivity {
         motivoSoliIn.setText("");
         spinnerResultado.setAdapter(null);
         evaluaciones.clear();
-    }*/
+    }
 }

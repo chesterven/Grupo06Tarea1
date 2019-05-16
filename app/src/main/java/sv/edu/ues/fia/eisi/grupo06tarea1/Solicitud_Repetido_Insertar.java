@@ -32,8 +32,8 @@ public class Solicitud_Repetido_Insertar extends AppCompatActivity {
         carnet = (EditText) findViewById(R.id.carnetRepetidoIn);
     }
 
-   /* public void consultarEvaluacuonesRepetido(View v){
-        String eval="";
+    public void consultarEvaluacuonesRepetido(View v){
+        Cursor eval;
         if(carnet.getText().toString().equals(""))
         {
             Toast.makeText(this,"Ingrese su carnet",Toast.LENGTH_SHORT).show();
@@ -46,8 +46,11 @@ public class Solicitud_Repetido_Insertar extends AppCompatActivity {
             if(datos.moveToFirst()) {
                 do {
                     eval = DBHelper.consultarEvaluaciones(datos.getInt(0), datos.getString(1), datos.getInt(2));
-                    if(!(eval.equals(""))){
-                        evaluaciones.add(eval);
+                    if((eval.moveToFirst())){
+                        do{
+                            evaluaciones.add(eval.getInt(0)+" "+eval.getString(1)+" "+eval.getString(2));
+                        }while(eval.moveToNext());
+
                     }
 
                 } while (datos.moveToNext());
@@ -100,5 +103,5 @@ public class Solicitud_Repetido_Insertar extends AppCompatActivity {
         spinnerResultado.setAdapter(null);
         evaluaciones.clear();
 
-    }*/
+    }
 }
