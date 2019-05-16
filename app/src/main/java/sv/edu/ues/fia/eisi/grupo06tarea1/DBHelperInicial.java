@@ -541,10 +541,16 @@ public Cursor consultarMateriasDocente(String codDocente){
    una primera revision llevada a cabo previamente si devuelve true dejara insertar
    la segunda revision y si regresa false es que no ha habido primera revision para esa evaluacion*/
 
-public  Boolean consultarPrimeraRevisionAntesSegundaRevision(int idEvaluacion)
-{
+public  Boolean consultarPrimeraRevisionAntesSegundaRevision(int idEvaluacion) {
+    String[] id = {String.valueOf(idEvaluacion)};
+    String[] columna = {"idEvaluacion"};
+    Cursor c = db.query("PrimeraRevision", columna, "idEvaluacion=?", id, null, null, null, null);
+    if (c.moveToFirst()) {
+        return true;
+    } else {
 
-    return false;
+        return false;
+    }
 }
 //Metodo para consultar el nombre del local
 
