@@ -45,6 +45,7 @@ public class DBHelperInicial {
     private static final String DROP_TABLE20= "DROP TABLE IF EXISTS SolicitudDSegundaRevision";
     private static final String DROP_TABLE21= "DROP TABLE IF EXISTS SegundaRevision";
     private static final String DROP_TABLE22= "DROP TABLE IF EXISTS SolicitudEvaluacion";
+    private static final String DROP_TABLE23 = "DROP TABLE IF EXISTS DetalleSegundaRevision";
 
     public DBHelperInicial(Context ctx) {
         this.context = ctx;
@@ -164,6 +165,14 @@ public class DBHelperInicial {
                         "   CONSTRAINT f_k_idEvaluacion FOREIGN KEY (idEvaluacion) REFERENCES Evaluaciones(idEvaluacion) ON DELETE RESTRICT,\n" +
                         "   CONSTRAINT f_k_idlocal FOREIGN KEY (idLocal) REFERENCES Local(idLocal) ON DELETE RESTRICT\n" +
                         "   \n" +
+                        ");");
+                db.execSQL("CREATE TABLE DetalleSegundaRevision  (\n" +
+                        "   idSegundaRevision  INTEGER NOT NULL,\n" +
+                        "   idSoliSegundaRevision INTEGER NOT NULL,\n" +
+                        "   asistencia BOOLEAN NOT NULL,\n" +
+                        "   notaSegundaRevision   FLOAT NOT NULL,\n" +
+                        "   CONSTRAINT FKidSoliSegundaRevision FOREIGN KEY (idSoliSegundaRevision) REFERENCES SolicitudSegundaRevision(idSolicitudSegundaRevision) ON DELETE RESTRICT,\n" +
+                        "   CONSTRAINT PKDetalleSegundaRevision PRIMARY KEY (idSegundaRevision,idSoliSegundaRevision)\n" +
                         ");");
 
                 //Autor: Christian Ariel Zelaya Tejada
