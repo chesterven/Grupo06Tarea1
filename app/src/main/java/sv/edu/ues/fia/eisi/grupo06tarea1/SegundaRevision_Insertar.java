@@ -26,7 +26,7 @@ public class SegundaRevision_Insertar extends AppCompatActivity {
     EditText descripcion;
     ArrayList<String> localess=new ArrayList<>();
     ArrayList<String> evaluaciones=new ArrayList<>();
-    String resultadosEvaluaciones="";
+    Cursor resultadosEvaluaciones;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,13 +65,16 @@ public class SegundaRevision_Insertar extends AppCompatActivity {
                 do {
                     resultadosEvaluaciones=DBHelper.consultarEvaluaciones(materiaCiclo.getInt(0), materiaCiclo.getString(1), materiaCiclo.getInt(2));
 
-                    if(resultadosEvaluaciones.equals(""))
+                    if(resultadosEvaluaciones.moveToFirst())
                     {
+                        do {
+                            evaluaciones.add(resultadosEvaluaciones.getInt(0)+ " "+resultadosEvaluaciones.getString(1)+" "+resultadosEvaluaciones.getString(2));
 
+                        }while(resultadosEvaluaciones.moveToNext());
                     }
                     else{
 
-                        evaluaciones.add(resultadosEvaluaciones);
+
 
                     }
                 } while (materiaCiclo.moveToNext());
@@ -102,6 +105,7 @@ public class SegundaRevision_Insertar extends AppCompatActivity {
     }
 
     public void insertarSegundaRevision(View v) {
+
         if(!(evaluaciones.size()==0)) {
             if ((evalua.getSelectedItem().toString().equals("Seleccione su evaluación"))
                     | (locales.getSelectedItem().toString().equals("Seleccione el local"))

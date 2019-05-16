@@ -35,7 +35,7 @@ public class Solicitud_Diferido_Insertar extends AppCompatActivity {
 
     }
 
-    public void consultarParaDiferido(View v){
+    /*public void consultarParaDiferido(View v){
         String eval="";
         if(carnetSoliIn.getText().toString().equals(""))
         {
@@ -105,5 +105,5 @@ public class Solicitud_Diferido_Insertar extends AppCompatActivity {
         motivoSoliIn.setText("");
         spinnerResultado.setAdapter(null);
         evaluaciones.clear();
-    }
+    }*/
 }

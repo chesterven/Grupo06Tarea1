@@ -20,7 +20,7 @@ public class SegundaRevision_Eliminar extends AppCompatActivity {
     DBHelperInicial DBHelper;
     EditText codDocente;
     Spinner revisiones;
-    String evaluaciones="";
+    Cursor evaluaciones;
     ArrayList<String> revisionesLista=new ArrayList<>();
     String resultRevisiones="";
 
@@ -46,32 +46,34 @@ public class SegundaRevision_Eliminar extends AppCompatActivity {
             {
                 do {
                     evaluaciones = DBHelper.consultarEvaluaciones(resul.getInt(0), resul.getString(1), resul.getInt(2));
-
-                    parteEvaluacion = evaluaciones.split(" ");
-                    idEvaluacion = parteEvaluacion[0];
-
-                    resultRevisiones=(DBHelper.consultarSegundaRevisionExiste(idEvaluacion));
-                    if(resultRevisiones.equals(""))
+                    if(evaluaciones.moveToFirst())
                     {
+                        do{
+                        resultRevisiones=(DBHelper.consultarSegundaRevisionExiste(String.valueOf(evaluaciones.getInt(0))));
+                        if(resultRevisiones.equals(""))
+                        {
 
+                        }
+                        else {
+
+                            revisionesLista.add(resultRevisiones);
+
+
+                        }}
+                        while (evaluaciones.moveToNext());
                     }
-                    else {
 
-                       revisionesLista.add(resultRevisiones);
-
-
-                    }
 
                 }while(resul.moveToNext());
                 if(revisionesLista.size()==0)
                 {
                     Toast.makeText(this,"No hay segundas revisiones para el docente", Toast.LENGTH_SHORT).show();
                 }
-
+else{
                 revisionesLista.add(0,"Seleccione su revision");
                 ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, revisionesLista);
                 revisiones.setAdapter(adaptadorr);
-                Toast.makeText(this, "Revisiones encontrados", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Revisiones encontrados", Toast.LENGTH_SHORT).show();}
             }
 
             else{

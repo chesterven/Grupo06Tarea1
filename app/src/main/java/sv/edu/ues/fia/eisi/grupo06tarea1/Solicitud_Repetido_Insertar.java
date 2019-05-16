@@ -32,7 +32,7 @@ public class Solicitud_Repetido_Insertar extends AppCompatActivity {
         carnet = (EditText) findViewById(R.id.carnetRepetidoIn);
     }
 
-    public void consultarEvaluacuonesRepetido(View v){
+   /* public void consultarEvaluacuonesRepetido(View v){
         String eval="";
         if(carnet.getText().toString().equals(""))
         {
@@ -100,5 +100,5 @@ public class Solicitud_Repetido_Insertar extends AppCompatActivity {
         spinnerResultado.setAdapter(null);
         evaluaciones.clear();
 
-    }
+    }*/
 }

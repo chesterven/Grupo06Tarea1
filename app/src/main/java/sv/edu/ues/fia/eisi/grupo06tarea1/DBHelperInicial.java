@@ -473,7 +473,7 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Ciclo (ciclo) VALUES ('I2020');");
         db.execSQL("INSERT INTO Ciclo (ciclo) VALUES ('II2020');");
         db.execSQL("DELETE FROM SegundaRevision");
-        db.execSQL("INSERT INTO SegundaRevision (idEvaluacion,idLocal, fechaSegundaRevision,descripcionSegundaRevision)VALUES(2,1,'12/05/2019','PDM parcial 1')");
+        //db.execSQL("INSERT INTO SegundaRevision (idEvaluacion,idLocal, fechaSegundaRevision,descripcionSegundaRevision)VALUES(2,1,'12/05/2019','PDM parcial 1')");
 
         //Autor" Christian Ariel Zelaya Tejada
         db.execSQL("DELETE FROM TipoEvaluacion");
@@ -488,8 +488,13 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'MIP115',1,'2019-04-12','Examen escrito 1','Evaluacion de la unidad I')");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'SYP115',1,'2019-04-15','Parcial I','Folletos 1 y 2')");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(2,2,'HDP115',1,'2019-04-15','Parcial I','Unidad 1, 2 y 3')");
+       db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'PDM115',1,'2019-05-20','Segundo Examen Teorico','Evaluacion de las unidades IV y V');");
+       db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'SYP115',1,'2019-05-15','Parcial II','Folletos 3 y 4');");
 
-        //Autor: José Andrés Castro Sánchez
+        db.execSQL("DELETE FROM PrimeraRevision");
+        db.execSQL("INSERT INTO PrimeraRevision (idEvaluacion,idLocal,fechaPrimeraRevision,descripcionPrimeraRevision) VALUES (2,1,'12/05/2019','PDM parcial I grupo 1');");
+
+        //Autor: José Andrés Castro Sánchez////
         db.execSQL("DELETE FROM SolicitudImpresion");
         db.execSQL("INSERT INTO SolicitudImpresion (carnet,codDocente,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('VD16006','GR00001',4,8,0,0); ");
         db.execSQL("INSERT INTO SolicitudImpresion (carnet,codDocente,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('GC16001','MM00001',8,16,1,1); ");
@@ -521,28 +526,31 @@ public Cursor consultarMateriasDocente(String codDocente){
     public String insertarSegundaRevision(SegundaRevision revision)
     {
         String mensaje = "";
-        mensaje = consultarSegundaRevisionExiste(String.valueOf(revision.getIdEvaluacion()));
-        if(mensaje.equals("")){
-            String regInsertados="Registro Insertado Nº= ";
-            long contador=0;
-            ContentValues rev = new ContentValues();
-            rev.put("idEvaluacion",revision.getIdEvaluacion());
-            rev.put("idLocal",revision.getIdLocal());
-            rev.put("fechaSegundaRevision",revision.getFechaSegundaRevision());
-            rev.put("descripcionSegundaRevision",revision.getDescripcion());
-            contador=db.insert("SegundaRevision",null,rev);
-            if(contador==-1 || contador==0)
-            {
-                regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-            }
-            else {
-                regInsertados=regInsertados+contador;
-            }
-            return regInsertados;
-        }
-        else {
+        Boolean primera=consultarPrimeraRevisionAntesSegundaRevision(revision.getIdEvaluacion());
+        if(primera ==true) {
+            mensaje = consultarSegundaRevisionExiste(String.valueOf(revision.getIdEvaluacion()));
+            if (mensaje.equals("")) {
+                String regInsertados = "Registro Insertado Nº= ";
+                long contador = 0;
+                ContentValues rev = new ContentValues();
+                rev.put("idEvaluacion", revision.getIdEvaluacion());
+                rev.put("idLocal", revision.getIdLocal());
+                rev.put("fechaSegundaRevision", revision.getFechaSegundaRevision());
+                rev.put("descripcionSegundaRevision", revision.getDescripcion());
+                contador = db.insert("SegundaRevision", null, rev);
+                if (contador == -1 || contador == 0) {
+                    regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+                } else {
+                    regInsertados = regInsertados + contador;
+                }
+                return regInsertados;
+            } else {
 
-            return "Ya existe una revisión para esa evaluación";
+                return "Ya existe una revisión para esa evaluación";
+            }
+        }
+        else{
+            return "No existe una primera revisión de la evaluación";
         }
 
     }
@@ -862,17 +870,17 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
         }
 
         //METODO PARA CONSULTAR LAS EVALUACIONES LOS PARAMETRO VIENEN DEL CURSOR DE LA CONSULTA ESTUDIANTE INSCRITO
-        public String consultarEvaluaciones(int nGrupo, String mat, int ciclo){
+        public Cursor consultarEvaluaciones(int nGrupo, String mat, int ciclo){
         String resultado = "";
         String[] parametro = {String.valueOf(nGrupo),mat,String.valueOf(ciclo)};
         String[] columnas = {"idEvaluacion","codMateria","nombreEvaluacion"};
         Cursor c = db.query("Evaluaciones",columnas,"numGrupo=? AND codMateria=? AND idCiclo=?",parametro,null,null,null);
         if(c.moveToFirst()){
             resultado =c.getInt(0) +" "+ c.getString(1) +" "+c.getString(2);
-            return resultado;
+            return c;
         }
         else{
-            return resultado="";
+            return c;
         }
         }
 
