@@ -35,6 +35,7 @@ public class SegundaRevision_Consultar extends AppCompatActivity {
         codDocente = (EditText)findViewById(R.id.idCodigoDocenteConsultarSegundaCon);
         local=(EditText) findViewById(R.id.localMostrarSegundaRevision);
         fecha=(EditText)findViewById(R.id.fechaMostrarSegundaRevision);
+        hora = (EditText) findViewById(R.id.horaMostrarSegundaRevision);
         descripcion=(EditText)findViewById(R.id.descripcionMostrarSegundaRevision);
         revisiones = (Spinner)findViewById(R.id.spinnerRevisionesDocenteSegundaCon);
 
@@ -108,7 +109,7 @@ public class SegundaRevision_Consultar extends AppCompatActivity {
                 SegundaRevision segunda = DBHelper.consultarSegundaRevision(Integer.valueOf(revisionParte[0]));
 
                 String nombreLocal = DBHelper.obtenerLocal(segunda.getIdLocal());
-
+                hora.setText(segunda.getHora());
                 fecha.setText(segunda.getFechaSegundaRevision());
                 local.setText(nombreLocal);
                 descripcion.setText(segunda.getDescripcion());
@@ -132,6 +133,7 @@ public class SegundaRevision_Consultar extends AppCompatActivity {
         fecha.setText("");
         descripcion.setText("");
         local.setText("");
+        hora.setText("");
         listaRevisiones.clear();
         revisiones.setAdapter(null);
 

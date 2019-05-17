@@ -21,6 +21,7 @@
     <string name="si">Si</string>
     <string name="Local">Local:</string>
     <string name="Fecha">Fecha:</string>
+    <string name="Hora">Hora:</string>
     <string name="Descripcion">Descripción:</string>
     <string name="Nota">Nota:</string>
     <string name="CodigoDocente">Código Docente Director:</string>
@@ -79,7 +80,6 @@
     <string name="Segunda_Revision_Titulo_Actualizar">Actualizar Segunda Revisión</string>
     <string name="SegundaRevisionId">Id Segunda Revisión:</string>
     <string name="Segunda_Revision_Titulo_InsertarTestigos">Insertar Testigos Segunda Revisión</string>
-
     <!--Detalle segunda revision-->
     <string name="DetalleSegundaRevision_Titulo_Insertar">Insertar Detalle Segunda Revisión</string>
     <string name="DetalleSegundaRevision_Titulo_Eliminar">Eliminar Detalle Segunda Revisión</string>

@@ -35,6 +35,7 @@ public class SegundaRevision_Actualizar extends AppCompatActivity {
         setContentView(R.layout.activity_segunda_revision__actualizar);
         codDocente=(EditText)findViewById(R.id.idCodigoDocenteActualizarSegunda);
         fecha=(EditText) findViewById(R.id.fechaSegundaRevisionAct);
+        hora = (EditText) findViewById(R.id.horaSegundaRevisionAct);
         descripcion= (EditText) findViewById(R.id.descripcionSegundaRevisionAct);
         locales=(Spinner) findViewById(R.id.spinnerLocalesAct);
         revisiones = (Spinner) findViewById(R.id.spinnerRevisionesDocenteSegundaAct);
@@ -115,7 +116,7 @@ public class SegundaRevision_Actualizar extends AppCompatActivity {
             if (revisiones.getSelectedItem().toString().equals("Seleccione su revisión") |
                     locales.getSelectedItem().toString().equals("Seleccione el local") |
                     fecha.getText().toString().equals("") |
-                    descripcion.getText().toString().equals("")) {
+                    descripcion.getText().toString().equals("") | hora.getText().toString().equals("")) {
                 Toast.makeText(this, "Los campos son obligatorios", Toast.LENGTH_SHORT).show();
             } else {
                 DBHelper = new DBHelperInicial(this);
@@ -136,6 +137,7 @@ public class SegundaRevision_Actualizar extends AppCompatActivity {
                 segunda.setId_Segunda_Revision(Integer.valueOf(revisionParte[0]));
                 segunda.setDescripcion(descripcion.getText().toString());
                 segunda.setFechaSegundaRevision(fecha.getText().toString());
+                segunda.setHora(hora.getText().toString());
 
                 mensaje = DBHelper.actualizarSegundaRevision(segunda);
                 Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();

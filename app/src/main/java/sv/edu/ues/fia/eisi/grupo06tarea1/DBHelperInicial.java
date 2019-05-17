@@ -538,6 +538,7 @@ public Cursor consultarMateriasDocente(String codDocente){
                 rev.put("idEvaluacion", revision.getIdEvaluacion());
                 rev.put("idLocal", revision.getIdLocal());
                 rev.put("fechaSegundaRevision", revision.getFechaSegundaRevision());
+                rev.put("horaSegundaRevision", revision.getHora());
                 rev.put("descripcionSegundaRevision", revision.getDescripcion());
                 contador = db.insert("SegundaRevision", null, rev);
                 if (contador == -1 || contador == 0) {
@@ -593,14 +594,15 @@ public  Boolean consultarPrimeraRevisionAntesSegundaRevision(int idEvaluacion) {
     public SegundaRevision consultarSegundaRevision(int idRevision)
     {
         String [] id ={String.valueOf(idRevision)};
-        String []columnas = {"idLocal","fechaSegundaRevision","descripcionSegundaRevision"};
+        String []columnas = {"idLocal","fechaSegundaRevision","horaSegundaRevision","descripcionSegundaRevision"};
         Cursor c = db.query("SegundaRevision",columnas,"idSegundaRevision=?",id,null,null,null,null);
         if(c.moveToFirst())
         {
             SegundaRevision segunda = new SegundaRevision();
             segunda.setIdLocal(c.getInt(0));
             segunda.setFechaSegundaRevision(c.getString(1));
-            segunda.setDescripcion(c.getString(2));
+            segunda.setHora(c.getString(2));
+            segunda.setDescripcion(c.getString(3));
             return segunda;
 
         }
@@ -634,6 +636,7 @@ public String actualizarSegundaRevision(SegundaRevision segunda)
         ContentValues cv = new ContentValues();
         cv.put("idLocal",segunda.getIdLocal());
         cv.put("fechaSegundaRevision",segunda.getFechaSegundaRevision());
+        cv.put("horaSegundaRevision", segunda.getHora());
         cv.put("descripcionSegundaRevision",segunda.getDescripcion());
         db.update("SegundaRevision",cv,"idSegundaRevision=?",id);
         return "Registro actualizado correctamente";

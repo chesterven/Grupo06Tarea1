@@ -36,6 +36,7 @@ public class SegundaRevision_Insertar extends AppCompatActivity {
         locales = (Spinner) findViewById(R.id.spinnerLocales);
         evalua= (Spinner) findViewById(R.id.spinnerEvaluacionesDocenteSegunda);
         fecha = (EditText) findViewById(R.id.fechaSegundaRevisionIn);
+        hora = (EditText) findViewById(R.id.horaSegundaRevisionIn);
         descripcion = (EditText) findViewById(R.id.descripcionSegundaRevisionIn);
         localess.add("Seleccione el local");
         DBHelper = new DBHelperInicial(this);
@@ -110,7 +111,7 @@ public class SegundaRevision_Insertar extends AppCompatActivity {
         if(!(evaluaciones.size()==0)) {
             if ((evalua.getSelectedItem().toString().equals("Seleccione su evaluación"))
                     | (locales.getSelectedItem().toString().equals("Seleccione el local"))
-                    | (fecha.getText().toString().equals("") | descripcion.getText().toString().equals(""))) {
+                    | (fecha.getText().toString().equals("") | descripcion.getText().toString().equals("") | hora.getText().toString().equals(""))) {
                 Toast.makeText(this, "Ingrese todos los campos", Toast.LENGTH_SHORT).show();
             } else {
 
@@ -129,6 +130,7 @@ public class SegundaRevision_Insertar extends AppCompatActivity {
                 segunda.setIdEvaluacion(Integer.valueOf(evaluacionParte[0]));
                 segunda.setIdLocal(Integer.valueOf(localParte[0]));
                 segunda.setFechaSegundaRevision(fecha.getText().toString());
+                segunda.setHora(hora.getText().toString());
                 segunda.setDescripcion(descripcion.getText().toString());
 
                 mensaje = DBHelper.insertarSegundaRevision(segunda);
@@ -149,6 +151,7 @@ public class SegundaRevision_Insertar extends AppCompatActivity {
 
          codDocente.setText("");
          fecha.setText("");
+         hora.setText("");
         descripcion.setText("");
         evalua.setAdapter(null);
         evaluaciones.clear();
