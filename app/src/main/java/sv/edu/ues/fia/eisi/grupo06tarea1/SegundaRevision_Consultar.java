@@ -23,6 +23,7 @@ public class SegundaRevision_Consultar extends AppCompatActivity {
     EditText local;
     EditText fecha;
     EditText descripcion;
+    EditText hora;
     Cursor evaluaciones;
     ArrayList<String> listaRevisiones = new ArrayList<>();
     String resultRevisiones="";

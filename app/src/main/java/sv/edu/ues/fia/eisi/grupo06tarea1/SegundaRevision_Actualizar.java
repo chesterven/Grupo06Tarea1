@@ -21,6 +21,7 @@ public class SegundaRevision_Actualizar extends AppCompatActivity {
     EditText codDocente;
     EditText fecha;
     EditText descripcion;
+    EditText hora;
     Spinner locales;
     Spinner revisiones;
     Cursor evaluaciones;

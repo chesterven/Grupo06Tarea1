@@ -24,6 +24,7 @@ public class SegundaRevision_Insertar extends AppCompatActivity {
     Spinner evalua;
     EditText fecha;
     EditText descripcion;
+    EditText hora;
     ArrayList<String> localess=new ArrayList<>();
     ArrayList<String> evaluaciones=new ArrayList<>();
     Cursor resultadosEvaluaciones;

@@ -162,6 +162,7 @@ public class DBHelperInicial {
                         "   idEvaluacion         INTEGER NOT NULL,\n" +
                         "   idLocal             INTEGER NOT NULL,\n" +
                         "   fechaSegundaRevision VARCHAR2(15),\n" +
+                        "   horaSegundaRevision VARCHAR2(30),\n" +
                         "   descripcionSegundaRevision         VARCHAR2(50),\n" +
                         "   CONSTRAINT f_k_idEvaluacion FOREIGN KEY (idEvaluacion) REFERENCES Evaluaciones(idEvaluacion) ON DELETE RESTRICT,\n" +
                         "   CONSTRAINT f_k_idlocal FOREIGN KEY (idLocal) REFERENCES Local(idLocal) ON DELETE RESTRICT\n" +
@@ -182,6 +183,7 @@ public class DBHelperInicial {
                         "   idLocal             INTEGER NOT NULL,\n" +
                         "   fechaPrimeraRevision  VARCHAR2(15),\n" +
                         "   descripcionPrimeraRevision VARCHAR2(50),\n" +
+                        "   horaPrimeraRevision VARCHAR2(50),\n" +
                         "   CONSTRAINT f_k_idEvaluacion FOREIGN KEY (idEvaluacion) REFERENCES Evaluaciones(idEvaluacion) ON DELETE RESTRICT,\n" +
                         "   CONSTRAINT f_k_idlocal FOREIGN KEY (idLocal) REFERENCES Local(idLocal) ON DELETE RESTRICT\n" +
                         ");");
@@ -492,7 +494,7 @@ public class DBHelperInicial {
        db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'SYP115',1,'2019-05-15','Parcial II','Folletos 3 y 4');");
 
         db.execSQL("DELETE FROM PrimeraRevision");
-        db.execSQL("INSERT INTO PrimeraRevision (idEvaluacion,idLocal,fechaPrimeraRevision,descripcionPrimeraRevision) VALUES (2,1,'12/05/2019','PDM parcial I grupo 1');");
+        db.execSQL("INSERT INTO PrimeraRevision (idEvaluacion,idLocal,fechaPrimeraRevision,descripcionPrimeraRevision, horaPrimeraRevision) VALUES (2,1,'12/05/2019','PDM parcial I grupo 1','8 am');");
 
         //Autor: José Andrés Castro Sánchez////
         db.execSQL("DELETE FROM SolicitudImpresion");
