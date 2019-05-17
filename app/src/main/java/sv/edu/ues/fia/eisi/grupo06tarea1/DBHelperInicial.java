@@ -253,8 +253,12 @@ public class DBHelperInicial {
                         " idEvaluacion INTEGER NOT NULL, \n"+
                         " carnet VARCHAR2(7) NOT NULL, \n"+
                         " aprobado BOOLEAN NOT NULL, \n"+
+                        "idPrimeraRevision INTEGER NOT NULL,"+
+                        "idSolicitudPrimerRevision INTEGER NOT NULL,"+
                         " CONSTRAINT FKcarnet FOREIGN KEY (carnet) REFERENCES Estudiante(carnet) ON DELETE RESTRICT, \n"+
-                        " CONSTRAINT FKidEvaluacion FOREIGN KEY (idEvaluacion) REFERENCES Evaluaciones(idEvaluacion) ON DELETE RESTRICT\n"+
+                        " CONSTRAINT FKidEvaluacion FOREIGN KEY (idEvaluacion) REFERENCES Evaluaciones(idEvaluacion) ON DELETE RESTRICT,\n"+
+                        " CONSTRAINT FKidPrimeraRevision FOREIGN KEY (idPrimeraRevision) REFERENCES PrimeraRevision(idPrimeraRevision) ON DELETE RESTRICT, \n"+
+                        " CONSTRAINT FKidSolicitudPrimerRevision FOREIGN KEY (idSolicitudPrimerRevision) REFERENCES SolicitudPrimerRevision(idSolicitudPrimerRevision) ON DELETE RESTRICT \n"+
                         ");");
 
 

@@ -14,8 +14,8 @@ public class MenuSolicitudSegundaRevision extends AppCompatActivity {
     }
 
     public void insertarSolicitudSegundaRevision(View v){
-        Intent inte=new Intent(this,SolicitudSegundaRevision_Insertar.class);
-        startActivity(inte);
+        Intent ven=new Intent(this,SolicitudSegundaRevision_Insertar.class);
+        startActivity(ven);
     }
 
     public void consultarSolicitudSegundaRevision(View v){

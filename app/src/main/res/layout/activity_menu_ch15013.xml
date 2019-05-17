@@ -44,6 +44,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
+        android:onClick="primeraRevision"
         android:text="@string/Tabla_Primera_Revision"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
