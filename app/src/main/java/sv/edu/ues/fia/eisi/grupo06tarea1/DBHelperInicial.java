@@ -263,6 +263,7 @@ public class DBHelperInicial {
 
 
             } catch (SQLException e) {
+
                 e.printStackTrace();
             }
         }
