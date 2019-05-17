@@ -91,47 +91,57 @@ public class SolicitudEvaluacion_Insertar extends AppCompatActivity {
     }
 
     public void buscarSolicitudes(View v){
-        if(evalua.getSelectedItem().toString().equals("Seleccione su evaluacion")){
-            Toast.makeText(this,"Seleccione una evaluacion",Toast.LENGTH_SHORT).show();
-        }
-        else{
-            DBHelper = new DBHelperInicial(this);
-            DBHelper.abrir();
-            String evaluacion = evalua.getSelectedItem().toString();
-            evaluacionPart = evaluacion.split(" ");
-            Cursor soli =DBHelper.consultarSolicitudesSoliEva(Integer.valueOf(evaluacionPart[0]));
-            if(soli.moveToFirst()){
-                do{
-                    solicitudesResultado.add(soli.getInt(0)+" "+soli.getString(1));
-                }while(soli.moveToNext());
-                solicitudesResultado.add(0,"Seleccione solicitud");
-                ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, solicitudesResultado);
-                solicitudes.setAdapter(adaptadorr);
+        if(!(evaluaciones.size()==0)){
+            if(evalua.getSelectedItem().toString().equals("Seleccione su evaluación")){
+                Toast.makeText(this,"Seleccione una evaluacion",Toast.LENGTH_SHORT).show();
             }
             else{
-                Toast.makeText(this, "No hay solicitudes de esa evaluacion", Toast.LENGTH_SHORT).show();
+                DBHelper = new DBHelperInicial(this);
+                DBHelper.abrir();
+                String evaluacion = evalua.getSelectedItem().toString();
+                evaluacionPart = evaluacion.split(" ");
+                Cursor soli =DBHelper.consultarSolicitudesSoliEva(Integer.valueOf(evaluacionPart[0]));
+                if(soli.moveToFirst()){
+                    do{
+                        solicitudesResultado.add(soli.getInt(0)+" "+soli.getString(1));
+                    }while(soli.moveToNext());
+                    solicitudesResultado.add(0,"Seleccione solicitud");
+                    ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, solicitudesResultado);
+                    solicitudes.setAdapter(adaptadorr);
+                }
+                else{
+                    Toast.makeText(this, "No hay solicitudes de esa evaluacion", Toast.LENGTH_SHORT).show();
+                }
             }
+        }else{
+            Toast.makeText(this, "Consulte evaluaciones", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     public void insertaNotaSolicitudEvaluacion(View v){
-        if(solicitudes.getSelectedItem().toString().equals("Seleccione solicitud") | nota.getText().toString().equals("")){
-            Toast.makeText(this, "Seleccione una solicitud", Toast.LENGTH_SHORT).show();
+        if(!(solicitudesResultado.size()==0)){
+            if(solicitudes.getSelectedItem().toString().equals("Seleccione solicitud") | nota.getText().toString().equals("")){
+                Toast.makeText(this, "Seleccione una solicitud", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                DBHelper = new DBHelperInicial(this);
+                DBHelper.abrir();
+                SolicitudEvaluacion solicitudEvaluacion = new SolicitudEvaluacion();
+
+                String sol = solicitudes.getSelectedItem().toString();
+                String[] solPart = sol.split(" ");
+
+                solicitudEvaluacion.setIdEvaluacion(Integer.valueOf(evaluacionPart[0]));
+                solicitudEvaluacion.setIdSolicitud(Integer.valueOf(solPart[0]));
+                solicitudEvaluacion.setNotaSoliEvaluacion(Float.valueOf(nota.getText().toString()));
+                String mensaje = DBHelper.insertarSolicitudEvaluacion(solicitudEvaluacion);
+                Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
+
+            }
+        }else{
+            Toast.makeText(this, "Consulte las solicitudes", Toast.LENGTH_SHORT).show();
         }
-        else{
-            DBHelper = new DBHelperInicial(this);
-            DBHelper.abrir();
-            SolicitudEvaluacion solicitudEvaluacion = new SolicitudEvaluacion();
 
-            String sol = solicitudes.getSelectedItem().toString();
-            String[] solPart = sol.split(" ");
-
-            solicitudEvaluacion.setIdEvaluacion(Integer.valueOf(evaluacionPart[0]));
-            solicitudEvaluacion.setIdSolicitud(Integer.valueOf(solPart[0]));
-            solicitudEvaluacion.setNotaSoliEvaluacion(Float.valueOf(nota.getText().toString()));
-            String mensaje = DBHelper.insertarSolicitudEvaluacion(solicitudEvaluacion);
-            Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
-
-        }
     }
 }
