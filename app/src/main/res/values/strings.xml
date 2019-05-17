@@ -22,6 +22,7 @@
     <string name="Local">Local:</string>
     <string name="Fecha">Fecha:</string>
     <string name="Hora">Hora:</string>
+    <string name="BuscarSolicitudes">Buscar Solicitudes</string>
     <string name="Descripcion">Descripción:</string>
     <string name="Nota">Nota:</string>
     <string name="CodigoDocente">Código Docente Director:</string>

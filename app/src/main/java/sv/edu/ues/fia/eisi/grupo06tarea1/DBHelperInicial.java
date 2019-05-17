@@ -139,7 +139,7 @@ public class DBHelperInicial {
                 db.execSQL("CREATE TABLE SolicitudEvaluacion(\n" +
                         "    idEvaluacion INTEGER NOT NULL,\n" +
                         "    idSolicitudDiferidoRepetido INTEGER NOT NULL,\n" +
-                        "    notaSoliEvaluacion INTEGER NOT NULL,\n" +
+                        "    notaSoliEvaluacion DECIMAL NOT NULL,\n" +
                         "     CONSTRAINT fk_idEvaluacion FOREIGN KEY (idEvaluacion) REFERENCES Evaluaciones(idEvaluacion) ON DELETE RESTRICT,\n" +
                         "     CONSTRAINT fk_idSolicitudDiferidoEvaluacion FOREIGN KEY (idSolicitudDiferidoRepetido) REFERENCES SolicitudDiferidoRepetido(idSolicitudDiferidoRepetido) ON DELETE RESTRICT,\n" +
                         "    PRIMARY KEY (idEvaluacion, idSolicitudDiferidoRepetido)\n" +
@@ -997,7 +997,7 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
         ContentValues soli = new ContentValues();
             soli.put("idEvaluacion",solicitud.getIdEvaluacion());
             soli.put("idSolicitudDiferidoRepetido", solicitud.getIdSolicitud());
-            soli.put("nota",solicitud.getNotaSoliEvaluacion());
+            soli.put("notaSoliEvaluacion",solicitud.getNotaSoliEvaluacion());
             contador= db.insert("SolicitudEvaluacion",null,soli);
             if(contador==-1 || contador==0)
             {
