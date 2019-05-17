@@ -458,7 +458,7 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'MIP115',1)");
        db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'SYP115',1)");
        db.execSQL("INSERT INTO EstudianteInscrito VALUES('VD16006',1,'SYP115',1)");
-        db.execSQL("INSERT INTO EstudianteInscrito VALUES('CH15013',1,'HDP115',1)");
+        db.execSQL("INSERT INTO EstudianteInscrito VALUES('CH15013',2,'HDP115',1)");
         db.execSQL("INSERT INTO EstudianteInscrito VALUES ('CS16008',2,'MIP',1)");
         db.execSQL("INSERT INTO EstudianteInscrito VALUES ('CS16008',2,'HDP115',1)");
 
@@ -944,6 +944,13 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
         return c;
     }
 
+    public Cursor consultarSolicitudesSoliEva(int idEvaluacion){
+        String[] parametros = {String.valueOf(idEvaluacion),String.valueOf(1)};
+        String[] columnas = {"idSolicitudDiferidoRepetido","carnet","aprobado","idTipoSolicitud"};
+        Cursor c = db.query("SolicitudDiferidoRepetido",columnas,"idEvaluacion=? AND aprobado=?",parametros,null,null,null);
+        return c;
+    }
+
         //METODO PARA CONSULTAR EVALUACIONES POR SU ID
         public String consultarEvaluacionesSolicitud(int idSolicitud){
             String resultado="";
@@ -979,6 +986,26 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
             return "Registro actualizado";
 
     }
+
+    public String insertarSolicitudEvaluacion(SolicitudEvaluacion solicitud){
+        Cursor solic;
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues soli = new ContentValues();
+            soli.put("idEvaluacion",solicitud.getIdEvaluacion());
+            soli.put("idSolicitudDiferidoRepetido", solicitud.getIdSolicitud());
+            soli.put("nota",solicitud.getNotaSoliEvaluacion());
+            contador= db.insert("SolicitudEvaluacion",null,soli);
+            if(contador==-1 || contador==0)
+            {
+                return regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+            }
+            else {
+                return regInsertados=regInsertados+contador;
+            }
+
+    }
+
 
 
 

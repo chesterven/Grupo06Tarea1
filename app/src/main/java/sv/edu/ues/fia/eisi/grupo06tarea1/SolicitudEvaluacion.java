@@ -15,6 +15,10 @@ public class SolicitudEvaluacion {
         this.notaSoliEvaluacion = notaSoliEvaluacion;
     }
 
+    public SolicitudEvaluacion() {
+
+    }
+
     public int getIdSolicitud() {
         return idSolicitud;
     }

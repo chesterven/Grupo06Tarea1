@@ -17,10 +17,13 @@ import java.util.ArrayList;
 public class SolicitudEvaluacion_Insertar extends AppCompatActivity {
     DBHelperInicial DBHelper;
     EditText codDocente,nota;
-    Spinner evalua, tiposoli;
+    Spinner evalua, tiposoli,solicitudes;
     ArrayList<String> evaluaciones = new ArrayList<String>();
     ArrayList<String> tipoSolicitud = new ArrayList<String>();
     String resultadosEvaluaciones="";
+    String[] evaluacionPart;
+    ArrayList<String> solicitudesResultado = new ArrayList<String>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +33,10 @@ public class SolicitudEvaluacion_Insertar extends AppCompatActivity {
         evalua = (Spinner) findViewById(R.id.spinnerSolicitudDifRepEvaluacion);
         tiposoli = (Spinner) findViewById(R.id.spinnerTipoSolicitud);
         nota = (EditText) findViewById(R.id.notaInsertarSolicitudEvaluacion);
+        solicitudes = (Spinner) findViewById(R.id.spinnerSolicitudDifRepSolicitudes);
         tipoSolicitud.add("Seleccione tipo evaluacion");
-        tipoSolicitud.add("2 Repetido");
-        tipoSolicitud.add("3 Diferida");
+        tipoSolicitud.add("1 Repetido");
+        tipoSolicitud.add("2 Diferida");
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,android.R.layout.simple_spinner_item,tipoSolicitud);
         tiposoli.setAdapter(adaptador);
 
@@ -83,6 +87,51 @@ public class SolicitudEvaluacion_Insertar extends AppCompatActivity {
         else
         {
             Toast.makeText(this,"Ingrese el código del docente o seleccione tipo solicitud", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void buscarSolicitudes(View v){
+        if(evalua.getSelectedItem().toString().equals("Seleccione su evaluacion")){
+            Toast.makeText(this,"Seleccione una evaluacion",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            DBHelper = new DBHelperInicial(this);
+            DBHelper.abrir();
+            String evaluacion = evalua.getSelectedItem().toString();
+            evaluacionPart = evaluacion.split(" ");
+            Cursor soli =DBHelper.consultarSolicitudesSoliEva(Integer.valueOf(evaluacionPart[0]));
+            if(soli.moveToFirst()){
+                do{
+                    solicitudesResultado.add(soli.getInt(0)+" "+soli.getString(1));
+                }while(soli.moveToNext());
+                solicitudesResultado.add(0,"Seleccione solicitud");
+                ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, solicitudesResultado);
+                solicitudes.setAdapter(adaptadorr);
+            }
+            else{
+                Toast.makeText(this, "No hay solicitudes de esa evaluacion", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void insertaNotaSolicitudEvaluacion(View v){
+        if(solicitudes.getSelectedItem().toString().equals("Seleccione solicitud") | nota.getText().toString().equals("")){
+            Toast.makeText(this, "Seleccione una solicitud", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            DBHelper = new DBHelperInicial(this);
+            DBHelper.abrir();
+            SolicitudEvaluacion solicitudEvaluacion = new SolicitudEvaluacion();
+
+            String sol = solicitudes.getSelectedItem().toString();
+            String[] solPart = sol.split(" ");
+
+            solicitudEvaluacion.setIdEvaluacion(Integer.valueOf(evaluacionPart[0]));
+            solicitudEvaluacion.setIdSolicitud(Integer.valueOf(solPart[0]));
+            solicitudEvaluacion.setNotaSoliEvaluacion(Float.valueOf(nota.getText().toString()));
+            String mensaje = DBHelper.insertarSolicitudEvaluacion(solicitudEvaluacion);
+            Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
+
         }
     }
 }

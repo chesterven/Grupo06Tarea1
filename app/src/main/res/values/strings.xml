@@ -104,6 +104,7 @@
     <string name="TipoSoli">Tipo Solicitud:</string>
     <string name="Solicitud_Aprobada">Aprobada:</string>
     <string name="tiposGrupos">Seleccione el tipo de grupo</string>
+    <string name="Solicitud_DifRep">Solicitud</string>
     <string-array name="tiposGrupos_array">
         <item>Teórico</item>
         <item>Laboratorio</item>
