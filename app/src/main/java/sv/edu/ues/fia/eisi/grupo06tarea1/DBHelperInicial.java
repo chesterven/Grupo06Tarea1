@@ -1022,6 +1022,25 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
         return c;
     }
 
+    public String actualizarSolicitudEvaluacion(String idEvaluacion, String idSolicitud, String nota){
+        String[] parametro = {idEvaluacion,idSolicitud};
+        ContentValues cv = new ContentValues();
+        cv.put("notaSoliEvaluacion",nota);
+        db.update("SolicitudEvaluacion",cv,"idEvaluacion=? AND idSolicitudDiferidoRepetido=?",parametro);
+        return "Registro actualizado";
+    }
+
+    public String eliminarSolicitudEvaluacion(String idEvaluacion, String idSolicitud){
+        String regAfectados="filas afectadas=";
+        int contador = 0;
+        String[] parametro = {idEvaluacion,idSolicitud};
+
+        contador+=db.delete("SolicitudEvaluacion","idEvaluacion=? AND idSolicitudDiferidoRepetido=?",parametro);
+        regAfectados+=contador;
+        return regAfectados;
+
+    }
+
 
 
 

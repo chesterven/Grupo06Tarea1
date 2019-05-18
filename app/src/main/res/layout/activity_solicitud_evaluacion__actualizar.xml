@@ -7,120 +7,191 @@ Grupo de trabajo: 06-->
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
-<TableLayout
-    android:layout_width="fill_parent"
-    android:layout_height="match_parent"
-    android:stretchColumns="1"
-    android:paddingTop="4dip">
-
-    <TableRow
-        android:layout_width="match_parent"
+    <TableLayout
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:gravity="center">
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:text="@string/SolictudEvaluacion_Actualizar" />
-    </TableRow>
+        android:stretchColumns="1"
+        android:paddingTop="4dip">
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="@string/SolictudEvaluacion_Insertar" />
+        </TableRow>
 
-        <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            app:srcCompat="@drawable/solicitudevaluacionnotas" />
-    </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:weightSum="4">
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
 
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:text="@string/IdSolicitud" />
+                app:srcCompat="@drawable/solicitudevaluacionnotas" />
+        </TableRow>
 
-        <EditText
-            android:id="@+id/idSoliDyRAct"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2.5"
-            android:ems="10"
-            android:inputType="text" />
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:weightSum="4">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:weightSum="4">
 
-        <TextView
-            android:id="@+id/textView15"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:text="@string/EvaluacionId" />
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="@string/CodDocente" />
 
-        <EditText
-            android:id="@+id/idEvaluacionDyRAct"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2.5"
-            android:ems="10"
-            android:inputType="text" />
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:weightSum="4">
+            <EditText
+                android:id="@+id/SoliDifyRepEvaluacionDocenteAct"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:ems="10"
+                android:inputType="text" />
+        </TableRow>
 
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:text="@string/Nota" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4"
+            android:layout_marginTop="8dp">
 
-        <EditText
-            android:id="@+id/notaActualizarSolicitudEvaluacion"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2.5"
-            android:ems="10"
-            android:inputType="text" />
-    </TableRow>
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="4"
-        android:layout_marginTop="10dp">
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="@string/Tipo_Solicitud" />
 
-        <Button
-            android:onClick="actualizarNotaSolicitudEvaluacion"
-            android:text="@string/Actualizar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"/>
+            <Spinner
+                android:id="@+id/spinnerTipoSolicitudAct"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5" />
 
-        <Button
-            android:onClick="limpiarTexto"
-            android:text="@string/Limpiar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"/>
-    </TableRow>
-</TableLayout>
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <Button
+                android:onClick="solicitudEvaluacionBuscar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Consultar_Evaluaciones" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="@string/Evaluaciones" />
+
+            <Spinner
+                android:id="@+id/spinnerSolicitudDifRepEvaluacionAct"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <Button
+                android:onClick="buscarSolicitudes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/BuscarSolicitudes" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:weightSum="4">
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="@string/Solicitud_DifRep" />
+
+            <Spinner
+                android:id="@+id/spinnerSolicitudDifRepSolicitudesAct"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:weightSum="4">
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="@string/Nota" />
+
+            <EditText
+                android:id="@+id/notaActualizarSolicitudEvaluacion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:ems="10"
+                android:inputType="numberDecimal" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:onClick="ActualizarSolicitudEvaluacion"
+                android:text="@string/Actualizar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
+
+            <Button
+                android:onClick="limpiarTexto"
+                android:text="@string/Limpiar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
+        </TableRow>
+
+
+    </TableLayout>
 </ScrollView>

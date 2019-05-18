@@ -146,4 +146,15 @@ public class SolicitudEvaluacion_Consultar extends AppCompatActivity {
             Toast.makeText(this, "Consulte las solicitudes", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+    public void limpiarTexto(View v){
+        codDocente.setText("");
+        nota.setText("");
+        solicitudes.setAdapter(null);
+        evalua.setAdapter(null);
+        evaluaciones.clear();
+        solicitudesResultado.clear();
+        tiposoli.setSelection(0);
+    }
 }

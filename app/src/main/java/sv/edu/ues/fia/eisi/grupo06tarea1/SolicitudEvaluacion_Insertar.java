@@ -144,4 +144,14 @@ public class SolicitudEvaluacion_Insertar extends AppCompatActivity {
         }
 
     }
+
+    public void limpiarTexto(View v){
+        codDocente.setText("");
+        nota.setText("");
+        solicitudes.setAdapter(null);
+        evalua.setAdapter(null);
+        evaluaciones.clear();
+        solicitudesResultado.clear();
+        tiposoli.setSelection(0);
+    }
 }
