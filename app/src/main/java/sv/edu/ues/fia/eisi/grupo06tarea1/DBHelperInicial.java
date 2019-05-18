@@ -252,7 +252,7 @@ public class DBHelperInicial {
                         " idSolicitudSegundaRevision INTEGER NOT NULL PRIMARY KEY, \n"+
                         " idEvaluacion INTEGER NOT NULL, \n"+
                         " carnet VARCHAR2(7) NOT NULL, \n"+
-                        " aprobado BOOLEAN, \n"+
+                        " aprobado BOOLEAN NOT NULL, \n"+
                         "idPrimeraRevision INTEGER NOT NULL,"+
                         "idSolicitudPrimerRevision INTEGER NOT NULL,"+
                         " CONSTRAINT FKcarnet FOREIGN KEY (carnet) REFERENCES Estudiante(carnet) ON DELETE RESTRICT, \n"+
@@ -529,6 +529,20 @@ public Cursor consultarMateriasDocente(String codDocente){
         Cursor c = db.query("MateriaCiclo",columna,"codDocente=?",parametro,null,null,null);
 
         return c;
+}
+/*Metodo para consultar si un alumno cuenta con la solicitud de una segunda revision de una evaluacion especifica
+    recibe el idEvaluacion y el carnet del alumno*/
+public Boolean consultarAlumnoSoliSegundaRevisionAntesDetalle(int idEvaluacion, String carnet)
+{
+    String [] parametros={String.valueOf(idEvaluacion),carnet};
+    String [] columna={"idSolicitudSegundaRevision"};
+    Cursor c=db.query("SolicitudSegundaRevision",columna,"idEvaluacion=? AND carnet=?",parametros,null,null,null);
+    if (c.moveToFirst()) {
+        return true;
+    } else {
+
+        return false;
+    }
 }
 //Metodo para insertar una segunda revision
     public String insertarSegundaRevision(SegundaRevision revision)
