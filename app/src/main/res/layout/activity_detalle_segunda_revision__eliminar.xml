@@ -41,10 +41,48 @@ Grupo de trabajo: 06-->
             android:layout_height="125dp"
             app:srcCompat="@drawable/tablasdedetalles" />
     </TableRow>
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="7dp"
+        android:weightSum="4">
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:text="@string/CodDocente" />
+
+        <EditText
+            android:id="@+id/codigoDocenteDetalleSegundaEli"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.5"
+            android:ems="10"
+            android:inputType="text"
+            />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4"
+        android:gravity="center"
+        android:layout_marginTop="5dp">
+
+        <Button
+            android:onClick="consultarReviSegundaReviDetalleEli"
+            android:text="@string/ConsultarRevisiones"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"/>
+
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
         android:weightSum="4">
 
         <TextView
@@ -52,10 +90,10 @@ Grupo de trabajo: 06-->
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
-            android:text="@string/Evaluacion"/>
+            android:text="@string/SegundasRevisiones"/>
 
         <Spinner
-            android:id="@+id/spinnerResultadosDescripcionEvalua"
+            android:id="@+id/spinnerResultadosRevisionesEvaluaEli"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5" />
@@ -74,15 +112,14 @@ Grupo de trabajo: 06-->
             android:text="@string/Carnee" />
 
         <EditText
-            android:id="@+id/carnetDetalleSegundaElimi"
+            android:id="@+id/carnetDetalleSegundaEli"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
             android:ems="10"
-            android:inputType="date"
+            android:inputType="text"
             />
     </TableRow>
-
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -97,7 +134,7 @@ Grupo de trabajo: 06-->
             android:layout_weight="2"/>
 
         <Button
-            android:onClick="Limpiar"
+            android:onClick="limpiar"
             android:text="@string/Limpiar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

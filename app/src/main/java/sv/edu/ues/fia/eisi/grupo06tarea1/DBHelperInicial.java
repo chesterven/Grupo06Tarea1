@@ -583,6 +583,32 @@ public String insertarDetalleSegundaRevision(DetalleSegundaRevision detalleSegun
     }
     return regInsertados;
 }
+/*Metodo para eliminar el Detalle de Segunda Revision*/
+    public String eliminarDetalleSegundaRevision(int idSegundaRevision, int idSoliSegundaRevision)
+    {
+
+        int contador = 0;
+        String[] parametros = {String.valueOf(idSegundaRevision),String.valueOf(idSoliSegundaRevision)};
+
+        contador+=db.delete("DetalleSegundaRevision","idSegundaRevision=? AND idSoliSegundaRevision=?",parametros);
+
+        return "Registro borrado con éxito";
+
+    }
+    /*Metodo para saber si existe un detalle de segunda revision con el carnet y el id de la evaluacion dado*/
+    public Boolean consultarDetalleSegundaAntesDeAcciones(int idSegundaRevision, int idSoliSegundaRevision)
+    {
+        String [] parametro = {String.valueOf(idSegundaRevision),String.valueOf(idSoliSegundaRevision)};
+        String [] columna = {"idSegundaRevision"};
+        Cursor c = db.query("DetalleSegundaRevision",columna,"idSegundaRevision=? AND idSoliSegundaRevision=?",parametro,null,null,null);
+        if(c.moveToFirst())
+        {
+            return true;
+        }
+        else{return false;}
+
+    }
+/*Metodo que consulta el idEvaluacion en la tabla de Segunda Revision y retorna ese numero en un string*/
     public String consultarSegundaRevisionConId (String idSegundaRevision)
     {
         String mensaje="";
