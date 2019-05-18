@@ -515,6 +515,9 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (1,'VD16006',0); ");
         db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (1,'GC16001',1); ");
 
+        //Autor: Cordero Hernandez, Oscar Emmanuel////
+
+        db.execSQL("INSERT INTO SolicitudSegundaRevision (idEvaluacion,carnet,aprobado,idPrimeraRevision,idSolicitudPrimerRevision) VALUES (1,'VD16006',0,1,1); ");
 
         return "BD Llena";
     }

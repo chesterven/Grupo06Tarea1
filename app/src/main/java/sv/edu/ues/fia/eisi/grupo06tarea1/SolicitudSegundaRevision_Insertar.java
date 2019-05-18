@@ -22,10 +22,4 @@ public class SolicitudSegundaRevision_Insertar extends AppCompatActivity {
         setContentView(R.layout.activity_solicitud_segunda_revision_insertar);
     }
 
-    public void limpiarTexto(View v){
-        carnetSoliIn.setText("");
-        motivoSoliIn.setText("");
-        spinnerResultado.setAdapter(null);
-        evaluaciones.clear();
-    }
 }
