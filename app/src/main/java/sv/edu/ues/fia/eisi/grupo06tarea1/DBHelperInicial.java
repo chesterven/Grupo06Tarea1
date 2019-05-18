@@ -252,7 +252,7 @@ public class DBHelperInicial {
                         " idSolicitudSegundaRevision INTEGER NOT NULL PRIMARY KEY, \n"+
                         " idEvaluacion INTEGER NOT NULL, \n"+
                         " carnet VARCHAR2(7) NOT NULL, \n"+
-                        " aprobado BOOLEAN NOT NULL, \n"+
+                        " aprobado BOOLEAN, \n"+
                         "idPrimeraRevision INTEGER NOT NULL,"+
                         "idSolicitudPrimerRevision INTEGER NOT NULL,"+
                         " CONSTRAINT FKcarnet FOREIGN KEY (carnet) REFERENCES Estudiante(carnet) ON DELETE RESTRICT, \n"+
@@ -464,7 +464,7 @@ public class DBHelperInicial {
        db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'SYP115',1)");
        db.execSQL("INSERT INTO EstudianteInscrito VALUES('VD16006',1,'SYP115',1)");
         db.execSQL("INSERT INTO EstudianteInscrito VALUES('CH15013',2,'HDP115',1)");
-        db.execSQL("INSERT INTO EstudianteInscrito VALUES ('CS16008',2,'MIP',1)");
+        db.execSQL("INSERT INTO EstudianteInscrito VALUES ('CS16008',2,'MIP115',1)");
         db.execSQL("INSERT INTO EstudianteInscrito VALUES ('CS16008',2,'HDP115',1)");
 
        db.execSQL("DELETE FROM SolicitudDiferidoRepetido");
@@ -479,8 +479,9 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Ciclo (ciclo) VALUES ('II2019');");
         db.execSQL("INSERT INTO Ciclo (ciclo) VALUES ('I2020');");
         db.execSQL("INSERT INTO Ciclo (ciclo) VALUES ('II2020');");
-        db.execSQL("DELETE FROM SegundaRevision");
-        //db.execSQL("INSERT INTO SegundaRevision (idEvaluacion,idLocal, fechaSegundaRevision,descripcionSegundaRevision)VALUES(2,1,'12/05/2019','PDM parcial 1')");
+
+
+
 
         //Autor" Christian Ariel Zelaya Tejada
         db.execSQL("DELETE FROM TipoEvaluacion");
