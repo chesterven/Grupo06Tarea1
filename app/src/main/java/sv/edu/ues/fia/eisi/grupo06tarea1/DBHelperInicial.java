@@ -116,7 +116,9 @@ public class DBHelperInicial {
                         "    idTipoGrupo INTEGER NOT NULL,\n" +
                         "    PRIMARY KEY(numGrupo, codMateria, idCiclo),\n" +
                         "    CONSTRAINT FKcodMateria FOREIGN KEY(codMateria) REFERENCES Materia(codMateria) ON DELETE RESTRICT,\n" +
-                        "    CONSTRAINT FKTipoGrupo FOREIGN KEY(idTipoGrupo) REFERENCES TipoGrupo(idTipoGrupo) ON DELETE RESTRICT\n" +
+                        "    CONSTRAINT FKTipoGrupo FOREIGN KEY(idTipoGrupo) REFERENCES TipoGrupo(idTipoGrupo) ON DELETE RESTRICT,\n" +
+                        "    CONSTRAINT FKIdCiclo FOREIGN KEY(idCiclo) REFERENCES Ciclo(idCiclo) ON DELETE RESTRICT,\n" +
+                        "    CONSTRAINT FKcodDocente FOREIGN KEY(codDocente) REFERENCES Docente(codDocente) ON DELETE RESTRICT\n" +
                         ");");
 
                 db.execSQL("CREATE TABLE EstudianteInscrito(\n" +
@@ -124,6 +126,10 @@ public class DBHelperInicial {
                         "    numGrupo INTEGER NOT NULL,\n" +
                         "    codMateria VARCHAR2(6) NOT NULL,\n" +
                         "    idCiclo INTEGER NOT NULL,\n" +
+                        "    CONSTRAINT fk_carnetEstInsc FOREIGN KEY (carnet) REFERENCES Estudiante(carnet) ON DELETE RESTRICT,\n"+
+                        "    CONSTRAINT fk_numgrupoEstInsc FOREIGN KEY (numGrupo) REFERENCES MateriaCiclo(numGrupo) ON DELETE RESTRICT,\n"+
+                        "    CONSTRAINT fk_codMatEstInsc FOREIGN KEY (codMateria) REFERENCES MateriaCiclo(codMateria) ON DELETE RESTRICT,\n"+
+                        "    CONSTRAINT fk_idCicloEstInsc FOREIGN KEY (idCiclo) REFERENCES MateriaCiclo(idCiclo) ON DELETE RESTRICT,\n"+
                         "    PRIMARY KEY(carnet, numGrupo, codMateria,idCiclo)\n" +
                         ");");
 
@@ -133,7 +139,10 @@ public class DBHelperInicial {
                         "    carnet VARCHAR2(7) NOT NULL,\n" +
                         "    motivo VARCHAR(20),\n" +
                         "    aprobado BOOLEAN,   \n"+
-                        "    idTipoSolicitud INTEGER NOT NULL\n" +
+                        "    idTipoSolicitud INTEGER NOT NULL,\n" +
+                        "    CONSTRAINT fk_idEvaluacionSolDifRep FOREIGN KEY (idEvaluacion) REFERENCES Evaluaciones(idEvaluacion) ON DELETE RESTRICT,\n"+
+                        "    CONSTRAINT fk_estudianteSolDifRep FOREIGN KEY (carnet) REFERENCES Estudiante(carnet) ON DELETE RESTRICT,\n"+
+                        "    CONSTRAINT fk_idTipoSoliDifRep FOREIGN KEY (idTipoSolicitud) REFERENCES TipoSolicitud(idTipoSolicitud) ON DELETE RESTRICT\n"+
                         ");");
 
                 db.execSQL("CREATE TABLE SolicitudEvaluacion(\n" +
