@@ -1014,6 +1014,13 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
 
     }
 
+    public Cursor ConsultarSolicitudEvaluacion(int idEvaluacion, int idsolicitud){
+        String[] parametros = {String.valueOf(idEvaluacion),String.valueOf(idsolicitud)};
+        String[] columnas = {"idEvaluacion","idSolicitudDiferidoRepetido", "notaSoliEvaluacion"};
+        Cursor c = db.query("SolicitudEvaluacion",columnas,"idEvaluacion=? AND idSolicitudDiferidoRepetido=?",parametros,null,null,null);
+        return c;
+    }
+
 
 
 
