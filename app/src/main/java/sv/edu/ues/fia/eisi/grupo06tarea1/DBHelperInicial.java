@@ -181,9 +181,9 @@ public class DBHelperInicial {
                         "   idSegundaRevision  INTEGER NOT NULL,\n" +
                         "   idSoliSegundaRevision INTEGER NOT NULL,\n" +
                         "   asistencia BOOLEAN NOT NULL,\n" +
-                        "   notaSegundaRevision   FLOAT NOT NULL,\n" +
+                        "   notaSegundaRevision   FLOAT,\n" +
                         "   CONSTRAINT FKidSoliSegundaRevision FOREIGN KEY (idSoliSegundaRevision) REFERENCES SolicitudSegundaRevision(idSolicitudSegundaRevision) ON DELETE RESTRICT,\n" +
-                        "   CONSTRAINT PKDetalleSegundaRevision PRIMARY KEY (idSegundaRevision,idSoliSegundaRevision)\n" +
+                        "   PRIMARY KEY (idSegundaRevision,idSoliSegundaRevision)\n" +
                         ");");
 
                 db.execSQL("CREATE TABLE PrimeraRevision  (\n" +
@@ -489,7 +489,11 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Ciclo (ciclo) VALUES ('I2020');");
         db.execSQL("INSERT INTO Ciclo (ciclo) VALUES ('II2020');");
 
+        db.execSQL("DELETE FROM PrimeraRevision");
+        db.execSQL("INSERT INTO PrimeraRevision (idEvaluacion,idLocal,fechaPrimeraRevision,descripcionPrimeraRevision, horaPrimeraRevision) VALUES (2,1,'12/05/2019','PDM parcial I grupo 1','8 am');");
 
+        db.execSQL("DELETE FROM SegundaRevision");
+        db.execSQL("DELETE FROM DetalleSegundaRevision");
 
 
         //Autor" Christian Ariel Zelaya Tejada
@@ -508,8 +512,7 @@ public class DBHelperInicial {
        db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'PDM115',1,'2019-05-20','Segundo Examen Teorico','Evaluacion de las unidades IV y V');");
        db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'SYP115',1,'2019-05-15','Parcial II','Folletos 3 y 4');");
 
-        db.execSQL("DELETE FROM PrimeraRevision");
-        db.execSQL("INSERT INTO PrimeraRevision (idEvaluacion,idLocal,fechaPrimeraRevision,descripcionPrimeraRevision, horaPrimeraRevision) VALUES (2,1,'12/05/2019','PDM parcial I grupo 1','8 am');");
+
 
         //Autor: José Andrés Castro Sánchez////
         db.execSQL("DELETE FROM SolicitudImpresion");
@@ -521,12 +524,12 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('GC16001',1,8.3); ");
 
         db.execSQL("DELETE FROM SolicitudPrimerRevision");
-        db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (1,'VD16006',0); ");
+        db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (2,'VD16006',1); ");
         db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (1,'GC16001',1); ");
 
         //Autor: Cordero Hernandez, Oscar Emmanuel////
 
-        db.execSQL("INSERT INTO SolicitudSegundaRevision (idEvaluacion,carnet,aprobado,idPrimeraRevision,idSolicitudPrimerRevision) VALUES (1,'VD16006',0,1,1); ");
+        db.execSQL("INSERT INTO SolicitudSegundaRevision (idEvaluacion,carnet,aprobado,idPrimeraRevision,idSolicitudPrimerRevision) VALUES (2,'VD16006',0,1,1); ");
 
         return "BD Llena";
     }
@@ -542,20 +545,61 @@ public Cursor consultarMateriasDocente(String codDocente){
 
         return c;
 }
+/* */
 /*Metodo para consultar si un alumno cuenta con la solicitud de una segunda revision de una evaluacion especifica
     recibe el idEvaluacion y el carnet del alumno*/
-public Boolean consultarAlumnoSoliSegundaRevisionAntesDetalle(int idEvaluacion, String carnet)
+public String consultarAlumnoSoliSegundaRevisionAntesDetalle(int idEvaluacion, String carnet)
 {
     String [] parametros={String.valueOf(idEvaluacion),carnet};
     String [] columna={"idSolicitudSegundaRevision"};
+    String resul="";
     Cursor c=db.query("SolicitudSegundaRevision",columna,"idEvaluacion=? AND carnet=?",parametros,null,null,null);
     if (c.moveToFirst()) {
-        return true;
+        resul=String.valueOf(c.getInt(0));
+        return resul;
     } else {
 
-        return false;
+        return "";
     }
 }
+/*Insertar el detalle de la segunda revision*/
+public String insertarDetalleSegundaRevision(DetalleSegundaRevision detalleSegunda)
+{
+    String regInsertados="Registro Insertado Nº= ";
+    long contador=0;
+    ContentValues detalle = new ContentValues();
+   detalle.put("idSegundaRevision", detalleSegunda.getId_Segunda_Revision());
+   detalle.put("idSoliSegundaRevision",detalleSegunda.getIdSoliSegundaRevision());
+   detalle.put("asistencia",detalleSegunda.isAsitencia_SegRevision());
+   detalle.put("notaSegundaRevision",detalleSegunda.getNota_SegRevision());
+
+    contador=db.insert("DetalleSegundaRevision", null, detalle);
+    if(contador==-1 || contador==0)
+    {
+        regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+    }
+    else {
+        regInsertados=regInsertados+contador;
+    }
+    return regInsertados;
+}
+    public String consultarSegundaRevisionConId (String idSegundaRevision)
+    {
+        String mensaje="";
+        String [] parametro = {idSegundaRevision};
+        String []columna = {"IdEvaluacion"};
+        Cursor c = db.query("SegundaRevision",columna,"idSegundaRevision=?",parametro,null,null,null);
+        if(c.moveToFirst())
+        {
+            mensaje=String.valueOf(c.getInt(0));
+            return mensaje;
+        }
+        else{
+            return "";
+        }
+
+    }
+
 //Metodo para insertar una segunda revision
     public String insertarSegundaRevision(SegundaRevision revision)
     {
@@ -575,8 +619,7 @@ public Boolean consultarAlumnoSoliSegundaRevisionAntesDetalle(int idEvaluacion, 
                 contador = db.insert("SegundaRevision", null, rev);
                 if (contador == -1 || contador == 0) {
                     regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-                } else {
-                    regInsertados = regInsertados + contador;
+                } else { regInsertados = regInsertados + contador;
                 }
                 return regInsertados;
             } else {
@@ -585,7 +628,7 @@ public Boolean consultarAlumnoSoliSegundaRevisionAntesDetalle(int idEvaluacion, 
             }
         }
         else{
-            return "No existe una primera revisión de la evaluación";
+            return "No existe una primera revisión de la evaluación.NO PUEDE INSERTAR LA SEGUNDA REVISION";
         }
 
     }
@@ -641,8 +684,8 @@ public  Boolean consultarPrimeraRevisionAntesSegundaRevision(int idEvaluacion) {
         return null;
     }
 
-    //Metodo que sirve para consulta si a una evaluacion le pertenece una segunda revision recibiendo asi el id de la evaluacion
-    //retorna un string con los datos d ela evaluacion
+    /*Metodo que sirve para consulta si a una evaluacion le pertenece una segunda revision recibiendo asi el id de la evaluacion
+    retorna un string con los datos de la evaluacion*/
 
 public String consultarSegundaRevisionExiste (String idEvaluacion)
 {

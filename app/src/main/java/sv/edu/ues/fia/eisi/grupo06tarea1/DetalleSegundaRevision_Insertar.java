@@ -24,6 +24,8 @@ public class DetalleSegundaRevision_Insertar extends AppCompatActivity {
    CheckBox asistencia;
    EditText notaIn;
    EditText codDocente;
+   String siAlumno;
+   String idEvaluacion="";
    ArrayList<String> listaRevisiones = new ArrayList<>();
    String resultRevisiones="";
    Cursor evaluaciones;
@@ -35,7 +37,7 @@ public class DetalleSegundaRevision_Insertar extends AppCompatActivity {
         setContentView(R.layout.activity_detalle_segunda_revision__insertar);
         revisiones = (Spinner) findViewById(R.id.spinnerResultadosRevisionesEvaluaIn);
         carnetIn = (EditText) findViewById(R.id.carnetDetalleSegundaIn);
-        asistencia = (CheckBox) findViewById(R.id.asistenciaSegundaRevision);
+        asistencia = (CheckBox) findViewById(R.id.asistenciaSegundaRevisionIn);
         notaIn = (EditText) findViewById(R.id.notaDetalleSegundaIn);
         codDocente = (EditText) findViewById(R.id.codigoDocenteDetalleSegundaIn);
     }
@@ -93,17 +95,59 @@ public class DetalleSegundaRevision_Insertar extends AppCompatActivity {
     }
     public void insertarDetalleSegundaRevision(View v)
     {
+        if(!(listaRevisiones.size()==0))
+        {
+            if(revisiones.getSelectedItem().toString().equals("Seleccione su revision")|
+           carnetIn.getText().toString().equals("") )
+            {
+                Toast.makeText(this, "Debe seleccionar una revision e ingresar su carnet", Toast.LENGTH_SHORT).show();
+            }
+
+       else {
+                DBHelper = new DBHelperInicial(this);
+                DBHelper.abrir();
+                String revision = "";
+                String mensaje = "";
+                revision = revisiones.getSelectedItem().toString();
+                String[] revisionParte = revision.split(" ");
+                idEvaluacion = DBHelper.consultarSegundaRevisionConId(revisionParte[0]);
+                siAlumno = DBHelper.consultarAlumnoSoliSegundaRevisionAntesDetalle(Integer.valueOf(idEvaluacion), carnetIn.getText().toString());
+                if (siAlumno.equals("")) {
+                    Toast.makeText(this, "El estudiante no tiene una solicitud de segunda revision", Toast.LENGTH_SHORT).show();
+                } else {
+                    DetalleSegundaRevision detalles = new DetalleSegundaRevision();
+                    detalles.setId_Segunda_Revision(Integer.valueOf(revisionParte[0]));
+                    detalles.setIdSoliSegundaRevision(Integer.valueOf(siAlumno));
+                    detalles.setAsitencia_SegRevision(asistencia.isChecked());
+                    if (notaIn.getText().toString().equals(""))
+                    {
+
+                    }
+                    else
+                    {
+                        detalles.setNota_SegRevision(Float.valueOf(notaIn.getText().toString()));
+                    }
+
+
+                    mensaje = DBHelper.insertarDetalleSegundaRevision(detalles);
+                    Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+        else
+        {
+            Toast.makeText(this, "No ha consultado las revisiones", Toast.LENGTH_SHORT).show();
+        }
+
+
 
     }
-    public void limpiarTexto(View v) {
+    public void Limpiar(View v) {
         carnetIn.setText("");
         notaIn.setText("");
         codDocente.setText("");
         listaRevisiones.clear();
         revisiones.setAdapter(null);
-        notaIn.setText("");
-
-
 
     }
 

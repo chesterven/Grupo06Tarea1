@@ -10,6 +10,9 @@ public class DetalleSegundaRevision {
     private boolean asitencia_SegRevision;
     private float nota_SegRevision;
 
+    public DetalleSegundaRevision() {
+    }
+
     public DetalleSegundaRevision(int id_Segunda_Revision, int idSoliSegundaRevision, boolean asitencia_SegRevision, float nota_SegRevision) {
         this.id_Segunda_Revision = id_Segunda_Revision;
         this.idSoliSegundaRevision = idSoliSegundaRevision;
@@ -17,11 +20,7 @@ public class DetalleSegundaRevision {
         this.nota_SegRevision = nota_SegRevision;
     }
 
-    public DetalleSegundaRevision(int id_Segunda_Revision, int idSoliSegundaRevision, boolean asitencia_SegRevision) {
-        this.id_Segunda_Revision = id_Segunda_Revision;
-        this.idSoliSegundaRevision = idSoliSegundaRevision;
-        this.asitencia_SegRevision = asitencia_SegRevision;
-    }
+
 
     public int getId_Segunda_Revision() {
         return id_Segunda_Revision;
