@@ -1,87 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="1"
-    android:paddingTop="4dip">
+    android:fillViewport="true">
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        android:gravity="center">
+    <TableLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1"
+        android:paddingTop="4dip">
 
-        <TextView
-            android:id="@+id/textTitulo"
-            android:layout_width="202dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/Menu_NotasEstuadianteEvaluacion"
-            android:textSize="18sp"
-            android:textStyle="bold">
-        </TextView>
-    </TableRow>
-
-    <!--<TableRow
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:gravity="center">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="103dp"
+        <TableRow
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/menutablas" />
-    </TableRow>-->
+            android:layout_marginTop="50dp"
+            android:gravity="center">
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
+            <TextView
+                android:id="@+id/textTitulo"
+                android:layout_width="202dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/Menu_NotasEstuadianteEvaluacion"
+                android:textSize="18sp"
+                android:textStyle="bold">
+            </TextView>
+        </TableRow>
 
-        <Button
-            android:onClick="insertarNotaEstudianteEvaluacion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Insertar" />
-    </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:gravity="center">
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="103dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/crud" />
+        </TableRow>
 
-        <Button
-            android:onClick="actualizarNotaEstudianteEvaluacion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Actualizar" />
-    </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
+            <Button
+                android:onClick="insertarNotaEstudianteEvaluacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Insertar" />
+        </TableRow>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="consultarNotaEstudianteEvaluacion"
-            android:text="@string/Consultar" />
-    </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
+            <Button
+                android:onClick="actualizarNotaEstudianteEvaluacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Actualizar" />
+        </TableRow>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="eliminarNotaEstudianteEvaluacion"
-            android:text="@string/Eliminar" />
-    </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
 
-</TableLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="consultarNotaEstudianteEvaluacion"
+                android:text="@string/Consultar" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="eliminarNotaEstudianteEvaluacion"
+                android:text="@string/Eliminar" />
+        </TableRow>
+
+    </TableLayout>
+
+</ScrollView>

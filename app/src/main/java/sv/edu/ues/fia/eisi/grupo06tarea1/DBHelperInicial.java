@@ -110,7 +110,7 @@ public class DBHelperInicial {
                         ");");
                 db.execSQL("CREATE TABLE  MateriaCiclo(\n" +
                         "    numGrupo INTEGER NOT NULL,\n" +
-                        "     codMateria VARCHAR2(6) NOT NULL,\n" +
+                        "    codMateria VARCHAR2(6) NOT NULL,\n" +
                         "    idCiclo INTEGER NOT NULL,\n" +
                         "    codDocente VARCHAR2(7) NOT NULL,\n" +
                         "    idTipoGrupo INTEGER NOT NULL,\n" +
@@ -520,8 +520,8 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO SolicitudImpresion (carnet,codDocente,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('GC16001','MM00001',8,16,1,1); ");
 
         db.execSQL("DELETE FROM NotasEstudianteEvaluacion");
-        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('VD16006',1,8.3); ");
-        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('GC16001',1,8.3); ");
+        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('VD16006',2,8.3); ");
+        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('GC16001',2,8.3); ");
 
         db.execSQL("DELETE FROM SolicitudPrimerRevision");
         db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (2,'VD16006',1); ");
@@ -1170,15 +1170,87 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
 
 
 
+    //********************Autor: José Andrés Castro Sánchez ********************
+    //*******************Carnet: CS16008********************
+
+    //consulta docentes con cursor
+    public Cursor consultarDocentes(){
+        //String [] parametro = {codDocente};
+        String []columna = {"codDocente"};
+        //Cursor c = db.query("Docente",columna,null,null,null,null,null);
+        Cursor c = db.rawQuery("SELECT codDocente FROM Docente",null);
+        return c;
+    }
+
+    public Cursor consultarGruposDocente(String codDocente,String codMateria){
+        Cursor c = db.rawQuery("SELECT numGrupo,idCiclo FROM MateriaCiclo WHERE codMateria = ? AND codDocente = ?", new String[]{codMateria,codDocente});
+        return c;
+    }
+    public Cursor consultarEvaluacionesMateriaCiclo(){
+        //String[] parametro = {String.valueOf(nGrupo),mat,String.valueOf(ciclo)};
+        Cursor c = db.rawQuery("SELECT * FROM Evaluaciones",null);
+        return c;
+
+    }
+
+    public Cursor consultarEstudianteInscritoMateriaCiclo(int numGrupo, String codMateria, int idCiclo){
+        String[] parametro = {String.valueOf(numGrupo),codMateria,String.valueOf(idCiclo)};
+        Cursor c= db.rawQuery("SELECT carnet FROM EstudianteInscrito WHERE numGrupo=? AND codMateria=? AND idCiclo=?",parametro);
+        return c;
+    }
+
+    public String insertarNotaEstudianteEvaluacion(String carnet, String idEvalu, String nota,String materia, String docente,String numGrupo) {
+        String mensaje="";
+        boolean ok=false;
+        Cursor c1 = db.rawQuery("SELECT * FROM Evaluaciones WHERE idEvaluacion=? AND numGrupo=? AND codMateria=?", new String[]{idEvalu, numGrupo, materia});
+        if (c1.moveToFirst()) {
+            //Cursor c3 = consultarEstudianteInscrito(carnet);
+            //String[] columnas = {"numGrupo","codMateria","idCiclo"};
+            //Cursor c = db.query("EstudianteInscrito",columnas,"carnet=?",carnetEstudiante,null,null,null);
+
+            Cursor f= db.rawQuery("SELECT * FROM EstudianteInscrito ",null);
+            if(f.moveToFirst()){
+                do{
+                    if (f.getInt(1) == Integer.valueOf(numGrupo) && f.getString(2).equals(materia)&& f.getString(0).equals(carnet)) {
+                        long contador=0;
+                        ContentValues soli = new ContentValues();
+                        soli.put("idEvaluacion",Integer.valueOf(idEvalu));
+                        soli.put("carnet", carnet);
+                        soli.put("notaEvaluacion",Float.valueOf(nota));
+                        contador= db.insert("NotasEstudianteEvaluacion",null,soli);
+                        ok=true;
+                        if(contador==-1 || contador==0)
+                        {
+                            mensaje= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+                        }
+                        else {
+                            mensaje="Registro Insertado Nº=" +contador;
+                        }
+                    }
+                }
+                while (f.moveToNext());
+                if(ok==false) {
+                    mensaje= "Alumno NO inscrito en " + materia + " en el grupo " + numGrupo + ".";
+                }
+            }
+            else{
+                mensaje="No hay alumno";
+            }
+        }
+        else{
+            mensaje= "La evaluacion ingresada no corresponde al grupo de la materia seleccionado";
+        }
+        return mensaje;
+        //db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('VD16006',2,8.3); ");
+        //db.execSQL("INSERT INTO NotasEstudianteEvaluacion (carnet, idEvaluacion, notaEvaluacion) VALUES ('"+carnet+"','"+Integer.valueOf(idEvalu)+"'','"+Float.valueOf(nota)+"'');");
+        //mensaje= "GUARDADO";
 
 
+    }
 
 
-    //********************Autor: ********************
-//*******************Carnet: ********************
-
-
-
-
+        //********************Autor: ********************
+        //*******************Carnet: ********************
 
 }
+

@@ -86,11 +86,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
             android:text="@string/Evaluacion" />
-        <Spinner
+        <!--<Spinner
             android:id="@+id/spinnerEvaluacionesGrupoMateriaNotasEstudianteEvaluacionEliminar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2.5" />
+            android:layout_weight="2.5" />-->
+
+        <EditText
+            android:id="@+id/EvaluacionEliminarNotaEstudianteEvaluacion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.5"
+            android:ems="10"
+            android:inputType="number"
+            />
 
     </TableRow>
 
