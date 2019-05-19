@@ -47,6 +47,8 @@ public class DBHelperInicial {
     private static final String DROP_TABLE22= "DROP TABLE IF EXISTS SolicitudEvaluacion";
     private static final String DROP_TABLE23 = "DROP TABLE IF EXISTS DetalleSegundaRevision";
     private static final String DROP_TABLE24 ="DROP TABLE IF EXISTS PrimeraRevision";
+    private static final String DROP_TABLE25 ="DROP TABLE IF EXISTS TipoParametro";
+    private static final String DROP_TABLE26 ="DROP TABLE IF EXISTS Parametro";
 
     public DBHelperInicial(Context ctx) {
         this.context = ctx;
@@ -318,6 +320,8 @@ public class DBHelperInicial {
                 db.execSQL(DROP_TABLE22);
                 db.execSQL(DROP_TABLE23);
                 db.execSQL(DROP_TABLE24);
+                db.execSQL(DROP_TABLE25);
+                db.execSQL(DROP_TABLE26);
                 onCreate(db);
             } catch (Exception e) {
                 //Message.message(context,""+e);
@@ -510,6 +514,16 @@ public class DBHelperInicial {
 
 
         //Autor" Christian Ariel Zelaya Tejada
+        db.execSQL("DELETE FROM TipoParametro");
+        db.execSQL("INSERT INTO TipoParametro (nombreTipoParametro) VALUES('Solicitud Repetido')");
+        db.execSQL("INSERT INTO TipoParametro (nombreTipoParametro) VALUES('Solicitud Diferido')");
+        db.execSQL("INSERT INTO TipoParametro (nombreTipoParametro) VALUES('Solicitud Primera Revision')");
+
+        db.execSQL("DELETE FROM Parametro");
+        db.execSQL("INSERT INTO Parametro (idTipoParametro,cantidad_Dias) VALUES (1,5)");
+        db.execSQL("INSERT INTO Parametro (idTipoParametro,cantidad_Dias) VALUES (2,5)");
+        db.execSQL("INSERT INTO Parametro (idTipoParametro,cantidad_Dias) VALUES (3,5)");
+
         db.execSQL("DELETE FROM TipoEvaluacion");
         db.execSQL("INSERT INTO TipoEvaluacion (nombreTipoEvaluacion) VALUES ('Ordinaria');");
         db.execSQL("INSERT INTO TipoEvaluacion (nombreTipoEvaluacion) VALUES ('Repetida');");
