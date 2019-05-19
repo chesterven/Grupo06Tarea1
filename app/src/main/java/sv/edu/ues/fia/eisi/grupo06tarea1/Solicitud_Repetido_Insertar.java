@@ -20,6 +20,7 @@ public class Solicitud_Repetido_Insertar extends AppCompatActivity {
     DBHelperInicial DBHelper;
     EditText carnet;
     Spinner spinnerResultado;
+
     ArrayList<String> evaluaciones = new ArrayList<String>();
     Cursor datos;
 
