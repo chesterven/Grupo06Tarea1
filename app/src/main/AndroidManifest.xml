@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MateriaCiclo_Eliminar"></activity>
+        <activity android:name=".SolicitudSegundaRevision_Insertar"></activity>
+        <activity android:name=".MateriaCiclo_Eliminar" />
         <activity android:name=".MateriaCiclo_Actualizar" />
         <activity android:name=".MateriaCiclo_Consultar" />
         <activity android:name=".MateriaCiclo_Insertar" />
@@ -39,7 +40,6 @@
         <activity android:name=".SolicitudPrimerRevision_Actualizar" />
         <activity android:name=".SolicitudPrimerRevision_Consultar" />
         <activity android:name=".SolicitudPrimerRevision_Insertar" />
-        <activity android:name=".SolicitudSegundaRevision_Insertar" />
         <activity android:name=".SolicitudSegundaRevision_Actualizar" />
         <activity android:name=".SolicitudSegundaRevision_Consultar" />
         <activity android:name=".SolicitudSegundaRevision_Eliminar" />
