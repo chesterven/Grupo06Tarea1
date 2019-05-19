@@ -209,6 +209,18 @@
     <string name="solicitud_segunda_revisión">Solicitud Segunda revisión</string>
     <string name="primera_revision">Primera Revisión</string>
 
+    <!--Activity MenuSolicitudPrimerRevision-->
+    <string name="Menu_SolicitudSegundaRevision">Solicitud Primer Revision</string>
+    <!--Activity SolicitudSegundaRevision_Insertar-->
+    <string name="Titulo_Insertar_SolicitudSegundaRevision">Insertar Solicitud Segunda Revision</string>
+    <!--Activity Consultar_SolicitudSegundaRevision-->
+    <string name="Titulo_Consultar_SolicitudSegundaRevision">Consultar Solicitud Segunda Revision</string>
+    <!--Activity Actualizar_SolicitudSegundaRevision-->
+    <string name="Titulo_Actualizar_SolicitudSegundaRevision">Actualizar Solicitud Segunda Revision</string>
+    <!--Activity Eliminar_SolicitudSegundaRevision-->
+    <string name="Titulo_Eliminar_SolicitudSegundaRevision">Eliminar Solicitud Segunda Revision</string>
+
+
     <!-- MENU ZT12002-->
     <string name="Menu_Tablas_ZT12002">Menu de tablas ZT12002</string>
     <!-- MENU -->
