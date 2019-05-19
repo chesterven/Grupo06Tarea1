@@ -545,6 +545,17 @@ public Cursor consultarMateriasDocente(String codDocente){
 
         return c;
 }
+/*Metodo para actualizar el detalle d ela segunda revision*/
+    public String actualizarDetalleSegundaRevision(DetalleSegundaRevision detalles)
+    {
+        String[] id ={String.valueOf(detalles.getId_Segunda_Revision()),String.valueOf(detalles.getIdSoliSegundaRevision())};
+        ContentValues cv = new ContentValues();
+        cv.put("notaSegundaRevision",detalles.getNota_SegRevision());
+        db.update("DetalleSegundaRevision",cv,"idSegundaRevision=? AND idSoliSegundaRevision=?",id);
+        return "Registro actualizado correctamente";
+
+
+    }
 /* Metodo para consultar el detalle de la segunda revision*/
     public DetalleSegundaRevision consultarDetalleSegundaRevision(int idSegundaRevision, int idSoliSegundaRevision)
     {
