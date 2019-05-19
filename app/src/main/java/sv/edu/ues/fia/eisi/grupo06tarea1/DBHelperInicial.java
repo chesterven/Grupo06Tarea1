@@ -47,6 +47,8 @@ public class DBHelperInicial {
     private static final String DROP_TABLE22= "DROP TABLE IF EXISTS SolicitudEvaluacion";
     private static final String DROP_TABLE23 = "DROP TABLE IF EXISTS DetalleSegundaRevision";
     private static final String DROP_TABLE24 ="DROP TABLE IF EXISTS PrimeraRevision";
+    private static final String DROP_TABLE25 ="DROP TABLE IF EXISTS TipoParametro";
+    private static final String DROP_TABLE26 ="DROP TABLE IF EXISTS Parametro";
 
     public DBHelperInicial(Context ctx) {
         this.context = ctx;
@@ -199,6 +201,19 @@ public class DBHelperInicial {
 
                 //Autor: Christian Ariel Zelaya Tejada
                 //Carnet: ZT12002
+
+                db.execSQL("CREATE TABLE TipoParametro (\n"    +
+                        "   idTipoParametro INTEGER NOT NULL PRIMARY KEY,\n"    +
+                        "   nombreTipoParametro VARCHAR(20) NOT NULL\n"    +
+                        ");");
+
+                db.execSQL("CREATE TABLE Parametro  (\n"    +
+                        "   idParametro INTEGER NOT NULL PRIMARY KEY,\n"  +
+                        "   idTipoParametro INTEGER NOT NULL,\n"   +
+                        "   cantidad_Dias  INTEGER NOT NULL,\n"    +
+                        "   CONSTRAINT fk_idTipoParametro FOREIGN KEY (idTipoParametro) REFERENCES TipoParametro(idTipoParametro) ON DELETE RESTRICT\n" +
+                        ");");
+
                 db.execSQL("CREATE TABLE TipoEvaluacion (\n" +
                         "   idTipoEvaluacion INTEGER NOT NULL PRIMARY KEY,\n" +
                         "   nombreTipoEvaluacion VARCHAR(25) NOT NULL"  +
@@ -219,7 +234,7 @@ public class DBHelperInicial {
                         "   CONSTRAINT fk_idCiclo FOREIGN KEY (idCiclo) REFERENCES MateriaCiclo(idCiclo) ON DELETE RESTRICT\n" +
                         ");");
 
-                //Autor: José Andrés Castro Sánchez
+                //Autor: JosÈ AndrÈs Castro S·nchez
                 //Carnet: CS16008
 
                 db.execSQL("CREATE TABLE SolicitudImpresion (\n" +
@@ -253,7 +268,7 @@ public class DBHelperInicial {
                         ");");
 
 
-                //Autor: Cordero Hernández, Oscar Emmanuel
+                //Autor: Cordero Hern·ndez, Oscar Emmanuel
                 //Carnet: CH15013
 
 
@@ -305,6 +320,8 @@ public class DBHelperInicial {
                 db.execSQL(DROP_TABLE22);
                 db.execSQL(DROP_TABLE23);
                 db.execSQL(DROP_TABLE24);
+                db.execSQL(DROP_TABLE25);
+                db.execSQL(DROP_TABLE26);
                 onCreate(db);
             } catch (Exception e) {
                 //Message.message(context,""+e);
@@ -418,14 +435,14 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Estudiante VALUES('VD16006','Roberto','Ventura',0);");
         db.execSQL("INSERT INTO Estudiante VALUES('GC16001','Abigail','Gil',1);");
         db.execSQL("INSERT INTO Estudiante VALUES('XX16001','Fernando','Xerox',0);");
-        db.execSQL("INSERT INTO Estudiante VALUES ('CH15013','Oscar','Hernández',1)");
-        db.execSQL("INSERT INTO Estudiante VALUES ('CS16008','José','Castro',0)");
+        db.execSQL("INSERT INTO Estudiante VALUES ('CH15013','Oscar','Hern·ndez',1)");
+        db.execSQL("INSERT INTO Estudiante VALUES ('CS16008','JosÈ','Castro',0)");
         db.execSQL("INSERT INTO Estudiante VALUES ('ZTE12002','Christian','Zelaya',0)");
 
         db.execSQL("DELETE FROM Docente");
         db.execSQL("INSERT INTO Docente VALUES('GR00001','Cesar Augusto','Gonzalez Rodriguez',1)");
         db.execSQL("INSERT INTO Docente VALUES('MM00001','Boris Alexander','Montano',0)");
-        db.execSQL("INSERT INTO Docente VALUES('CG00001','Carlos','García',0)");
+        db.execSQL("INSERT INTO Docente VALUES('CG00001','Carlos','GarcÌa',0)");
         db.execSQL("INSERT INTO Docente VALUES('JI00001','Jorge','Iraheta',0)");
         db.execSQL("INSERT INTO Docente VALUES('GM00001','Guillermo','Mejia',0)");
         db.execSQL("INSERT INTO Docente VALUES('RC00001','Rudy','Chicas',0)");
@@ -470,16 +487,16 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO EstudianteInscrito VALUES('VD16006',1,'PDM115',1)");
         db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'PDM115',1)");
         db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'MIP115',1)");
-       db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'SYP115',1)");
-       db.execSQL("INSERT INTO EstudianteInscrito VALUES('VD16006',1,'SYP115',1)");
+        db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'SYP115',1)");
+        db.execSQL("INSERT INTO EstudianteInscrito VALUES('VD16006',1,'SYP115',1)");
         db.execSQL("INSERT INTO EstudianteInscrito VALUES('CH15013',2,'HDP115',1)");
         db.execSQL("INSERT INTO EstudianteInscrito VALUES ('CS16008',2,'MIP115',1)");
         db.execSQL("INSERT INTO EstudianteInscrito VALUES ('CS16008',2,'HDP115',1)");
 
-       db.execSQL("DELETE FROM SolicitudDiferidoRepetido");
-       db.execSQL("INSERT INTO SolicitudDiferidoRepetido(idEvaluacion,carnet,motivo,aprobado,idTipoSolicitud) VALUES(3,'VD16006','Enfermedad grave',1,2)");
+        db.execSQL("DELETE FROM SolicitudDiferidoRepetido");
+        db.execSQL("INSERT INTO SolicitudDiferidoRepetido(idEvaluacion,carnet,motivo,aprobado,idTipoSolicitud) VALUES(3,'VD16006','Enfermedad grave',1,2)");
 
-       db.execSQL("DELETE FROM SolicitudEvaluacion");
+        db.execSQL("DELETE FROM SolicitudEvaluacion");
 
         //Autor: Maria Abigail Gil Cordova
         db.execSQL("DELETE FROM Ciclo");
@@ -497,6 +514,16 @@ public class DBHelperInicial {
 
 
         //Autor" Christian Ariel Zelaya Tejada
+        db.execSQL("DELETE FROM TipoParametro");
+        db.execSQL("INSERT INTO TipoParametro (nombreTipoParametro) VALUES('Solicitud Repetido')");
+        db.execSQL("INSERT INTO TipoParametro (nombreTipoParametro) VALUES('Solicitud Diferido')");
+        db.execSQL("INSERT INTO TipoParametro (nombreTipoParametro) VALUES('Solicitud Primera Revision')");
+
+        db.execSQL("DELETE FROM Parametro");
+        db.execSQL("INSERT INTO Parametro (idTipoParametro,cantidad_Dias) VALUES (1,5)");
+        db.execSQL("INSERT INTO Parametro (idTipoParametro,cantidad_Dias) VALUES (2,5)");
+        db.execSQL("INSERT INTO Parametro (idTipoParametro,cantidad_Dias) VALUES (3,5)");
+
         db.execSQL("DELETE FROM TipoEvaluacion");
         db.execSQL("INSERT INTO TipoEvaluacion (nombreTipoEvaluacion) VALUES ('Ordinaria');");
         db.execSQL("INSERT INTO TipoEvaluacion (nombreTipoEvaluacion) VALUES ('Repetida');");
@@ -509,12 +536,12 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'MIP115',1,'2019-04-12','Examen escrito 1','Evaluacion de la unidad I')");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'SYP115',1,'2019-04-15','Parcial I','Folletos 1 y 2')");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(2,2,'HDP115',1,'2019-04-15','Parcial I','Unidad 1, 2 y 3')");
-       db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'PDM115',1,'2019-05-20','Segundo Examen Teorico','Evaluacion de las unidades IV y V');");
-       db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'SYP115',1,'2019-05-15','Parcial II','Folletos 3 y 4');");
+        db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'PDM115',1,'2019-05-20','Segundo Examen Teorico','Evaluacion de las unidades IV y V');");
+        db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'SYP115',1,'2019-05-15','Parcial II','Folletos 3 y 4');");
 
 
 
-        //Autor: José Andrés Castro Sánchez////
+        //Autor: JosÈ AndrÈs Castro S·nchez////
         db.execSQL("DELETE FROM SolicitudImpresion");
         db.execSQL("INSERT INTO SolicitudImpresion (carnet,codDocente,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('VD16006','GR00001',4,8,0,0); ");
         db.execSQL("INSERT INTO SolicitudImpresion (carnet,codDocente,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('GC16001','MM00001',8,16,1,1); ");
@@ -538,14 +565,14 @@ public class DBHelperInicial {
 //*******************Carnet: GC16001********************
 
     //consulta las materias que le corresponden a un docente
-public Cursor consultarMateriasDocente(String codDocente){
+    public Cursor consultarMateriasDocente(String codDocente){
         String [] parametro = {codDocente};
         String []columna = {"numGrupo","CodMateria","idCiclo"};
         Cursor c = db.query("MateriaCiclo",columna,"codDocente=?",parametro,null,null,null);
 
         return c;
-}
-/*Metodo para actualizar el detalle d ela segunda revision*/
+    }
+    /*Metodo para actualizar el detalle d ela segunda revision*/
     public String actualizarDetalleSegundaRevision(DetalleSegundaRevision detalles)
     {
         String[] id ={String.valueOf(detalles.getId_Segunda_Revision()),String.valueOf(detalles.getIdSoliSegundaRevision())};
@@ -556,7 +583,7 @@ public Cursor consultarMateriasDocente(String codDocente){
 
 
     }
-/* Metodo para consultar el detalle de la segunda revision*/
+    /* Metodo para consultar el detalle de la segunda revision*/
     public DetalleSegundaRevision consultarDetalleSegundaRevision(int idSegundaRevision, int idSoliSegundaRevision)
     {
         DetalleSegundaRevision detalles = new DetalleSegundaRevision();
@@ -578,44 +605,44 @@ public Cursor consultarMateriasDocente(String codDocente){
         }
         else {return null;}
     }
-/*Metodo para consultar si un alumno cuenta con la solicitud de una segunda revision de una evaluacion especifica
-    recibe el idEvaluacion y el carnet del alumno*/
-public String consultarAlumnoSoliSegundaRevisionAntesDetalle(int idEvaluacion, String carnet)
-{
-    String [] parametros={String.valueOf(idEvaluacion),carnet};
-    String [] columna={"idSolicitudSegundaRevision"};
-    String resul="";
-    Cursor c=db.query("SolicitudSegundaRevision",columna,"idEvaluacion=? AND carnet=?",parametros,null,null,null);
-    if (c.moveToFirst()) {
-        resul=String.valueOf(c.getInt(0));
-        return resul;
-    } else {
-
-        return "";
-    }
-}
-/*Insertar el detalle de la segunda revision*/
-public String insertarDetalleSegundaRevision(DetalleSegundaRevision detalleSegunda)
-{
-    String regInsertados="Registro Insertado Nº= ";
-    long contador=0;
-    ContentValues detalle = new ContentValues();
-   detalle.put("idSegundaRevision", detalleSegunda.getId_Segunda_Revision());
-   detalle.put("idSoliSegundaRevision",detalleSegunda.getIdSoliSegundaRevision());
-   detalle.put("asistencia",detalleSegunda.isAsitencia_SegRevision());
-   detalle.put("notaSegundaRevision",detalleSegunda.getNota_SegRevision());
-
-    contador=db.insert("DetalleSegundaRevision", null, detalle);
-    if(contador==-1 || contador==0)
+    /*Metodo para consultar si un alumno cuenta con la solicitud de una segunda revision de una evaluacion especifica
+        recibe el idEvaluacion y el carnet del alumno*/
+    public String consultarAlumnoSoliSegundaRevisionAntesDetalle(int idEvaluacion, String carnet)
     {
-        regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        String [] parametros={String.valueOf(idEvaluacion),carnet};
+        String [] columna={"idSolicitudSegundaRevision"};
+        String resul="";
+        Cursor c=db.query("SolicitudSegundaRevision",columna,"idEvaluacion=? AND carnet=?",parametros,null,null,null);
+        if (c.moveToFirst()) {
+            resul=String.valueOf(c.getInt(0));
+            return resul;
+        } else {
+
+            return "";
+        }
     }
-    else {
-        regInsertados=regInsertados+contador;
+    /*Insertar el detalle de la segunda revision*/
+    public String insertarDetalleSegundaRevision(DetalleSegundaRevision detalleSegunda)
+    {
+        String regInsertados="Registro Insertado N∫= ";
+        long contador=0;
+        ContentValues detalle = new ContentValues();
+        detalle.put("idSegundaRevision", detalleSegunda.getId_Segunda_Revision());
+        detalle.put("idSoliSegundaRevision",detalleSegunda.getIdSoliSegundaRevision());
+        detalle.put("asistencia",detalleSegunda.isAsitencia_SegRevision());
+        detalle.put("notaSegundaRevision",detalleSegunda.getNota_SegRevision());
+
+        contador=db.insert("DetalleSegundaRevision", null, detalle);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserciÛn";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
     }
-    return regInsertados;
-}
-/*Metodo para eliminar el Detalle de Segunda Revision*/
+    /*Metodo para eliminar el Detalle de Segunda Revision*/
     public String eliminarDetalleSegundaRevision(int idSegundaRevision, int idSoliSegundaRevision)
     {
 
@@ -624,7 +651,7 @@ public String insertarDetalleSegundaRevision(DetalleSegundaRevision detalleSegun
 
         contador+=db.delete("DetalleSegundaRevision","idSegundaRevision=? AND idSoliSegundaRevision=?",parametros);
 
-        return "Registro borrado con éxito";
+        return "Registro borrado con Èxito";
 
     }
     /*Metodo para saber si existe un detalle de segunda revision con el carnet y el id de la evaluacion dado*/
@@ -640,7 +667,7 @@ public String insertarDetalleSegundaRevision(DetalleSegundaRevision detalleSegun
         else{return false;}
 
     }
-/*Metodo que consulta el idEvaluacion en la tabla de Segunda Revision y retorna ese numero en un string*/
+    /*Metodo que consulta el idEvaluacion en la tabla de Segunda Revision y retorna ese numero en un string*/
     public String consultarSegundaRevisionConId (String idSegundaRevision)
     {
         String mensaje="";
@@ -658,7 +685,7 @@ public String insertarDetalleSegundaRevision(DetalleSegundaRevision detalleSegun
 
     }
 
-//Metodo para insertar una segunda revision
+    //Metodo para insertar una segunda revision
     public String insertarSegundaRevision(SegundaRevision revision)
     {
         String mensaje = "";
@@ -666,7 +693,7 @@ public String insertarDetalleSegundaRevision(DetalleSegundaRevision detalleSegun
         if(primera ==true) {
             mensaje = consultarSegundaRevisionExiste(String.valueOf(revision.getIdEvaluacion()));
             if (mensaje.equals("")) {
-                String regInsertados = "Registro Insertado Nº= ";
+                String regInsertados = "Registro Insertado N∫= ";
                 long contador = 0;
                 ContentValues rev = new ContentValues();
                 rev.put("idEvaluacion", revision.getIdEvaluacion());
@@ -676,17 +703,17 @@ public String insertarDetalleSegundaRevision(DetalleSegundaRevision detalleSegun
                 rev.put("descripcionSegundaRevision", revision.getDescripcion());
                 contador = db.insert("SegundaRevision", null, rev);
                 if (contador == -1 || contador == 0) {
-                    regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+                    regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserciÛn";
                 } else { regInsertados = regInsertados + contador;
                 }
                 return regInsertados;
             } else {
 
-                return "Ya existe una revisión para esa evaluación";
+                return "Ya existe una revisiÛn para esa evaluaciÛn";
             }
         }
         else{
-            return "No existe una primera revisión de la evaluación.NO PUEDE INSERTAR LA SEGUNDA REVISION";
+            return "No existe una primera revisiÛn de la evaluaciÛn.NO PUEDE INSERTAR LA SEGUNDA REVISION";
         }
 
     }
@@ -694,17 +721,17 @@ public String insertarDetalleSegundaRevision(DetalleSegundaRevision detalleSegun
    una primera revision llevada a cabo previamente si devuelve true dejara insertar
    la segunda revision y si regresa false es que no ha habido primera revision para esa evaluacion*/
 
-public  Boolean consultarPrimeraRevisionAntesSegundaRevision(int idEvaluacion) {
-    String[] id = {String.valueOf(idEvaluacion)};
-    String[] columna = {"idEvaluacion"};
-    Cursor c = db.query("PrimeraRevision", columna, "idEvaluacion=?", id, null, null, null, null);
-    if (c.moveToFirst()) {
-        return true;
-    } else {
+    public  Boolean consultarPrimeraRevisionAntesSegundaRevision(int idEvaluacion) {
+        String[] id = {String.valueOf(idEvaluacion)};
+        String[] columna = {"idEvaluacion"};
+        Cursor c = db.query("PrimeraRevision", columna, "idEvaluacion=?", id, null, null, null, null);
+        if (c.moveToFirst()) {
+            return true;
+        } else {
 
-        return false;
+            return false;
+        }
     }
-}
 //Metodo para consultar el nombre del local
 
     public String obtenerLocal(int idLocal)
@@ -745,12 +772,12 @@ public  Boolean consultarPrimeraRevisionAntesSegundaRevision(int idEvaluacion) {
     /*Metodo que sirve para consulta si a una evaluacion le pertenece una segunda revision recibiendo asi el id de la evaluacion
     retorna un string con los datos de la evaluacion*/
 
-public String consultarSegundaRevisionExiste (String idEvaluacion)
-{
-    String mensaje="";
-    String [] parametro = {idEvaluacion};
-    String []columna = {"IdSegundaRevision","descripcionSegundaRevision"};
-    Cursor c = db.query("SegundaRevision",columna,"idEvaluacion=?",parametro,null,null,null);
+    public String consultarSegundaRevisionExiste (String idEvaluacion)
+    {
+        String mensaje="";
+        String [] parametro = {idEvaluacion};
+        String []columna = {"IdSegundaRevision","descripcionSegundaRevision"};
+        Cursor c = db.query("SegundaRevision",columna,"idEvaluacion=?",parametro,null,null,null);
         if(c.moveToFirst())
         {
             mensaje=String.valueOf(c.getInt(0))+" "+c.getString(1);
@@ -760,11 +787,11 @@ public String consultarSegundaRevisionExiste (String idEvaluacion)
             return "";
         }
 
-}
+    }
 
-//Metodo para actualizar segunda revision
-public String actualizarSegundaRevision(SegundaRevision segunda)
-{
+    //Metodo para actualizar segunda revision
+    public String actualizarSegundaRevision(SegundaRevision segunda)
+    {
         String[] id ={String.valueOf(segunda.getId_Segunda_Revision())};
         ContentValues cv = new ContentValues();
         cv.put("idLocal",segunda.getIdLocal());
@@ -773,35 +800,35 @@ public String actualizarSegundaRevision(SegundaRevision segunda)
         cv.put("descripcionSegundaRevision",segunda.getDescripcion());
         db.update("SegundaRevision",cv,"idSegundaRevision=?",id);
         return "Registro actualizado correctamente";
-}
-//Metodo para eliminar la segunda revision
+    }
+    //Metodo para eliminar la segunda revision
     public String eliminarSegundaRevision(int idSegunda)
     {
         String regAfectados="filas afectadas=";
         int contador = 0;
         String[] parametro = {String.valueOf(idSegunda)};
 
-            contador+=db.delete("SegundaRevision","idSegundaRevision=?",parametro);
+        contador+=db.delete("SegundaRevision","idSegundaRevision=?",parametro);
 
 
-            return "Registro borrado con éxito";
+        return "Registro borrado con Èxito";
 
     }
 
     //Metodo para consulta la integridad de la tabla de dia no habil
-public boolean consultarDiaNoHabilIntegridad(String fecha){
-    String[] parametro = {fecha};
-    String[] columna = {"fecha"};
-    Cursor c = db.query("DiasNoHabiles",columna,"fecha=?",parametro,null,null,null);
-    if(c.moveToFirst()){
-        return true;
-    }
-    else {
-        return false;
-    }
+    public boolean consultarDiaNoHabilIntegridad(String fecha){
+        String[] parametro = {fecha};
+        String[] columna = {"fecha"};
+        Cursor c = db.query("DiasNoHabiles",columna,"fecha=?",parametro,null,null,null);
+        if(c.moveToFirst()){
+            return true;
+        }
+        else {
+            return false;
+        }
 
-}
-//Metodo para consultar los locales, regresa el nombre de todos los locales que se encuentran en la BD
+    }
+    //Metodo para consultar los locales, regresa el nombre de todos los locales que se encuentran en la BD
 //en un ArrayList
     public Cursor consultarLocales()
     {
@@ -810,7 +837,7 @@ public boolean consultarDiaNoHabilIntegridad(String fecha){
         return c;
     }
 
-//Metodo que recibe el ciclo en string ejemplo I2019 y regresa su respectivo id al consultar en su tabla Ciclo
+    //Metodo que recibe el ciclo en string ejemplo I2019 y regresa su respectivo id al consultar en su tabla Ciclo
     public int  consultarCiclo(String ciclo){
         String[] parametro = {ciclo};
         String[] columna = {"idCiclo"};
@@ -847,12 +874,12 @@ public boolean consultarDiaNoHabilIntegridad(String fecha){
         }
 
     }
-//Metodo para insertar un dia no habil
+    //Metodo para insertar un dia no habil
     public String insertarDia(DiasNoHabiles dia){
         String mensaje="La fecha ya existe, inserte otra";
         boolean existe=consultarDiaNoHabilIntegridad(dia.getFecha());
-       if(existe==false){
-            String regInsertados="Registro Insertado Nº= ";
+        if(existe==false){
+            String regInsertados="Registro Insertado N∫= ";
             long contador=0;
             ContentValues dias = new ContentValues();
             dias.put("idCiclo", dia.getCiclo());
@@ -860,71 +887,71 @@ public boolean consultarDiaNoHabilIntegridad(String fecha){
             contador=db.insert("DiasNoHabiles", null, dias);
             if(contador==-1 || contador==0)
             {
-                regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+                regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserciÛn";
             }
             else {
                 regInsertados=regInsertados+contador;
             }
             return regInsertados;
         }
-       else
-           return mensaje;
-        }
+        else
+            return mensaje;
+    }
 //Metodo para eliminar el dia no habil
 
-public String eliminarDia(String fecha){
-    String regAfectados="filas afectadas=";
-    int contador = 0;
-    String[] parametro = {fecha};
-    boolean existe = consultarDiaNoHabilIntegridad(fecha);
-    if(existe == true){
-        contador+=db.delete("DiasNoHabiles","fecha=?",parametro);
-        regAfectados+=contador;
-        return regAfectados;
+    public String eliminarDia(String fecha){
+        String regAfectados="filas afectadas=";
+        int contador = 0;
+        String[] parametro = {fecha};
+        boolean existe = consultarDiaNoHabilIntegridad(fecha);
+        if(existe == true){
+            contador+=db.delete("DiasNoHabiles","fecha=?",parametro);
+            regAfectados+=contador;
+            return regAfectados;
+        }
+        else{
+            return "No existe ese dÌa no h·bil";
+        }
     }
-    else{
-        return "No existe ese día no hábil";
-    }
-}
-//Metodo para consultar dia no habil
-public DiasNoHabiles consultarDia(String fechaCon){
+    //Metodo para consultar dia no habil
+    public DiasNoHabiles consultarDia(String fechaCon){
 
-    String[] parametro = {fechaCon};
-    String[] columna = {"idCiclo","fecha"};
-    Cursor cursor = db.query("DiasNoHabiles", columna, "fecha = ?", parametro, null, null, null);
-    if(cursor.moveToFirst()){
-        DiasNoHabiles dias = new DiasNoHabiles();
-        dias.setCiclo(cursor.getInt(0));
-        dias.setFecha(cursor.getString(1));
-        return dias;
-    }else{ return null;
+        String[] parametro = {fechaCon};
+        String[] columna = {"idCiclo","fecha"};
+        Cursor cursor = db.query("DiasNoHabiles", columna, "fecha = ?", parametro, null, null, null);
+        if(cursor.moveToFirst()){
+            DiasNoHabiles dias = new DiasNoHabiles();
+            dias.setCiclo(cursor.getInt(0));
+            dias.setFecha(cursor.getString(1));
+            return dias;
+        }else{ return null;
+        }
     }
-}
-//Metodo para actualizar el dia no habil
-public String actualizarDia(String fechaAnterior, String fechaNueva, int cicloNuevo)
-{
-Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
-    if(existe == true)
+    //Metodo para actualizar el dia no habil
+    public String actualizarDia(String fechaAnterior, String fechaNueva, int cicloNuevo)
     {
+        Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
+        if(existe == true)
+        {
 
-        String[] id = {fechaAnterior};
-        ContentValues cv = new ContentValues();
-        cv.put("fecha",fechaNueva);
-        cv.put("idCiclo",cicloNuevo);
-        db.update("DiasNoHabiles", cv, "fecha = ?", id);
-        return "Registro Actualizado Correctamente";
+            String[] id = {fechaAnterior};
+            ContentValues cv = new ContentValues();
+            cv.put("fecha",fechaNueva);
+            cv.put("idCiclo",cicloNuevo);
+            db.update("DiasNoHabiles", cv, "fecha = ?", id);
+            return "Registro Actualizado Correctamente";
+        }
+        else
+        {
+            return "El registro que ingreso no existe";
+        }
     }
-    else
-   {
-        return "El registro que ingreso no existe";
-    }
-}
 
 
     //********************Autor: Roberto Eliezer Ventura Dominguez********************
 //*******************Carnet: VD16006********************
     public ArrayList<String> consultarAccesos(String user){
-            ArrayList<String> accesos = new ArrayList<String>();
+        ArrayList<String> accesos = new ArrayList<String>();
         Cursor fila;
         String[] columna = {"IDOPCION"};
         String[] parametro = {user};
@@ -939,14 +966,14 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
 
     //Metodo Ingresar Tipo Solicitud
     public String insertarTipoSolicitud(String nombre){
-        String regInsertados="Registro Insertado Nº= ";
+        String regInsertados="Registro Insertado N∫= ";
         long contador=0;
         ContentValues tipoSoli = new ContentValues();
         tipoSoli.put("nombreTipoSolicitud", nombre);
         contador=db.insert("TipoSolicitud", null, tipoSoli);
         if(contador==-1 || contador==0)
         {
-            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserciÛn";
         }
         else {
             regInsertados=regInsertados+contador;
@@ -1005,10 +1032,10 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
         String[] columnas = {"numGrupo","codMateria","idCiclo"};
         Cursor c = db.query("EstudianteInscrito",columnas,"carnet=?",carnetEstudiante,null,null,null);
         return c;
-        }
+    }
 
-        //METODO PARA CONSULTAR LAS EVALUACIONES LOS PARAMETRO VIENEN DEL CURSOR DE LA CONSULTA ESTUDIANTE INSCRITO
-        public Cursor consultarEvaluaciones(int nGrupo, String mat, int ciclo){
+    //METODO PARA CONSULTAR LAS EVALUACIONES LOS PARAMETRO VIENEN DEL CURSOR DE LA CONSULTA ESTUDIANTE INSCRITO
+    public Cursor consultarEvaluaciones(int nGrupo, String mat, int ciclo){
         String resultado = "";
         String[] parametro = {String.valueOf(nGrupo),mat,String.valueOf(ciclo)};
         String[] columnas = {"idEvaluacion","codMateria","nombreEvaluacion"};
@@ -1020,7 +1047,7 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
         else{
             return c;
         }
-        }
+    }
 
     public String consultarEvaluacionDifRepEvaluacion(int nGrupo, String mat, int ciclo, String tipo){
         String resultado = "";
@@ -1036,42 +1063,42 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
         }
     }
 
-        //METODO INSERTAR SIRVE PARA REPETIDO Y DIFERIDO
-        public String insertarSolicitudDiferidoRepetido(Solicitud_RepetidoDiferido solicitud){
+    //METODO INSERTAR SIRVE PARA REPETIDO Y DIFERIDO
+    public String insertarSolicitudDiferidoRepetido(Solicitud_RepetidoDiferido solicitud){
         Cursor solic;
-            String regInsertados="Registro Insertado Nº= ";
-            long contador=0;
-            solic = consultarSolicitudesDifRep(solicitud.getIdEvaluacion(),solicitud.getCarnet());
-            if(solic.moveToFirst()){
-                return "Esa evaluacion ya tiene solicitud";
-            }else{
-                ContentValues soli = new ContentValues();
-                soli.put("idEvaluacion",solicitud.getIdEvaluacion());
-                soli.put("carnet", solicitud.getCarnet());
-                soli.put("motivo", solicitud.getMotivoSolicitud());
-                soli.put("aprobado", solicitud.isAprobado());
-                soli.put("idTipoSolicitud", solicitud.getIdTipoSolicitud());
-                contador= db.insert("SolicitudDiferidoRepetido",null,soli);
-                if(contador==-1 || contador==0)
-                {
-                    regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-                }
-                else {
-                    regInsertados=regInsertados+contador;
-                }
-                return regInsertados;
+        String regInsertados="Registro Insertado N∫= ";
+        long contador=0;
+        solic = consultarSolicitudesDifRep(solicitud.getIdEvaluacion(),solicitud.getCarnet());
+        if(solic.moveToFirst()){
+            return "Esa evaluacion ya tiene solicitud";
+        }else{
+            ContentValues soli = new ContentValues();
+            soli.put("idEvaluacion",solicitud.getIdEvaluacion());
+            soli.put("carnet", solicitud.getCarnet());
+            soli.put("motivo", solicitud.getMotivoSolicitud());
+            soli.put("aprobado", solicitud.isAprobado());
+            soli.put("idTipoSolicitud", solicitud.getIdTipoSolicitud());
+            contador= db.insert("SolicitudDiferidoRepetido",null,soli);
+            if(contador==-1 || contador==0)
+            {
+                regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserciÛn";
             }
-
-
+            else {
+                regInsertados=regInsertados+contador;
+            }
+            return regInsertados;
         }
 
-        //METODO PARA CONSULTAR EN LA TABLA DE SOLICITUDES LAS EVALUACIONES QUE UN ESTUDIANTE A SOLICITADO
-        public Cursor consultarSolicitudesDiferidoRepetido(String carnet){
-            String[] parametros = {carnet};
-            String[] columnas = {"idEvaluacion","motivo","aprobado","idTipoSolicitud"};
-            Cursor c = db.query("SolicitudDiferidoRepetido",columnas,"carnet=?",parametros,null,null,null);
-            return c;
-        }
+
+    }
+
+    //METODO PARA CONSULTAR EN LA TABLA DE SOLICITUDES LAS EVALUACIONES QUE UN ESTUDIANTE A SOLICITADO
+    public Cursor consultarSolicitudesDiferidoRepetido(String carnet){
+        String[] parametros = {carnet};
+        String[] columnas = {"idEvaluacion","motivo","aprobado","idTipoSolicitud"};
+        Cursor c = db.query("SolicitudDiferidoRepetido",columnas,"carnet=?",parametros,null,null,null);
+        return c;
+    }
 
     public Cursor consultarSolicitudesDifRep(int idEvaluacion, String carnet){
         String[] parametros = {String.valueOf(idEvaluacion),carnet};
@@ -1087,58 +1114,58 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
         return c;
     }
 
-        //METODO PARA CONSULTAR EVALUACIONES POR SU ID
-        public String consultarEvaluacionesSolicitud(int idSolicitud){
-            String resultado="";
-            String[] parametros = {String.valueOf(idSolicitud)};
-            String[] columnas = {"idEvaluacion","codMateria", "nombreEvaluacion"};
-            Cursor c = db.query("Evaluaciones",columnas,"idEvaluacion=?",parametros,null,null,null);
-            if(c.moveToFirst()){
-                resultado =c.getInt(0) +" "+ c.getString(1) +" "+c.getString(2);
-                return resultado;
-            }
-            else{
-                return resultado;
-            }
+    //METODO PARA CONSULTAR EVALUACIONES POR SU ID
+    public String consultarEvaluacionesSolicitud(int idSolicitud){
+        String resultado="";
+        String[] parametros = {String.valueOf(idSolicitud)};
+        String[] columnas = {"idEvaluacion","codMateria", "nombreEvaluacion"};
+        Cursor c = db.query("Evaluaciones",columnas,"idEvaluacion=?",parametros,null,null,null);
+        if(c.moveToFirst()){
+            resultado =c.getInt(0) +" "+ c.getString(1) +" "+c.getString(2);
+            return resultado;
         }
-
-        public String eliminarSolicitudDiferidoRepetido(int idEvalacuion, String carnet){
-            String regAfectados="filas afectadas=";
-            int contador = 0;
-            String[] parametro = {String.valueOf(idEvalacuion),carnet};
-
-                contador+=db.delete("SolicitudDiferidoRepetido","idEvaluacion=? AND carnet=?",parametro);
-                regAfectados+=contador;
-                return regAfectados;
+        else{
+            return resultado;
         }
+    }
+
+    public String eliminarSolicitudDiferidoRepetido(int idEvalacuion, String carnet){
+        String regAfectados="filas afectadas=";
+        int contador = 0;
+        String[] parametro = {String.valueOf(idEvalacuion),carnet};
+
+        contador+=db.delete("SolicitudDiferidoRepetido","idEvaluacion=? AND carnet=?",parametro);
+        regAfectados+=contador;
+        return regAfectados;
+    }
 
     public String actualizarSolicitudDiferidoRepetido(Solicitud_RepetidoDiferido solicitud){
 
-            String[] parametro = {String.valueOf(solicitud.getIdEvaluacion()),solicitud.getCarnet()};
-            ContentValues cv = new ContentValues();
-            cv.put("motivo",solicitud.getMotivoSolicitud());
-            cv.put("aprobado",solicitud.isAprobado());
-            db.update("SolicitudDiferidoRepetido",cv,"idEvaluacion=? AND carnet=?",parametro);
-            return "Registro actualizado";
+        String[] parametro = {String.valueOf(solicitud.getIdEvaluacion()),solicitud.getCarnet()};
+        ContentValues cv = new ContentValues();
+        cv.put("motivo",solicitud.getMotivoSolicitud());
+        cv.put("aprobado",solicitud.isAprobado());
+        db.update("SolicitudDiferidoRepetido",cv,"idEvaluacion=? AND carnet=?",parametro);
+        return "Registro actualizado";
 
     }
 
     public String insertarSolicitudEvaluacion(SolicitudEvaluacion solicitud){
         Cursor solic;
-        String regInsertados="Registro Insertado Nº= ";
+        String regInsertados="Registro Insertado N∫= ";
         long contador=0;
         ContentValues soli = new ContentValues();
-            soli.put("idEvaluacion",solicitud.getIdEvaluacion());
-            soli.put("idSolicitudDiferidoRepetido", solicitud.getIdSolicitud());
-            soli.put("notaSoliEvaluacion",solicitud.getNotaSoliEvaluacion());
-            contador= db.insert("SolicitudEvaluacion",null,soli);
-            if(contador==-1 || contador==0)
-            {
-                return regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-            }
-            else {
-                return regInsertados=regInsertados+contador;
-            }
+        soli.put("idEvaluacion",solicitud.getIdEvaluacion());
+        soli.put("idSolicitudDiferidoRepetido", solicitud.getIdSolicitud());
+        soli.put("notaSoliEvaluacion",solicitud.getNotaSoliEvaluacion());
+        contador= db.insert("SolicitudEvaluacion",null,soli);
+        if(contador==-1 || contador==0)
+        {
+            return regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserciÛn";
+        }
+        else {
+            return regInsertados=regInsertados+contador;
+        }
 
     }
 
@@ -1168,6 +1195,70 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
 
     }
 
+//********************Autor: Christian Ariel Zelaya Tejada ********************
+//*******************Carnet: ZT12002 ********************
+
+    public Cursor consultarNombre()
+    {
+        String[] columna={"idTipoParametro","nombreTipoParametro"};
+        Cursor c=db.query("TipoParametro",columna,null,null,null,null,null);
+        return c;
+    }
+
+    public int consultarParametro(String nombreParam){
+        String[] parametro = {nombreParam};
+        String[] columna = {"idTipoParametro"};
+        Cursor c = db.query("TipoParametro",columna,"nombreTipoParametro=?",parametro,null,null,null);
+
+        if(c.moveToFirst()){
+            do{
+                int idTipoParametro=c.getInt(0);
+                return idTipoParametro;
+            }while(c.moveToNext());
+
+        }
+        else {
+            return 0;
+        }
+
+    }
+
+    public void insertarTipoParametro(String nombre){
+        String mensaje="";
+        /*Metodo para verificar que ya existe*/
+        long query = 0;
+        ContentValues tipoPara = new ContentValues();
+        tipoPara.put("nombreTipoParametro",nombre);
+        query=db.insert("TipoParametro",null,tipoPara);
+    }
+
+    public String insertarParametro(Parametros param){
+        String mensaje="";
+        boolean existe=false;/*consultarDiaNoHabilIntegridad(param.getnombreTipoParametro());*/
+        if(existe==false){
+            String regInsertados="Registro Insertado Nº= ";
+            long contador=0;
+            ContentValues parame = new ContentValues();
+            parame.put("idTipoParametro", param.getnombreTipoParametro());
+            parame.put("cantidad_Dias", param.getCantidad_Dias());
+            contador=db.insert("Parametro", null, parame);
+            if(contador==-1 || contador==0)
+            {
+                regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+            }
+            else {
+                regInsertados=regInsertados+contador;
+            }
+            return regInsertados;
+        }
+        else
+            return mensaje;
+    }
+
+    public String actualizarParametro(Integer id)
+    {
+        return "Valor"+id;
+    }
 
 
     //********************Autor: José Andrés Castro Sánchez ********************
@@ -1253,4 +1344,6 @@ Boolean existe = consultarDiaNoHabilIntegridad(fechaAnterior);
         //*******************Carnet: ********************
 
 }
+
+
 
