@@ -545,7 +545,28 @@ public Cursor consultarMateriasDocente(String codDocente){
 
         return c;
 }
-/* */
+/* Metodo para consultar el detalle de la segunda revision*/
+    public DetalleSegundaRevision consultarDetalleSegundaRevision(int idSegundaRevision, int idSoliSegundaRevision)
+    {
+        DetalleSegundaRevision detalles = new DetalleSegundaRevision();
+        String [] parametro = {String.valueOf(idSegundaRevision),String.valueOf(idSoliSegundaRevision)};
+        String [] columnas = {"asistencia","notaSegundaRevision"};
+        Cursor c = db.query("DetalleSegundaRevision",columnas,"idSegundaRevision=? AND idSoliSegundaRevision=?",parametro,null,null,null);
+        if(c.moveToFirst())
+        {
+            if(c.getInt(0)==0)
+            {
+                detalles.setAsitencia_SegRevision(false);
+            }
+            else{
+                detalles.setAsitencia_SegRevision(true);
+            }
+
+            detalles.setNota_SegRevision(c.getFloat(1));
+            return detalles;
+        }
+        else {return null;}
+    }
 /*Metodo para consultar si un alumno cuenta con la solicitud de una segunda revision de una evaluacion especifica
     recibe el idEvaluacion y el carnet del alumno*/
 public String consultarAlumnoSoliSegundaRevisionAntesDetalle(int idEvaluacion, String carnet)
