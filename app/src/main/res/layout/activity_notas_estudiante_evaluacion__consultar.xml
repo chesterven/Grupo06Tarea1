@@ -41,7 +41,7 @@
 
 
 
-    <TableRow
+    <!--<TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="5dp"
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2.5" />
 
-    </TableRow>
+    </TableRow>-->
 
     <TableRow
         android:layout_width="match_parent"
@@ -122,12 +122,13 @@
             android:text="@string/Carnee" />
 
         <EditText
-            android:id="@+id/carnetInsertarNotaEstudianteEvaluacionConsultar"
+            android:id="@+id/carnetNotaEstudianteEvaluacionConsultar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
             android:ems="10"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:maxLength="7"/>
 
     </TableRow>
 
@@ -139,7 +140,7 @@
         android:layout_marginTop="5dp">
 
         <Button
-            android:onClick="consultarPrimerRevision"
+            android:onClick="consultarNota"
             android:text="@string/Consultar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

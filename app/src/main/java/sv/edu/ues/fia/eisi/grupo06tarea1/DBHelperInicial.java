@@ -1290,25 +1290,21 @@ public class DBHelperInicial {
         return c;
     }
 
-    public String insertarNotaEstudianteEvaluacion(String carnet, String idEvalu, String nota,String materia, String docente,String numGrupo) {
+    public String insertarNotaEstudianteEvaluacion(String carnet, String idEvalu, String nota,String materia,String numGrupo) {
         String mensaje="";
         boolean ok=false;
         Cursor c1 = db.rawQuery("SELECT * FROM Evaluaciones WHERE idEvaluacion=? AND numGrupo=? AND codMateria=?", new String[]{idEvalu, numGrupo, materia});
         if (c1.moveToFirst()) {
-            //Cursor c3 = consultarEstudianteInscrito(carnet);
-            //String[] columnas = {"numGrupo","codMateria","idCiclo"};
-            //Cursor c = db.query("EstudianteInscrito",columnas,"carnet=?",carnetEstudiante,null,null,null);
-
             Cursor f= db.rawQuery("SELECT * FROM EstudianteInscrito ",null);
             if(f.moveToFirst()){
                 do{
                     if (f.getInt(1) == Integer.valueOf(numGrupo) && f.getString(2).equals(materia)&& f.getString(0).equals(carnet)) {
                         long contador=0;
-                        ContentValues soli = new ContentValues();
-                        soli.put("idEvaluacion",Integer.valueOf(idEvalu));
-                        soli.put("carnet", carnet);
-                        soli.put("notaEvaluacion",Float.valueOf(nota));
-                        contador= db.insert("NotasEstudianteEvaluacion",null,soli);
+                        ContentValues nuevo = new ContentValues();
+                        nuevo.put("idEvaluacion",Integer.valueOf(idEvalu));
+                        nuevo.put("carnet", carnet);
+                        nuevo.put("notaEvaluacion",Float.valueOf(nota));
+                        contador= db.insert("NotasEstudianteEvaluacion",null,nuevo);
                         ok=true;
                         if(contador==-1 || contador==0)
                         {
@@ -1320,8 +1316,9 @@ public class DBHelperInicial {
                     }
                 }
                 while (f.moveToNext());
+
                 if(ok==false) {
-                    mensaje= "Alumno NO inscrito en " + materia + " en el grupo " + numGrupo + ".";
+                    mensaje= "Alumno No inscrito en " + materia + " en el grupo " + numGrupo + ".";
                 }
             }
             else{
@@ -1332,15 +1329,43 @@ public class DBHelperInicial {
             mensaje= "La evaluacion ingresada no corresponde al grupo de la materia seleccionado";
         }
         return mensaje;
-        //db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('VD16006',2,8.3); ");
-        //db.execSQL("INSERT INTO NotasEstudianteEvaluacion (carnet, idEvaluacion, notaEvaluacion) VALUES ('"+carnet+"','"+Integer.valueOf(idEvalu)+"'','"+Float.valueOf(nota)+"'');");
-        //mensaje= "GUARDADO";
+    }
 
+    public Cursor consultarNotaEstudianteEvaluacion(String carnet,String idEvalu){
+        Cursor c = db.rawQuery("SELECT * FROM NotasEstudianteEvaluacion WHERE idEvaluacion=? AND carnet=? ", new String[]{idEvalu, carnet});
+        return c;
+    }
 
+    public String actualizarNotaEstudianteEvaluacion(String carnet,String idEvalu,String nota){
+        Cursor c= consultarNotaEstudianteEvaluacion(carnet,idEvalu);
+        String msj="";
+        if(c.moveToFirst()){
+            ContentValues cv = new ContentValues();
+            cv.put("notaEvaluacion",Float.valueOf(nota));
+            db.update("NotasEstudianteEvaluacion",cv,"carnet=? AND idEvaluacion=?",new String[]{carnet,idEvalu});
+            msj="Registro actualizado";
+        }
+        else{
+            msj="Registro no encontrado";
+        }
+        return msj;
+    }
+
+    public String eliminarNotaEstudianteEvaluacion(String carnet, String idEvalu){
+        Cursor c= consultarNotaEstudianteEvaluacion(carnet,idEvalu);
+        String msj="";
+        if(c.moveToFirst()){
+            db.delete("NotasEstudianteEvaluacion","carnet=? AND idEvaluacion=?",new String[]{carnet,idEvalu});
+            msj="Registro eliminado exitosamente";
+        }
+        else{
+            msj="Registro no encontrado";
+        }
+        return msj;
     }
 
 
-        //********************Autor: ********************
+    //********************Autor: ********************
         //*******************Carnet: ********************
 
 }

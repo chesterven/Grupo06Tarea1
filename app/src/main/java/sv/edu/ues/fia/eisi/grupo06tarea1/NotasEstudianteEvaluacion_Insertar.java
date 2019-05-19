@@ -269,11 +269,11 @@ public class NotasEstudianteEvaluacion_Insertar extends AppCompatActivity {
             Toast.makeText(this, "Posee campos en blanco en el formulario", Toast.LENGTH_SHORT).show();
         }
         else{
-            if(Integer.valueOf(nota.getText().toString())<0&&Integer.valueOf(nota.getText().toString())>10){
+            if(Float.valueOf(nota.getText().toString())<0&&Float.valueOf(nota.getText().toString())>10){
                 Toast.makeText(this, "Error en nota ingresada. Debe estar entre 0 y 10 su valor", Toast.LENGTH_SHORT).show();
             }else{
                 DBHelper.abrir();
-                String msj=DBHelper.insertarNotaEstudianteEvaluacion(carnet.getText().toString().toUpperCase(),evalua.getText().toString(),nota.getText().toString(),codMateria.getSelectedItem().toString(),codDocente.getSelectedItem().toString(),numGrupo.getSelectedItem().toString());
+                String msj=DBHelper.insertarNotaEstudianteEvaluacion(carnet.getText().toString().toUpperCase(),evalua.getText().toString(),nota.getText().toString(),codMateria.getSelectedItem().toString(),numGrupo.getSelectedItem().toString());
                 DBHelper.cerrar();
                 Toast.makeText(this, msj, Toast.LENGTH_SHORT).show();
             }
@@ -296,7 +296,6 @@ public class NotasEstudianteEvaluacion_Insertar extends AppCompatActivity {
                 docentes.add(resultado.getString(0));
             }
         }
-
         adaptador = new ArrayAdapter(this,android.R.layout.simple_spinner_item,docentes);
         codDocente.setAdapter(adaptador);
 
