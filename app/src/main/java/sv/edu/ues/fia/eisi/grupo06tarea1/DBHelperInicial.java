@@ -1255,9 +1255,40 @@ public class DBHelperInicial {
             return mensaje;
     }
 
-    public String actualizarParametro(Integer id)
+    /*db.execSQL("CREATE TABLE TipoParametro (\n"    +
+                        "   idTipoParametro INTEGER NOT NULL PRIMARY KEY,\n"    +
+                        "   nombreTipoParametro VARCHAR(20) NOT NULL\n"    +
+                        ");");*/
+
+    public String actualizarParametro(int dias,String id,  String nuevoNombre)
     {
-        return "Valor"+id;
+        if(nuevoNombre.equals("")){
+            String[] i = {id};
+            ContentValues cv = new ContentValues();
+            cv.put("cantidad_Dias",dias);
+            /*db.update("DiasNoHabiles", cv, "fecha = ?", i);
+            return "Registro Actualizado Correctamente";*/
+            db.update("Parametro",cv,"idParametro = ?",i);
+
+            return "Parametro Actualizado";
+
+        }
+        else{
+            /*Si los dias estan vacios solo se cambia el nombre
+            String[] i = {id};
+
+            ContentValues cv = new ContentValues();
+            cv.put("nombreTipoParametro",nuevoNombre);
+            try {
+                db.update("TipoParametro",cv,"idTipoParametro = ?",i);
+                return "parametro Actualizado";
+            } catch (Exception e) {
+                // This will catch any exception, because they are all descended from Exception
+
+                return "error del update";
+            }*/
+            return "Entre";
+        }
     }
 
 

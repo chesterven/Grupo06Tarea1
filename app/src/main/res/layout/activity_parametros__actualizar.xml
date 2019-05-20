@@ -26,7 +26,7 @@ Grupo de trabajo: 06-->
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/Dias_No_Habiles_Titulo_Actualizar"
+                android:text="@string/Menu_ZT12002_Parametros_Actualizar"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </TableRow>
@@ -40,7 +40,7 @@ Grupo de trabajo: 06-->
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/calendario" />
+                app:srcCompat="@drawable/actualizarsolicitud" />
         </TableRow>
 
         <TableRow
@@ -58,12 +58,34 @@ Grupo de trabajo: 06-->
                 android:layout_width="138dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:text="Nombre" />
+                android:text="Parametro" />
 
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="166dp"
                 android:layout_height="wrap_content" />
+
+
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="138dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="Nuevo Nombre" />
+
+            <EditText
+                android:id="@+id/nuevoNombre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:ems="10"
+                android:inputType="text" />
 
 
         </TableRow>
@@ -89,7 +111,7 @@ Grupo de trabajo: 06-->
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
                 android:ems="10"
-                android:inputType="text" />
+                android:inputType="number" />
 
 
         </TableRow>
@@ -100,11 +122,11 @@ Grupo de trabajo: 06-->
 
 
             <Button
-                android:onClick="actualizarDia"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/Actualizar"
-                android:layout_weight="2"/>
+                android:layout_weight="2"
+                android:onClick="actualizarParametro"
+                android:text="@string/Actualizar" />
 
             <Button
                 android:onClick="limpiarTexto"
