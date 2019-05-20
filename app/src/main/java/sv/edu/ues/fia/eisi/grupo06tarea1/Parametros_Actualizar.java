@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class Parametros_Actualizar extends AppCompatActivity {
     DBHelperInicial DBHelper;
-    Spinner nombre;
+     public Spinner nombre;
     EditText nuevoNombre;
     ArrayList<String> nombres = new ArrayList<>();
     EditText dias;
@@ -28,7 +28,7 @@ public class Parametros_Actualizar extends AppCompatActivity {
         DBHelper = new DBHelperInicial(this);
         nombre = (Spinner) findViewById(R.id.spinner);
         dias = (EditText) findViewById(R.id.dias);
-        nuevoNombre = (EditText) findViewById(R.id.nuevoNombre);
+        nuevoNombre = (EditText) findViewById(R.id.nuevoNombres);
         nombres.add("Seleccione el parametro");
         DBHelper = new DBHelperInicial(this);
         DBHelper.abrir();
@@ -44,31 +44,81 @@ public class Parametros_Actualizar extends AppCompatActivity {
 
     }
 
+    /*
+    DBHelper = new DBHelperInicial(this);
+                    DBHelper.abrir();
+                    String nombreTipo = "";
+                    nombreTipo = nombre.getSelectedItem().toString();
+                    String[] nombreParte = nombreTipo.split(" ");
+                    Integer id = Integer.valueOf(nombreParte[0]);
+                    String mensaje = DBHelper.actualizarParametrod(Integer.parseInt(dias.getText().toString()),Integer.toString(id),nuevoNombre.getText().toString());
+                    DBHelper.cerrar();
+                    Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+    * */
     public void actualizarParametro(View v)
     {
         if(nombre.getSelectedItem().toString().equals("Seleccione el parametro"))
         {
             Toast.makeText(this,"Selecciona un parametro", Toast.LENGTH_SHORT).show();
+        }else{
+            if(nuevoNombre.getText().toString().equals("") && dias.getText().toString().equals("")){
+                Toast.makeText(this,"Ingrese el nombre o Dias a Actualizar", Toast.LENGTH_SHORT).show();
+            }else{
+                if(nuevoNombre.getText().toString().equals("")){
+                    DBHelper = new DBHelperInicial(this);
+                    DBHelper.abrir();
+                    String nombreTipo = "";
+                    nombreTipo = nombre.getSelectedItem().toString();
+                    String[] nombreParte = nombreTipo.split(" ");
+                    Integer id = Integer.valueOf(nombreParte[0]);
+                    String mensaje = DBHelper.actualizarParametrod(Integer.parseInt(dias.getText().toString()),Integer.toString(id),nuevoNombre.getText().toString());
+                    DBHelper.cerrar();
+                    Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+                }else{
+                    if(dias.getText().toString().equals("")){
+                        DBHelper = new DBHelperInicial(this);
+                        DBHelper.abrir();
+                        String nombreTipo = "";
+                        nombreTipo = nombre.getSelectedItem().toString();
+                        String[] nombreParte = nombreTipo.split(" ");
+                        Integer id = Integer.valueOf(nombreParte[0]);
+                        String mensaje = DBHelper.actualizarParametron(Integer.toString(id),nuevoNombre.getText().toString());
+                        DBHelper.cerrar();
+                        /*Para Actualizar el spinner solo encontre esto */
+                        finish();
+                        startActivity(getIntent());
+                        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+                    }else {
+                        DBHelper = new DBHelperInicial(this);
+                        DBHelper.abrir();
+                        String nombreTipo = "";
+                        nombreTipo = nombre.getSelectedItem().toString();
+                        String[] nombreParte = nombreTipo.split(" ");
+                        Integer id = Integer.valueOf(nombreParte[0]);
+                        DBHelper.actualizarParametrod(Integer.parseInt(dias.getText().toString()),Integer.toString(id),nuevoNombre.getText().toString());
+                        DBHelper.actualizarParametron(Integer.toString(id),nuevoNombre.getText().toString());
+                        DBHelper.cerrar();
+                        finish();
+                        startActivity(getIntent());
+                        Toast.makeText(this, "Dia y nombre Actualizados", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
         }
-        else{
 
-            DBHelper = new DBHelperInicial(this);
+
+    }
+    /* DBHelper = new DBHelperInicial(this);
             DBHelper.abrir();
             String nombreTipo = "";
             nombreTipo = nombre.getSelectedItem().toString();
             String[] nombreParte = nombreTipo.split(" ");
             Integer id = Integer.valueOf(nombreParte[0]);
-            /*
-            * if(dias.equals("")){
-                dias.setText("-100");
-            }*/
             Toast.makeText(this, "Hasta aqui llego", Toast.LENGTH_SHORT).show();
-            String mensaje = DBHelper.actualizarParametro(Integer.parseInt(dias.getText().toString()),Integer.toString(id),nuevoNombre.getText().toString());
+            String mensaje = DBHelper.actualizarParametro(11,Integer.toString(id),nuevoNombre.getText().toString());
             DBHelper.cerrar();
             Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
-
-        }
-    }
+            Toast.makeText(this, Integer.parseInt(dias.getText().toString()), Toast.LENGTH_SHORT).show();*/
 
     public void limpiarTexto(View v)
     {

@@ -1278,9 +1278,9 @@ public class DBHelperInicial {
                         "   nombreTipoParametro VARCHAR(20) NOT NULL\n"    +
                         ");");*/
 
-    public String actualizarParametro(int dias,String id,  String nuevoNombre)
+    public String actualizarParametrod(int dias,String id,  String nuevoNombre)
     {
-        if(nuevoNombre.equals("")){
+
             String[] i = {id};
             ContentValues cv = new ContentValues();
             cv.put("cantidad_Dias",dias);
@@ -1288,25 +1288,37 @@ public class DBHelperInicial {
             return "Registro Actualizado Correctamente";*/
             db.update("Parametro",cv,"idParametro = ?",i);
 
-            return "Parametro Actualizado";
+            return "Dia de Parametro Actualizado";
+    }
 
-        }
-        else{
-            /*Si los dias estan vacios solo se cambia el nombre
+    public String actualizarParametron(String id,  String nuevoNombre)
+    {
+
             String[] i = {id};
-
             ContentValues cv = new ContentValues();
             cv.put("nombreTipoParametro",nuevoNombre);
-            try {
-                db.update("TipoParametro",cv,"idTipoParametro = ?",i);
-                return "parametro Actualizado";
-            } catch (Exception e) {
-                // This will catch any exception, because they are all descended from Exception
+            db.update("TipoParametro",cv,"idTipoParametro = ?",i);
 
-                return "error del update";
-            }*/
-            return "Entre";
-        }
+            return "Nombre de Parametro Actualizado";
+    }
+    public String actualizarParametroa(int dias,String id,  String nuevoNombre)
+    {
+        //Aqui el Parametro
+        String[] i = {id};
+        ContentValues cv = new ContentValues();
+        cv.put("cantidad_Dias",dias);
+            /*db.update("DiasNoHabiles", cv, "fecha = ?", i);
+            return "Registro Actualizado Correctamente";*/
+        db.update("Parametro",cv,"idParametro = ?",i);
+        //Aqui se actualiza el tipo de parametro
+        String[] o = {id};
+        ContentValues dv = new ContentValues();
+        cv.put("cantidad_Dias",dias);
+            /*db.update("DiasNoHabiles", cv, "fecha = ?", i);
+            return "Registro Actualizado Correctamente";*/
+        db.update("Parametro",cv,"idParametro = ?",i);
+
+        return "Nombre y Dias Actualizados";
     }
 
 
