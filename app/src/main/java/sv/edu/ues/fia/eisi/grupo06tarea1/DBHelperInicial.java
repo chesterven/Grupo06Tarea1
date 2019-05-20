@@ -1365,8 +1365,23 @@ public class DBHelperInicial {
     }
 
 
-    //********************Autor: ********************
-        //*******************Carnet: ********************
+    //********************Autor: CORDERO HERNÁNDEZ, OSCAR EMMANUEL********************
+        //*******************Carnet:CH15013********************
+
+    public String consultarAlumnoSoliPrimeraRevisionAntesSoliSegunda(int idEvaluacion, String carnet)
+    {
+        String [] parametros={String.valueOf(idEvaluacion),carnet};
+        String [] columna={"idSolicitudPrimerRevision"};
+        String resul="";
+        Cursor c=db.query("SolicitudPrimerRevision",columna,"idEvaluacion=? AND carnet=?",parametros,null,null,null);
+        if (c.moveToFirst()) {
+            resul=String.valueOf(c.getInt(0));
+            return resul;
+        } else {
+
+            return "";
+        }
+    }
 
 }
 

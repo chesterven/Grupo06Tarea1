@@ -67,4 +67,31 @@ public class SolicitudSegundaRevision_Insertar extends AppCompatActivity {
         }
     }
 
+    public void insertarSoliSegundaRevisión(View v){
+
+        if(!(evaluaciones.size()==0)){
+            if(spinnerEva.getSelectedItem().toString().equals("Seleccione evaluacion")){
+                Toast.makeText(this,"Seleccione una evaluacion",Toast.LENGTH_SHORT).show();
+            }else{
+                String mensaje = "";
+                String evaluacion;
+                Solicitud_RepetidoDiferido solicitud = new Solicitud_RepetidoDiferido();
+                evaluacion = spinnerEva.getSelectedItem().toString();
+                String [] evaluacionPartes = evaluacion.split(" ");
+                solicitud.setCarnet(carnet.getText().toString());
+                solicitud.setIdEvaluacion(Integer.valueOf(evaluacionPartes[0]));
+                solicitud.setAprobado(false);
+                solicitud.setIdTipoSolicitud(1);
+                DBHelper.abrir();
+                mensaje = DBHelper.insertarSolicitudDiferidoRepetido(solicitud);
+
+                Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(this,"Tiene que consultar evaluaciones",Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
 }
