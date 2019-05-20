@@ -156,6 +156,13 @@ public class DBHelperInicial {
                         "    PRIMARY KEY (idEvaluacion, idSolicitudDiferidoRepetido)\n" +
                         "    );");
 
+                db.execSQL("CREATE TRIGGER [actualizar_nota_SolicitudRepetido]\n" +
+                        "AFTER INSERT ON [SolicitudEvaluacion]\n" +
+                        "WHEN NEW.notaSoliEvaluacion>0 AND (SELECT idTipoSolicitud FROM SolicitudDiferidoRepetido WHERE idSolicitudDiferidoRepetido=new.idSolicitudDiferidoRepetido)=1\n" +
+                        "BEGIN\n" +
+                        "UPDATE NotasEstudianteEvaluacion SET notaEvaluacion=NEW.notaSoliEvaluacion WHERE carnet= (SELECT carnet FROM SolicitudDiferidoRepetido WHERE idSolicitudDiferidoRepetido=NEW.idSolicitudDiferidoRepetido) AND idEvaluacion =(SELECT idEvaluacion FROM SolicitudDiferidoRepetido WHERE idSolicitudDiferidoRepetido=NEW.idSolicitudDiferidoRepetido);\n" +
+                        "END");
+
                 //Autor: Maria Abigail Gil Cordova
                 //Carnet: GC16001
                 db.execSQL("CREATE TABLE Ciclo (\n" +
@@ -198,6 +205,13 @@ public class DBHelperInicial {
                         "   CONSTRAINT f_k_idEvaluacion FOREIGN KEY (idEvaluacion) REFERENCES Evaluaciones(idEvaluacion) ON DELETE RESTRICT,\n" +
                         "   CONSTRAINT f_k_idlocal FOREIGN KEY (idLocal) REFERENCES Local(idLocal) ON DELETE RESTRICT\n" +
                         ");");
+
+                db.execSQL("CREATE TRIGGER [actualizar_nota_DetalleSegundaRevision] \n" +
+                        "AFTER INSERT ON [DetalleSegundaRevision] \n" +
+                        "WHEN NEW.NOTASEGUNDAREVISION>0\n" +
+                        "BEGIN\n" +
+                        "UPDATE NotasEstudianteEvaluacion SET notaEvaluacion=NEW.notaSegundaRevision WHERE carnet= (SELECT carnet FROM SolicitudSegundaRevision WHERE idSolicitudSegundaRevision=NEW.idSoliSegundaRevision) AND idEvaluacion =(SELECT idEvaluacion FROM SolicitudSegundaRevision WHERE idSolicitudSegundaRevision=NEW.idSoliSegundaRevision);\n" +
+                        "END");
 
                 //Autor: Christian Ariel Zelaya Tejada
                 //Carnet: ZT12002
@@ -494,9 +508,11 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO EstudianteInscrito VALUES ('CS16008',2,'HDP115',1)");
 
         db.execSQL("DELETE FROM SolicitudDiferidoRepetido");
-        db.execSQL("INSERT INTO SolicitudDiferidoRepetido(idEvaluacion,carnet,motivo,aprobado,idTipoSolicitud) VALUES(3,'VD16006','Enfermedad grave',1,2)");
-
+        db.execSQL("INSERT INTO SolicitudDiferidoRepetido(idEvaluacion,carnet,motivo,aprobado,idTipoSolicitud) VALUES(2,'VD16006','Enfermedad grave',1,2)");
+        db.execSQL("INSERT INTO SolicitudDiferidoRepetido(idEvaluacion,carnet,motivo,aprobado,idTipoSolicitud) VALUES(2,'GC16001','Constancia Medica',1,1)");
         db.execSQL("DELETE FROM SolicitudEvaluacion");
+
+
 
         //Autor: Maria Abigail Gil Cordova
         db.execSQL("DELETE FROM Ciclo");
@@ -533,6 +549,8 @@ public class DBHelperInicial {
         db.execSQL("DELETE FROM Evaluaciones");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'MAT115',1,'2019-03-13','Primer Examen Parcial','Evaluacion de las unidades I y II')");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'PDM115',1,'2019-03-23','Primer Examen Teorico','Evaluacion de las unidades I, II y III')");
+        db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(3,1,'PDM115',1,'2019-04-12','Primer Examen Diferido Teorico','Evaluacion de las unidades I, II y III')");
+        db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(2,1,'PDM115',1,'2019-03-30','Primer Examen Repetido Teorico','Evaluacion de las unidades I, II y III')");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'MIP115',1,'2019-04-12','Examen escrito 1','Evaluacion de la unidad I')");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'SYP115',1,'2019-04-15','Parcial I','Folletos 1 y 2')");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(2,2,'HDP115',1,'2019-04-15','Parcial I','Unidad 1, 2 y 3')");
@@ -547,7 +565,7 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO SolicitudImpresion (carnet,codDocente,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('GC16001','MM00001',8,16,1,1); ");
 
         db.execSQL("DELETE FROM NotasEstudianteEvaluacion");
-        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('VD16006',2,8.3); ");
+        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('VD16006',2,7.78); ");
         db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('GC16001',2,8.3); ");
 
         db.execSQL("DELETE FROM SolicitudPrimerRevision");
