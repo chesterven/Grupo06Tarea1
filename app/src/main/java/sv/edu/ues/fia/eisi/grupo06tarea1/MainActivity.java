@@ -41,26 +41,30 @@ public class MainActivity extends AppCompatActivity {
 
         String usuario=et1.getText().toString();
         String contrasena=et2.getText().toString();
+        if(usuario.equals("") | contrasena.equals("")){
+            Toast.makeText(this, "Ingrese usuario y contraseña", Toast.LENGTH_SHORT).show();
+        }else{
+            DBHelper = new DBHelperInicial(this);
+            DBHelper.abrir();
+            boolean consulta = DBHelper.consultarUsuario(usuario,contrasena);
+            if(consulta==true){
 
-        DBHelper = new DBHelperInicial(this);
-        DBHelper.abrir();
-        boolean consulta = DBHelper.consultarUsuario(usuario,contrasena);
-        if(consulta==true){
 
+                Intent ven=new Intent(this,MenuCarnet.class);
+                String id = DBHelper.consultarUsuarioAcceso(usuario,contrasena);
+                ven.putExtra("idusuario",id);
+                startActivity(ven);
+                et1.setText("");
+                et2.setText("");
+            }
 
-            Intent ven=new Intent(this,MenuCarnet.class);
-            String id = DBHelper.consultarUsuarioAcceso(usuario,contrasena);
-            ven.putExtra("idusuario",id);
-            startActivity(ven);
-            et1.setText("");
-            et2.setText("");
+            else{
+                Toast.makeText(this,"Usuario no encontrado", Toast.LENGTH_SHORT).show();
+                et1.setText("");
+                et2.setText("");
+            }
         }
 
-        else{
-            Toast.makeText(this,"Usuario no encontrado", Toast.LENGTH_SHORT).show();
-            et1.setText("");
-            et2.setText("");
-        }
 
     }
 
