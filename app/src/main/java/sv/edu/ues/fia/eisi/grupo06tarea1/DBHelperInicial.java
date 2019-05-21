@@ -1227,6 +1227,8 @@ public class DBHelperInicial {
         return c;
     }
 
+
+
     public int consultarParametro(String nombreParam){
         String[] parametro = {nombreParam};
         String[] columna = {"idTipoParametro"};
@@ -1254,6 +1256,7 @@ public class DBHelperInicial {
         query=db.insert("TipoParametro",null,tipoPara);
     }
 
+
     public String insertarParametro(Parametros param){
         String mensaje="";
         boolean existe=false;/*consultarDiaNoHabilIntegridad(param.getnombreTipoParametro());*/
@@ -1280,7 +1283,17 @@ public class DBHelperInicial {
     /*db.execSQL("CREATE TABLE TipoParametro (\n"    +
                         "   idTipoParametro INTEGER NOT NULL PRIMARY KEY,\n"    +
                         "   nombreTipoParametro VARCHAR(20) NOT NULL\n"    +
-                        ");");*/
+                        ");");
+
+
+                        db.execSQL("CREATE TABLE Parametro  (\n"    +
+                        "   idParametro INTEGER NOT NULL PRIMARY KEY,\n"  +
+                        "   idTipoParametro INTEGER NOT NULL,\n"   +
+                        "   cantidad_Dias  INTEGER NOT NULL,\n"    +
+                        "   CONSTRAINT fk_idTipoParametro FOREIGN KEY (idTipoParametro) REFERENCES TipoParametro(idTipoParametro) ON DELETE RESTRICT\n" +
+                        ");");
+
+                        */
 
     public String actualizarParametrod(int dias,String id,  String nuevoNombre)
     {
@@ -1304,6 +1317,43 @@ public class DBHelperInicial {
             db.update("TipoParametro",cv,"idTipoParametro = ?",i);
 
             return "Nombre de Parametro Actualizado";
+    }
+    public String consultardia(String id){
+
+        String[] i = {id};
+        String[] columna={"cantidad_Dias"};
+        Cursor c=db.query("Parametro",columna,"idParametro = ?", i,null,null ,null);
+        if(c.moveToFirst()){
+            do{
+                String cicloResul=c.getString(0);
+                return cicloResul;
+            }while(c.moveToNext());
+
+        }
+        else {
+            String mensaje="No existe ese ciclo";
+            return mensaje;
+        }
+
+
+    }
+
+    public String consultarNom(String id){
+
+        String[] i = {id};
+        String[] columna={"nombreTipoParametro"};
+        Cursor c=db.query("TipoParametro",columna,"idTipoParametro = ?", i,null,null ,null);
+        if(c.moveToFirst()){
+            do{
+                String cicloResul=c.getString(0);
+                return cicloResul;
+            }while(c.moveToNext());
+
+        }
+        else {
+            String mensaje="No existe ese ciclo";
+            return mensaje;
+        }
     }
     public String actualizarParametroa(int dias,String id,  String nuevoNombre)
     {
