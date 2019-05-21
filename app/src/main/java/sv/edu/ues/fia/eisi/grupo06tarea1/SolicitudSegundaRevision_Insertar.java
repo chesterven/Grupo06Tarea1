@@ -74,18 +74,28 @@ public class SolicitudSegundaRevision_Insertar extends AppCompatActivity {
                 Toast.makeText(this,"Seleccione una evaluacion",Toast.LENGTH_SHORT).show();
             }else{
                 String mensaje = "";
+                int idSoliPrimerRevision,idPrimerRevision;
                 String evaluacion;
-                Solicitud_RepetidoDiferido solicitud = new Solicitud_RepetidoDiferido();
+                SolicitudSegundaRevision solicitud =new SolicitudSegundaRevision();
                 evaluacion = spinnerEva.getSelectedItem().toString();
                 String [] evaluacionPartes = evaluacion.split(" ");
+                DBHelper.abrir();
+                idSoliPrimerRevision=DBHelper.consultarAlumnoSoliPrimeraRevisionAntesSoliSegunda(evaluacionPartes[0],carnet.getText().toString());
+                idPrimerRevision=DBHelper.consultarIdPrimeraRevisionAntesSoliSegunda(evaluacionPartes[0]);
+                if(idSoliPrimerRevision==0||idPrimerRevision==0){
+                    Toast.makeText(this, "No tiene Primera Revision", Toast.LENGTH_SHORT).show();
+                    return;
+                }else{
                 solicitud.setCarnet(carnet.getText().toString());
                 solicitud.setIdEvaluacion(Integer.valueOf(evaluacionPartes[0]));
+                solicitud.setIdSoliPrimerRevision(idSoliPrimerRevision);
+                solicitud.setIdPrimerRevision(idPrimerRevision);
                 solicitud.setAprobado(false);
-                solicitud.setIdTipoSolicitud(1);
-                DBHelper.abrir();
-                mensaje = DBHelper.insertarSolicitudDiferidoRepetido(solicitud);
+                mensaje=DBHelper.insertarSoliSegundaRevision(solicitud);
+
 
                 Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
+                }
             }
         }else{
             Toast.makeText(this,"Tiene que consultar evaluaciones",Toast.LENGTH_SHORT).show();

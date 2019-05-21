@@ -502,6 +502,7 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO EstudianteInscrito VALUES('VD16006',1,'PDM115',1)");
         db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'PDM115',1)");
         db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'MIP115',1)");
+        db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'MAT115',1)");
         db.execSQL("INSERT INTO EstudianteInscrito VALUES('GC16001',1,'SYP115',1)");
         db.execSQL("INSERT INTO EstudianteInscrito VALUES('VD16006',1,'SYP115',1)");
         db.execSQL("INSERT INTO EstudianteInscrito VALUES('CH15013',2,'HDP115',1)");
@@ -577,7 +578,7 @@ public class DBHelperInicial {
 
         //Autor: Cordero Hernandez, Oscar Emmanuel////
 
-        db.execSQL("INSERT INTO SolicitudSegundaRevision (idEvaluacion,carnet,aprobado,idPrimeraRevision,idSolicitudPrimerRevision) VALUES (2,'VD16006',0,1,1); ");
+        //db.execSQL("INSERT INTO SolicitudSegundaRevision (idEvaluacion,carnet,aprobado,idPrimeraRevision,idSolicitudPrimerRevision) VALUES (2,'VD16006',0,1,1); ");
 
         return "BD Llena";
     }
@@ -1516,19 +1517,68 @@ public class DBHelperInicial {
     //********************Autor: CORDERO HERNÁNDEZ, OSCAR EMMANUEL********************
         //*******************Carnet:CH15013********************
 
-    public String consultarAlumnoSoliPrimeraRevisionAntesSoliSegunda(int idEvaluacion, String carnet)
+    public int consultarAlumnoSoliPrimeraRevisionAntesSoliSegunda(String idEvaluacion, String carnet)
     {
         String [] parametros={String.valueOf(idEvaluacion),carnet};
         String [] columna={"idSolicitudPrimerRevision"};
-        String resul="";
+        int resul;
         Cursor c=db.query("SolicitudPrimerRevision",columna,"idEvaluacion=? AND carnet=?",parametros,null,null,null);
         if (c.moveToFirst()) {
-            resul=String.valueOf(c.getInt(0));
+            resul=c.getInt(0);
             return resul;
         } else {
 
-            return "";
+            return 0;
         }
+    }
+
+    public int consultarIdPrimeraRevisionAntesSoliSegunda(String idEvaluacion){
+        String[] parametro={idEvaluacion};
+        String [] columna={"idPrimeraRevision"};
+        int resul;
+        Cursor c=db.query("PrimeraRevision",columna,"idEvaluacion=?",parametro,null,null,null);
+        if(c.moveToFirst()){
+            resul=c.getInt(0);
+            return resul;
+        }else{
+            return 0;
+        }
+
+    }
+
+    public String insertarSoliSegundaRevision(SolicitudSegundaRevision solicitud){
+        Cursor solic;
+        String regInsertados="Registro Insertado N∫= ";
+        long contador=0;
+        solic = consultarSolicitudSegundaevision(solicitud.getIdEvaluacion(),solicitud.getCarnet());
+        if(solic.moveToFirst()){
+            return "Esa evaluacion ya tiene solicitud";
+        }else{
+            ContentValues soli = new ContentValues();
+            soli.put("idEvaluacion",solicitud.getIdEvaluacion());
+            soli.put("carnet", solicitud.getCarnet());
+            soli.put("idPrimeraRevision", solicitud.getIdPrimerRevision());
+            soli.put("aprobado", solicitud.isAprobado());
+            soli.put("idSolicitudPrimerRevision", solicitud.getIdSoliPrimerRevision());
+            contador= db.insert("SolicitudSegundaRevision",null,soli);
+            if(contador==-1 || contador==0)
+            {
+                regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar insercion";
+            }
+            else {
+                regInsertados=regInsertados+contador;
+            }
+            return regInsertados;
+        }
+
+
+    }
+
+    public Cursor consultarSolicitudSegundaevision(int idEvaluacion, String carnet){
+        String[] parametros = {String.valueOf(idEvaluacion),carnet};
+        String[] columnas = {"idSolicitudSegundaREvision"};
+        Cursor c = db.query("SolicitudSegundaRevision",columnas,"idEvaluacion=? AND carnet=?",parametros,null,null,null);
+        return c;
     }
 
 }
