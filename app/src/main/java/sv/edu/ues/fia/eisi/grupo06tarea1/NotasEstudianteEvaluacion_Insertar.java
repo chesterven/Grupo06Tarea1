@@ -64,9 +64,9 @@ public class NotasEstudianteEvaluacion_Insertar extends AppCompatActivity {
         final Cursor resultado=DBHelper.consultarDocentes();
         if(resultado.moveToFirst())
         {
-            while(resultado.moveToNext()){
+            do{
                 docentes.add(resultado.getString(0));
-            }
+            }while(resultado.moveToNext());
         }
 
         adaptador = new ArrayAdapter(this,android.R.layout.simple_spinner_item,docentes);
@@ -81,20 +81,20 @@ public class NotasEstudianteEvaluacion_Insertar extends AppCompatActivity {
                   listaMaterias.clear();
                   listaMaterias.add("Seleccione");
                   codMateria.setClickable(true);
-                  while(resultado2.moveToNext()){
-                      materiaCicloLogica= new MateriaCicloLogica();
-                      materiaCicloLogica.setNumGrupo(resultado2.getInt(0));
-                      materiaCicloLogica.setCodMateria(resultado2.getString(1));
-                      materiaCicloLogica.setIdCiclo(resultado2.getInt(2));
+                 while (resultado2.moveToNext()){
+                     materiaCicloLogica= new MateriaCicloLogica();
+                     materiaCicloLogica.setNumGrupo(resultado2.getInt(0));
+                     materiaCicloLogica.setCodMateria(resultado2.getString(1));
+                     materiaCicloLogica.setIdCiclo(resultado2.getInt(2));
 
-                      materias.add(materiaCicloLogica);
+                     materias.add(materiaCicloLogica);
 
-                      listaMaterias.add(materiaCicloLogica.getCodMateria());
+                     listaMaterias.add(materiaCicloLogica.getCodMateria());
 
 
-                      setAdapter2(listaMaterias);
-                      codMateria.setAdapter(adaptador2);
-                  }
+                     setAdapter2(listaMaterias);
+                     codMateria.setAdapter(adaptador2);
+                 }
              }
              else{
 
@@ -144,7 +144,6 @@ public class NotasEstudianteEvaluacion_Insertar extends AppCompatActivity {
                         setAdapter3(grupos);
                         numGrupo.setAdapter(adaptador3);
                     }
-
                     //Log.i("///////////////////////",String.valueOf(codMateria.getSelectedItemPosition()));
                     //Log.i("///////////////////////",String.valueOf(ciclos.get(posicion)));
                 }
@@ -275,6 +274,7 @@ public class NotasEstudianteEvaluacion_Insertar extends AppCompatActivity {
                 DBHelper.abrir();
                 String msj=DBHelper.insertarNotaEstudianteEvaluacion(carnet.getText().toString().toUpperCase(),evalua.getText().toString(),nota.getText().toString(),codMateria.getSelectedItem().toString(),numGrupo.getSelectedItem().toString());
                 DBHelper.cerrar();
+                limpiarTexto();
                 Toast.makeText(this, msj, Toast.LENGTH_SHORT).show();
             }
         }
@@ -292,9 +292,9 @@ public class NotasEstudianteEvaluacion_Insertar extends AppCompatActivity {
         final Cursor resultado=DBHelper.consultarDocentes();
         if(resultado.moveToFirst())
         {
-            while(resultado.moveToNext()){
+            do {
                 docentes.add(resultado.getString(0));
-            }
+            }while(resultado.moveToNext());
         }
         adaptador = new ArrayAdapter(this,android.R.layout.simple_spinner_item,docentes);
         codDocente.setAdapter(adaptador);
@@ -311,7 +311,38 @@ public class NotasEstudianteEvaluacion_Insertar extends AppCompatActivity {
         numGrupo.setAdapter(adaptador3);
         numGrupo.setClickable(false);
 
+    }
 
+    public void limpiarTexto(){
+        evalua.setText("");
+        carnet.setText("");
+        nota.setText("");
+
+        docentes.clear();
+        docentes.add("Seleccione");
+        DBHelper = new DBHelperInicial(this);
+        DBHelper.abrir();
+        final Cursor resultado=DBHelper.consultarDocentes();
+        if(resultado.moveToFirst())
+        {
+            do {
+                docentes.add(resultado.getString(0));
+            }while(resultado.moveToNext());
+        }
+        adaptador = new ArrayAdapter(this,android.R.layout.simple_spinner_item,docentes);
+        codDocente.setAdapter(adaptador);
+
+        materias.clear();
+        listaMaterias.clear();
+        ciclos.clear();
+        setAdapter2(listaMaterias);
+        codMateria.setAdapter(adaptador2);
+        codMateria.setClickable(false);
+
+        grupos.clear();
+        setAdapter3(grupos);
+        numGrupo.setAdapter(adaptador3);
+        numGrupo.setClickable(false);
 
     }
 }

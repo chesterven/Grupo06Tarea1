@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -248,13 +249,13 @@ public class DBHelperInicial {
                         "   CONSTRAINT fk_idCiclo FOREIGN KEY (idCiclo) REFERENCES MateriaCiclo(idCiclo) ON DELETE RESTRICT\n" +
                         ");");
 
-                //Autor: JosÈ AndrÈs Castro S·nchez
+                //Autor: Jose Andres Castro Sanchez
                 //Carnet: CS16008
 
                 db.execSQL("CREATE TABLE SolicitudImpresion (\n" +
-                        " idSoliImpresion INTEGER NOT NULL PRIMARY KEY,\n"+
-                        " carnet VARCHAR2(7) NOT NULL, \n"+
-                        " codDocente VARCHAR2(7) NOT NULL, \n"+
+                        " idSolicitudImpresion INTEGER NOT NULL PRIMARY KEY,\n"+
+                        " carnet VARCHAR2(7) , \n"+
+                        " codDocente VARCHAR2(7) , \n"+
                         " cantidadExamenes INTEGER NOT NULL, \n"+
                         " hojasAnexas INTEGER NOT NULL, \n"+
                         " realizada BOOLEAN NOT NULL, \n"+
@@ -450,13 +451,13 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Estudiante VALUES('GC16001','Abigail','Gil',1);");
         db.execSQL("INSERT INTO Estudiante VALUES('XX16001','Fernando','Xerox',0);");
         db.execSQL("INSERT INTO Estudiante VALUES ('CH15013','Oscar','Hern·ndez',1)");
-        db.execSQL("INSERT INTO Estudiante VALUES ('CS16008','JosÈ','Castro',0)");
+        db.execSQL("INSERT INTO Estudiante VALUES ('CS16008','José','Castro',0)");
         db.execSQL("INSERT INTO Estudiante VALUES ('ZTE12002','Christian','Zelaya',0)");
 
         db.execSQL("DELETE FROM Docente");
         db.execSQL("INSERT INTO Docente VALUES('GR00001','Cesar Augusto','Gonzalez Rodriguez',1)");
         db.execSQL("INSERT INTO Docente VALUES('MM00001','Boris Alexander','Montano',0)");
-        db.execSQL("INSERT INTO Docente VALUES('CG00001','Carlos','GarcÌa',0)");
+        db.execSQL("INSERT INTO Docente VALUES('CG00001','Carlos','Garcia',0)");
         db.execSQL("INSERT INTO Docente VALUES('JI00001','Jorge','Iraheta',0)");
         db.execSQL("INSERT INTO Docente VALUES('GM00001','Guillermo','Mejia',0)");
         db.execSQL("INSERT INTO Docente VALUES('RC00001','Rudy','Chicas',0)");
@@ -513,7 +514,6 @@ public class DBHelperInicial {
         db.execSQL("DELETE FROM SolicitudEvaluacion");
 
 
-
         //Autor: Maria Abigail Gil Cordova
         db.execSQL("DELETE FROM Ciclo");
         db.execSQL("DELETE FROM DiasNoHabiles");
@@ -559,18 +559,21 @@ public class DBHelperInicial {
 
 
 
-        //Autor: JosÈ AndrÈs Castro S·nchez////
+        //Autor: Jose Andres Castro Sanchez////
         db.execSQL("DELETE FROM SolicitudImpresion");
-        db.execSQL("INSERT INTO SolicitudImpresion (carnet,codDocente,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('VD16006','GR00001',4,8,0,0); ");
-        db.execSQL("INSERT INTO SolicitudImpresion (carnet,codDocente,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('GC16001','MM00001',8,16,1,1); ");
+        db.execSQL("INSERT INTO SolicitudImpresion (carnet,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('VD16006',4,8,0,0); ");
+        db.execSQL("INSERT INTO SolicitudImpresion (codDocente,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('GR00001',8,16,1,1); ");
+
 
         db.execSQL("DELETE FROM NotasEstudianteEvaluacion");
-        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('VD16006',2,7.78); ");
-        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('GC16001',2,8.3); ");
+        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('VD16006',3,7.78); ");
+        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('GC16001',3,8.3); ");
+        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('VD16006',2,9.67); ");
+        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('GC16001',2,9.5); ");
 
         db.execSQL("DELETE FROM SolicitudPrimerRevision");
-        db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (2,'VD16006',1); ");
-        db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (1,'GC16001',1); ");
+        db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (3,'VD16006',1); ");
+        db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (3,'GC16001',1); ");
 
         //Autor: Cordero Hernandez, Oscar Emmanuel////
 
@@ -1333,21 +1336,13 @@ public class DBHelperInicial {
         Cursor c = db.rawQuery("SELECT codDocente FROM Docente",null);
         return c;
     }
+    public Cursor consultarDocentes(String codDocente){
+        Cursor c = db.rawQuery("SELECT * FROM Docente WHERE codDocente=?",new String[] {codDocente});
+        return c;
+    }
 
     public Cursor consultarGruposDocente(String codDocente,String codMateria){
         Cursor c = db.rawQuery("SELECT numGrupo,idCiclo FROM MateriaCiclo WHERE codMateria = ? AND codDocente = ?", new String[]{codMateria,codDocente});
-        return c;
-    }
-    public Cursor consultarEvaluacionesMateriaCiclo(){
-        //String[] parametro = {String.valueOf(nGrupo),mat,String.valueOf(ciclo)};
-        Cursor c = db.rawQuery("SELECT * FROM Evaluaciones",null);
-        return c;
-
-    }
-
-    public Cursor consultarEstudianteInscritoMateriaCiclo(int numGrupo, String codMateria, int idCiclo){
-        String[] parametro = {String.valueOf(numGrupo),codMateria,String.valueOf(idCiclo)};
-        Cursor c= db.rawQuery("SELECT carnet FROM EstudianteInscrito WHERE numGrupo=? AND codMateria=? AND idCiclo=?",parametro);
         return c;
     }
 
@@ -1377,7 +1372,6 @@ public class DBHelperInicial {
                     }
                 }
                 while (f.moveToNext());
-
                 if(ok==false) {
                     mensaje= "Alumno No inscrito en " + materia + " en el grupo " + numGrupo + ".";
                 }
@@ -1425,6 +1419,99 @@ public class DBHelperInicial {
         return msj;
     }
 
+    public Cursor consultarAlumnos(String carnet){
+        Cursor c= db.rawQuery("SELECT * FROM Estudiante WHERE carnet=?",new String[]{carnet});
+        return c;
+    }
+
+    public String insertarSolicitudImpresion(String carnet,String codDocente,String cantExa, String hojas) {
+        String msj = "";
+        if (!codDocente.equals("")) {
+            Cursor consulta = consultarDocentes(codDocente);
+            if (consulta.moveToFirst()) {
+                long contador = 0;
+                ContentValues nuevo = new ContentValues();
+                nuevo.put("codDocente", codDocente);
+                nuevo.put("cantidadExamenes", Integer.valueOf(cantExa));
+                nuevo.put("hojasAnexas", Float.valueOf(hojas));
+                nuevo.put("realizada", false);
+                nuevo.put("aprobado", false);
+                contador = db.insert("SolicitudImpresion", null, nuevo);
+                if (contador == -1 || contador == 0) {
+                    msj = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+                } else {
+                    msj = "Registro Insertado Nº=" + contador;
+                }
+            }
+            else{
+                msj= "Docente no encontrado";
+            }
+        }
+        if (!carnet.equals("")) {
+            Cursor consulta = consultarAlumnos(carnet);
+            if (consulta.moveToFirst()) {
+                long contador = 0;
+                ContentValues nuevo = new ContentValues();
+                nuevo.put("carnet", carnet);
+                nuevo.put("cantidadExamenes", Integer.valueOf(cantExa));
+                nuevo.put("hojasAnexas", Float.valueOf(hojas));
+                nuevo.put("realizada", false);
+                nuevo.put("aprobado", false);
+                contador = db.insert("SolicitudImpresion", null, nuevo);
+                if (contador == -1 || contador == 0) {
+                    msj = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+                } else {
+                    msj = "Registro Insertado Nº=" + contador;
+                }
+            } else {
+                msj= "Alumno no encontrado";
+            }
+        }
+        return msj;
+    }
+
+    public Cursor consultarSolicitudImpresion(String idSoli){
+
+        //String [] parametro = {String.valueOf(idSoli)};
+        //String [] columna = {"carnet","codDocente","cantidaExamenes","hojasAnexas"};
+        Cursor c = db.query("SolicitudImpresion",null,"idSolicitudImpresion=? ",new String[]{idSoli},null,null,null);
+        //Cursor c = db.query("SolicitudImpresion",null,null ,null,null,null,null);
+        return c;
+    }
+    public Cursor consultarSolicitudImpresion(){
+        Cursor c = db.query("SolicitudImpresion",null,null ,null,null,null,null);
+        return c;
+    }
+
+    public String actualizarSolicitudImpresion(String idSoli,boolean realizado, boolean aprobado){
+        Cursor c= consultarSolicitudImpresion(idSoli);
+        String msj="";
+        if(c.moveToFirst()){
+            ContentValues cv = new ContentValues();
+            cv.put("realizada", realizado);
+            cv.put("aprobado", aprobado);
+            db.update("SolicitudImpresion",cv,"idSolicitudImpresion=?",new String[]{idSoli});
+            //db.rawQuery("UPDATE SolicitudImpresion SET realizada=?,aprobado=? WHERE idSolicitudImpresion=?",new String[]{String.valueOf(realizado),String.valueOf(aprobado),idSoli});
+            msj="Registro actualizado";
+        }
+        else{
+            msj="Registro no encontrado";
+        }
+        return msj;
+    }
+
+    public String eliminarSolicitudImpresion(String idSoli){
+        Cursor c= consultarSolicitudImpresion(idSoli);
+        String msj="";
+        if(c.moveToFirst()){
+            db.delete("SolicitudImpresion","idSolicitudImpresion=?",new String[]{idSoli});
+            msj="Registro eliminado exitosamente";
+        }
+        else{
+            msj="Registro no encontrado";
+        }
+        return msj;
+    }
 
     //********************Autor: CORDERO HERNÁNDEZ, OSCAR EMMANUEL********************
         //*******************Carnet:CH15013********************

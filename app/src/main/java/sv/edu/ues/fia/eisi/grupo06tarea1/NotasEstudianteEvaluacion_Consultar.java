@@ -50,5 +50,6 @@ public class NotasEstudianteEvaluacion_Consultar extends AppCompatActivity {
         carnet.setText("");
         evalua.setText("");
         nota.setText("");
+
     }
 }

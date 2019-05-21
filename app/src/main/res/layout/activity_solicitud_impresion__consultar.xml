@@ -47,19 +47,18 @@
         android:layout_marginTop="7dp">
 
         <TextView
-            android:id="@+id/textViewIDSolicitudImpresionConsultar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
             android:text="@string/IdSolicitud" />
 
         <EditText
-            android:id="@+id/idSolicitudPrimerRevisionConsultar"
+            android:id="@+id/editTextIdSolicitudImpresionConsultar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
             android:ems="10"
-            android:inputType="text"/>
+            android:inputType="number"/>
 
     </TableRow>
 
@@ -71,7 +70,7 @@
         android:layout_marginTop="5dp">
 
         <Button
-            android:onClick="consultarSolicitudImpresion"
+            android:onClick="consultarImpresion"
             android:text="@string/Consultar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -98,7 +97,7 @@
             android:layout_weight="1.5"
             android:text="@string/Carnee" />
         <EditText
-            android:id="@+id/mostrarCarnet"
+            android:id="@+id/mostrarCarnetSolicitudImpresion"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
@@ -122,7 +121,7 @@
             android:layout_weight="1.5"
             android:text="@string/CodDocente" />
         <EditText
-            android:id="@+id/mostrarCodDocente"
+            android:id="@+id/mostrarCodDocenteSolicitudImpresion"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
@@ -146,7 +145,7 @@
             android:layout_weight="1.5"
             android:text="@string/CantidadExamenes" />
         <EditText
-            android:id="@+id/mostrarCantidadExamenes"
+            android:id="@+id/mostrarCantidadExamenesSolicitudImpresion"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
@@ -170,7 +169,7 @@
             android:layout_weight="1.5"
             android:text="@string/HojasAnexas" />
         <EditText
-            android:id="@+id/mostrarHojasAnexas"
+            android:id="@+id/mostrarHojasAnexasSolicitudImpresion"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"

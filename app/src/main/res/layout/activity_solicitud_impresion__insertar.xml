@@ -52,12 +52,13 @@
             android:layout_weight="1.5"
             android:text="@string/Carnee" />
         <EditText
-            android:id="@+id/editTextCarnetSolicitudImpresion"
+            android:id="@+id/editTextCarnetSolicitudImpresionInsertar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
             android:ems="10"
             android:inputType="text"
+            android:maxLength="7"
             />
     </TableRow>
 
@@ -74,12 +75,13 @@
             android:layout_weight="1.5"
             android:text="@string/CodDocente" />
         <EditText
-            android:id="@+id/editTextCodDocenteSolicitudImpresion"
+            android:id="@+id/editTextCodDocenteSolicitudImpresionInsertar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
             android:ems="10"
             android:inputType="text"
+            android:maxLength="7"
             />
     </TableRow>
 
@@ -96,12 +98,12 @@
             android:layout_weight="1.5"
             android:text="@string/CantidadExamenes" />
         <EditText
-            android:id="@+id/editTextCantidadExamenesSolicitudImpresion"
+            android:id="@+id/editTextCantidadExamenesSolicitudImpresionInsertar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
             android:ems="10"
-            android:inputType="text"
+            android:inputType="number"
             />
     </TableRow>
 
@@ -118,12 +120,12 @@
             android:layout_weight="1.5"
             android:text="@string/HojasAnexas" />
         <EditText
-            android:id="@+id/editTextHojsAnexasSolicitudImpresion"
+            android:id="@+id/editTextHojsAnexasSolicitudImpresionInsertar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
             android:ems="10"
-            android:inputType="text"
+            android:inputType="number"
             />
     </TableRow>
 
@@ -140,7 +142,7 @@
         android:layout_marginTop="5dp">
 
         <Button
-            android:onClick="insertarSolicitudImpresion"
+            android:onClick="insertarSolicitudImp"
             android:text="@string/Insertar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
