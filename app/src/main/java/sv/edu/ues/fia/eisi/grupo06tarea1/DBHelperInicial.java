@@ -1337,6 +1337,16 @@ public class DBHelperInicial {
 
 
     }
+    public String eliminarParametro(String id){
+        String regAfectados="filas afectadas=";
+        int contador = 0;
+        String[] parametro = {id};
+
+            db.delete("Parametro","idParametro=?",parametro);
+            db.delete("TipoParametro","idTipoParametro=?",parametro);
+
+        return "Registro Eliminado";
+    }
 
     public String consultarNom(String id){
 
