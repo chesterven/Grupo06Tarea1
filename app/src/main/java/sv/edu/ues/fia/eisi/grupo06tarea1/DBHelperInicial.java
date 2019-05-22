@@ -1252,6 +1252,8 @@ public class DBHelperInicial {
 //********************Autor: Christian Ariel Zelaya Tejada ********************
 //*******************Carnet: ZT12002 ********************
 
+    /*                      PARAMETROS                          */
+
     public Cursor consultarNombre()
     {
         String[] columna={"idTipoParametro","nombreTipoParametro"};
@@ -1330,25 +1332,25 @@ public class DBHelperInicial {
     public String actualizarParametrod(int dias,String id,  String nuevoNombre)
     {
 
-            String[] i = {id};
-            ContentValues cv = new ContentValues();
-            cv.put("cantidad_Dias",dias);
+        String[] i = {id};
+        ContentValues cv = new ContentValues();
+        cv.put("cantidad_Dias",dias);
             /*db.update("DiasNoHabiles", cv, "fecha = ?", i);
             return "Registro Actualizado Correctamente";*/
-            db.update("Parametro",cv,"idParametro = ?",i);
+        db.update("Parametro",cv,"idParametro = ?",i);
 
-            return "Dia de Parametro Actualizado";
+        return "Dia de Parametro Actualizado";
     }
 
     public String actualizarParametron(String id,  String nuevoNombre)
     {
 
-            String[] i = {id};
-            ContentValues cv = new ContentValues();
-            cv.put("nombreTipoParametro",nuevoNombre);
-            db.update("TipoParametro",cv,"idTipoParametro = ?",i);
+        String[] i = {id};
+        ContentValues cv = new ContentValues();
+        cv.put("nombreTipoParametro",nuevoNombre);
+        db.update("TipoParametro",cv,"idTipoParametro = ?",i);
 
-            return "Nombre de Parametro Actualizado";
+        return "Nombre de Parametro Actualizado";
     }
     public String consultardia(String id){
 
@@ -1374,8 +1376,8 @@ public class DBHelperInicial {
         int contador = 0;
         String[] parametro = {id};
 
-            db.delete("Parametro","idParametro=?",parametro);
-            db.delete("TipoParametro","idTipoParametro=?",parametro);
+        db.delete("Parametro","idParametro=?",parametro);
+        db.delete("TipoParametro","idTipoParametro=?",parametro);
 
         return "Registro Eliminado";
     }
@@ -1415,6 +1417,36 @@ public class DBHelperInicial {
         db.update("Parametro",cv,"idParametro = ?",i);
 
         return "Nombre y Dias Actualizados";
+    }
+
+    /*                      MATERIA CICLO                          */
+
+    public Cursor consultarCi()
+    {
+        String[] columna={"idCiclo","ciclo"};
+        Cursor c=db.query("Ciclo",columna,null,null,null,null,null);
+        return c;
+    }
+
+    public Cursor consultarTG()
+    {
+        String[] columna={"idTipoGrupo","nombreGrupo"};
+        Cursor c=db.query("TipoGrupo",columna,null,null,null,null,null);
+        return c;
+    }
+
+    public Cursor consultarDoc()
+    {
+        String[] columna={"codDocente","nombreDocente","apellidoDocente","director"};
+        Cursor c=db.query("Docente",columna,null,null,null,null,null);
+        return c;
+    }
+
+    public Cursor consultarMat()
+    {
+        String[] columna={"codMateria","nombreMateria"};
+        Cursor c=db.query("Materia",columna,null,null,null,null,null);
+        return c;
     }
 
 
