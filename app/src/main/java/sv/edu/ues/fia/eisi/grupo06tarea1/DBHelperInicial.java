@@ -50,6 +50,7 @@ public class DBHelperInicial {
     private static final String DROP_TABLE24 ="DROP TABLE IF EXISTS PrimeraRevision";
     private static final String DROP_TABLE25 ="DROP TABLE IF EXISTS TipoParametro";
     private static final String DROP_TABLE26 ="DROP TABLE IF EXISTS Parametro";
+    private static final String DROP_TABLE27="DROP TABLE IF EXISTS SolicitudNoImpresa";
 
     public DBHelperInicial(Context ctx) {
         this.context = ctx;
@@ -264,6 +265,15 @@ public class DBHelperInicial {
                         " CONSTRAINT FKcodDocente FOREIGN KEY (codDocente) REFERENCES Docente(codDOcente) ON DELETE RESTRICT\n"+
                         ");");
 
+                db.execSQL("CREATE TABLE SolicitudNoImpresa (\n"+
+                        "idSolicitudNoImpresion INTEGER NOT NULL PRIMARY KEY,\n"+
+                        "idSolicitudImpresion INTEGER , \n"+
+                        "motivo VARCHAR2(30), \n"+
+                        "justificacion VARCHAR2(30),\n"+
+                        "CONSTRAINT FKidSolicitudImpresion FOREIGN KEY (idSolicitudImpresion) REFERENCES SolicitudImpresion(idSolicitudImpresion) ON DELETE RESTRICT\n"+
+                        ");");
+
+
                 db.execSQL("CREATE TABLE NotasEstudianteEvaluacion (\n" +
                         " carnet VARCHAR2(7) NOT NULL, \n"+
                         " idEvaluacion INTEGER NOT NULL, \n"+
@@ -337,6 +347,7 @@ public class DBHelperInicial {
                 db.execSQL(DROP_TABLE24);
                 db.execSQL(DROP_TABLE25);
                 db.execSQL(DROP_TABLE26);
+                db.execSQL(DROP_TABLE27);
                 onCreate(db);
             } catch (Exception e) {
                 //Message.message(context,""+e);
@@ -564,6 +575,9 @@ public class DBHelperInicial {
         db.execSQL("DELETE FROM SolicitudImpresion");
         db.execSQL("INSERT INTO SolicitudImpresion (carnet,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('VD16006',4,8,0,0); ");
         db.execSQL("INSERT INTO SolicitudImpresion (codDocente,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('GR00001',8,16,1,1); ");
+
+        db.execSQL("DELETE FROM SolicitudNoImpresa");
+        db.execSQL("INSERT INTO SolicitudNoImpresa (idSolicitudImpresion,motivo,justificacion) VALUES (1,'Examen Parcial 1 MAT115','Prueba')");
 
 
         db.execSQL("DELETE FROM NotasEstudianteEvaluacion");
@@ -1434,7 +1448,7 @@ public class DBHelperInicial {
                 }
                 while (f.moveToNext());
                 if(ok==false) {
-                    mensaje= "Alumno No inscrito en " + materia + " en el grupo " + numGrupo + ".";
+                    mensaje= "Alumno no inscrito en " + materia + " en el grupo " + numGrupo + ".";
                 }
             }
             else{
@@ -1442,7 +1456,7 @@ public class DBHelperInicial {
             }
         }
         else{
-            mensaje= "La evaluacion ingresada no corresponde al grupo de la materia seleccionado";
+            mensaje= "La evaluacion ingresada no corresponde al grupo "+String.valueOf(numGrupo)+" de la materia "+materia;
         }
         return mensaje;
     }
@@ -1459,7 +1473,7 @@ public class DBHelperInicial {
             ContentValues cv = new ContentValues();
             cv.put("notaEvaluacion",Float.valueOf(nota));
             db.update("NotasEstudianteEvaluacion",cv,"carnet=? AND idEvaluacion=?",new String[]{carnet,idEvalu});
-            msj="Registro actualizado";
+            msj="Registro actualizado exitosamente";
         }
         else{
             msj="Registro no encontrado";
@@ -1532,11 +1546,7 @@ public class DBHelperInicial {
     }
 
     public Cursor consultarSolicitudImpresion(String idSoli){
-
-        //String [] parametro = {String.valueOf(idSoli)};
-        //String [] columna = {"carnet","codDocente","cantidaExamenes","hojasAnexas"};
         Cursor c = db.query("SolicitudImpresion",null,"idSolicitudImpresion=? ",new String[]{idSoli},null,null,null);
-        //Cursor c = db.query("SolicitudImpresion",null,null ,null,null,null,null);
         return c;
     }
     public Cursor consultarSolicitudImpresion(){
@@ -1552,7 +1562,6 @@ public class DBHelperInicial {
             cv.put("realizada", realizado);
             cv.put("aprobado", aprobado);
             db.update("SolicitudImpresion",cv,"idSolicitudImpresion=?",new String[]{idSoli});
-            //db.rawQuery("UPDATE SolicitudImpresion SET realizada=?,aprobado=? WHERE idSolicitudImpresion=?",new String[]{String.valueOf(realizado),String.valueOf(aprobado),idSoli});
             msj="Registro actualizado";
         }
         else{
@@ -1573,6 +1582,82 @@ public class DBHelperInicial {
         }
         return msj;
     }
+
+    //Para saber si existe una evaluacion
+    public Cursor consultarEvaluaciones(String idEva){
+        Cursor c = db.query("Evaluaciones",null,"idEvaluacion=? ",new String[]{idEva},null,null,null);
+        return c;
+    }
+
+    public String insertarSolicitudPrimerRevision(String idEva, String carnet){
+        String msj = "";
+        Cursor f = db.rawQuery("SELECT * FROM NotasEstudianteEvaluacion WHERE idEvaluacion=? AND carnet=? ", new String[]{idEva, carnet});
+        Cursor c= consultarSolicitudPrimerRevision(idEva,carnet);
+        if (f.moveToFirst()) {
+            if(!c.moveToFirst()){
+                long contador = 0;
+                ContentValues nuevo = new ContentValues();
+                nuevo.put("idEvaluacion", idEva);
+                nuevo.put("carnet", carnet);
+                nuevo.put("aprobado", false);
+                contador = db.insert("SolicitudPrimerRevision", null, nuevo);
+                if (contador == -1 || contador == 0) {
+                    msj = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+                } else {
+                    msj = "Registro Insertado Nº=" + contador;
+                }
+            }
+            else{
+                msj = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+            }
+        }
+        else{
+            msj = "No se encontraron notas con los parámetros ingresados";
+        }
+        return msj;
+    }
+
+    public Cursor consultarSolicitudPrimerRevision(String idSoli){
+        Cursor c = db.query("SolicitudPrimerRevision",null,"idSolicitudPrimerRevision=? ",new String[]{idSoli},null,null,null);
+        return c;
+    }
+    public Cursor consultarSolicitudPrimerRevision(){
+        Cursor c = db.query("SolicitudPrimerRevision",null,null,null,null,null,null);
+        return c;
+    }
+    public Cursor consultarSolicitudPrimerRevision(String idEva, String carnet){
+        Cursor c = db.query("SolicitudPrimerRevision",null,"idEvaluacion=? AND carnet=? ",new String[]{idEva,carnet},null,null,null);
+        return c;
+    }
+
+    public String actualizarSolicitudPrimerRevision(String idSoli, boolean aprobado){
+        Cursor c= consultarSolicitudPrimerRevision(idSoli);
+        String msj="";
+        if(c.moveToFirst()){
+            ContentValues cv = new ContentValues();
+            cv.put("aprobado", aprobado);
+            db.update("SolicitudPrimerRevision",cv,"idSolicitudPrimerRevision=?",new String[]{idSoli});
+            msj="Registro actualizado";
+        }
+        else{
+            msj="Registro no encontrado";
+        }
+        return msj;
+    }
+
+    public String eliminarSolicitudPrimerRevision(String idSoli){
+        Cursor c= consultarSolicitudPrimerRevision(idSoli);
+        String msj="";
+        if(c.moveToFirst()){
+            db.delete("SolicitudPrimerRevision","idSolicitudPrimerRevision=?",new String[]{idSoli});
+            msj="Registro eliminado exitosamente";
+        }
+        else{
+            msj="Registro no encontrado";
+        }
+        return msj;
+    }
+
 
     //********************Autor: CORDERO HERNÁNDEZ, OSCAR EMMANUEL********************
         //*******************Carnet:CH15013********************
@@ -1631,17 +1716,12 @@ public class DBHelperInicial {
             return regInsertados;
         }
 
-
     }
-
     public Cursor consultarSolicitudSegundaevision(int idEvaluacion, String carnet){
         String[] parametros = {String.valueOf(idEvaluacion),carnet};
         String[] columnas = {"idSolicitudSegundaREvision"};
         Cursor c = db.query("SolicitudSegundaRevision",columnas,"idEvaluacion=? AND carnet=?",parametros,null,null,null);
         return c;
     }
-
 }
-
-
 
