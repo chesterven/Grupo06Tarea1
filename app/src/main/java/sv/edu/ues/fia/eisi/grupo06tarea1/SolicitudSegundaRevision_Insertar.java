@@ -81,7 +81,7 @@ public class SolicitudSegundaRevision_Insertar extends AppCompatActivity {
                 String [] evaluacionPartes = evaluacion.split(" ");
                 DBHelper.abrir();
                 idSoliPrimerRevision=DBHelper.consultarAlumnoSoliPrimeraRevisionAntesSoliSegunda(evaluacionPartes[0],carnet.getText().toString());
-                idPrimerRevision=DBHelper.consultarIdPrimeraRevisionAntesSoliSegunda(evaluacionPartes[0]);
+                idPrimerRevision=DBHelper.consultarIdPrimeraRevisionAntesSoliSegunda(String.valueOf(idSoliPrimerRevision));
                 if(idSoliPrimerRevision==0||idPrimerRevision==0){
                     Toast.makeText(this, "No tiene Primera Revision", Toast.LENGTH_SHORT).show();
                     return;

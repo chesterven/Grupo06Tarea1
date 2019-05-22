@@ -293,7 +293,7 @@ public class DBHelperInicial {
                         ");");
 
 
-                //Autor: Cordero Hern·ndez, Oscar Emmanuel
+                //Autor: Cordero Hernandez, Oscar Emmanuel
                 //Carnet: CH15013
 
 
@@ -310,6 +310,19 @@ public class DBHelperInicial {
                         " CONSTRAINT FKidSolicitudPrimerRevision FOREIGN KEY (idSolicitudPrimerRevision) REFERENCES SolicitudPrimerRevision(idSolicitudPrimerRevision) ON DELETE RESTRICT \n"+
                         ");");
 
+                db.execSQL("CREATE TABLE DetallePrimerRevision (\n" +
+                        " idPrimerRevision INTEGER NOT NULL PRIMARY KEY, \n"+
+                        " idSoliPrimerRevision INTEGER NOT NULL, \n"+
+                        " asistenciaPrimerRevision BOOLEAN NOT NULL, \n"+
+                        " notaOriginal FLOAT NOT NULL, \n"+
+                        "notaNueva Float NOT NULL,"+
+                        "motivoCambio VARCHAR(120) NOT NULL,"+
+                        "Observaciones VARCHAR(120),"+
+                        " CONSTRAINT FKcarnet FOREIGN KEY (carnet) REFERENCES Estudiante(carnet) ON DELETE RESTRICT, \n"+
+                        " CONSTRAINT FKidEvaluacion FOREIGN KEY (idEvaluacion) REFERENCES Evaluaciones(idEvaluacion) ON DELETE RESTRICT,\n"+
+                        " CONSTRAINT FKidPrimeraRevision FOREIGN KEY (idPrimeraRevision) REFERENCES PrimeraRevision(idPrimeraRevision) ON DELETE RESTRICT, \n"+
+                        " CONSTRAINT FKidSolicitudPrimerRevision FOREIGN KEY (idSolicitudPrimerRevision) REFERENCES SolicitudPrimerRevision(idSolicitudPrimerRevision) ON DELETE RESTRICT \n"+
+                        ");");
 
             } catch (SQLException e) {
 
@@ -592,7 +605,11 @@ public class DBHelperInicial {
 
         //Autor: Cordero Hernandez, Oscar Emmanuel////
 
+
         //db.execSQL("INSERT INTO SolicitudSegundaRevision (idEvaluacion,carnet,aprobado,idPrimeraRevision,idSolicitudPrimerRevision) VALUES (2,'VD16006',0,1,1); ");
+
+        db.execSQL("DELETE FROM DetallePrimerRevision");
+        db.execSQL("INSERT INTO DetallePrimerRevision (idPrimerRevision,idSoliPrimerRevision,asistenciaPrimerRevision,notaOriginal,notaNueva,motivoCambio) VALUES (1,1,true,5.9,6.3,'mal calificado'); ");
 
         return "BD Llena";
     }
@@ -1677,11 +1694,11 @@ public class DBHelperInicial {
         }
     }
 
-    public int consultarIdPrimeraRevisionAntesSoliSegunda(String idEvaluacion){
-        String[] parametro={idEvaluacion};
-        String [] columna={"idPrimeraRevision"};
+    public int consultarIdPrimeraRevisionAntesSoliSegunda(String idSoliPrimerRevision){
+        String[] parametro={idSoliPrimerRevision};
+        String [] columna={"idPrimerRevision"};
         int resul;
-        Cursor c=db.query("PrimeraRevision",columna,"idEvaluacion=?",parametro,null,null,null);
+        Cursor c=db.query("DetallePrimerRevision",columna,"idSoliPrimerRevision=?",parametro,null,null,null);
         if(c.moveToFirst()){
             resul=c.getInt(0);
             return resul;
