@@ -1477,6 +1477,24 @@ public class DBHelperInicial {
 
     /*                      MATERIA CICLO                          */
 
+    /*  public String eliminarParametro(String id){
+        String regAfectados="filas afectadas=";
+        int contador = 0;
+        String[] parametro = {id};
+
+        db.delete("Parametro","idParametro=?",parametro);
+        db.delete("TipoParametro","idTipoParametro=?",parametro);
+
+        return "Registro Eliminado";
+    }*/
+    public String eliminarMateriaCiclo(String docente, String numGrupo,String codMateria){
+
+        String[] parametro = {docente,numGrupo,codMateria};
+        db.delete("MateriaCiclo","codDocente=? AND numGrupo=? AND codMateria=?",parametro);
+
+        return "Registro Eliminado";
+
+    }
 
     public String insertarMateriaCiclo(MateriaCicloLogica materiaciclo){
         String mensaje="";
@@ -1513,10 +1531,41 @@ public class DBHelperInicial {
     * */
 
     public Cursor consultarMateria(MateriaCicloLogica materiaciclo){
-        String[] parametro = {materiaciclo.getCodMateria(),materiaciclo.getCodDocente()};
-        String[] columna = {"numGrupo","idCiclo","idTipoGrupo"};
-        Cursor c=db.query("MateriaCiclo",columna,"codMateria=? AND codDocente=?",parametro ,null,null,null);
+        String[] parametro = {materiaciclo.getCodMateria()};
+        String[] columna = {"numGrupo","idCiclo","idTipoGrupo","codDocente"};
+        Cursor c=db.query("MateriaCiclo",columna,"codMateria=?",parametro ,null,null,null);
         return c;
+    }
+    public String consultarcate(String tipo){
+        String[] columna={"nombreDocente","apellidoDocente"};
+        String[] parametro={tipo};
+        Cursor c = db.query("Docente",columna,"codDocente=?",parametro,null,null,null);
+        if(c.moveToFirst()){
+            do{
+                String cicloResul=c.getString(0);
+                return cicloResul;
+            }while(c.moveToNext());
+
+        }else{
+            String cicloResul = "";
+            return  cicloResul;
+        }
+    }
+    public String consultarcatebyname(String tipo){
+        String[] columna={"codDocente"};
+        String[] parametro={tipo};
+        Cursor c = db.query("Docente",columna,"nombreDocente LIKE ?",parametro,null,null,null);
+
+        if(c.moveToFirst()){
+            do{
+                String cicloResul=c.getString(0);
+                return cicloResul;
+            }while(c.moveToNext());
+
+        }else{
+            String cicloResul = "";
+            return  cicloResul;
+        }
     }
 
     public String consultarTipog(String tipo){

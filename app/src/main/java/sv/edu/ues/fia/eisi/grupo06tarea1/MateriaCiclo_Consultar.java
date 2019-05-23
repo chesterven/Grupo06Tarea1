@@ -61,7 +61,7 @@ public class MateriaCiclo_Consultar extends AppCompatActivity {
     }
 
     public void ConsultarMateria(View v){
-        if(materia.getSelectedItem().equals("Seleccione la materia") ||docente.getSelectedItem().equals("Seleccione el docente")){
+        if(materia.getSelectedItem().equals("Seleccione la materia") ){
             Toast.makeText(this, "Selecciona la materia primero", Toast.LENGTH_SHORT).show();
         }else{
             String mate = "";
@@ -78,11 +78,12 @@ public class MateriaCiclo_Consultar extends AppCompatActivity {
             Cursor resultado2 = DBHelper.consultarMateria(mat);
             if(resultado2.moveToFirst()){
                 do{
-                    resultados.add("Grupo: "+resultado2.getString(0) + " " + DBHelper.consultarTipog(resultado2.getString(2)) + " " + "Ciclo:" +DBHelper.consultarcicl(resultado2.getString(1)));
+                    resultados.add(DBHelper.consultarcate(resultado2.getString(3)) + " " + "Grupo: "+resultado2.getString(0) + " " + DBHelper.consultarTipog(resultado2.getString(2)) + " " + "Ciclo:" +DBHelper.consultarcicl(resultado2.getString(1)));
                 }while (resultado2.moveToNext());
             }
             ArrayAdapter<CharSequence> adaptador2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item,resultados);
             resultado.setAdapter(adaptador2);
+
 
         }
     }
@@ -93,6 +94,8 @@ public class MateriaCiclo_Consultar extends AppCompatActivity {
         ArrayList<String> temporal = new ArrayList<>();
         temporal.add("");
         ArrayAdapter<CharSequence> x = new ArrayAdapter(this,android.R.layout.simple_spinner_item,temporal);
+        finish();
+        startActivity(getIntent());
         resultado.setAdapter(x);
 
     }
