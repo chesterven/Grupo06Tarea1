@@ -42,6 +42,7 @@ public class MenuCs16008 extends AppCompatActivity {
         if(permitido || idusuario.equals("01")){
             Toast.makeText(this,"Tiene Acceso", Toast.LENGTH_SHORT).show();
             Intent ven=new Intent(this,MenuSolicitudPrimerRevision.class);
+            ven.putExtra("idusuario",idusuario);
             startActivity(ven);
         }
         else{
@@ -59,6 +60,7 @@ public class MenuCs16008 extends AppCompatActivity {
         if(permitido || idusuario.equals("01")){
             Toast.makeText(this,"Tiene Acceso", Toast.LENGTH_SHORT).show();
             Intent ven=new Intent(this,MenuNotasEstudianteEvaluacion.class);
+            ven.putExtra("idusuario",idusuario);
             startActivity(ven);
         }
         else{
@@ -76,6 +78,7 @@ public class MenuCs16008 extends AppCompatActivity {
         if(permitido || idusuario.equals("01")){
             Toast.makeText(this,"Tiene Acceso", Toast.LENGTH_SHORT).show();
             Intent ven=new Intent(this,MenuSolicitudImpresion.class);
+            ven.putExtra("idusuario",idusuario);
             startActivity(ven);
         }
         else{
