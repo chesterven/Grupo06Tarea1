@@ -72,9 +72,9 @@ Grupo de trabajo: 06-->
             android:gravity="center">
 
             <Button
-                android:onClick="consultarTipoSolicitud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="consultarEvaluacionSolicitudSegundaAct"
                 android:text="@string/Consultar_Evaluaciones" />
         </TableRow>
 
@@ -152,11 +152,11 @@ Grupo de trabajo: 06-->
             android:layout_marginTop="20dp">
 
             <Button
-                android:onClick="actualizarSolicitud"
-                android:text="@string/Actualizar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"/>
+                android:layout_weight="2"
+                android:onClick="actualizarSolicitudSegunda"
+                android:text="@string/Actualizar" />
 
             <Button
                 android:onClick="limpiarTexto"

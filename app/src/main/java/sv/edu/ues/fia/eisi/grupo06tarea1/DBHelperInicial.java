@@ -1970,5 +1970,26 @@ public class DBHelperInicial {
         Cursor c = db.query("SolicitudSegundaRevision",columnas,"idEvaluacion=? AND carnet=?",parametros,null,null,null);
         return c;
     }
+
+    public String actualizarSolicitudSegundaRevision(SolicitudSegundaRevision solicitud){
+
+        String[] parametro = {String.valueOf(solicitud.getIdEvaluacion()),solicitud.getCarnet()};
+        ContentValues cv = new ContentValues();
+        cv.put("motivo",solicitud.getMotivo());
+        cv.put("aprobado",solicitud.isAprobado());
+        db.update("SolicitudSegundaRevision",cv,"idEvaluacion=? AND carnet=?",parametro);
+        return "Registro actualizado";
+
+    }
+
+    public String eliminarSolicitudSegundaRevision(int idEvaluacion, String carnet){
+        String regAfectados="filas afectadas=";
+        int contador = 0;
+        String[] parametro = {String.valueOf(idEvaluacion),carnet};
+
+        contador+=db.delete("SolicitudSegundaRevision","idEvaluacion=? AND carnet=?",parametro);
+        regAfectados+=contador;
+        return regAfectados;
+    }
 }
 
