@@ -81,7 +81,7 @@ public class MateriaCiclo_Eliminar extends AppCompatActivity {
         delete = resultado.getSelectedItem().toString();
         String[] deleteparte = delete.split(" ");
         String cod = DBHelper.consultarcatebyname(deleteparte[0]);
-        String mensaje = DBHelper.eliminarMateriaCiclo(cod,deleteparte[2],mateparte[0]);
+        String mensaje = DBHelper.eliminarMateriaCiclo(cod,deleteparte[3],mateparte[0]);
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
         limpiarTexto(v);
     }
