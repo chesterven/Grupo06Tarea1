@@ -1553,7 +1553,7 @@ public class DBHelperInicial {
     }
     public String consultarcatebyname(String tipo){
         String[] columna={"codDocente"};
-        String[] parametro={tipo};
+        String[] parametro={tipo+"%"};
         Cursor c = db.query("Docente",columna,"nombreDocente LIKE ?",parametro,null,null,null);
 
         if(c.moveToFirst()){
