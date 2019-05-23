@@ -1421,6 +1421,28 @@ public class DBHelperInicial {
 
     /*                      MATERIA CICLO                          */
 
+    public String insertarMateriaCiclo(MateriaCicloLogica materiaciclo){
+        String mensaje="";
+        long contador = 0;
+        String regInsertados = "Registro Insertado N.= ";
+        ContentValues cv =  new ContentValues();
+        cv.put("numGrupo",materiaciclo.getNumGrupo());
+        cv.put("codMateria",materiaciclo.getCodMateria());
+        cv.put("idCiclo",materiaciclo.getIdCiclo());
+        cv.put("codDocente",materiaciclo.getCodDocente());
+        cv.put("idTipoGrupo",materiaciclo.getIdTipoGrupo());
+        contador=db.insert("MateriaCiclo", null, cv);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+
+    }
+
     public Cursor consultarCi()
     {
         String[] columna={"idCiclo","ciclo"};

@@ -20,6 +20,7 @@ public class MateriaCiclo_Insertar extends AppCompatActivity {
     public Spinner ciclo;
     public Spinner tipogrupo;
     public Spinner materia;
+    public EditText numGrupo;
     ArrayList<String> docentes = new ArrayList<>();
     ArrayList<String> ciclos = new ArrayList<>();
     ArrayList<String> tipogrupos = new ArrayList<>();
@@ -33,6 +34,7 @@ public class MateriaCiclo_Insertar extends AppCompatActivity {
         ciclo = (Spinner) findViewById(R.id.spinnerciclo);
         tipogrupo = (Spinner) findViewById(R.id.spinnertg);
         materia = (Spinner) findViewById(R.id.spinnerMateria);
+        numGrupo = (EditText) findViewById(R.id.NumGrupo);
         docentes.add("Seleccione el docente");
         ciclos.add("Seleccione el ciclo");
         tipogrupos.add("Seleccione el tipo de grupo");
@@ -86,8 +88,38 @@ public class MateriaCiclo_Insertar extends AppCompatActivity {
 
     public void InsertarMateriaCic(View v){
         if(docente.getSelectedItem().toString().equals("Seleccione el docente") || tipogrupo.getSelectedItem().toString().equals("Seleccione el tipo de grupo")
-        || ciclo.getSelectedItem().toString().equals("Seleccione el ciclo")){
+        || ciclo.getSelectedItem().toString().equals("Seleccione el ciclo") || materia.getSelectedItem().toString().equals("Seleccione la materia") ||
+        numGrupo.getText().equals("")){
             Toast.makeText(this,"Selecciona un parametro", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            String docen = "";
+            String mate = "";
+            String cicl = "";
+            String tipog = "";
+            MateriaCicloLogica mat = new MateriaCicloLogica();
+            mat.setNumGrupo(Integer.parseInt(numGrupo.getText().toString()));
+            docen = docente.getSelectedItem().toString();
+            String[] doceParte = docen.split(" ");
+            mat.setCodDocente(doceParte[0]);
+            mate = materia.getSelectedItem().toString();
+            String[] mateparte = mate.split(" ");
+            mat.setCodMateria(mateparte[0]);
+            cicl = ciclo.getSelectedItem().toString();
+            String[]  ciclparte = cicl.split(" ");
+            mat.setIdCiclo(Integer.parseInt(ciclparte[0]));
+            tipog = tipogrupo.getSelectedItem().toString();
+            String[] tipoparte = tipog.split(" ");
+            mat.setIdTipoGrupo(Integer.parseInt(tipoparte[0]));
+            DBHelper = new DBHelperInicial(this);
+            DBHelper.abrir();
+            String mensaje = DBHelper.insertarMateriaCiclo(mat);
+            Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+
+
+
+
+
         }
 
     }

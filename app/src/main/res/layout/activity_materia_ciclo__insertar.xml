@@ -58,7 +58,7 @@
                 android:text="N. Grupo" />
 
             <EditText
-                android:id="@+id/Nombre"
+                android:id="@+id/NumGrupo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"

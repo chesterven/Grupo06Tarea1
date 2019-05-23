@@ -105,7 +105,7 @@ Grupo de trabajo: 06-->
             <Button
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:onClick="insertarParametro"
+                android:onClick="InsertarMateriaCic"
                 android:text="@string/Insertar" />
         </TableRow>
 
