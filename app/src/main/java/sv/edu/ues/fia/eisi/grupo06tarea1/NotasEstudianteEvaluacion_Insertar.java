@@ -264,17 +264,20 @@ public class NotasEstudianteEvaluacion_Insertar extends AppCompatActivity {
 
 
     public void insertarNota(View v){
-        if(codDocente.getSelectedItem().toString().equals("")||codMateria.getSelectedItem().toString().equals("")||numGrupo.getSelectedItem().toString().equals("")||carnet.getText().toString().toUpperCase().equals("")||evalua.getText().equals("")||nota.getText().equals("")){
+        //codDocente.getSelectedItem().toString().equals("")||codMateria.getSelectedItem().toString().equals("")||numGrupo.getSelectedItem().toString().equals("")||
+        if(codDocente.getSelectedItem().toString().equals("Seleccione")||codMateria.getSelectedItem().toString().equals("Seleccione")||numGrupo.getSelectedItem().toString().equals("Seleccione")||carnet.getText().toString().toUpperCase().equals("")||evalua.getText().toString().equals("")||nota.getText().toString().equals("")){
             Toast.makeText(this, "Posee campos en blanco en el formulario", Toast.LENGTH_SHORT).show();
         }
         else{
-            if(Float.valueOf(nota.getText().toString())<0&&Float.valueOf(nota.getText().toString())>10){
+            if(Float.valueOf(nota.getText().toString())>10){
                 Toast.makeText(this, "Error en nota ingresada. Debe estar entre 0 y 10 su valor", Toast.LENGTH_SHORT).show();
             }else{
                 DBHelper.abrir();
                 String msj=DBHelper.insertarNotaEstudianteEvaluacion(carnet.getText().toString().toUpperCase(),evalua.getText().toString(),nota.getText().toString(),codMateria.getSelectedItem().toString(),numGrupo.getSelectedItem().toString());
                 DBHelper.cerrar();
-                limpiarTexto();
+                evalua.setText("");
+                carnet.setText("");
+                nota.setText("");
                 Toast.makeText(this, msj, Toast.LENGTH_SHORT).show();
             }
         }
@@ -343,8 +346,5 @@ public class NotasEstudianteEvaluacion_Insertar extends AppCompatActivity {
         setAdapter3(grupos);
         numGrupo.setAdapter(adaptador3);
         numGrupo.setClickable(false);
-
     }
 }
-
-

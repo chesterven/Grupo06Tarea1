@@ -26,7 +26,7 @@ public class NotasEstudianteEvaluacion_Eliminar extends AppCompatActivity {
     }
 
     public void eliminarNota(View v){
-        if(carnet.getText().toString().toUpperCase().equals("")||evalua.getText().equals("")){
+        if(carnet.getText().toString().toUpperCase().equals("")||evalua.getText().toString().equals("")){
             Toast.makeText(this, "Posee campos en blanco en el formulario", Toast.LENGTH_SHORT).show();
         }
         else{

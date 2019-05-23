@@ -30,7 +30,7 @@ public class NotasEstudianteEvaluacion_Consultar extends AppCompatActivity {
 
     public void consultarNota(View v){
         nota.setText("");
-        if(carnet.getText().toString().toUpperCase().equals("")||evalua.getText().equals("")){
+        if(carnet.getText().toString().toUpperCase().equals("")||evalua.getText().toString().equals("")){
             Toast.makeText(this, "Posee campos en blanco en el formulario", Toast.LENGTH_SHORT).show();
         }
         else{

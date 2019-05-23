@@ -267,12 +267,32 @@ public class DBHelperInicial {
 
                 db.execSQL("CREATE TABLE SolicitudNoImpresa (\n"+
                         "idSolicitudNoImpresion INTEGER NOT NULL PRIMARY KEY,\n"+
-                        "idSolicitudImpresion INTEGER , \n"+
-                        "motivo VARCHAR2(30), \n"+
-                        "justificacion VARCHAR2(30),\n"+
+                        "idSolicitudImpresion INTEGER NOT NULL, \n"+
+                        "motivo VARCHAR2(30) NOT NULL, \n"+
+                        "justificacion VARCHAR2(30) NOT NULL,\n"+
                         "CONSTRAINT FKidSolicitudImpresion FOREIGN KEY (idSolicitudImpresion) REFERENCES SolicitudImpresion(idSolicitudImpresion) ON DELETE RESTRICT\n"+
                         ");");
 
+
+                db.execSQL("CREATE TRIGGER insertarSolicitudNoImpresa \n"+
+                        "AFTER UPDATE ON SolicitudImpresion \n"+
+                        "WHEN new.aprobado=1 AND new.realizada=0 \n"+
+                        "BEGIN \n"+
+                        "INSERT INTO SolicitudNoImpresa (idSolicitudImpresion,motivo,justificacion) VALUES (new.idSolicitudImpresion,'pruebaMotivo','pruebaJustificacion');\n"+
+                        "END;");
+
+                db.execSQL("CREATE TRIGGER eliminarSolicitudNoImpresaActualizacion \n"+
+                        "BEFORE UPDATE ON SolicitudImpresion \n"+
+                        "WHEN new.aprobado=0 AND new.realizada=0 \n"+
+                        "BEGIN \n"+
+                        "DELETE FROM SolicitudNoImpresa WHERE idSolicitudNoImpresa=old.idSolicitudImpresion; \n"+
+                        "END;");
+
+                db.execSQL("CREATE TRIGGER eliminarRegistroSolicitudNoImpresa \n"+
+                        "BEFORE DELETE ON SolicitudImpresion \n"+
+                        "BEGIN \n"+
+                        "DELETE FROM SolicitudNoImpresa WHERE idSolicitudImpresion=old.idSolicitudImpresion; \n"+
+                        "END;");
 
                 db.execSQL("CREATE TABLE NotasEstudianteEvaluacion (\n" +
                         " carnet VARCHAR2(7) NOT NULL, \n"+
@@ -292,6 +312,18 @@ public class DBHelperInicial {
                         " CONSTRAINT FKidEvaluacion FOREIGN KEY (idEvaluacion) REFERENCES Evaluaciones(idEvaluacion) ON DELETE RESTRICT\n"+
                         ");");
 
+                db.execSQL("CREATE TRIGGER eliminarDetallePrimerRevisionActualizacion \n"+
+                        "BEFORE UPDATE ON SolicitudPrimerRevision \n"+
+                        "WHEN new.aprobado=0 \n"+
+                        "BEGIN \n"+
+                        "DELETE FROM DetallePrimerRevision WHERE idSolicitudPrimerRevision=old.idSolicitudPrimerRevision; \n"+
+                        "END;");
+
+                db.execSQL("CREATE TRIGGER eliminarDetallePrimerRevisionEliminacion \n"+
+                        "BEFORE DELETE ON SolicitudPrimerRevision \n"+
+                        "BEGIN \n"+
+                        "DELETE FROM DetallePrimerRevision WHERE idSolicitudPrimerRevision=old.idSolicitudPrimerRevision; \n"+
+                        "END;");
 
                 //Autor: Cordero Hernandez, Oscar Emmanuel
                 //Carnet: CH15013
@@ -322,7 +354,6 @@ public class DBHelperInicial {
                         " CONSTRAINT FKidSolicitudPrimerRevision FOREIGN KEY (idSolicitudPrimerRevision) REFERENCES SolicitudPrimerRevision(idSolicitudPrimerRevision) ON DELETE RESTRICT, \n"+
                         " PRIMARY KEY (idPrimeraRevision,idSolicitudPrimerRevision)\n" +
                         ");");
-
 
 
             } catch (SQLException e) {
@@ -475,9 +506,9 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Estudiante VALUES('VD16006','Roberto','Ventura',0);");
         db.execSQL("INSERT INTO Estudiante VALUES('GC16001','Abigail','Gil',1);");
         db.execSQL("INSERT INTO Estudiante VALUES('XX16001','Fernando','Xerox',0);");
-        db.execSQL("INSERT INTO Estudiante VALUES ('CH15013','Oscar','Hern·ndez',1)");
+        db.execSQL("INSERT INTO Estudiante VALUES ('CH15013','Oscar','Hernandez',1)");
         db.execSQL("INSERT INTO Estudiante VALUES ('CS16008','José','Castro',0)");
-        db.execSQL("INSERT INTO Estudiante VALUES ('ZTE12002','Christian','Zelaya',0)");
+        db.execSQL("INSERT INTO Estudiante VALUES ('ZT12002','Christian','Zelaya',0)");
 
         db.execSQL("DELETE FROM Docente");
         db.execSQL("INSERT INTO Docente VALUES('GR00001','Cesar Augusto','Gonzalez Rodriguez',1)");
@@ -584,25 +615,34 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'SYP115',1,'2019-05-15','Parcial II','Folletos 3 y 4');");
 
 
-
         //Autor: Jose Andres Castro Sanchez////
         db.execSQL("DELETE FROM SolicitudImpresion");
-        db.execSQL("INSERT INTO SolicitudImpresion (carnet,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('VD16006',4,8,0,0); ");
-        db.execSQL("INSERT INTO SolicitudImpresion (codDocente,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('GR00001',8,16,1,1); ");
+        db.execSQL("INSERT INTO SolicitudImpresion (carnet,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('GC16001',4,8,0,1); ");
+        db.execSQL("INSERT INTO SolicitudImpresion (codDocente,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('GR00001',8,16,0,0); ");
+        db.execSQL("INSERT INTO SolicitudImpresion (codDocente,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('MM00001',100,200,1,1); ");
+        db.execSQL("INSERT INTO SolicitudImpresion (codDocente,cantidadExamenes,hojasAnexas,realizada,aprobado) VALUES ('NH00001',50,150,0,0); ");
+
 
         db.execSQL("DELETE FROM SolicitudNoImpresa");
-        db.execSQL("INSERT INTO SolicitudNoImpresa (idSolicitudImpresion,motivo,justificacion) VALUES (1,'Examen Parcial 1 MAT115','Prueba')");
+        db.execSQL("INSERT INTO SolicitudNoImpresa (idSolicitudImpresion,motivo,justificacion) VALUES (1,'Falta de Tonner','Falta de fondos');");
+
 
 
         db.execSQL("DELETE FROM NotasEstudianteEvaluacion");
-        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('VD16006',3,7.78); ");
-        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('GC16001',3,8.3); ");
-        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('VD16006',2,9.67); ");
-        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('GC16001',2,9.5); ");
+        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('VD16006',2,5.9);");
+        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('GC16001',8,4.2);");
+        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('GC16001',3,8.37);");
+        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('VD16006',3,9.43);");
+        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('CH15013',7,7.09);");
+        //db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('CS16008',7,6.1);");
+
+
 
         db.execSQL("DELETE FROM SolicitudPrimerRevision");
-        db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (2,'VD16006',1); ");
-        db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (3,'GC16001',1); ");
+         db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (2,'VD16006',1); ");
+         db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (3,'GC16001',0); ");//Eliminación
+         db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (8,'GC16001',0); ");//Consultar
+        db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (7,'CH15013',0); ");//Actualizar
 
         //Autor: Cordero Hernandez, Oscar Emmanuel////
 

@@ -23,19 +23,11 @@ public class NotasEstudianteEvaluacion_Actualizar extends AppCompatActivity {
 
 
     ArrayAdapter<CharSequence> adaptador;
-    ArrayAdapter<CharSequence> adaptador2;
-    ArrayAdapter<CharSequence> adaptador3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notas_estudiante_evaluacion__actualizar);
-
-        //codDocente = (Spinner)findViewById(R.id.spinnerCodDocenteNotasEstudianteEvaluacionActualizar);
-        //codMateria= (Spinner)findViewById(R.id.spinnerMateriasNotasEstudianteEvaluacionActualizar);
-        //numGrupo= (Spinner)findViewById(R.id.spinnerGruposMateriaNotasEstudianteEvaluacionActualizar);
-        //evalua= (Spinner)findViewById(R.id.spinnerEvaluacionesGrupoMateriaNotasEstudianteEvaluacionInsertar);
-        //carnet=(Spinner)findViewById(R.id.spinnerCarnetGrupoMateriaNotasEstudianteEvaluacionInsertar);
         evalua= (EditText) findViewById(R.id.editTextEvaluacionesGrupoMateriaNotasEstudianteEvaluacionActualizar);
         carnet=(EditText) findViewById(R.id.editTextCarnetNotaEstudianteEvaluacionActualizar);
         nota= (EditText) findViewById(R.id.notaNotaEstudianteEvaluacionActualizar);
@@ -45,7 +37,7 @@ public class NotasEstudianteEvaluacion_Actualizar extends AppCompatActivity {
 
 
     public void actualizarNota(View v){
-        if(carnet.getText().toString().toUpperCase().equals("")||evalua.getText().equals("")||nota.getText().equals("")){
+        if(carnet.getText().toString().toUpperCase().equals("")||evalua.getText().toString().equals("")||nota.getText().toString().equals("")){
             Toast.makeText(this, "Posee campos en blanco en el formulario", Toast.LENGTH_SHORT).show();
         }
         else{
