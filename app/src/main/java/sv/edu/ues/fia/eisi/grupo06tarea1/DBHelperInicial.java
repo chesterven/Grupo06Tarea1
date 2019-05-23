@@ -215,6 +215,12 @@ public class DBHelperInicial {
                         "UPDATE NotasEstudianteEvaluacion SET notaEvaluacion=NEW.notaSegundaRevision WHERE carnet= (SELECT carnet FROM SolicitudSegundaRevision WHERE idSolicitudSegundaRevision=NEW.idSoliSegundaRevision) AND idEvaluacion =(SELECT idEvaluacion FROM SolicitudSegundaRevision WHERE idSolicitudSegundaRevision=NEW.idSoliSegundaRevision);\n" +
                         "END");
 
+                db.execSQL("CREATE TRIGGER eliminarDetalleSegundaRevision\n" +
+                        "BEFORE DELETE ON SegundaRevision\n" +
+                        "BEGIN \n" +
+                        "DELETE FROM DetalleSegundaRevision WHERE idSegundaRevision=old.idSegundaRevision;\n" +
+                        "END");
+
                 //Autor: Christian Ariel Zelaya Tejada
                 //Carnet: ZT12002
 
