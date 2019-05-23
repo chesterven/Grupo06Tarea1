@@ -1476,6 +1476,7 @@ public class DBHelperInicial {
 
     /*                      MATERIA CICLO                          */
 
+
     public String insertarMateriaCiclo(MateriaCicloLogica materiaciclo){
         String mensaje="";
         long contador = 0;
@@ -1496,6 +1497,57 @@ public class DBHelperInicial {
         }
         return regInsertados;
 
+    }
+
+    /*
+    *    String regAfectados="filas afectadas=";
+        int contador = 0;
+        String[] parametro = {idEvaluacion,idSolicitud};
+
+        contador+=db.delete("SolicitudEvaluacion","idEvaluacion=? AND idSolicitudDiferidoRepetido=?",parametro);
+        regAfectados+=contador;
+        return regAfectados;
+
+    }
+    * */
+
+    public Cursor consultarMateria(MateriaCicloLogica materiaciclo){
+        String[] parametro = {materiaciclo.getCodMateria(),materiaciclo.getCodDocente()};
+        String[] columna = {"numGrupo","idCiclo","idTipoGrupo"};
+        Cursor c=db.query("MateriaCiclo",columna,"codMateria=? AND codDocente=?",parametro ,null,null,null);
+        return c;
+    }
+
+    public String consultarTipog(String tipo){
+        String[] columna={"nombreGrupo"};
+        String[] parametro={tipo};
+        Cursor c = db.query("TipoGrupo",columna,"idTipoGrupo=?",parametro,null,null,null);
+        if(c.moveToFirst()){
+            do{
+                String cicloResul=c.getString(0);
+                return cicloResul;
+            }while(c.moveToNext());
+
+        }else{
+            String cicloResul = "";
+            return  cicloResul;
+        }
+    }
+
+    public String consultarcicl(String tipo){
+        String[] columna={"ciclo"};
+        String[] parametro={tipo};
+        Cursor c = db.query("Ciclo",columna,"idCiclo=?",parametro,null,null,null);
+        if(c.moveToFirst()){
+            do{
+                String cicloResul=c.getString(0);
+                return cicloResul;
+            }while(c.moveToNext());
+
+        }else{
+            String cicloResul = "";
+            return  cicloResul;
+        }
     }
 
     public Cursor consultarCi()

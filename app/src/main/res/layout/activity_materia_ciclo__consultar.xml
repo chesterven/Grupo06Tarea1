@@ -1,9 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MateriaCiclo_Consultar">
 
-</android.support.constraint.ConstraintLayout>
+
+        android:layout_width="match_parent"
+        android:layout_height="727dp"
+        tools:context=".Parametros_Consultar"
+        tools:layout_editor_absoluteY="4dp">
+
+
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="4dip"
+        android:stretchColumns="1">
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/Menu_ZT12002_MateriaCiclo_Consultar"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/consultarprimeraysegundarevision" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="14dp" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="Materia" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="261dp"
+                android:layout_height="wrap_content" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4">
+
+            <TextView
+                android:id="@+id/textView44"
+                android:layout_width="138dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="Docente:" />
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="261dp"
+                android:layout_height="wrap_content" />
+
+
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4">
+
+            <TextView
+                android:id="@+id/textView45"
+                android:layout_width="138dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="Tipo de grupo" />
+
+            <EditText
+                android:id="@+id/TipodeGrupo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:ems="10"
+                android:inputType="text" />
+
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="Ciclo" />
+
+            <EditText
+                android:id="@+id/ciclo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:ems="10"
+                android:inputType="number" />
+
+
+        </TableRow>
+    <TableRow>
+
+        <Spinner
+            android:id="@+id/spinner3"
+            android:layout_width="396dp"
+            android:layout_height="wrap_content" />
+    </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4">
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:onClick="ConsultarMateria"
+                android:text="@string/Consultar"
+                tools:text="Consultar" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:onClick="limpiartTexto"
+                android:text="@string/Limpiar" />
+        </TableRow>
+
+    </TableLayout>
