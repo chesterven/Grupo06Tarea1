@@ -152,7 +152,7 @@ public class DBHelperInicial {
                 db.execSQL("CREATE TABLE SolicitudEvaluacion(\n" +
                         "    idEvaluacion INTEGER NOT NULL,\n" +
                         "    idSolicitudDiferidoRepetido INTEGER NOT NULL,\n" +
-                        "    notaSoliEvaluacion DECIMAL NOT NULL,\n" +
+                        "    notaSoliEvaluacion FLOAT NOT NULL,\n" +
                         "     CONSTRAINT fk_idEvaluacion FOREIGN KEY (idEvaluacion) REFERENCES Evaluaciones(idEvaluacion) ON DELETE RESTRICT,\n" +
                         "     CONSTRAINT fk_idSolicitudDiferidoEvaluacion FOREIGN KEY (idSolicitudDiferidoRepetido) REFERENCES SolicitudDiferidoRepetido(idSolicitudDiferidoRepetido) ON DELETE RESTRICT,\n" +
                         "    PRIMARY KEY (idEvaluacion, idSolicitudDiferidoRepetido)\n" +
@@ -568,6 +568,7 @@ public class DBHelperInicial {
         db.execSQL("DELETE FROM SolicitudDiferidoRepetido");
         db.execSQL("INSERT INTO SolicitudDiferidoRepetido(idEvaluacion,carnet,motivo,aprobado,idTipoSolicitud) VALUES(2,'VD16006','Enfermedad grave',1,2)");
         db.execSQL("INSERT INTO SolicitudDiferidoRepetido(idEvaluacion,carnet,motivo,aprobado,idTipoSolicitud) VALUES(2,'GC16001','Constancia Medica',1,1)");
+        db.execSQL("INSERT INTO SolicitudDiferidoRepetido(idEvaluacion,carnet,motivo,aprobado,idTipoSolicitud) VALUES(7,'CH15013','Constancia Medica',1,2)");
         db.execSQL("DELETE FROM SolicitudEvaluacion");
 
 
@@ -610,7 +611,7 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(2,1,'PDM115',1,'2019-03-30','Primer Examen Repetido Teorico','Evaluacion de las unidades I, II y III')");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'MIP115',1,'2019-04-12','Examen escrito 1','Evaluacion de la unidad I')");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'SYP115',1,'2019-04-15','Parcial I','Folletos 1 y 2')");
-        db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(2,2,'HDP115',1,'2019-04-15','Parcial I','Unidad 1, 2 y 3')");
+        db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(3,2,'HDP115',1,'2019-04-15','Parcial Diferido I','Unidad 1, 2 y 3')");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'PDM115',1,'2019-05-20','Segundo Examen Teorico','Evaluacion de las unidades IV y V');");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'SYP115',1,'2019-05-15','Parcial II','Folletos 3 y 4');");
 
@@ -631,7 +632,7 @@ public class DBHelperInicial {
         db.execSQL("DELETE FROM NotasEstudianteEvaluacion");
         db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('VD16006',2,5.9);");
         db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('GC16001',8,4.2);");
-        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('GC16001',3,8.37);");
+        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('GC16001',2,8.37);");
         db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('VD16006',3,9.43);");
         db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('CH15013',7,7.09);");
         //db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('CS16008',7,6.1);");
@@ -1204,7 +1205,21 @@ public class DBHelperInicial {
     public Cursor consultarSolicitudesSoliEva(int idEvaluacion){
         String[] parametros = {String.valueOf(idEvaluacion),String.valueOf(1)};
         String[] columnas = {"idSolicitudDiferidoRepetido","carnet","aprobado","idTipoSolicitud"};
-        Cursor c = db.query("SolicitudDiferidoRepetido",columnas,"idEvaluacion=? AND aprobado=?",parametros,null,null,null);
+        Cursor c = db.query("SolicitudDiferidoRepetido",columnas,"idTipoSolicitud=? AND aprobado=?",parametros,null,null,null);
+        return c;
+    }
+
+    public Cursor consultarSolicitudesSoliEva2(int idEvaluacion){
+        String[] parametros = {String.valueOf(idEvaluacion)};
+        String[] columnas = {"idSolicitudDiferidoRepetido"};
+        Cursor c = db.query("SolicitudEvaluacion",columnas,"idEvaluacion=?",parametros,null,null,null);
+        return c;
+    }
+
+    public Cursor consultarSolicitudesSoliEva3(int  soli){
+        String[] parametros = {String.valueOf(soli)};
+        String[] columnas = {"idSolicitudDiferidoRepetido","carnet"};
+        Cursor c = db.query("SolicitudDiferidoRepetido",columnas,"idSolicitudDiferidoRepetido=?",parametros,null,null,null);
         return c;
     }
 

@@ -35,8 +35,8 @@ public class SolicitudEvaluacion_Insertar extends AppCompatActivity {
         nota = (EditText) findViewById(R.id.notaInsertarSolicitudEvaluacion);
         solicitudes = (Spinner) findViewById(R.id.spinnerSolicitudDifRepSolicitudes);
         tipoSolicitud.add("Seleccione tipo evaluacion");
-        tipoSolicitud.add("1 Repetido");
-        tipoSolicitud.add("2 Diferida");
+        tipoSolicitud.add("2 Repetido");
+        tipoSolicitud.add("3 Diferida");
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,android.R.layout.simple_spinner_item,tipoSolicitud);
         tiposoli.setAdapter(adaptador);
 
@@ -100,7 +100,9 @@ public class SolicitudEvaluacion_Insertar extends AppCompatActivity {
                 DBHelper.abrir();
                 String evaluacion = evalua.getSelectedItem().toString();
                 evaluacionPart = evaluacion.split(" ");
-                Cursor soli =DBHelper.consultarSolicitudesSoliEva(Integer.valueOf(evaluacionPart[0]));
+                String tipo = tiposoli.getSelectedItem().toString();
+                String[] tipoPart = tipo.split(" ");
+                Cursor soli =DBHelper.consultarSolicitudesSoliEva(Integer.valueOf(tipoPart[0])-1);
                 if(soli.moveToFirst()){
                     do{
                         solicitudesResultado.add(soli.getInt(0)+" "+soli.getString(1));

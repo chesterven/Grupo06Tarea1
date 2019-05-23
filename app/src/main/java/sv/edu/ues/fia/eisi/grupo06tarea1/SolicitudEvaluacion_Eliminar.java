@@ -35,8 +35,8 @@ public class SolicitudEvaluacion_Eliminar extends AppCompatActivity {
         tiposoli = (Spinner) findViewById(R.id.spinnerTipoSolicitudEli);
         solicitudes = (Spinner) findViewById(R.id.spinnerSolicitudDifRepSolicitudesEli);
         tipoSolicitud.add("Seleccione tipo evaluacion");
-        tipoSolicitud.add("1 Repetido");
-        tipoSolicitud.add("2 Diferida");
+        tipoSolicitud.add("2 Repetido");
+        tipoSolicitud.add("3 Diferida");
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,android.R.layout.simple_spinner_item,tipoSolicitud);
         tiposoli.setAdapter(adaptador);
     }
@@ -98,10 +98,17 @@ public class SolicitudEvaluacion_Eliminar extends AppCompatActivity {
                 DBHelper.abrir();
                 String evaluacion = evalua.getSelectedItem().toString();
                 evaluacionPart = evaluacion.split(" ");
-                Cursor soli =DBHelper.consultarSolicitudesSoliEva(Integer.valueOf(evaluacionPart[0]));
+                String tipo = tiposoli.getSelectedItem().toString();
+                String[] tipoPart = tipo.split(" ");
+                Cursor soli =DBHelper.consultarSolicitudesSoliEva2(Integer.valueOf(evaluacionPart[0]));
                 if(soli.moveToFirst()){
                     do{
-                        solicitudesResultado.add(soli.getInt(0)+" "+soli.getString(1));
+                        Cursor sl = DBHelper.consultarSolicitudesSoliEva3(soli.getInt(0));
+                        if(sl.moveToFirst()){
+                            do{
+                                solicitudesResultado.add(sl.getInt(0)+" "+sl.getString(1));
+                            }while(sl.moveToNext());
+                        }
                     }while(soli.moveToNext());
                     solicitudesResultado.add(0,"Seleccione solicitud");
                     ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, solicitudesResultado);
