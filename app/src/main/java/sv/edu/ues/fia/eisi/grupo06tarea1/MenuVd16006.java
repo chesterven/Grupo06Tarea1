@@ -41,6 +41,7 @@ public class MenuVd16006 extends AppCompatActivity {
         if(permitido || idusuario.equals("01")){
             Toast.makeText(this,"Tiene Acceso", Toast.LENGTH_SHORT).show();
             Intent ven=new Intent(this,MenuSolicitudDiferidoRepetido.class);
+            ven.putExtra("idusuario",idusuario);
             startActivity(ven);
         }
         else{
@@ -59,6 +60,7 @@ public class MenuVd16006 extends AppCompatActivity {
         if(permitido || idusuario.equals("01")){
             Toast.makeText(this,"Tiene Acceso", Toast.LENGTH_SHORT).show();
             Intent ven=new Intent(this,MenuSolicitudEvaluacion.class);
+            ven.putExtra("idusuario",idusuario);
             startActivity(ven);
         }
         else{
