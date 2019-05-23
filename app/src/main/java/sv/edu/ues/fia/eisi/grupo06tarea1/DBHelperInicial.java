@@ -334,6 +334,7 @@ public class DBHelperInicial {
                         " idEvaluacion INTEGER NOT NULL, \n"+
                         " carnet VARCHAR2(7) NOT NULL, \n"+
                         " aprobado BOOLEAN NOT NULL, \n"+
+                        " motivo VARCHAR2(50) NOT NULL, \n"+
                         "idPrimeraRevision INTEGER NOT NULL,"+
                         "idSolicitudPrimerRevision INTEGER NOT NULL,"+
                         " CONSTRAINT FKcarnet FOREIGN KEY (carnet) REFERENCES Estudiante(carnet) ON DELETE RESTRICT, \n"+
@@ -1872,7 +1873,7 @@ public class DBHelperInicial {
 
     public String insertarSoliSegundaRevision(SolicitudSegundaRevision solicitud){
         Cursor solic;
-        String regInsertados="Registro Insertado N∫= ";
+        String regInsertados="Registro Insertado N°= ";
         long contador=0;
         solic = consultarSolicitudSegundaevision(solicitud.getIdEvaluacion(),solicitud.getCarnet());
         if(solic.moveToFirst()){
@@ -1881,9 +1882,11 @@ public class DBHelperInicial {
             ContentValues soli = new ContentValues();
             soli.put("idEvaluacion",solicitud.getIdEvaluacion());
             soli.put("carnet", solicitud.getCarnet());
+            soli.put("motivo",solicitud.getMotivo());
             soli.put("idPrimeraRevision", solicitud.getIdPrimerRevision());
             soli.put("aprobado", solicitud.isAprobado());
             soli.put("idSolicitudPrimerRevision", solicitud.getIdSoliPrimerRevision());
+
             contador= db.insert("SolicitudSegundaRevision",null,soli);
             if(contador==-1 || contador==0)
             {
@@ -1899,6 +1902,22 @@ public class DBHelperInicial {
     public Cursor consultarSolicitudSegundaevision(int idEvaluacion, String carnet){
         String[] parametros = {String.valueOf(idEvaluacion),carnet};
         String[] columnas = {"idSolicitudSegundaREvision"};
+        Cursor c = db.query("SolicitudSegundaRevision",columnas,"idEvaluacion=? AND carnet=?",parametros,null,null,null);
+        return c;
+    }
+
+    //METODO PARA CONSULTAR EN LA TABLA DE SOLICITUDES LAS EVALUACIONES QUE UN ESTUDIANTE A SOLICITADO
+    public Cursor consultarSolicitudSegundaEstuiante(String carnet){
+        String[] parametros = {carnet};
+        String[] columnas = {"idEvaluacion","aprobado"};
+        Cursor c = db.query("SolicitudSegundaRevision",columnas,"carnet=?",parametros,null,null,null);
+        return c;
+    }
+
+    //METODO PARA CONSULTAR LA SOLICITUD DE SEGUDA REVISION DE UNA EVALUACION ESPECIFICA DE UN ESTUDIANTE
+    public Cursor consultarSolicitudSegunda(int idEvaluacion, String carnet){
+        String[] parametros = {String.valueOf(idEvaluacion),carnet};
+        String[] columnas = {"motivo","aprobado"};
         Cursor c = db.query("SolicitudSegundaRevision",columnas,"idEvaluacion=? AND carnet=?",parametros,null,null,null);
         return c;
     }

@@ -4,6 +4,7 @@ public class SolicitudSegundaRevision {
     private int idSoliSegundaRevision;
     private int idEvaluacion;
     private String carnet;
+    private String motivo;
     private int idPrimerRevision;
     private int idSoliPrimerRevision;
     private boolean aprobado;
@@ -43,6 +44,14 @@ public class SolicitudSegundaRevision {
 
     public void setCarnet(String carnet) {
         this.carnet = carnet;
+    }
+
+    public String getMotivo() {
+        return motivo;
+    }
+
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
     }
 
     public int getIdPrimerRevision() {

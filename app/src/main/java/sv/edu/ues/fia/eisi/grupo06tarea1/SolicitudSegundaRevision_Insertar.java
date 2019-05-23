@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class SolicitudSegundaRevision_Insertar extends AppCompatActivity {
     DBHelperInicial DBHelper;
-    EditText carnet;
+    EditText carnet,etMotivo;
     Cursor datos;
     ArrayList<String> evaluaciones = new ArrayList<String>();
     Spinner spinnerEva;
@@ -24,6 +24,7 @@ public class SolicitudSegundaRevision_Insertar extends AppCompatActivity {
         setContentView(R.layout.activity_solicitud_segunda_revision__insertar);
         carnet=(EditText)findViewById(R.id.carnetSoliSegunda);
         spinnerEva=(Spinner)findViewById(R.id.spinnerEva);
+        etMotivo=(EditText)findViewById(R.id.motivoSoliSegunda);
 
     }
 
@@ -86,15 +87,22 @@ public class SolicitudSegundaRevision_Insertar extends AppCompatActivity {
                     Toast.makeText(this, "No tiene Primera Revision", Toast.LENGTH_SHORT).show();
                     return;
                 }else{
-                solicitud.setCarnet(carnet.getText().toString());
-                solicitud.setIdEvaluacion(Integer.valueOf(evaluacionPartes[0]));
-                solicitud.setIdSoliPrimerRevision(idSoliPrimerRevision);
-                solicitud.setIdPrimerRevision(idPrimerRevision);
-                solicitud.setAprobado(false);
-                mensaje=DBHelper.insertarSoliSegundaRevision(solicitud);
+                    if(etMotivo.getText().toString().equals("")){
+                        Toast.makeText(this, "Ingrese el motivo de segunda revision", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    else {
+                        solicitud.setCarnet(carnet.getText().toString());
+                        solicitud.setMotivo(etMotivo.getText().toString());
+                        solicitud.setIdEvaluacion(Integer.valueOf(evaluacionPartes[0]));
+                        solicitud.setIdSoliPrimerRevision(idSoliPrimerRevision);
+                        solicitud.setIdPrimerRevision(idPrimerRevision);
+                        solicitud.setAprobado(false);
+                        mensaje = DBHelper.insertarSoliSegundaRevision(solicitud);
 
 
-                Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         }else{
