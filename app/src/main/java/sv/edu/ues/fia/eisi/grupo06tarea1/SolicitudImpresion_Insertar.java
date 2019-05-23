@@ -57,6 +57,7 @@ public class SolicitudImpresion_Insertar extends AppCompatActivity {
                                 if(a==true){
                                     String msj = DBHelper.insertarSolicitudImpresion(carnet.getText().toString().toUpperCase(), codDocente.getText().toString().toUpperCase(), cantExamenes.getText().toString(), hojasAnex.getText().toString());
                                     Toast.makeText(this, msj, Toast.LENGTH_LONG).show();
+                                    limpiarTexto();
                                 }else{
                                     Toast.makeText(this, "El carnet ingresado no es instructor", Toast.LENGTH_LONG).show();
                                 }
@@ -79,6 +80,7 @@ public class SolicitudImpresion_Insertar extends AppCompatActivity {
                         DBHelper.abrir();
                         String msj = DBHelper.insertarSolicitudImpresion(carnet.getText().toString().toUpperCase(), codDocente.getText().toString().toUpperCase(), cantExamenes.getText().toString(), hojasAnex.getText().toString());
                         DBHelper.cerrar();
+                        limpiarTexto();
                         Toast.makeText(this, msj, Toast.LENGTH_LONG).show();
                     }
                 }
@@ -86,6 +88,12 @@ public class SolicitudImpresion_Insertar extends AppCompatActivity {
         }
     }
     public void limpiarTexto(View v){
+        carnet.setText("");
+        codDocente.setText("");
+        cantExamenes.setText("");
+        hojasAnex.setText("");
+    }
+    public void limpiarTexto(){
         carnet.setText("");
         codDocente.setText("");
         cantExamenes.setText("");

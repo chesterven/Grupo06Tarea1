@@ -33,6 +33,8 @@ public class NotasEstudianteEvaluacion_Eliminar extends AppCompatActivity {
             DBHelper.abrir();
             String msj=DBHelper.eliminarNotaEstudianteEvaluacion(carnet.getText().toString().toUpperCase(),evalua.getText().toString());
             DBHelper.cerrar();
+            carnet.setText("");
+            evalua.setText("");
             Toast.makeText(this, msj, Toast.LENGTH_SHORT).show();
         }
     }

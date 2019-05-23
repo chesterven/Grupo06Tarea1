@@ -63,22 +63,6 @@ public class SolicitudImpresion_Consultar extends AppCompatActivity {
                 if(b==true){
                     aprobado.setChecked(true);
                 }
-                /*do{
-                    if (c.getString(0).equals(idSoli.getText().toString())){
-                        carnet.setText(c.getString(1));
-                        codDocente.setText(c.getString(2));
-                        cantExamenes.setText(String.valueOf(c.getInt(3)));
-                        hojasAnex.setText(String.valueOf(c.getInt(4)));
-                        final boolean a = c.getInt(c.getColumnIndex("realizada")) != 0;
-                        if(a==true){
-                            realizada.setChecked(true);
-                        }
-                        final boolean b = c.getInt(c.getColumnIndex("aprobado")) != 0;
-                        if(b==true){
-                            aprobado.setChecked(true);
-                        }
-                    }
-                }while (c.moveToNext());*/
             }
             else{
                 Toast.makeText(this, "No se encontró solicitud con el id ingresado", Toast.LENGTH_SHORT).show();

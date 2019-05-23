@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 public class SolicitudPrimerRevision_Actualizar extends AppCompatActivity {
 
-
     DBHelperInicial DBHelper;
 
     EditText carnet;
@@ -56,6 +55,7 @@ public class SolicitudPrimerRevision_Actualizar extends AppCompatActivity {
                 if(position!=0){
                     carnet.setText("");
                     idEva.setText("");
+                    aprobado.setChecked(false);
                     Cursor c= DBHelper.consultarSolicitudPrimerRevision(idSolicitud.getSelectedItem().toString());
                     if(c.moveToFirst()){
                         idEva.setText(c.getString(1));
@@ -130,5 +130,4 @@ public class SolicitudPrimerRevision_Actualizar extends AppCompatActivity {
         idEva.setText("");
         aprobado.setChecked(false);
     }
-
 }

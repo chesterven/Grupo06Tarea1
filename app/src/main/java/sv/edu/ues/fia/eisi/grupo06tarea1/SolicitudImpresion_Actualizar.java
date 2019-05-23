@@ -65,6 +65,8 @@ public class SolicitudImpresion_Actualizar extends AppCompatActivity {
                     codDocente.setText("");
                     cantExamenes.setText("");
                     hojasAnex.setText("");
+                    realizada.setChecked(false);
+                    aprobado.setChecked(true);
                     Cursor c= DBHelper.consultarSolicitudImpresion(idImpresion.getSelectedItem().toString());
                     if(c.moveToFirst()){
                         carnet.setText(c.getString(1));

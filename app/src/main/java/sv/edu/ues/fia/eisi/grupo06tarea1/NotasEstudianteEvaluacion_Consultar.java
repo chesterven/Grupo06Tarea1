@@ -34,13 +34,14 @@ public class NotasEstudianteEvaluacion_Consultar extends AppCompatActivity {
             Toast.makeText(this, "Posee campos en blanco en el formulario", Toast.LENGTH_SHORT).show();
         }
         else{
+            nota.setText("");
             DBHelper.abrir();
             Cursor msj=DBHelper.consultarNotaEstudianteEvaluacion(carnet.getText().toString().toUpperCase(),evalua.getText().toString());
             if(msj.moveToFirst()){
                 nota.setText(String.valueOf(msj.getFloat(2)));
             }
-            else
-            {Toast.makeText(this, "No hay nota registrada", Toast.LENGTH_SHORT).show();
+            else {
+                Toast.makeText(this, "No hay nota registrada con los párametros ingresados", Toast.LENGTH_SHORT).show();
             }
             DBHelper.cerrar();
         }
