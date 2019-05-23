@@ -19,7 +19,7 @@ public class MenuSolicitudPrimerRevision extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_solicitud_primer_revision);
-        Intent recibir = getIntent();
+        Intent recibir = getIntent();//Recibo el string de idusuario del menu de mi carnet
         idusuario = recibir.getStringExtra("idusuario");
 
         DBHelper = new DBHelperInicial(this);
