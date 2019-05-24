@@ -1799,6 +1799,21 @@ public class DBHelperInicial {
         Cursor c=db.query("Evaluaciones",columna,"codMateria=?",parametro ,null,null,null);
         return c;
     }
+
+    /*   public String eliminarMateriaCiclo(String docente, String numGrupo,String codMateria){
+
+        String[] parametro = {docente,numGrupo,codMateria};
+        db.delete("MateriaCiclo","codDocente=? AND numGrupo=? AND codMateria=?",parametro);
+
+        return "Registro Eliminado";
+
+    }*/
+
+    public String EliminarEva(Evaluaciones eva){
+        String[] parametro={eva.getCodMateria(),eva.getFechaEvaluacion()};
+        db.delete("Evaluaciones","codMateria=? AND fechaEvaluacion=?",parametro);
+        return "Registro Eliminado";
+    }
     public String insertarEvaluacion(Evaluaciones eva){
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;

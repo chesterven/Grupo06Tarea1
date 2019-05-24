@@ -241,12 +241,25 @@
             <Button
                 android:layout_width="225dp"
                 android:layout_height="match_parent"
-                android:text="@string/Actualizar" />
+                android:text="@string/Consultar" />
 
             <Button
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:text="@string/Limpiar" />
+
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:text="@string/Actualizar" />
+
         </TableRow>
 
 
