@@ -109,7 +109,7 @@ Grupo de trabajo: 06-->
                 android:text="@string/Consultar" />
 
             <Button
-                android:onClick="limpiarTexto"
+                android:onClick="limpiarTextoCon"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/Limpiar"

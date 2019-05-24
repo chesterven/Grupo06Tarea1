@@ -112,7 +112,7 @@ public class SolicitudSegundaRevision_Insertar extends AppCompatActivity {
 
     }
 
-    public void limpiarTexto(View v){
+    public void limpiarTextos(View v){
         carnet.setText("");
         spinnerEva.setAdapter(null);
         etMotivo.setText("");

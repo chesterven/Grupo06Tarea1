@@ -526,11 +526,10 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO OPCIONCRUD (IDOPCION,DESOPCION,NUMCRUD) VALUES ('047','TABLA PRIMERA REVISION_CONSULTAR','47');");
         db.execSQL("INSERT INTO OPCIONCRUD (IDOPCION,DESOPCION,NUMCRUD) VALUES ('048','TABLA PRIMERA REVISION_ELIMINAR','48');");
 
-        db.execSQL("INSERT INTO OPCIONCRUD (IDOPCION,DESOPCION,NUMCRUD) VALUES ('049','TABLA SOLICITUD_REPETIDO_INSERTAR','40');");
-        db.execSQL("INSERT INTO OPCIONCRUD (IDOPCION,DESOPCION,NUMCRUD) VALUES ('050','TABLA SOLICITUD_DIFERIDO_INSERTAR','41');");
-        db.execSQL("INSERT INTO OPCIONCRUD (IDOPCION,DESOPCION,NUMCRUD) VALUES ('051','TABLA SOLICITUD_DIFERIDOREPETIDO_ACTUALIZAR','42');");
-        db.execSQL("INSERT INTO OPCIONCRUD (IDOPCION,DESOPCION,NUMCRUD) VALUES ('052','TABLA SOLICITUD_DIFERIDOREPETIDO_CONSULTAR','43');");
-        db.execSQL("INSERT INTO OPCIONCRUD (IDOPCION,DESOPCION,NUMCRUD) VALUES ('053','TABLA SOLICITUD_DIFERIDOREPETIDO_ELIMINAR','44');");
+        db.execSQL("INSERT INTO OPCIONCRUD (IDOPCION,DESOPCION,NUMCRUD) VALUES ('049','TABLA SOLICITUD_PRIMERA_REVISION_INSERTAR','49');");
+        db.execSQL("INSERT INTO OPCIONCRUD (IDOPCION,DESOPCION,NUMCRUD) VALUES ('050','TABLA SOLICITUD_SEGUNDA_REVISION_ACTUALIZAR','50');");
+        db.execSQL("INSERT INTO OPCIONCRUD (IDOPCION,DESOPCION,NUMCRUD) VALUES ('051','TABLA SOLICITUD_SEGUNDA_REVISION_ELIMINAR','51');");
+        db.execSQL("INSERT INTO OPCIONCRUD (IDOPCION,DESOPCION,NUMCRUD) VALUES ('052','TABLA SOLICITUD_SEGUNDA_REVISION_COSULTAR','52');");
 
 
 
@@ -2233,6 +2232,116 @@ public class DBHelperInicial {
         contador+=db.delete("SolicitudSegundaRevision","idEvaluacion=? AND carnet=?",parametro);
         regAfectados+=contador;
         return regAfectados;
+    }
+
+    public String insertarPrimeraRevision(PrimeraRevision revision)
+    {
+        String mensaje = "";
+        Boolean primera=consultarSoliPrimeraRevisionAntesPrimeraRevision(revision.getIdEvaluacion());
+        if(primera ==true) {
+            mensaje = consultarPrimeraRevisionExiste(String.valueOf(revision.getIdEvaluacion()));
+            if (mensaje.equals("")) {
+                String regInsertados = "Registro Insertado N∫= ";
+                long contador = 0;
+                ContentValues rev = new ContentValues();
+                rev.put("idEvaluacion", revision.getIdEvaluacion());
+                rev.put("idLocal", revision.getIdLocal());
+                rev.put("fechaPrimeraRevision", revision.getFechaPrimeraRevision());
+                rev.put("horaPrimeraRevision", revision.getHora());
+                rev.put("descripcionPrimeraRevision", revision.getDescripcion());
+                contador = db.insert("PrimeraRevision", null, rev);
+                if (contador == -1 || contador == 0) {
+                    regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+                } else { regInsertados = regInsertados + contador;
+                }
+                return regInsertados;
+            } else {
+
+                return "Ya existe una revisión para esa evaluación";
+            }
+        }
+        else{
+            return "No existe una solicitud de orimera revisión de la evaluación.NO PUEDE INSERTAR LA PRIMERA REVISION";
+        }
+
+    }
+
+
+    //Método que verifica si existe una solicitud de primera revision para una evaluación determinada antes de crear
+    //una revision para dicha evaluacion
+
+    public  Boolean consultarSoliPrimeraRevisionAntesPrimeraRevision(int idEvaluacion) {
+        String[] id = {String.valueOf(idEvaluacion)};
+        String[] columna = {"idEvaluacion"};
+        Cursor c = db.query("SolicitudPrimerRevision", columna, "idEvaluacion=?", id, null, null, null, null);
+        if (c.moveToFirst()) {
+            return true;
+        } else {
+
+            return false;
+        }
+    }
+
+    //Verifica si ya existe una revision asignada para una determinada evaluacion
+    public String consultarPrimeraRevisionExiste (String idEvaluacion)
+    {
+        String mensaje="";
+        String [] parametro = {idEvaluacion};
+        String []columna = {"IdPrimeraRevision","descripcionPrimeraRevision"};
+        Cursor c = db.query("PrimeraRevision",columna,"idEvaluacion=?",parametro,null,null,null);
+        if(c.moveToFirst())
+        {
+            mensaje=String.valueOf(c.getInt(0))+" "+c.getString(1);
+            return mensaje;
+        }
+        else{
+            return "";
+        }
+
+    }
+
+    //Metodo para consultar la primera revision
+    public PrimeraRevision consultarPrimeraRevision(int idRevision)
+    {
+        String [] id ={String.valueOf(idRevision)};
+        String []columnas = {"idLocal","fechaPrimeraRevision","horaPrimeraRevision","descripcionPrimeraRevision"};
+        Cursor c = db.query("PrimeraRevision",columnas,"idPrimeraRevision=?",id,null,null,null,null);
+        if(c.moveToFirst())
+        {
+            PrimeraRevision primera = new PrimeraRevision();
+            primera.setIdLocal(c.getInt(0));
+            primera.setFechaPrimeraRevision(c.getString(1));
+            primera.setHora(c.getString(2));
+            primera.setDescripcion(c.getString(3));
+            return primera;
+
+        }
+        return null;
+    }
+
+    public String actualizarPrimeraRevision(PrimeraRevision primera)
+    {
+        String[] id ={String.valueOf(primera.getIdPrimeraRevision())};
+        ContentValues cv = new ContentValues();
+        cv.put("idLocal",primera.getIdLocal());
+        cv.put("fechaPrimeraRevision",primera.getFechaPrimeraRevision());
+        cv.put("horaPrimeraRevision", primera.getHora());
+        cv.put("descripcionPrimeraRevision",primera.getDescripcion());
+        db.update("PrimeraRevision",cv,"idPrimeraRevision=?",id);
+        return "Registro actualizado correctamente";
+    }
+
+    //Metodo para eliminar la segunda revision
+    public String eliminarPrimeraRevision(int idPrimera)
+    {
+        String regAfectados="filas afectadas=";
+        int contador = 0;
+        String[] parametro = {String.valueOf(idPrimera)};
+
+        contador+=db.delete("PrimeraRevision","idPrimeraRevision=?",parametro);
+
+        return "Registro borrado con Èxito";
+
     }
 }
 

@@ -99,4 +99,54 @@ public class PrimeraRevision_Insertar extends AppCompatActivity {
             Toast.makeText(this,"Ingrese el código del docente", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void insertarPrimeraRevision(View v) {
+
+        if(!(evaluaciones.size()==0)) {
+            if ((evalua.getSelectedItem().toString().equals("Seleccione su evaluación"))
+                    | (locales.getSelectedItem().toString().equals("Seleccione el local"))
+                    | (fecha.getText().toString().equals("") | descripcion.getText().toString().equals("") | hora.getText().toString().equals(""))) {
+                Toast.makeText(this, "Ingrese todos los campos", Toast.LENGTH_SHORT).show();
+            } else {
+
+                DBHelper = new DBHelperInicial(this);
+                DBHelper.abrir();
+                String mensaje = "";
+                String evaluacion = "";
+                PrimeraRevision primera = new PrimeraRevision();
+                evaluacion = evalua.getSelectedItem().toString();
+                String[] evaluacionParte = evaluacion.split(" ");
+                String local = "";
+
+                local = locales.getSelectedItem().toString();
+                String[] localParte = local.split(" ");
+
+                primera.setIdEvaluacion(Integer.valueOf(evaluacionParte[0]));
+                primera.setIdLocal(Integer.valueOf(localParte[0]));
+                primera.setFechaPrimeraRevision(fecha.getText().toString());
+                primera.setHora(hora.getText().toString());
+                primera.setDescripcion(descripcion.getText().toString());
+
+                mensaje = DBHelper.insertarPrimeraRevision(primera);
+                Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+            }
+        }
+        else {
+            Toast.makeText(this, "No ha consultado las revisiones", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    public void limpiarTexto(View v)
+    {
+
+        codDocente.setText("");
+        fecha.setText("");
+        hora.setText("");
+        descripcion.setText("");
+        evalua.setAdapter(null);
+        evaluaciones.clear();
+        locales.setSelection(0);
+
+    }
 }

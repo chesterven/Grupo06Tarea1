@@ -89,4 +89,12 @@ public class SolicitudSegundaRevision_Consultar extends AppCompatActivity {
 
 
     }
+
+    public void limpiarTextoCon(View v){
+        etcarnetSoliSegunda.setText("");
+        motivo.setText("");
+        aceptado.setText("");
+        arrayEva.clear();
+        evaluaciones.setAdapter(null);
+    }
 }
