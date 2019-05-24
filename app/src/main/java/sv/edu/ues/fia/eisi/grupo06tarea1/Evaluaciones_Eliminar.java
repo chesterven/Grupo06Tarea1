@@ -76,7 +76,10 @@ public class Evaluaciones_Eliminar extends AppCompatActivity {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
 
     }
-
+    public void limpiarText(View v){
+        finish();
+        startActivity(getIntent());
+    }
 
 
 

@@ -180,6 +180,7 @@ else{
 }
     }
     public void limpiarText(View v){
-        resultad.setSelection(0);
+        finish();
+        startActivity(getIntent());
     }
 }

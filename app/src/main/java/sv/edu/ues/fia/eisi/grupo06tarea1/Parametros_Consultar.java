@@ -67,7 +67,9 @@ public class Parametros_Consultar extends AppCompatActivity {
     }
     public void limpiarTexto(View v)
     {
-
+    nombre.setSelection(0);
+    name.setText("");
+    dias.setText("");
 
 
     }

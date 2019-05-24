@@ -77,8 +77,8 @@ public class MateriaCiclo_Consultar extends AppCompatActivity {
     }
 
     public void limpiartTexto(View v){
-        materia.setSelection(0);
-        resultado.setSelection(0);
+        finish();
+        startActivity(getIntent());
 
     }
 }

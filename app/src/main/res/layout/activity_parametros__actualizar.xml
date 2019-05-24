@@ -55,15 +55,16 @@ Grupo de trabajo: 06-->
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="138dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="1"
                 android:text="@string/Menu_ZT12002_Parametros" />
 
             <Spinner
                 android:id="@+id/spinner"
-                android:layout_width="166dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"/>
 
 
         </TableRow>
@@ -74,16 +75,19 @@ Grupo de trabajo: 06-->
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="138dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="1"
                 android:text="@string/zt12002_nnombre" />
 
             <EditText
                 android:id="@+id/nuevoNombres"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2.5"
+                android:layout_weight="3"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:editable="false"
                 android:ems="10"
                 android:inputType="text" />
 
@@ -102,14 +106,14 @@ Grupo de trabajo: 06-->
                 android:id="@+id/textView2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="1"
                 android:text="@string/zt12002_nndias" />
 
             <EditText
                 android:id="@+id/dias"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2.5"
+                android:layout_weight="3"
                 android:ems="10"
                 android:inputType="number" />
 
