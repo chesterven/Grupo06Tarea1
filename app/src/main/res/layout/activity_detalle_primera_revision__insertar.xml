@@ -25,10 +25,10 @@ Grupo de trabajo: 06-->
                 android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
                 android:gravity="center"
-                android:textStyle="bold"
-                android:text="@string/DetalleSegundaRevision_Titulo_Insertar" />
+                android:text="@string/Tabla_Detalle_Primera_Revision"
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </TableRow>
 
         <TableRow
