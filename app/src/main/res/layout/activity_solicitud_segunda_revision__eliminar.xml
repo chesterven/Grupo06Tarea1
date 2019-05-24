@@ -25,7 +25,7 @@ Grupo de trabajo: 06-->
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/Solicitud_RepetidoDiferido_Titulo_Eliminar"
+                android:text="@string/Titulo_Eliminar_SolicitudSegundaRevision"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </TableRow>
