@@ -58,7 +58,7 @@ Grupo de trabajo: 06-->
                 android:layout_width="138dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:text="Parametro" />
+                android:text="@string/Menu_ZT12002_Parametros" />
 
             <Spinner
                 android:id="@+id/spinner"
@@ -77,7 +77,7 @@ Grupo de trabajo: 06-->
                 android:layout_width="138dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:text="Nuevo Nombre" />
+                android:text="@string/zt12002_nnombre" />
 
             <EditText
                 android:id="@+id/nuevoNombres"
@@ -103,7 +103,7 @@ Grupo de trabajo: 06-->
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:text="Dias" />
+                android:text="@string/zt12002_nndias" />
 
             <EditText
                 android:id="@+id/dias"

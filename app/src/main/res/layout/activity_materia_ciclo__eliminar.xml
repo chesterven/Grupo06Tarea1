@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/Menu_ZT12002_MateriaCiclo_Consultar"
+                android:text="@string/Eliminar"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </TableRow>
@@ -63,15 +63,16 @@
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="231dp"
+                android:layout_width="234dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:text="Materia" />
+                android:text="@string/Materia" />
 
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="261dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5" />
 
 
         </TableRow>
@@ -79,45 +80,7 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="4">
-
-            <TextView
-                android:id="@+id/textView44"
-                android:layout_width="138dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:text="Docente:" />
-
-            <Spinner
-                android:id="@+id/spinner2"
-                android:layout_width="261dp"
-                android:layout_height="wrap_content" />
-
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="4">
-
-            <TextView
-                android:id="@+id/textView45"
-                android:layout_width="138dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:text="Tipo de grupo" />
-
-            <EditText
-                android:id="@+id/TipodeGrupo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2.5"
-                android:ems="10"
-                android:inputType="text" />
-
-
-        </TableRow>
+            android:weightSum="4"/>
 
 
         <TableRow
@@ -128,25 +91,7 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="4">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:text="Ciclo" />
-
-            <EditText
-                android:id="@+id/ciclo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2.5"
-                android:ems="10"
-                android:inputType="number" />
-
-
-        </TableRow>
+            android:weightSum="4"/>
 
         <TableRow>
 

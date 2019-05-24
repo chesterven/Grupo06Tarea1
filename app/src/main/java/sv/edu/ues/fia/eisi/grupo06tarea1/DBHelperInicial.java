@@ -1763,6 +1763,15 @@ public class DBHelperInicial {
         return c;
     }
 
+    /*                      EVALUACIONES                         */
+
+    public  Cursor consultarEva(){
+        String[] columna={"idTipoEvaluacion","nombreTipoEvaluacion"};
+        Cursor c=db.query("TipoEvaluacion",columna,null,null,null,null,null);
+        return c;
+    }
+
+
 
     //********************Autor: José Andrés Castro Sánchez ********************
     //*******************Carnet: CS16008********************

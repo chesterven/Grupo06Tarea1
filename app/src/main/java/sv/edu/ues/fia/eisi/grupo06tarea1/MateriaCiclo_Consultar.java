@@ -29,9 +29,8 @@ public class MateriaCiclo_Consultar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_materia_ciclo__consultar);
-        docente = (Spinner) findViewById(R.id.spinner2);
-        tipog = (EditText) findViewById(R.id.TipodeGrupo);
-        ciclo = (EditText) findViewById(R.id.ciclo);
+
+
         materia = (Spinner) findViewById(R.id.spinner);
         resultado =  (Spinner) findViewById(R.id.spinner3);
         materias.add("Seleccione la materia");

@@ -55,7 +55,7 @@
                 android:layout_width="157dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:text="N. Grupo" />
+                android:text="@string/Grupo" />
 
             <EditText
                 android:id="@+id/NumGrupo"
@@ -87,7 +87,7 @@
                 android:layout_width="138dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:text="Docente" />
+                android:text="@string/CodDocente" />
 
             <Spinner
                 android:id="@+id/spinnerdoc"
@@ -106,7 +106,7 @@
                 android:layout_width="138dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:text="Tipo de Grupo" />
+                android:text="@string/TipoGrupo" />
 
             <Spinner
                 android:id="@+id/spinnertg"
@@ -125,7 +125,7 @@
                 android:layout_width="138dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:text="Materia" />
+                android:text="@string/Materia" />
 
             <Spinner
                 android:id="@+id/spinnerMateria"
@@ -144,7 +144,7 @@
                 android:layout_width="138dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:text="Ciclo" />
+                android:text="@string/Ciclo" />
 
             <Spinner
                 android:id="@+id/spinnerciclo"

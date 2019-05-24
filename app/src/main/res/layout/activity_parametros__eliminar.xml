@@ -60,7 +60,7 @@
                 android:layout_width="138dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:text="Parametro" />
+                android:text="@string/Menu_ZT12002_Parametros" />
 
             <Spinner
                 android:id="@+id/spinner"
@@ -86,8 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:onClick="eliminarparametro"
-                android:text="@string/Menu_ZT12002_Parametros_Eliminar"
-                tools:text="Eliminar" />
+                android:text="@string/Menu_ZT12002_Parametros_Eliminar" />
 
         </TableRow>
     </TableLayout>

@@ -117,9 +117,6 @@ public class MateriaCiclo_Insertar extends AppCompatActivity {
             Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
 
 
-
-
-
         }
 
     }

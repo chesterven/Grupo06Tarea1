@@ -65,4 +65,11 @@ public class Parametros_Consultar extends AppCompatActivity {
 
         }
     }
+    public void limpiarTexto(View v)
+    {
+
+
+
+    }
+
 }
