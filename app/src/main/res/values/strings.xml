@@ -80,7 +80,7 @@
     <string name="Segunda_Revision_Titulo_Eliminar">Eliminar Segunda Revisión</string>
     <string name="Segunda_Revision_Titulo_Actualizar">Actualizar Segunda Revisión</string>
     <string name="SegundaRevisionId">Id Segunda Revisión:</string>
-    <string name="Segunda_Revision_Titulo_InsertarTestigos">Insertar Testigos Segunda Revisión</string>
+    <string name="Precaucion">Si elimina una segunda revision se eliminaran los datos asociadas a ella</string>
     <!--Detalle segunda revision-->
     <string name="DetalleSegundaRevision_Titulo_Insertar">Insertar Detalle Segunda Revisión</string>
     <string name="DetalleSegundaRevision_Titulo_Eliminar">Eliminar Detalle Segunda Revisión</string>
