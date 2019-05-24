@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--Nombre: Christian Ariel Zelaya Tejada
+Carnet: ZT12002
+Grupo de trabajo: 06-->
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -69,7 +72,21 @@
 
 
     </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4">
 
+
+
+        <Spinner
+            android:id="@+id/spinnerres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"/>
+
+
+    </TableRow>
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
