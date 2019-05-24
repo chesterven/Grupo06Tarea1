@@ -227,6 +227,9 @@
     <string name="DetallePrimeraRevision_Titulo_Actualizar">Actualizar Detalle Primera Revisión</string>
     <string name="DetallePrimeraRevision_Titulo_Tabla">Tabla Detalle Primera Revisión</string>
 
+    <!--para Spinner en CRUD's de primera revision-->
+    <string name="SpinnerPrimeraRev">Primera Revisión:</string>
+
 
 
     <!-- MENU ZT12002-->

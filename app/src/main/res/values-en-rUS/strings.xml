@@ -88,6 +88,7 @@
     <string name="SolictudEvaluacion_Eliminar">Delete The Deferred Or Repetead Score</string>
     <string name="SolictudEvaluacion_Consultar">Read The Deferred Or Repetead Result</string>
     <string name="SolictudEvaluacion_Actualizar">Update The Deferred Or Repetead Result</string>
+    <string name="SpinnerPrimeraRev">First Revision:</string>
     <string name="IdSolicitud">Id Request:</string>
     <string name="Tipo_Solicitud">Type Request:</string>
     <string name="Tipo_Solicitud_Titulo_Insertar">Type Request Insert</string>
