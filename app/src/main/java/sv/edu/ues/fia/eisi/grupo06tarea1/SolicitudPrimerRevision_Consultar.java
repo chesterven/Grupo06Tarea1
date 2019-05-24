@@ -33,6 +33,9 @@ public class SolicitudPrimerRevision_Consultar extends AppCompatActivity {
     }
 
     public void consultarPrimerRevision(View v){
+        carnet.setText("");
+        idEva.setText("");
+        aprobado.setChecked(false);
         if(idSoli.getText().toString().equals("")){
             Toast.makeText(this, "Debe ingresar un id de solicitud", Toast.LENGTH_SHORT).show();
         }
@@ -56,9 +59,10 @@ public class SolicitudPrimerRevision_Consultar extends AppCompatActivity {
     }
 
     public void limpiarTexto(View v){
+        idSoli.setText("");
         carnet.setText("");
         idEva.setText("");
-        idSoli.setText("");
+
         aprobado.setChecked(false);
     }
 

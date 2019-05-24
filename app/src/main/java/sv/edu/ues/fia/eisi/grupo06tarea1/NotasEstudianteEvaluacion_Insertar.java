@@ -274,9 +274,7 @@ public class NotasEstudianteEvaluacion_Insertar extends AppCompatActivity {
                 DBHelper.abrir();
                 String msj=DBHelper.insertarNotaEstudianteEvaluacion(carnet.getText().toString().toUpperCase(),evalua.getText().toString(),nota.getText().toString(),codMateria.getSelectedItem().toString(),numGrupo.getSelectedItem().toString());
                 DBHelper.cerrar();
-                evalua.setText("");
-                carnet.setText("");
-                nota.setText("");
+                limpiarTexto();
                 Toast.makeText(this, msj, Toast.LENGTH_SHORT).show();
             }
         }

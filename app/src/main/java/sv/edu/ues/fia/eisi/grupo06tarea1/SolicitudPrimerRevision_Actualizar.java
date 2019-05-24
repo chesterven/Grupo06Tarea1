@@ -26,16 +26,20 @@ public class SolicitudPrimerRevision_Actualizar extends AppCompatActivity {
 
     ArrayList<String> listaSolicitudes=new ArrayList<>();
     ArrayAdapter<CharSequence> adaptador;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solicitud_primer_revision__actualizar);
+
 
         carnet=(EditText) findViewById(R.id.editTextCarnetSolicitudPrimerRevision);
         idSolicitud=(Spinner)findViewById(R.id.spinnerIdSolicitudPrimerRevisionActualizar);
         aprobado=(CheckBox)findViewById(R.id.checkBoxAprobadoSolicitudPrimerRevision);
         idEva=(EditText) findViewById(R.id.editTextIdEvaluacionSolicitudPrimerRevision);
 
+
+        listaSolicitudes.clear();
         listaSolicitudes.add("Seleccione");
         DBHelper = new DBHelperInicial(this);
         DBHelper.abrir();
@@ -43,25 +47,27 @@ public class SolicitudPrimerRevision_Actualizar extends AppCompatActivity {
         if(resultado.moveToFirst())
         {
             do{
-                listaSolicitudes.add(resultado.getString(0));
+                listaSolicitudes.add(String.valueOf(resultado.getInt(0)));
             }while(resultado.moveToNext());
         }
 
         adaptador = new ArrayAdapter(this,android.R.layout.simple_spinner_item,listaSolicitudes);
         idSolicitud.setAdapter(adaptador);
+
+
         idSolicitud.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position!=0){
-                    carnet.setText("");
                     idEva.setText("");
+                    carnet.setText("");
                     aprobado.setChecked(false);
                     Cursor c= DBHelper.consultarSolicitudPrimerRevision(idSolicitud.getSelectedItem().toString());
                     if(c.moveToFirst()){
                         idEva.setText(c.getString(1));
                         carnet.setText(c.getString(2));
                         final boolean b = c.getInt(c.getColumnIndex("aprobado")) != 0;
-                        if(b==true){
+                        if(b){
                             aprobado.setChecked(true);
                         }
                     }
@@ -95,11 +101,11 @@ public class SolicitudPrimerRevision_Actualizar extends AppCompatActivity {
         listaSolicitudes.add("Seleccione");
         DBHelper = new DBHelperInicial(this);
         DBHelper.abrir();
-        Cursor resultado=DBHelper.consultarSolicitudImpresion();
+        Cursor resultado=DBHelper.consultarSolicitudPrimerRevision();
         if(resultado.moveToFirst())
         {
             do{
-                listaSolicitudes.add(resultado.getString(0));
+                listaSolicitudes.add(String.valueOf(resultado.getInt(0)));
             }while(resultado.moveToNext());
         }
 
@@ -108,24 +114,25 @@ public class SolicitudPrimerRevision_Actualizar extends AppCompatActivity {
         carnet.setText("");
         idEva.setText("");
         aprobado.setChecked(false);
-
     }
 
     public void limpiarTexto(){
+
         listaSolicitudes.clear();
         listaSolicitudes.add("Seleccione");
         DBHelper = new DBHelperInicial(this);
         DBHelper.abrir();
-        Cursor resultado=DBHelper.consultarSolicitudImpresion();
+        Cursor resultado=DBHelper.consultarSolicitudPrimerRevision();
         if(resultado.moveToFirst())
         {
             do{
-                listaSolicitudes.add(resultado.getString(0));
+                listaSolicitudes.add(String.valueOf(resultado.getInt(0)));
             }while(resultado.moveToNext());
         }
 
         adaptador = new ArrayAdapter(this,android.R.layout.simple_spinner_item,listaSolicitudes);
         idSolicitud.setAdapter(adaptador);
+
         carnet.setText("");
         idEva.setText("");
         aprobado.setChecked(false);
