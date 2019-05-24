@@ -57,15 +57,29 @@
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="157dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="1"
                 android:text="@string/Materia" />
 
             <Spinner
                 android:id="@+id/spinnermateria"
-                android:layout_width="166dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3" />
+
+
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4">
+
+            <Spinner
+                android:id="@+id/spinnerres"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4" />
 
 
         </TableRow>
@@ -82,22 +96,7 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="4">
-
-            <TextView
-                android:id="@+id/Docente"
-                android:layout_width="138dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:text="@string/CodDocente" />
-
-            <Spinner
-                android:id="@+id/spinnerdoc"
-                android:layout_width="166dp"
-                android:layout_height="wrap_content" />
-
-
-        </TableRow>
+            android:weightSum="4"/>
 
         <TableRow
             android:layout_width="match_parent"
@@ -106,15 +105,16 @@
 
             <TextView
                 android:id="@+id/NGrupo"
-                android:layout_width="138dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:text="@string/Grupo" />
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/TipoGrupo" />
 
             <Spinner
                 android:id="@+id/spinnerng"
-                android:layout_width="225dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3" />
 
 
         </TableRow>
@@ -126,15 +126,16 @@
 
             <TextView
                 android:id="@+id/TGrupo"
-                android:layout_width="138dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:text="@string/TipoGrupo" />
+                android:layout_weight="1"
+                android:text="@string/zt12002_tipoev" />
 
             <Spinner
                 android:id="@+id/spinnertg"
-                android:layout_width="225dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3" />
 
 
         </TableRow>
@@ -146,15 +147,16 @@
 
             <TextView
                 android:id="@+id/Materia"
-                android:layout_width="138dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="1"
                 android:text="@string/Ciclo" />
 
             <Spinner
                 android:id="@+id/spinnerCiclo"
-                android:layout_width="233dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3" />
 
 
         </TableRow>
@@ -166,16 +168,16 @@
 
             <TextView
                 android:id="@+id/textView45"
-                android:layout_width="138dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="1"
                 android:text="@string/Dias_No_Habiles_FechaNueva" />
 
             <EditText
                 android:id="@+id/fechaEvaluacion"
-                android:layout_width="181dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2.5"
+                android:layout_weight="3"
                 android:ems="10"
                 android:inputType="text" />
 
@@ -189,16 +191,16 @@
 
             <TextView
                 android:id="@+id/textView457"
-                android:layout_width="138dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="1"
                 android:text="@string/zt12002_nnombre" />
 
             <EditText
                 android:id="@+id/nombreEva"
-                android:layout_width="172dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2.5"
+                android:layout_weight="3"
                 android:ems="10"
                 android:inputType="text" />
 
@@ -212,16 +214,16 @@
 
             <TextView
                 android:id="@+id/textView458"
-                android:layout_width="138dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="1"
                 android:text="@string/Descripcion" />
 
             <EditText
                 android:id="@+id/descrip"
-                android:layout_width="170dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2.5"
+                android:layout_weight="3"
                 android:ems="10"
                 android:inputType="text" />
 
@@ -231,7 +233,8 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:weightSum="4"/>
 
         <TableRow
             android:layout_width="match_parent"
@@ -239,25 +242,30 @@
             android:gravity="center">
 
             <Button
-                android:layout_width="225dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="2"
                 android:text="@string/Consultar" />
 
             <Button
-                android:layout_width="50dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="2"
                 android:text="@string/Limpiar" />
 
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:gravity="center"
+            android:weightSum="4">
 
 
             <Button
-                android:layout_width="50dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:onClick="actualizar"
+                android:layout_weight="2"
                 android:text="@string/Actualizar" />
 
         </TableRow>

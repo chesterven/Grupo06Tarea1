@@ -1814,6 +1814,31 @@ public class DBHelperInicial {
         db.delete("Evaluaciones","codMateria=? AND fechaEvaluacion=?",parametro);
         return "Registro Eliminado";
     }
+
+    /*public String actualizarParametron(String id,  String nuevoNombre)
+    {
+
+        String[] i = {id};
+        ContentValues cv = new ContentValues();
+        cv.put("nombreTipoParametro",nuevoNombre);
+        db.update("TipoParametro",cv,"idTipoParametro = ?",i);
+
+        return "Nombre de Parametro Actualizado";
+    }*/
+
+    public String ActualizarEva(Evaluaciones eva, String f){
+        String[] parametro = {eva.getCodMateria(),f};
+        ContentValues param = new ContentValues();
+        param.put("idTipoEvaluacion",eva.getIdTipoevaluacion());
+        param.put("numGrupo",eva.getNumGrupo());
+        param.put("codMateria",eva.getCodMateria());
+        param.put("idCiclo",eva.getIdCiclo());
+        param.put("fechaEvaluacion",eva.getFechaEvaluacion());
+        param.put("nombreEvaluacion",eva.getNombreEvaluacion());
+        param.put("descripcion",eva.getDescripcion());
+        db.update("Evaluaciones",param,"codMateria=? AND fechaEvaluacion=?",parametro);
+        return "Registro Modificado";
+    }
     public String insertarEvaluacion(Evaluaciones eva){
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
