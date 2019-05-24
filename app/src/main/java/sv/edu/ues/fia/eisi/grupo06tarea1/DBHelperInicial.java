@@ -2343,5 +2343,59 @@ public class DBHelperInicial {
         return "Registro borrado con Èxito";
 
     }
-}
+
+    /*Metodo que consulta el idEvaluacion en la tabla de Primera Revision y retorna ese numero en un string*/
+    public String consultarPrimeraRevisionConId (String idPrimeraRevision) {
+        String mensaje = "";
+        String[] parametro = {idPrimeraRevision};
+        String[] columna = {"IdEvaluacion"};
+        Cursor c = db.query("PrimeraRevision", columna, "idPrimeraRevision=?", parametro, null, null, null);
+        if (c.moveToFirst()) {
+            mensaje = String.valueOf(c.getInt(0));
+            return mensaje;
+        } else {
+            return "";
+        }
+    }
+
+         /*Metodo para consultar si un alumno cuenta con la solicitud de una primera revision de una evaluacion especifica
+        recibe el idEvaluacion y el carnet del alumno*/
+        public String consultarAlumnoSoliPrimeraRevisionAntesDetalle(int idEvaluacion, String carnet)
+        {
+            String [] parametros={String.valueOf(idEvaluacion),carnet};
+            String [] columna={"idSolicitudPrimerRevision"};
+            String resul="";
+            Cursor c=db.query("SolicitudPrimerRevision",columna,"idEvaluacion=? AND carnet=?",parametros,null,null,null);
+            if (c.moveToFirst()) {
+                resul=String.valueOf(c.getInt(0));
+                return resul;
+            } else {
+
+                return "";
+            }
+        }
+
+    public String insertarDetallePrimeraRevision(DetallePrimeraRevision detalleSegunda)
+    {
+        String regInsertados="Registro Insertado N∫= ";
+        long contador=0;
+        ContentValues detalle = new ContentValues();
+        detalle.put("idPrimeraRevision", detalleSegunda.getIdPrimeraRevision());
+        detalle.put("idSolicitudPrimerRevision",detalleSegunda.getIdSolicitudPrimerRevision());
+        detalle.put("asistenciaPrimerRevision",detalleSegunda.isAsitenciaPrimerRevision());
+        detalle.put("notaNueva",detalleSegunda.getNotaNueva());
+        detalle.put("notaOriginal",detalleSegunda.getNotaOriginal());
+        detalle.put("motivoCambio",detalleSegunda.getMotivoCambio());
+
+        contador=db.insert("DetallePrimerRevision", null, detalle);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserciÛn";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+    }
 

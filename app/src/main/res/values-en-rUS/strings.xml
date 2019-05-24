@@ -75,6 +75,7 @@
     <string name="Menu_Tablas_Vd16006_Solicitud_DiferidoRepetido">Repeated Deferred Request Table</string>
     <string name="Menu_Tablas_Vd16006_TipoSolicitud">Request Type Table</string>
     <string name="Menu_Tablas_Vd16006_SolicitudEvaluacion">Request Evaluation Table (Scores)</string>
+    <string name="NotaAnterior">Previous score:</string>
     <string name="Solicitud_RepetidoDiferido_Titulo_Insertar1">Deferred Request Insert</string>
     <string name="Solicitud_RepetidoDiferido_Titulo_Insertar2">Repeated Request Insert</string>
     <string name="Solicitud_RepetidoDiferido_Titulo_Eliminar">Repeated Deferred Request Delete</string>

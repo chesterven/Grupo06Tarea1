@@ -229,7 +229,7 @@
 
     <!--para Spinner en CRUD's de primera revision-->
     <string name="SpinnerPrimeraRev">Primera Revisión:</string>
-
+    <string name="NotaAnterior">Nota Anterior:</string>
 
 
     <!-- MENU ZT12002-->

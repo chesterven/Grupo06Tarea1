@@ -74,6 +74,7 @@ public class MenuCh15013 extends AppCompatActivity {
         if (permitido || idusuario.equals("01")) {
             Toast.makeText(this, "Tiene Acceso", Toast.LENGTH_SHORT).show();
             Intent ven = new Intent(this, MenuDetallePrimeraRevision.class);
+            ven.putExtra("idusuario",idusuario);
             startActivity(ven);
         } else {
             Toast.makeText(this, "No Tiene Acceso", Toast.LENGTH_SHORT).show();
