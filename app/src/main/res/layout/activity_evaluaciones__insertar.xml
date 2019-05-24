@@ -221,9 +221,16 @@
             android:gravity="center">
 
             <Button
+                android:layout_width="213dp"
+                android:layout_height="match_parent"
+                android:onClick="InsertarEvaluacion"
+                android:text="@string/Insertar" />
+
+            <Button
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:text="@string/Insertar" />
+                android:onClick="limpiarTexto"
+                android:text="@string/Limpiar" />
         </TableRow>
 
 

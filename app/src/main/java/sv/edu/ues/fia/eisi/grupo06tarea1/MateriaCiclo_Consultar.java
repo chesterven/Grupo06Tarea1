@@ -45,16 +45,7 @@ public class MateriaCiclo_Consultar extends AppCompatActivity {
         }
         ArrayAdapter<CharSequence> adaptador4 = new ArrayAdapter(this,android.R.layout.simple_spinner_item,materias);
         materia.setAdapter(adaptador4);
-        DBHelper = new DBHelperInicial(this);
-        DBHelper.abrir();
-        Cursor resultado = DBHelper.consultarDoc();
-        if(resultado.moveToFirst()){
-            do{
-                docentes.add(resultado.getString(0) + " " + resultado.getString(1));
-            }while (resultado.moveToNext());
-        }
-        ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this,android.R.layout.simple_spinner_item,docentes);
-        docente.setAdapter(adaptador);
+
 
 
     }
@@ -64,14 +55,12 @@ public class MateriaCiclo_Consultar extends AppCompatActivity {
             Toast.makeText(this, "Selecciona la materia primero", Toast.LENGTH_SHORT).show();
         }else{
             String mate = "";
-            String doce = "";
+
             MateriaCicloLogica mat = new MateriaCicloLogica();
             mate = materia.getSelectedItem().toString();
             String[] mateparte = mate.split(" ");
             mat.setCodMateria(mateparte[0]);
-            doce = docente.getSelectedItem().toString();
-            String[] doceparte = doce.split(" ");
-            mat.setCodDocente(doceparte[0]);
+
             DBHelper = new DBHelperInicial(this);
             DBHelper.abrir();
             Cursor resultado2 = DBHelper.consultarMateria(mat);
@@ -89,13 +78,7 @@ public class MateriaCiclo_Consultar extends AppCompatActivity {
 
     public void limpiartTexto(View v){
         materia.setSelection(0);
-        docente.setSelection(0);
-        ArrayList<String> temporal = new ArrayList<>();
-        temporal.add("");
-        ArrayAdapter<CharSequence> x = new ArrayAdapter(this,android.R.layout.simple_spinner_item,temporal);
-        finish();
-        startActivity(getIntent());
-        resultado.setAdapter(x);
+        resultado.setSelection(0);
 
     }
 }

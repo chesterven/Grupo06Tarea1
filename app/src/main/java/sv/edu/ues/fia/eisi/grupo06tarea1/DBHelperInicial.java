@@ -1764,7 +1764,57 @@ public class DBHelperInicial {
         return c;
     }
 
-    /*                      EVALUACIONES                         */
+    /*                      EVALUACIONES
+    *
+    *
+    *
+    * */
+
+   /* public String insertarParametro(Parametros param){
+        String mensaje="";
+        boolean existe=false;
+        if(existe==false){
+            String regInsertados="Registro Insertado Nº= ";
+            long contador=0;
+            ContentValues parame = new ContentValues();
+            parame.put("idTipoParametro", param.getnombreTipoParametro());
+            parame.put("cantidad_Dias", param.getCantidad_Dias());
+            contador=db.insert("Parametro", null, parame);
+            if(contador==-1 || contador==0)
+            {
+                regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+            }
+            else {
+                regInsertados=regInsertados+contador;
+            }
+            return regInsertados;
+        }
+        else
+            return mensaje;
+    }*/
+    public String insertarEvaluacion(Evaluaciones eva){
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues parame = new ContentValues();
+        parame.put("idTipoEvaluacion",eva.getIdTipoevaluacion());
+        parame.put("numGrupo",eva.getNumGrupo());
+        parame.put("codMateria",eva.getCodMateria());
+        parame.put("idCiclo",eva.getIdCiclo());
+        parame.put("fechaEvaluacion",eva.getFechaEvaluacion());
+        parame.put("nombreEvaluacion",eva.getNombreEvaluacion());
+        parame.put("descripcion",eva.getDescripcion());
+        contador=db.insert("Evaluaciones", null, parame);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+
+
+    }
 
     public  Cursor consultarEva(){
         String[] columna={"idTipoEvaluacion","nombreTipoEvaluacion"};
