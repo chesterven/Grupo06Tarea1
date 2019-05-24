@@ -649,11 +649,11 @@ public class DBHelperInicial {
         db.execSQL("DELETE FROM Docente");
         db.execSQL("INSERT INTO Docente VALUES('GR00001','Cesar Augusto','Gonzalez Rodriguez',1)");
         db.execSQL("INSERT INTO Docente VALUES('MM00001','Boris Alexander','Montano',0)");
-        db.execSQL("INSERT INTO Docente VALUES('CG00001','Carlos','Garcia',0)");
-        db.execSQL("INSERT INTO Docente VALUES('JI00001','Jorge','Iraheta',0)");
-        db.execSQL("INSERT INTO Docente VALUES('GM00001','Guillermo','Mejia',0)");
-        db.execSQL("INSERT INTO Docente VALUES('RC00001','Rudy','Chicas',0)");
-        db.execSQL("INSERT INTO Docente VALUES('NH00001','Nelly','Henriquez',0)");
+        db.execSQL("INSERT INTO Docente VALUES('CG00001','Carlos Ernesto','Garcia',0)");
+        db.execSQL("INSERT INTO Docente VALUES('JI00001','Jorge Francisco','Iraheta',0)");
+        db.execSQL("INSERT INTO Docente VALUES('GM00001','Guillermo Jose','Mejia',0)");
+        db.execSQL("INSERT INTO Docente VALUES('RC00001','Rudy Emanuel','Chicas',0)");
+        db.execSQL("INSERT INTO Docente VALUES('NH00001','Nelly Sarai','Henriquez',0)");
 
 
         db.execSQL("DELETE FROM Local");
