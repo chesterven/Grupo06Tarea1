@@ -44,9 +44,9 @@ Grupo de trabajo: 06-->
         android:gravity="center">
 
         <Button
-            android:onClick="segundaRevisionInsertar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="primeraRevisionInsertar"
             android:text="@string/Insertar_Registro" />
     </TableRow>
 
@@ -56,9 +56,9 @@ Grupo de trabajo: 06-->
         android:gravity="center">
 
         <Button
-            android:onClick="segundaRevisionEliminar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="primeraRevisionEliminar"
             android:text="@string/Eliminar_Registro" />
     </TableRow>
 
@@ -68,9 +68,9 @@ Grupo de trabajo: 06-->
         android:gravity="center">
 
         <Button
-            android:onClick="segundaRevisionActualizar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="primeraRevisionActualizar"
             android:text="@string/Actualizar_Registro" />
     </TableRow>
 
@@ -80,9 +80,9 @@ Grupo de trabajo: 06-->
         android:gravity="center">
 
         <Button
-            android:onClick="segundaRevisionConsultar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="primeraRevisionConsultar"
             android:text="@string/Consultar_Registro" />
     </TableRow>
 </TableLayout>

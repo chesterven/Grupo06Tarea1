@@ -27,9 +27,9 @@ public class MenuPrimeraRevision extends AppCompatActivity {
         DBHelper.cerrar();
     }
 
-    public void segundaRevisionInsertar(View v){
+    public void primeraRevisionInsertar(View v){
 
-        String codOpcion = "036";
+        String codOpcion = "045";
         boolean permitido = false;
         for(int i=0; i<arrayAccesos.size();i++){
             if(codOpcion.equals(arrayAccesos.get(i))){
@@ -38,7 +38,7 @@ public class MenuPrimeraRevision extends AppCompatActivity {
         }
         if(permitido || idusuario.equals("01")){
             Toast.makeText(this,"Tiene Acceso", Toast.LENGTH_SHORT).show();
-            Intent ven=new Intent(this,SegundaRevision_Insertar.class);
+            Intent ven=new Intent(this,PrimeraRevision_Insertar.class);
             startActivity(ven);
         }
         else{
@@ -47,9 +47,9 @@ public class MenuPrimeraRevision extends AppCompatActivity {
 
     }
 
-    public void segundaRevisionEliminar(View v){
+    public void primeraRevisionEliminar(View v){
 
-        String codOpcion = "039";
+        String codOpcion = "048";
         boolean permitido = false;
         for(int i=0; i<arrayAccesos.size();i++){
             if(codOpcion.equals(arrayAccesos.get(i))){
@@ -58,7 +58,7 @@ public class MenuPrimeraRevision extends AppCompatActivity {
         }
         if(permitido || idusuario.equals("01")){
             Toast.makeText(this,"Tiene Acceso", Toast.LENGTH_SHORT).show();
-            Intent ven=new Intent(this,SegundaRevision_Eliminar.class);
+            Intent ven=new Intent(this,PrimeraRevision_Eliminar.class);
             startActivity(ven);
         }
         else{
@@ -67,8 +67,8 @@ public class MenuPrimeraRevision extends AppCompatActivity {
 
     }
 
-    public void segundaRevisionActualizar(View v){
-        String codOpcion = "037";
+    public void primeraRevisionActualizar(View v){
+        String codOpcion = "046";
         boolean permitido = false;
         for(int i=0; i<arrayAccesos.size();i++){
             if(codOpcion.equals(arrayAccesos.get(i))){
@@ -77,7 +77,7 @@ public class MenuPrimeraRevision extends AppCompatActivity {
         }
         if(permitido || idusuario.equals("01")){
             Toast.makeText(this,"Tiene Acceso", Toast.LENGTH_SHORT).show();
-            Intent ven=new Intent(this,SegundaRevision_Actualizar.class);
+            Intent ven=new Intent(this,PrimeraRevision_Actualizar.class);
             startActivity(ven);
         }
         else{
@@ -86,8 +86,8 @@ public class MenuPrimeraRevision extends AppCompatActivity {
 
     }
 
-    public void segundaRevisionConsultar(View v){
-        String codOpcion = "038";
+    public void primeraRevisionConsultar(View v){
+        String codOpcion = "047";
         boolean permitido = false;
         for(int i=0; i<arrayAccesos.size();i++){
             if(codOpcion.equals(arrayAccesos.get(i))){
@@ -96,7 +96,7 @@ public class MenuPrimeraRevision extends AppCompatActivity {
         }
         if(permitido || idusuario.equals("01")){
             Toast.makeText(this,"Tiene Acceso", Toast.LENGTH_SHORT).show();
-            Intent ven=new Intent(this,SegundaRevision_Consultar.class);
+            Intent ven=new Intent(this,PrimeraRevision_Consultar.class);
             startActivity(ven);
         }
         else{
