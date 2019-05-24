@@ -43,6 +43,9 @@ public class NotasEstudianteEvaluacion_Actualizar extends AppCompatActivity {
                 DBHelper.abrir();
                 String msj=DBHelper.actualizarNotaEstudianteEvaluacion(carnet.getText().toString().toUpperCase(),evalua.getText().toString(),nota.getText().toString());
                 DBHelper.cerrar();
+                carnet.setText("");
+                evalua.setText("");
+                nota.setText("");
                 Toast.makeText(this, msj, Toast.LENGTH_SHORT).show();
             }
         }
