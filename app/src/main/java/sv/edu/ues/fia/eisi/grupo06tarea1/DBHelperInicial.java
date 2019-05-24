@@ -1792,6 +1792,13 @@ public class DBHelperInicial {
         else
             return mensaje;
     }*/
+
+    public Cursor consultarEvaluacio(Evaluaciones eva){
+        String[] parametro = {eva.getCodMateria()};
+        String[] columna = {"idTipoEvaluacion","numGrupo","codMateria","idCiclo","fechaEvaluacion","nombreEvaluacion","descripcion"};
+        Cursor c=db.query("Evaluaciones",columna,"codMateria=?",parametro ,null,null,null);
+        return c;
+    }
     public String insertarEvaluacion(Evaluaciones eva){
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
@@ -1815,6 +1822,7 @@ public class DBHelperInicial {
 
 
     }
+
 
     public  Cursor consultarEva(){
         String[] columna={"idTipoEvaluacion","nombreTipoEvaluacion"};
