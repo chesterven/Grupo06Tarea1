@@ -220,6 +220,14 @@
     <!--Activity Eliminar_SolicitudSegundaRevision-->
     <string name="Titulo_Eliminar_SolicitudSegundaRevision">Eliminar Solicitud Segunda Revision</string>
 
+    <!--Detalle segunda revision-->
+    <string name="DetallePrimeraRevision_Titulo_Insertar">Insertar Detalle Primera Revisión</string>
+    <string name="DetallePrimeraRevision_Titulo_Eliminar">Eliminar Detalle Primera Revisión</string>
+    <string name="DetallePrimeraRevision_Titulo_Consultar">Consultar Detalle Primera Revisión</string>
+    <string name="DetallePrimeraRevision_Titulo_Actualizar">Actualizar Detalle Primera Revisión</string>
+    <string name="DetallePrimeraRevision_Titulo_Tabla">Tabla Detalle Primera Revisión</string>
+
+
 
     <!-- MENU ZT12002-->
     <string name="Menu_Tablas_ZT12002">Menu de tablas ZT12002</string>
