@@ -34,10 +34,7 @@ public class DetalleSegundaRevision_Actualizar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_segunda_revision__actualizar);
-        carnetAct = (EditText) findViewById(R.id.carnetDetalleSegundaAct);
-        notaAct=(EditText) findViewById(R.id.notaDetalleSegundaAct);
-        revisiones=(Spinner)findViewById(R.id.spinnerResultadosRevisionesEvaluaAct);
-        codDocente = (EditText) findViewById(R.id.codigoDocenteDetalleSegundaAct);
+
 
     }
     public void consultarReviSegundaReviDetalleAct (View v)

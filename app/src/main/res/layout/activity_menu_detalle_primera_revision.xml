@@ -68,7 +68,7 @@ Grupo de trabajo: 06-->
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="detallePrimeraRevisionConsultar"
+            android:onClick="detallePrimeraRevisionActualizar"
             android:text="@string/Actualizar_Registro" />
     </TableRow>
 </TableLayout>

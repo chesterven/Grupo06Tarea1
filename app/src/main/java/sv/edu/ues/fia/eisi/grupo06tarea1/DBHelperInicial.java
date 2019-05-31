@@ -2435,5 +2435,19 @@ public class DBHelperInicial {
         else{return false;}
 
     }
+
+    public String actualizarDetallePrimeraRevision(DetallePrimeraRevision detalles)
+    {
+        String[] id ={String.valueOf(detalles.getIdPrimeraRevision()),String.valueOf(detalles.getIdSolicitudPrimerRevision())};
+        ContentValues cv = new ContentValues();
+        cv.put("notaNueva",detalles.getNotaNueva());
+        cv.put("notaOriginal",detalles.getNotaOriginal());
+        cv.put("motivoCambio",detalles.getMotivoCambio());
+        cv.put("asistenciaPrimerRevision",detalles.isAsitenciaPrimerRevision());
+        db.update("DetallePrimerRevision",cv,"idPrimeraRevision=? AND idSolicitudPrimerRevision=?",id);
+        return "Registro actualizado correctamente";
+
+
+    }
     }
 

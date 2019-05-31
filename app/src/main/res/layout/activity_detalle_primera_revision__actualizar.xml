@@ -56,7 +56,7 @@ Grupo de trabajo: 06-->
                 android:text="@string/CodDocente" />
 
             <EditText
-                android:id="@+id/codigoDocenteDetallePrimeraIn"
+                android:id="@+id/codigoDocenteDetallePrimeraAct"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
@@ -71,11 +71,11 @@ Grupo de trabajo: 06-->
             android:layout_marginTop="5dp">
 
             <Button
-                android:onClick="consultarReviSegundaReviDetalleIn"
-                android:text="@string/ConsultarRevisiones"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"/>
+                android:layout_weight="2"
+                android:onClick="consultarReviDetallePrimeraReviAct"
+                android:text="@string/ConsultarRevisiones" />
 
         </TableRow>
         <TableRow
@@ -92,7 +92,7 @@ Grupo de trabajo: 06-->
                 android:text="@string/SpinnerPrimeraRev" />
 
             <Spinner
-                android:id="@+id/spinnerResultadosRevisionesEvaIn"
+                android:id="@+id/spinnerResultadosRevisionesEvaPrimeraAct"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5" />
@@ -111,7 +111,7 @@ Grupo de trabajo: 06-->
                 android:text="@string/Carnee" />
 
             <EditText
-                android:id="@+id/carnetDetallePrimeraIn"
+                android:id="@+id/carnetDetallePrimeraAct"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
@@ -132,7 +132,7 @@ Grupo de trabajo: 06-->
                 android:text="@string/Asistencia" />
 
             <CheckBox
-                android:id="@+id/asistenciaPrimeraRevisionIn"
+                android:id="@+id/asistenciaPrimeraRevisionAct"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5" />
@@ -151,7 +151,7 @@ Grupo de trabajo: 06-->
                 android:text="@string/NotaAnterior" />
 
             <EditText
-                android:id="@+id/notaAntDetallePrimeraIn"
+                android:id="@+id/notaAntDetallePrimeraAct"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
@@ -173,7 +173,7 @@ Grupo de trabajo: 06-->
                 android:text="@string/Nota" />
 
             <EditText
-                android:id="@+id/notaDetallePrimeraIn"
+                android:id="@+id/notaDetallePrimeraAct"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
@@ -195,7 +195,7 @@ Grupo de trabajo: 06-->
                 android:text="@string/Motivo" />
 
             <EditText
-                android:id="@+id/motivoCambioDetallePrimeraIn"
+                android:id="@+id/motivoCambioDetallePrimeraAct"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
@@ -212,8 +212,8 @@ Grupo de trabajo: 06-->
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:onClick="insertarDetallePrimeraRevision"
-                android:text="@string/Insertar" />
+                android:onClick="actualizarDetallePrimeraRevision"
+                android:text="@string/Actualizar" />
 
             <Button
                 android:onClick="Limpiar"
