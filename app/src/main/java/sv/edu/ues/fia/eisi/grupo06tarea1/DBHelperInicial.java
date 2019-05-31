@@ -2447,6 +2447,15 @@ public class DBHelperInicial {
         db.update("DetallePrimerRevision",cv,"idPrimeraRevision=? AND idSolicitudPrimerRevision=?",id);
         return "Registro actualizado correctamente";
 
+    }
+
+    public String eliminarDetallePrimeraRevision(int idSegundaRevision, int idSoliSegundaRevision)
+    {
+
+        int contador = 0;
+        String[] parametros = {String.valueOf(idSegundaRevision),String.valueOf(idSoliSegundaRevision)};
+        contador+=db.delete("DetallePrimerRevision","idPrimeraRevision=? AND idSolicitudPrimerRevision=?",parametros);
+        return "Registro borrado con Èxito";
 
     }
     }

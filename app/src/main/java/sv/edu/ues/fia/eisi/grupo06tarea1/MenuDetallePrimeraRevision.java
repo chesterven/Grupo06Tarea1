@@ -86,4 +86,24 @@ public class MenuDetallePrimeraRevision extends AppCompatActivity {
 
 
     }
+
+    public void detallePrimeraRevisionEliminar(View v){
+        String codOpcion = "028";
+        boolean permitido = false;
+        for(int i=0; i<arrayAccesos.size();i++){
+            if(codOpcion.equals(arrayAccesos.get(i))){
+                permitido = true;
+            }
+        }
+        if(permitido || idusuario.equals("01")){
+            Toast.makeText(this,"Tiene Acceso", Toast.LENGTH_SHORT).show();
+            Intent ven=new Intent(this,DetallePrimeraRevision_Eliminar.class);
+            startActivity(ven);
+        }
+        else{
+            Toast.makeText(this,"No Tiene Acceso", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
 }

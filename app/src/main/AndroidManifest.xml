@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetallePrimeraRevision_Actualizar"></activity>
+        <activity android:name=".DetallePrimeraRevision_Eliminar"></activity>
+        <activity android:name=".DetallePrimeraRevision_Actualizar" />
         <activity android:name=".DetallePrimeraRevision_Consultar" />
         <activity android:name=".DetallePrimeraRevision_Insertar" />
         <activity android:name=".PrimeraRevision_Consultar" />
