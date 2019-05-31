@@ -785,7 +785,7 @@ public class DBHelperInicial {
 
 
         //db.execSQL("INSERT INTO SolicitudSegundaRevision (idEvaluacion,carnet,aprobado,idPrimeraRevision,idSolicitudPrimerRevision) VALUES (2,'VD16006',0,1,1); ");
-
+        db.execSQL("DELETE FROM SolicitudSegundaRevision");
         db.execSQL("DELETE FROM DetallePrimerRevision");
         // db.execSQL("INSERT INTO DetallePrimerRevision (idPrimeraRevision,idSolicitudPrimerRevision,asistenciaPrimerRevision,notaOriginal,notaNueva,motivoCambio) VALUES (1,1,1,5.9,6.3,'mal calificado'); ");
 
