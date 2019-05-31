@@ -120,7 +120,7 @@ public class DetallePrimeraRevision_Eliminar extends AppCompatActivity {
     }
 
 
-    public void limpiar(View v)
+    public void limpiarTexto(View v)
     {
         carnet.setText("");
         codDoc.setText("");

@@ -144,7 +144,7 @@ public class DetallePrimeraRevision_Actualizar extends AppCompatActivity {
 
 
     }
-    public void limpiarTexto(View v) {
+    public void Limpiar(View v) {
         carnetAct.setText("");
         notaAnteriorAct.setText("");
         notaNueva.setText("");

@@ -20,7 +20,7 @@ Grupo de trabajo: 06-->
             android:layout_width="202dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/Menu_Detalle_Segunda_Revision_Titulo"
+            android:text="@string/DetallePrimeraRevision_Titulo_Tabla"
             android:textSize="18sp"
             android:textStyle="bold" />
     </TableRow>

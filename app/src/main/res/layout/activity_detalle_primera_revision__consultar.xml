@@ -27,7 +27,7 @@ Grupo de trabajo: 06-->
                 android:textSize="18sp"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:text="@string/DetalleSegundaRevision_Titulo_Consultar" />
+                android:text="@string/DetallePrimeraRevision_Titulo_Consultar" />
         </TableRow>
 
         <TableRow
