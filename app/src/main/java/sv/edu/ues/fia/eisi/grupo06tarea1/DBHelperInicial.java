@@ -2397,5 +2397,43 @@ public class DBHelperInicial {
         }
         return regInsertados;
     }
+
+    public DetallePrimeraRevision consultarDetallePrimeraRevision(int idPrimeraRevision, int idSoliPrimeraRevision)
+    {
+        DetallePrimeraRevision detalles = new DetallePrimeraRevision();
+        String [] parametro = {String.valueOf(idPrimeraRevision),String.valueOf(idSoliPrimeraRevision)};
+        String [] columnas = {"asistenciaPrimerRevision","notaOriginal","notaNueva,motivoCambio"};
+        Cursor c = db.query("DetallePrimerRevision",columnas,"idPrimeraRevision=? AND idSolicitudPrimerRevision=?",parametro,null,null,null);
+        if(c.moveToFirst())
+        {
+            if(c.getInt(0)==0)
+            {
+                detalles.setAsitenciaPrimerRevision(false);
+            }
+            else{
+                detalles.setAsitenciaPrimerRevision(true);
+            }
+
+            detalles.setNotaOriginal(c.getFloat(1));
+            detalles.setNotaNueva(c.getFloat(2));
+            detalles.setMotivoCambio(c.getString(3));
+
+            return detalles;
+        }
+        else {return null;}
+    }
+
+    public Boolean consultarDetallePrimeraAntesDeAcciones(int idPrimeraRevision, int idSoliPrimeraRevision)
+    {
+        String [] parametro = {String.valueOf(idPrimeraRevision),String.valueOf(idSoliPrimeraRevision)};
+        String [] columna = {"idPrimeraRevision"};
+        Cursor c = db.query("DetallePrimerRevision",columna,"idPrimeraRevision=? AND idSolicitudPrimerRevision=?",parametro,null,null,null);
+        if(c.moveToFirst())
+        {
+            return true;
+        }
+        else{return false;}
+
+    }
     }
 
