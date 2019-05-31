@@ -60,14 +60,15 @@ Grupo de trabajo: 06-->
 
         <TextView
             android:id="@+id/Materia"
-            android:layout_width="138dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1.5"
+            android:layout_weight="1"
             android:text="@string/Materia" />
 
         <Spinner
             android:id="@+id/spinnerMateria"
-            android:layout_width="166dp"
+            android:layout_width="0dp"
+            android:layout_weight="3"
             android:layout_height="wrap_content" />
 
 
@@ -94,16 +95,17 @@ Grupo de trabajo: 06-->
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="157dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="1.3"
                 android:text="@string/Grupo" />
 
             <EditText
                 android:id="@+id/NumGrupo"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2.5"
+
+                android:layout_weight="2.7"
                 android:ems="10"
                 android:inputType="text" />
 
@@ -126,14 +128,15 @@ Grupo de trabajo: 06-->
 
             <TextView
                 android:id="@+id/Docente"
-                android:layout_width="138dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="1.3"
                 android:text="@string/CodDocente" />
 
             <Spinner
                 android:id="@+id/spinnerdoc"
-                android:layout_width="166dp"
+                android:layout_width="0dp"
+                android:layout_weight="2.7"
                 android:layout_height="wrap_content" />
 
 
@@ -146,14 +149,15 @@ Grupo de trabajo: 06-->
 
             <TextView
                 android:id="@+id/TGrupo"
-                android:layout_width="138dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="1.3"
                 android:text="@string/TipoGrupo" />
 
             <Spinner
                 android:id="@+id/spinnertg"
-                android:layout_width="166dp"
+                android:layout_width="0dp"
+                android:layout_weight="2.7"
                 android:layout_height="wrap_content" />
 
 
@@ -168,14 +172,15 @@ Grupo de trabajo: 06-->
 
             <TextView
                 android:id="@+id/Ciclo"
-                android:layout_width="138dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="1.3"
                 android:text="@string/Ciclo" />
 
             <Spinner
                 android:id="@+id/spinnerciclo"
-                android:layout_width="166dp"
+                android:layout_width="0dp"
+                android:layout_weight="2.7"
                 android:layout_height="wrap_content" />
 
 
@@ -185,23 +190,42 @@ Grupo de trabajo: 06-->
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center">
 
             <Button
-                android:id="@+id/button10"
+                android:id="@+id/button101"
                 android:layout_width="175dp"
                 android:layout_height="wrap_content"
-                android:text="@string/Actualizar" />
+                android:onClick="consultar"
+                android:text="@string/Consultar" />
 
             <Button
                 android:layout_width="205dp"
                 android:layout_height="match_parent"
+                android:onClick="limpiar"
                 android:text="@string/Limpiar" />
 
         </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button10"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:onClick="actualizarMateriaCi"
+            android:text="@string/Actualizar" />
+
+
+
+    </TableRow>
 
 
     </TableLayout>

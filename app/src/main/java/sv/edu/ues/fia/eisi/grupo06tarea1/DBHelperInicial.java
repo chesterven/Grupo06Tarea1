@@ -1612,16 +1612,32 @@ public class DBHelperInicial {
 
     /*                      MATERIA CICLO                          */
 
-    /*  public String eliminarParametro(String id){
-        String regAfectados="filas afectadas=";
-        int contador = 0;
-        String[] parametro = {id};
+    /*  public String actualizarParametron(String id,  String nuevoNombre)
+    {
 
-        db.delete("Parametro","idParametro=?",parametro);
-        db.delete("TipoParametro","idTipoParametro=?",parametro);
+        String[] i = {id};
+        ContentValues cv = new ContentValues();
+        cv.put("nombreTipoParametro",nuevoNombre);
+        db.update("TipoParametro",cv,"idTipoParametro = ?",i);
 
-        return "Registro Eliminado";
+        return "Nombre de Parametro Actualizado";
+    }
     }*/
+
+    public String actualizarMateriaCiclo(MateriaCicloLogica mat, String doc,String grupo, String materia){
+        String mensaje = "Materia Ciclo actualizada";
+        String[] parametro = {doc,grupo,materia};
+        ContentValues cv = new ContentValues();
+        cv.put("numGrupo",mat.getNumGrupo());
+        cv.put("codMateria",materia);
+        cv.put("idCiclo",mat.getIdCiclo());
+        cv.put("codDocente",mat.getCodDocente());
+        cv.put("idTipoGrupo",mat.getIdTipoGrupo());
+        db.update("MateriaCiclo",cv,"codDocente=? AND numGrupo=?  AND codMateria=?",parametro);
+
+        return mensaje;
+    }
+
     public String eliminarMateriaCiclo(String docente, String numGrupo,String codMateria){
 
         String[] parametro = {docente,numGrupo,codMateria};

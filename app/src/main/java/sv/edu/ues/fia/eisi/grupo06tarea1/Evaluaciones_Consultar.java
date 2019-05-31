@@ -65,7 +65,7 @@ public class Evaluaciones_Consultar extends AppCompatActivity {
         }
     }
     public void limpiarText(View v){
-        resultad.setSelection(0);
-        materia.setSelection(0);
+        finish();
+        startActivity(getIntent());
     }
 }

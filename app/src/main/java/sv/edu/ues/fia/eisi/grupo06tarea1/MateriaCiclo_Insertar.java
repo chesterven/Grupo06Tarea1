@@ -115,7 +115,8 @@ public class MateriaCiclo_Insertar extends AppCompatActivity {
             DBHelper.abrir();
             String mensaje = DBHelper.insertarMateriaCiclo(mat);
             Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
-
+            finish();
+            startActivity(getIntent());
 
         }
 

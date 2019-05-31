@@ -49,7 +49,6 @@ public class Evaluaciones_Actualizar extends AppCompatActivity {
         numgrupos.add("Seleccione el tipo de grupo");
         resultados.add("");
         idciclos.add("Seleccione el ciclo");
-        resultados.add(" ");
         DBHelper = new DBHelperInicial(this);
         DBHelper.abrir();
         Cursor resultado4 = DBHelper.consultarMat();
