@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Grupo06Tarea1</string>
     <string name="Insertar">Insert</string>
+    <string name="InsertarFTP">Insert FTP</string>
     <string name="Eliminar">Delete</string>
     <string name="Actualizar">Update</string>
     <string name="Consultar">Read</string>

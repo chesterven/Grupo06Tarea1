@@ -20,7 +20,7 @@ public class ControladorServicio {
     Solicitud_RepetidoDiferido soli = new Solicitud_RepetidoDiferido();
 
 
-    public String ejecutarServicio(String URL, Solicitud_RepetidoDiferido solicitud, Context context) {
+    public String insertarSolicitudDiferido(String URL, Solicitud_RepetidoDiferido solicitud, Context context) {
         soli = solicitud;
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override

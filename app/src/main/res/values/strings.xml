@@ -2,6 +2,7 @@
     <string name="app_name">Grupo06Tarea1</string>
     <!--Uso general para mandar a llamar en todas las activities-->
     <string name="Insertar">Insertar</string>
+    <string name="InsertarFTP">Insertar FTP</string>
     <string name="Eliminar">Eliminar</string>
     <string name="Actualizar">Actualizar</string>
     <string name="Consultar">Consultar</string>

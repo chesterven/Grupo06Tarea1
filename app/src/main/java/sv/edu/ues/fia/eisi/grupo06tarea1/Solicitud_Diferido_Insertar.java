@@ -96,7 +96,7 @@ public class Solicitud_Diferido_Insertar extends AppCompatActivity {
                 solicitud.setIdTipoSolicitud(2);
                 DBHelper.abrir();
                 mensaje = DBHelper.insertarSolicitudDiferidoRepetido(solicitud);
-                mensaje2 =controlServicios.ejecutarServicio("https://eisi.fia.ues.edu.sv/GPO06/vd16006/pruebaftp.php/", solicitud, Solicitud_Diferido_Insertar.this);
+                mensaje2 =controlServicios.insertarSolicitudDiferido("https://eisi.fia.ues.edu.sv/GPO06/vd16006/pruebaftp.php/", solicitud, Solicitud_Diferido_Insertar.this);
 
 
                 Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
@@ -108,6 +108,30 @@ public class Solicitud_Diferido_Insertar extends AppCompatActivity {
 
 
         }
+
+    public void insertarSolicitudDiferidoFTP(View v) {
+        if (!(evaluaciones.size() == 0)) {
+            if (motivoSoliIn.getText().toString().equals("") | spinnerResultado.getSelectedItem().toString().equals("Seleccione evaluacion")) {
+                Toast.makeText(this, "Ingrese motivo o seleccione una evaluacion", Toast.LENGTH_SHORT).show();
+            } else {
+                controlServicios = new ControladorServicio();
+                String evaluacion;
+                String mensaje2;
+                Solicitud_RepetidoDiferido solicitud = new Solicitud_RepetidoDiferido();
+                evaluacion = spinnerResultado.getSelectedItem().toString();
+                String[] evaluacionPartes = evaluacion.split(" ");
+                solicitud.setCarnet(carnetSoliIn.getText().toString());
+                solicitud.setIdEvaluacion(Integer.valueOf(evaluacionPartes[0]));
+                solicitud.setMotivoSolicitud(motivoSoliIn.getText().toString());
+                solicitud.setAprobado(false);
+                solicitud.setIdTipoSolicitud(2);
+                mensaje2 = controlServicios.insertarSolicitudDiferido("https://eisi.fia.ues.edu.sv/GPO06/Tarea/pruebaftp.php/", solicitud, Solicitud_Diferido_Insertar.this);
+
+            }
+        }else{
+            Toast.makeText(this,"Tiene que consultar evaluaciones",Toast.LENGTH_SHORT).show();
+        }
+    }
 
     public void limpiarTexto(View v){
         carnetSoliIn.setText("");
