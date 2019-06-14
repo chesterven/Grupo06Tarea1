@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 public class Solicitud_Diferido_Insertar extends AppCompatActivity {
     DBHelperInicial DBHelper;
+    ControladorServicio controlServicios;
     EditText carnetSoliIn, motivoSoliIn;
     Spinner spinnerResultado;
     Cursor datos;
@@ -81,7 +82,9 @@ public class Solicitud_Diferido_Insertar extends AppCompatActivity {
             if(motivoSoliIn.getText().toString().equals("") | spinnerResultado.getSelectedItem().toString().equals("Seleccione evaluacion")){
                 Toast.makeText(this,"Ingrese motivo o seleccione una evaluacion",Toast.LENGTH_SHORT).show();
             }else{
+                controlServicios = new ControladorServicio();
                 String mensaje = "";
+                String mensaje2="";
                 String evaluacion;
                 Solicitud_RepetidoDiferido solicitud = new Solicitud_RepetidoDiferido();
                 evaluacion = spinnerResultado.getSelectedItem().toString();
@@ -93,8 +96,11 @@ public class Solicitud_Diferido_Insertar extends AppCompatActivity {
                 solicitud.setIdTipoSolicitud(2);
                 DBHelper.abrir();
                 mensaje = DBHelper.insertarSolicitudDiferidoRepetido(solicitud);
+                mensaje2 =controlServicios.ejecutarServicio("https://eisi.fia.ues.edu.sv/GPO06/vd16006/pruebaftp.php/", solicitud, Solicitud_Diferido_Insertar.this);
+
 
                 Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,mensaje2,Toast.LENGTH_SHORT).show();
             }
         }else{
             Toast.makeText(this,"Tiene que consultar evaluaciones",Toast.LENGTH_SHORT).show();
