@@ -144,14 +144,20 @@
             android:text="@string/Consultar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"/>
+            android:layout_weight="1.33"/>
+        <Button
+            android:onClick="consultarNotaFTP"
+            android:text="@string/ConsultarFTP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.33"/>
 
         <Button
             android:onClick="limpiarTexto"
             android:text="@string/Limpiar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"/>
+            android:layout_weight="1.33"/>
     </TableRow>
 
     <TableRow
