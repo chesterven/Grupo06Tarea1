@@ -3,6 +3,7 @@
 //Grupo de trabajo: 06
 package sv.edu.ues.fia.eisi.grupo06tarea1;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -20,7 +30,7 @@ import java.util.ArrayList;
 public class SolicitudEvaluacion_Consultar extends AppCompatActivity {
 
     DBHelperInicial DBHelper;
-    EditText codDocente;
+    EditText codDocente,carnet;
     Spinner evalua, tiposoli,solicitudes;
     ArrayList<String> evaluaciones = new ArrayList<String>();
     ArrayList<String> tipoSolicitud = new ArrayList<String>();
@@ -29,6 +39,8 @@ public class SolicitudEvaluacion_Consultar extends AppCompatActivity {
     ArrayList<String> solicitudesResultado = new ArrayList<String>();
     TextView nota;
     Cursor soliEvaluacion;
+    ControladorServicio controladorServicio;
+    RequestQueue requestQueue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +50,7 @@ public class SolicitudEvaluacion_Consultar extends AppCompatActivity {
         tiposoli = (Spinner) findViewById(R.id.spinnerTipoSolicitudCon);
         solicitudes = (Spinner) findViewById(R.id.spinnerSolicitudDifRepSolicitudesCon);
         nota = (TextView) findViewById(R.id.notaConsultarSolicitudEvaluacion);
+        carnet = (EditText) findViewById(R.id.SolicitudEvaluacionCarnet);
         tipoSolicitud.add("Seleccione tipo evaluacion");
         tipoSolicitud.add("2 Repetido");
         tipoSolicitud.add("3 Diferida");
@@ -152,6 +165,55 @@ public class SolicitudEvaluacion_Consultar extends AppCompatActivity {
             Toast.makeText(this, "Consulte las solicitudes", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void consultarNotaSoliEvaluacionFtp(View v){
+                DBHelper = new DBHelperInicial(this);
+                DBHelper.abrir();
+                String evaluacion = evalua.getSelectedItem().toString();
+                evaluacionPart = evaluacion.split(" ");
+                Cursor c = DBHelper.consultarSolicitudesDifRep(Integer.valueOf(evaluacionPart[0]),carnet.getText().toString());
+                if(c.moveToFirst()){
+                    controladorServicio = new ControladorServicio();
+                    buscarNotaSoliEvaluacion("https://eisi.fia.ues.edu.sv/GPO06/Tarea/notaSoliEvaluacion.php?idEvaluacion="+evaluacionPart[0]+"&idSolicitud="+String.valueOf(c.getInt(3)),SolicitudEvaluacion_Consultar.this);
+
+
+                }else{
+                    Toast.makeText(this, "No hay solicitud", Toast.LENGTH_SHORT).show();
+                }
+
+
+    }
+
+   public void buscarNotaSoliEvaluacion(String URL, Context context) {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        if(String.valueOf(jsonObject.getDouble("notaSoliEvaluacion")).equals("")){
+
+                        }else {
+                            nota.setText(String.valueOf(jsonObject.getDouble("notaSoliEvaluacion")));
+                        }
+                    } catch (JSONException e) {
+
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }
+        );
+        requestQueue= Volley.newRequestQueue(context);
+        requestQueue.add(jsonArrayRequest);
+    }
+
+
 
 
     public void limpiarTexto(View v){

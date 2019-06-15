@@ -84,7 +84,7 @@ public class Solicitud_Diferido_Insertar extends AppCompatActivity {
             }else{
                 controlServicios = new ControladorServicio();
                 String mensaje = "";
-                String mensaje2="";
+
                 String evaluacion;
                 Solicitud_RepetidoDiferido solicitud = new Solicitud_RepetidoDiferido();
                 evaluacion = spinnerResultado.getSelectedItem().toString();
@@ -96,11 +96,11 @@ public class Solicitud_Diferido_Insertar extends AppCompatActivity {
                 solicitud.setIdTipoSolicitud(2);
                 DBHelper.abrir();
                 mensaje = DBHelper.insertarSolicitudDiferidoRepetido(solicitud);
-                mensaje2 =controlServicios.insertarSolicitudDiferido("https://eisi.fia.ues.edu.sv/GPO06/vd16006/pruebaftp.php/", solicitud, Solicitud_Diferido_Insertar.this);
+
 
 
                 Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
-                Toast.makeText(this,mensaje2,Toast.LENGTH_SHORT).show();
+
             }
         }else{
             Toast.makeText(this,"Tiene que consultar evaluaciones",Toast.LENGTH_SHORT).show();

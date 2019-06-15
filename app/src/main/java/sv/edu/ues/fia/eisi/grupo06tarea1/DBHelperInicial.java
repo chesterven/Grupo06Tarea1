@@ -740,7 +740,7 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO TipoEvaluacion (nombreTipoEvaluacion) VALUES ('Suficiencia');");
 
         db.execSQL("DELETE FROM Evaluaciones");
-        db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'MAT115',1,'2019-03-13','Primer Examen Parcial','Evaluacion de las unidades I y II')");
+       // db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'MAT115',1,'2019-03-13','Primer Examen Parcial','Evaluacion de las unidades I y II')");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(1,1,'PDM115',1,'2019-03-23','Primer Examen Teorico','Evaluacion de las unidades I, II y III')");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(3,1,'PDM115',1,'2019-04-12','Primer Examen Diferido Teorico','Evaluacion de las unidades I, II y III')");
         db.execSQL("INSERT INTO Evaluaciones (idTipoEvaluacion,numGrupo,codMateria,idCiclo,fechaEvaluacion,nombreEvaluacion,descripcion) VALUES(2,1,'PDM115',1,'2019-03-30','Primer Examen Repetido Teorico','Evaluacion de las unidades I, II y III')");
@@ -1333,7 +1333,7 @@ public class DBHelperInicial {
 
     public Cursor consultarSolicitudesDifRep(int idEvaluacion, String carnet){
         String[] parametros = {String.valueOf(idEvaluacion),carnet};
-        String[] columnas = {"motivo","aprobado","idTipoSolicitud"};
+        String[] columnas = {"motivo","aprobado","idTipoSolicitud","idSolicitudDiferidoRepetido"};
         Cursor c = db.query("SolicitudDiferidoRepetido",columnas,"idEvaluacion=? AND carnet=?",parametros,null,null,null);
         return c;
     }

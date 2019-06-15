@@ -6,6 +6,7 @@
     <string name="Eliminar">Eliminar</string>
     <string name="Actualizar">Actualizar</string>
     <string name="Consultar">Consultar</string>
+    <string name="ConsultarFTP">Consultar FTP</string>
     <string name="Insertar_Registro">Insertar Registro</string>
     <string name="Eliminar_Registro">Eliminar Registro</string>
     <string name="Actualizar_Registro">Actualizar Registro</string>

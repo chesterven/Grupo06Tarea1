@@ -6,6 +6,7 @@
     <string name="Eliminar">Delete</string>
     <string name="Actualizar">Update</string>
     <string name="Consultar">Read</string>
+    <string name="ConsultarFTP">Read FTP</string>
     <string name="Insertar_Registro">Insert Record</string>
     <string name="Eliminar_Registro">Delete Record</string>
     <string name="Actualizar_Registro">Update Record</string>
