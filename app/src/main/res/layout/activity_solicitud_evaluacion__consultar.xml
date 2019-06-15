@@ -183,7 +183,7 @@ Grupo de trabajo: 06-->
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:text="@string/CodDocente" />
+                android:text="@string/Carnee"/>
 
             <EditText
                 android:id="@+id/SolicitudEvaluacionCarnet"
