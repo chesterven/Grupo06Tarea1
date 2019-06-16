@@ -36,6 +36,7 @@
     <string name="Evaluaciones">Evaluaciones:</string>
     <string name="SegundasRevisiones">2ª revisiones:</string>
     <string name="ConsultarRevisiones">Consultar las revisiones</string>
+    <string name="ConsultarRevisiones_ftp">Consultar las revisiones FTP</string>
     <string name="ConsultarRevisionesFTP">Consultar las revisiones FTP</string>
 
     <string name="title_activity_detalle_segunda_revision__actualizar">DetalleSegundaRevision_Actualizar</string>
@@ -80,6 +81,7 @@
 
     <string name="Segunda_Revision_Titulo_Insertar">Insertar Segunda Revisión</string>
     <string name="Segunda_Revision_Titulo_Consultar">Consultar Segunda Revisión</string>
+    <string name="Segunda_Revision_Titulo_Consultar_Ftp">Consultar FTP</string>
     <string name="Segunda_Revision_Titulo_Eliminar">Eliminar Segunda Revisión</string>
     <string name="Segunda_Revision_Titulo_Actualizar">Actualizar Segunda Revisión</string>
     <string name="SegundaRevisionId">Id Segunda Revisión:</string>

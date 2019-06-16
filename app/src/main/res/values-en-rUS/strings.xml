@@ -140,6 +140,7 @@
     <string name="Titulo_Actualizar_SolicitudImpresion">Print Request Update</string>
     <string name="Titulo_Eliminar_SolicitudImpresion">Print Request Delete</string>
     <string name="Menu_Segunda_Revision_Titulo">Second Revision Table</string>
+    <string name="Segunda_Revision_Titulo_Consultar_Ftp">Search FTP</string>
     <string name="Menu_Dias_No_Habiles_Titulo">Non-Working Days Table</string>
     <string name="Menu_Detalle_Segunda_Revision_Titulo">Detail Second Revision Table</string>
     <string name="Menu_Solicitud_Diferido_Repetido_Titulo">Request Deferred Repetead Table</string>
@@ -164,6 +165,7 @@
     <string name="DetallePrimeraRevision_Titulo_Consultar">Detail First Revision Read</string>
     <string name="DetallePrimeraRevision_Titulo_Actualizar">Detail First Revision  Update</string>
     <string name="DetallePrimeraRevision_Titulo_Tabla">Detail First Revision Table</string>
+    <string name="ConsultarRevisiones_ftp">Search Revisions FTP</string>
     <string name="Menu_Tablas_ZT12002">Tables Menu ZT12002</string>
     <string name="zt12002_nombre">Name:</string>
     <string name="zt12002_dias">Days:</string>
