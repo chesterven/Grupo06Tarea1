@@ -716,9 +716,10 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Ciclo (ciclo) VALUES ('II2020');");
 
         db.execSQL("DELETE FROM PrimeraRevision");
-        db.execSQL("INSERT INTO PrimeraRevision (idEvaluacion,idLocal,fechaPrimeraRevision,descripcionPrimeraRevision, horaPrimeraRevision) VALUES (2,1,'12/05/2019','PDM parcial I grupo 1','8 am');");
+        db.execSQL("INSERT INTO PrimeraRevision (idEvaluacion,idLocal,fechaPrimeraRevision,descripcionPrimeraRevision, horaPrimeraRevision) VALUES (1,1,'12/05/2019','PDM parcial I grupo 1','8 am');");
 
         db.execSQL("DELETE FROM SegundaRevision");
+        db.execSQL("INSERT INTO SegundaRevision (idEvaluacion,idLocal,fechaSegundaRevision,horaSegundaRevision,descripcionSegundaRevision) VALUES (1,2,'15/05/2019','9 am','PDM parcial 1')");
         db.execSQL("DELETE FROM DetalleSegundaRevision");
 
 
@@ -765,10 +766,10 @@ public class DBHelperInicial {
 
 
         db.execSQL("DELETE FROM NotasEstudianteEvaluacion");
-        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('VD16006',2,5.9);");
+        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('VD16006',1,5.9);");
         db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('GC16001',8,4.2);");
         db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('GC16001',3,6.8);");
-        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('GC16001',2,8.37);");
+        db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('GC16001',1,8.37);");
         db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('VD16006',3,9.43);");
         db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('CH15013',7,7.09);");
         //db.execSQL("INSERT INTO  NotasEstudianteEvaluacion(carnet,idEvaluacion,notaEvaluacion) VALUES ('CS16008',7,6.1);");
@@ -776,7 +777,7 @@ public class DBHelperInicial {
 
 
         db.execSQL("DELETE FROM SolicitudPrimerRevision");
-         db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (2,'VD16006',1); ");
+         db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (1,'VD16006',1); ");
          db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (3,'GC16001',0); ");//Eliminación
          db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (8,'GC16001',0); ");//Consultar
         db.execSQL("INSERT INTO SolicitudPrimerRevision (idEvaluacion,carnet,aprobado) VALUES (7,'CH15013',0); ");//Actualizar
@@ -784,10 +785,12 @@ public class DBHelperInicial {
         //Autor: Cordero Hernandez, Oscar Emmanuel////
 
 
-        //db.execSQL("INSERT INTO SolicitudSegundaRevision (idEvaluacion,carnet,aprobado,idPrimeraRevision,idSolicitudPrimerRevision) VALUES (2,'VD16006',0,1,1); ");
+
         db.execSQL("DELETE FROM SolicitudSegundaRevision");
+        db.execSQL("INSERT INTO SolicitudSegundaRevision (idEvaluacion,carnet,aprobado,motivo,idPrimeraRevision,idSolicitudPrimerRevision) VALUES (1,'VD16006',1,'Inconformidad',1,1);");
         db.execSQL("DELETE FROM DetallePrimerRevision");
-        // db.execSQL("INSERT INTO DetallePrimerRevision (idPrimeraRevision,idSolicitudPrimerRevision,asistenciaPrimerRevision,notaOriginal,notaNueva,motivoCambio) VALUES (1,1,1,5.9,6.3,'mal calificado'); ");
+
+        db.execSQL("INSERT INTO DetallePrimerRevision (idPrimeraRevision,idSolicitudPrimerRevision,asistenciaPrimerRevision,notaOriginal,notaNueva,motivoCambio, Observaciones) VALUES (1,1,1,5.9,7.00,'mal calificado','Ninguna'); ");
 
         return "BD Llena";
     }

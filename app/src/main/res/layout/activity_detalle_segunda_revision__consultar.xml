@@ -142,6 +142,23 @@ Grupo de trabajo: 06-->
             android:layout_weight="2"/>
 
     </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4"
+        android:layout_marginTop="5dp">
+
+        <Button
+            android:onClick="consultarDetalleSegundaRevisionFTP"
+            android:text="@string/ConsultarFTP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"/>
+
+
+
+    </TableRow>
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"

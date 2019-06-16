@@ -3,6 +3,7 @@
 //Grupo de trabajo: 06
 package sv.edu.ues.fia.eisi.grupo06tarea1;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,16 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -30,6 +41,7 @@ public class DetalleSegundaRevision_Consultar extends AppCompatActivity {
     String resultRevisiones="";
     Cursor evaluaciones;
     DetalleSegundaRevision detalles = new DetalleSegundaRevision();
+    RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,6 +160,76 @@ public class DetalleSegundaRevision_Consultar extends AppCompatActivity {
         }
 
     }
+
+    public void consultarDetalleSegundaRevisionFTP(View v) {
+        if (!(listaRevisiones.size() == 0)) {
+
+            if(revisiones.getSelectedItem().toString().equals("Seleccione su revision")|
+                    carnetCon.getText().toString().equals(""))
+            {
+                Toast.makeText(this, "Debe seleccionar una revision e ingresar su carnet", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                DBHelper = new DBHelperInicial(this);
+                DBHelper.abrir();
+                String revision = "";
+                String mensaje = "";
+
+                revision = revisiones.getSelectedItem().toString();
+                String[] revisionParte = revision.split(" ");
+                idEvaluacion = DBHelper.consultarSegundaRevisionConId(revisionParte[0]);
+                /*idSoli*/   siAlumno = DBHelper.consultarAlumnoSoliSegundaRevisionAntesDetalle(Integer.valueOf(idEvaluacion), carnetCon.getText().toString());
+                if(siAlumno.equals(""))
+                {
+                    Toast.makeText(this, "El estudiante no tiene una solicitud de segunda revision", Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+
+                        buscarDetalleSegundaRevision("https://eisi.fia.ues.edu.sv/GPO06/Tarea/DetalleSegundaRevision.php?idSegundaRevision="+revisionParte[0]+"&idSoliSegundaRevision="+siAlumno+"",DetalleSegundaRevision_Consultar.this);
+
+
+                    DBHelper.cerrar();
+                }
+            }
+        }
+        else
+        {
+            Toast.makeText(this, "No ha consultado las revisiones", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    public void buscarDetalleSegundaRevision(String URL, Context context) {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        notaCon.setText(String.valueOf(jsonObject.getDouble("notaSegundaRevision")));
+                        if(jsonObject.getString("asistenciaSegundaRevision").equals("1")){
+                            asistenciaCon.setText("Asistio");
+                        }else{
+                            asistenciaCon.setText("No Asistio");
+                        }
+                    } catch (JSONException e) {
+
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }
+        );
+        requestQueue= Volley.newRequestQueue(context);
+        requestQueue.add(jsonArrayRequest);
+    }
+
     public void limpiarTexto(View v) {
         carnetCon.setText("");
         asistenciaCon.setText("");
