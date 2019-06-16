@@ -125,7 +125,7 @@ public class Solicitud_Diferido_Insertar extends AppCompatActivity {
                 solicitud.setMotivoSolicitud(motivoSoliIn.getText().toString());
                 solicitud.setAprobado(false);
                 solicitud.setIdTipoSolicitud(2);
-                mensaje2 = controlServicios.insertarSolicitudDiferido("https://eisi.fia.ues.edu.sv/GPO06/Tarea/pruebaftp.php/", solicitud, Solicitud_Diferido_Insertar.this);
+                mensaje2 = controlServicios.insertarSolicitudDiferido("https://eisi.fia.ues.edu.sv/GPO06/Tarea/insertarSolicitudDifRep.php/", solicitud, Solicitud_Diferido_Insertar.this);
 
             }
         }else{
