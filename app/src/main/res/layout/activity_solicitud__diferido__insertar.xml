@@ -142,6 +142,8 @@ Grupo de trabajo: 06-->
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
         android:weightSum="4">
 
         <Button
