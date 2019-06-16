@@ -36,6 +36,7 @@
     <string name="Evaluaciones">Evaluaciones:</string>
     <string name="SegundasRevisiones">2ª revisiones:</string>
     <string name="ConsultarRevisiones">Consultar las revisiones</string>
+    <string name="ConsultarRevisionesFTP">Consultar las revisiones FTP</string>
 
     <string name="title_activity_detalle_segunda_revision__actualizar">DetalleSegundaRevision_Actualizar</string>
 

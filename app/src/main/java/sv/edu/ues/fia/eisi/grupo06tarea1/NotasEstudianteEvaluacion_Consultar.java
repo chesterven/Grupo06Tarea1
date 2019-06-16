@@ -82,7 +82,7 @@ public class NotasEstudianteEvaluacion_Consultar extends AppCompatActivity {
             Cursor msj=DBHelper.consultarNotaEstudianteEvaluacion(carnet.getText().toString().toUpperCase(),evalua.getText().toString());
             if(msj.moveToFirst()){
                 controladorServicio = new ControladorServicio();
-                buscarNota("https://eisi.fia.ues.edu.sv/GPO06/cs16008/consultarNota.php?idEvaluacion="+evalua.getText().toString()+"&carnet="+carnet.getText().toString().toUpperCase(),this);
+                buscarNota("https://eisi.fia.ues.edu.sv/GPO06/Tarea/consultarNotaEvaluacion.php?idEvaluacion="+evalua.getText().toString()+"&carnet="+carnet.getText().toString().toUpperCase(),this);
             }else{
                 Toast.makeText(this, "No hay nota registrada con los párametros ingresados", Toast.LENGTH_SHORT).show();
             }
