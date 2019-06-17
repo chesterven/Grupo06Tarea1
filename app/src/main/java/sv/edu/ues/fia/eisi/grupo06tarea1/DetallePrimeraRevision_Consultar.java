@@ -122,6 +122,7 @@ public class DetallePrimeraRevision_Consultar extends AppCompatActivity {
                         else
                         {
                             asistencia.setText("No Asistió");
+
                         }
                         notaAnt.setText(String.valueOf(detalles.getNotaOriginal()));
                         notaNueva.setText(String.valueOf(detalles.getNotaNueva()));
