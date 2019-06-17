@@ -653,6 +653,7 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO Docente VALUES('GM00001','Guillermo Jose','Mejia',0)");
         db.execSQL("INSERT INTO Docente VALUES('RC00001','Rudy Emanuel','Chicas',0)");
         db.execSQL("INSERT INTO Docente VALUES('NH00001','Nelly Sarai','Henriquez',0)");
+        db.execSQL("INSERT INTO Docente VALUES('PP00002','Francisco Javier','Perez Perez',0)");
 
 
         db.execSQL("DELETE FROM Local");
@@ -680,7 +681,7 @@ public class DBHelperInicial {
         db.execSQL("INSERT INTO MateriaCiclo VALUES (1,'MIP115',1,'MM00001',1);");
         db.execSQL("INSERT INTO MateriaCiclo VALUES (1,'PDM115',1,'GR00001',2);");
         db.execSQL("INSERT INTO MateriaCiclo VALUES (1,'SYP115',1,'CG00001',1);");
-        db.execSQL("INSERT INTO MateriaCiclo VALUES (2,'MIP115',1,'JI00001',2);");
+        db.execSQL("INSERT INTO MateriaCiclo VALUES (2,'MIP115',1,'PP00002',2);");
         db.execSQL("INSERT INTO MateriaCiclo VALUES (2,'HDP115',1,'RC00001',1);");
         db.execSQL("INSERT INTO MateriaCiclo VALUES (1,'MEP115',1,'GM00001',2);");
         db.execSQL("INSERT INTO MateriaCiclo VALUES (1,'HDP115',1,'MM00001',1)");
@@ -1457,6 +1458,7 @@ public class DBHelperInicial {
 
 
 
+
     public int consultarParametro(String nombreParam){
         String[] parametro = {nombreParam};
         String[] columna = {"idTipoParametro"};
@@ -1683,6 +1685,13 @@ public class DBHelperInicial {
 
     }
     * */
+
+    public Cursor consultarAlumnoMateria(String codMateria){
+        String[] parametro = {codMateria};
+        String[] columna = {"carnet"};
+        Cursor c=db.query("EstudianteInscrito",columna,"codMateria=?",parametro ,null,null,null);
+        return c;
+    }
 
     public Cursor consultarMateria(MateriaCicloLogica materiaciclo){
         String[] parametro = {materiaciclo.getCodMateria()};

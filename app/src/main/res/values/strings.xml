@@ -244,6 +244,8 @@
     <string name="zt12002_nnombre">Nuevo nombre</string>
     <string name="zt12002_nndias">Nuevo dia</string>
     <string name="zt12002_tipoev">Tipo de evaluacion</string>
+    <string name="zt12002_alumno_docente">Alumnos por docente</string>
+    <string name="alumnos">Alumnos</string>
     <!-- MENU -->
     <string name="Menu_Tablas_ZT12002_Parametros">Tabla Parametros</string>
     <string name="Menu_Tablas_ZT12002_Evaluaciones">Tabla Evaluaciones</string>
