@@ -117,7 +117,7 @@ public class SegundaRevision_Consultar extends AppCompatActivity {
                 do {
                     evaluaciones = DBHelper.consultarEvaluaciones(resul.getInt(0), resul.getString(1), resul.getInt(2));
                     if (evaluaciones.moveToFirst()) {
-                        listaRevisiones.add(0, "Seleccione su revision");
+                        listaRevisiones.add(evaluaciones.getString(0)+" "+evaluaciones.getString(1));
                         do {
                             buscarListaSolicitudes("https://eisi.fia.ues.edu.sv/GPO06/Tarea/consultarSegundaRevision.php?idEvaluacion="+String.valueOf(evaluaciones.getInt(0)),this);
                         }
@@ -126,7 +126,7 @@ public class SegundaRevision_Consultar extends AppCompatActivity {
                 } while (resul.moveToNext());
             }
             if (listaRevisiones.size() == 0) {
-                Toast.makeText(this, "No hay segundas revisiones para el docente", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "No hay segundas revisiones", Toast.LENGTH_SHORT).show();
             } else {
                 ArrayAdapter<CharSequence> adaptadorr = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaRevisiones);
                 revisiones.setAdapter(adaptadorr);
