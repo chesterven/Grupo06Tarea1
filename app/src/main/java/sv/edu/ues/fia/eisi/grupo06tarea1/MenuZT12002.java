@@ -77,4 +77,21 @@ public class MenuZT12002 extends AppCompatActivity {
             Toast.makeText(this,"No Tiene Acceso", Toast.LENGTH_SHORT).show();
         }
     }
+    public void AlumnoDocente(View v){
+        String codOpcion = "013";
+        boolean permitido = false;
+        for(int i=0; i<arrayAccesos.size();i++){
+            if(codOpcion.equals(arrayAccesos.get(i))){
+                permitido=true;
+            }
+        }
+        if(permitido || idusuario.equals("01")){
+            Toast.makeText( this,"Tiene Acceso",Toast.LENGTH_SHORT).show();
+            Intent ven=new Intent(this,AlumnosPorDocente.class);
+            startActivity(ven);
+        }
+        else{
+            Toast.makeText(this,"No Tiene Acceso", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

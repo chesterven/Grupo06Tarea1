@@ -155,6 +155,7 @@
     <string name="Tabla_Primera_Revision">First Revision Table</string>
     <string name="solicitud_segunda_revisión">Second Revision Request</string>
     <string name="primera_revision">First Revision</string>
+    <string name="zt12002_alumno_docente">Students by Teacher</string>
     <string name="Menu_SolicitudSegundaRevision">First Revision Request</string>
     <string name="Titulo_Insertar_SolicitudSegundaRevision">Second Revision Request Insert</string>
     <string name="Titulo_Consultar_SolicitudSegundaRevision">Second Revision Request Read</string>
@@ -166,6 +167,7 @@
     <string name="DetallePrimeraRevision_Titulo_Actualizar">Detail First Revision  Update</string>
     <string name="DetallePrimeraRevision_Titulo_Tabla">Detail First Revision Table</string>
     <string name="ConsultarRevisiones_ftp">Search Revisions FTP</string>
+    <string name="alumnos">Students</string>
     <string name="Menu_Tablas_ZT12002">Tables Menu ZT12002</string>
     <string name="zt12002_nombre">Name:</string>
     <string name="zt12002_dias">Days:</string>
